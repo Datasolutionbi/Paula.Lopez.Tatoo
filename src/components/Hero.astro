@@ -1,0 +1,98 @@
+---
+import { SITE } from '../data/site';
+---
+
+<section class="container-custom section-padding">
+  <div class="max-w-4xl mx-auto text-center">
+    <h1 class="text-hero font-black mb-6 animate-fade-in tracking-tighter">
+      <span class="text-slate-100 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">Andres</span><span class="text-yellow-400 text-glow-amber px-1">BI</span><span class="text-blue-500 cursor-blink">_</span>
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-blue-100 mb-6 animate-slide-up text-balance">
+      {SITE.tagline}
+    </p>
+    
+    <p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto text-center text-balance animate-slide-up">
+      Transformo datos complejos en insights accionables mediante visualizaciones inteligentes, 
+      análisis predictivo y soluciones de BI que impulsan decisiones estratégicas.
+    </p>
+
+    <div class="flex flex-row justify-center gap-4 mb-16 animate-slide-up">
+      <a href="#proyectos" class="btn-primary min-w-[140px] md:min-w-[180px] text-sm md:text-base">
+        Ver Proyectos
+      </a>
+      <a href="/blog" class="btn-secondary min-w-[140px] md:min-w-[180px] text-sm md:text-base">
+        Leer Blog
+      </a>
+    </div>
+
+    <!-- Data Metrics -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 max-w-3xl mx-auto border-t border-white/5 pt-12">
+      <div class="text-center">
+        <div class="text-3xl font-bold text-white mb-1" data-counter="5">0</div>
+        <div class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Años Exp</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl font-bold text-blue-400 mb-1" data-counter="50">0</div>
+        <div class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Dashboards</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl font-bold text-cyan-400 mb-1" data-counter="100">0</div>
+        <div class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Proyectos ML</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl font-bold text-white mb-1" data-counter="15">0</div>
+        <div class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Certificaciones</div>
+      </div>
+    </div>
+
+    <!-- System Status Log -->
+    <div class="mt-8 font-mono text-[10px] text-blue-500/60 max-w-md mx-auto p-3 bg-blue-500/5 border border-blue-500/10 rounded-lg animate-pulse">
+      <div class="flex justify-between mb-1">
+        <span>&gt; INITIALIZING_CORE_SYSTEMS...</span>
+        <span>[OK]</span>
+      </div>
+      <div class="flex justify-between mb-1">
+        <span>&gt; LOADING_IA_MODULES...</span>
+        <span>[OK]</span>
+      </div>
+      <div class="flex justify-between">
+        <span>&gt; STATUS: READY_FOR_DECISION_MAKING</span>
+        <span class="text-cyan-400">ONLINE</span>
+      </div>
+    </div>
+
+    <script>
+      const counters = document.querySelectorAll('[data-counter]');
+      const speed = 200;
+
+      const animateCounters = () => {
+        counters.forEach(counter => {
+          const updateCount = () => {
+            const target = +counter.getAttribute('data-counter')!;
+            const count = +counter.innerHTML;
+            const inc = target / speed;
+
+            if (count < target) {
+              counter.innerHTML = Math.ceil(count + inc).toString();
+              setTimeout(updateCount, 1);
+            } else {
+              counter.innerHTML = target.toString() + (target >= 50 ? '+' : '');
+            }
+          };
+          updateCount();
+        });
+      };
+
+      // Intersection Observer to trigger animation
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          animateCounters();
+          observer.disconnect();
+        }
+      });
+
+      if (counters.length > 0) observer.observe(counters[0]);
+    </script>
+  </div>
+</section>

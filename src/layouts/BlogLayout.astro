@@ -1,0 +1,64 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { formatDate } from '../utils/formatDate';
+import { getReadingTime } from '../utils/readingTime';
+
+interface Props {
+  title: string;
+  description: string;
+  publishDate: Date;
+  category: string;
+  tags: string[];
+  author: string;
+  image?: string;
+}
+
+const { title, description, publishDate, category, tags, author, image } = Astro.props;
+
+// Get the raw content for reading time calculation
+const { Content, rawContent } = Astro.props as any;
+const readingTime = rawContent ? getReadingTime(rawContent()) : '5 min de lectura';
+---
+
+<BaseLayout title={title} description={description} image={image}>
+  <article class="container-custom section-padding">
+    <!-- Header -->
+    <header class="max-w-3xl mx-auto mb-12">
+      <div class="mb-6">
+        <span class="badge-primary">{category}</span>
+      </div>
+      
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-balance">{title}</h1>
+      
+      <p class="text-xl text-slate-600 mb-6 text-balance">{description}</p>
+      
+      <div class="flex flex-wrap items-center gap-4 text-sm text-slate-600">
+        <span>Por {author}</span>
+        <span>•</span>
+        <time datetime={publishDate.toISOString()}>{formatDate(publishDate)}</time>
+        <span>•</span>
+        <span>{readingTime}</span>
+      </div>
+      
+      {tags && tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-6">
+          {tags.map((tag) => (
+            <span class="badge-secondary">#{tag}</span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <!-- Content -->
+    <div class="prose prose-slate max-w-3xl mx-auto prose-headings:font-semibold prose-a:text-primary prose-code:text-primary prose-pre:bg-slate-900 prose-pre:text-slate-50">
+      <slot />
+    </div>
+
+    <!-- Back to blog -->
+    <div class="max-w-3xl mx-auto mt-12 pt-8 border-t border-slate-200">
+      <a href="/blog" class="text-primary hover:text-primary-dark inline-flex items-center gap-2">
+        ← Volver al blog
+      </a>
+    </div>
+  </article>
+</BaseLayout>

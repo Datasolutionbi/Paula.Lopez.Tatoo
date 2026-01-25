@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+---
+
+<BaseLayout title="404 - System Error">
+  <section class="min-h-[80vh] flex items-center justify-center section-padding">
+    <div class="max-w-2xl w-full text-center space-y-8 reveal-blur visible">
+      <!-- Error Icon -->
+      <div class="relative inline-block">
+        <div class="absolute inset-0 bg-red-500/20 blur-3xl rounded-full"></div>
+        <svg class="w-24 h-24 text-red-500 relative z-10 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+      </div>
+
+      <div class="space-y-4">
+        <h1 class="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-400 glitch" data-text="ERROR_404">
+          ERROR_404
+        </h1>
+        <p class="text-xl font-mono text-slate-400 uppercase tracking-[0.2em]">
+          System_Integrity_Compromised
+        </p>
+      </div>
+
+      <!-- Tech Logs -->
+      <div class="bg-[#0D0D1F] border border-red-500/20 rounded-lg p-6 font-mono text-left text-xs space-y-2 overflow-hidden relative">
+        <div class="absolute top-0 right-0 p-2 opacity-20">
+          <svg class="w-12 h-12 text-red-500" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L2 22h20L12 2zm0 5l7.5 13H4.5L12 7z"/>
+          </svg>
+        </div>
+        <div class="text-red-400 animate-pulse">[CRITICAL] REQUESTED_PATH_NOT_FOUND</div>
+        <div class="text-slate-500">&gt; SEARCHING_FOR_DATA_PACKETS... FAILED</div>
+        <div class="text-slate-500">&gt; KERNEL_PANIC: UNABLE_TO_RECOVER_URL</div>
+        <div class="text-slate-500">&gt; ATTEMPTING_REBOOT_TO_HOME...</div>
+        <div class="pt-4 flex items-center gap-2">
+          <span class="text-green-500">READY_TO_NAVIGATE:</span>
+          <span class="animate-pulse">_</span>
+        </div>
+      </div>
+
+      <div class="flex justify-center gap-4">
+        <a href="/" class="btn-primary !bg-gradient-to-r !from-red-600 !to-orange-600 shadow-[0_0_20px_rgba(239,68,68,0.3)]">
+          Volver al Inicio
+        </a>
+        <button onclick="history.back()" class="btn-secondary">
+          Retroceder
+        </button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .glitch {
+    position: relative;
+  }
+  .glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+  }
+  .glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+  }
+  .glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #00fff9;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+  }
+  @keyframes glitch-anim {
+    0% { clip: rect(31px, 9999px, 94px, 0); }
+    20% { clip: rect(62px, 9999px, 42px, 0); }
+    40% { clip: rect(16px, 9999px, 78px, 0); }
+    60% { clip: rect(81px, 9999px, 13px, 0); }
+    80% { clip: rect(54px, 9999px, 92px, 0); }
+    100% { clip: rect(23px, 9999px, 51px, 0); }
+  }
+  @keyframes glitch-anim2 {
+    0% { clip: rect(65px, 9999px, 100px, 0); }
+    20% { clip: rect(12px, 9999px, 58px, 0); }
+    40% { clip: rect(82px, 9999px, 11px, 0); }
+    60% { clip: rect(45px, 9999px, 89px, 0); }
+    80% { clip: rect(21px, 9999px, 34px, 0); }
+    100% { clip: rect(76px, 9999px, 25px, 0); }
+  }
+</style>

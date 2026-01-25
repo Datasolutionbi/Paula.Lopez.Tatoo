@@ -1,0 +1,42 @@
+---
+import { formatDateShort } from '../utils/formatDate';
+
+interface Props {
+  title: string;
+  description: string;
+  publishDate: Date;
+  category: string;
+  slug: string;
+  readingTime?: string;
+}
+
+const { title, description, publishDate, category, slug, readingTime } = Astro.props;
+---
+
+<article class="card group">
+  <div class="mb-3">
+    <span class="badge-primary text-xs">{category}</span>
+  </div>
+  
+  <h3 class="text-xl font-semibold text-slate-900 mb-3 group-hover:text-primary transition-colors line-clamp-2">
+    <a href={`/blog/${slug}`} class="hover:text-primary">
+      {title}
+    </a>
+  </h3>
+  
+  <p class="text-slate-600 mb-4 line-clamp-3 flex-grow">
+    {description}
+  </p>
+  
+  <div class="flex items-center gap-3 text-sm text-slate-500 pt-4 border-t border-slate-100">
+    <time datetime={publishDate.toISOString()}>
+      {formatDateShort(publishDate)}
+    </time>
+    {readingTime && (
+      <>
+        <span>•</span>
+        <span>{readingTime}</span>
+      </>
+    )}
+  </div>
+</article>

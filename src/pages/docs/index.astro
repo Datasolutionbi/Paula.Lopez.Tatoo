@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Get all docs
+const allDocs = await getCollection('docs');
+const sortedDocs = allDocs.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Documentación | Guías y Recursos">
+  <div class="container-custom section-padding">
+    <!-- Header -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Documentación</h1>
+      <p class="text-xl text-slate-600">
+        Guías, tutoriales y recursos para sacar el máximo provecho de este portfolio y las tecnologías que uso.
+      </p>
+    </div>
+
+    <!-- Docs List -->
+    {sortedDocs.length > 0 ? (
+      <div class="max-w-4xl mx-auto space-y-4">
+        {sortedDocs.map((doc) => (
+          <a 
+            href={`/docs/${doc.slug}`}
+            class="card block group hover:border-primary transition-colors"
+          >
+            <h2 class="text-2xl font-semibold text-slate-900 mb-2 group-hover:text-primary transition-colors">
+              {doc.data.title}
+            </h2>
+            <p class="text-slate-600">
+              {doc.data.description}
+            </p>
+            <div class="mt-4 inline-flex items-center text-primary gap-2">
+              <span>Leer más</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <div class="text-center text-slate-500 py-12">
+        <p class="text-lg">Documentación próximamente...</p>
+      </div>
+    )}
+
+    <!-- Quick Links -->
+    <div class="max-w-4xl mx-auto mt-16 pt-12 border-t border-slate-200">
+      <h2 class="text-2xl font-semibold text-slate-900 mb-6 text-center">Recursos Adicionales</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="card">
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Tecnologías Usadas</h3>
+          <ul class="space-y-2 text-slate-600">
+            <li>• <a href="https://astro.build" target="_blank" class="text-primary hover:underline">Astro</a> - Framework del sitio</li>
+            <li>• <a href="https://tailwindcss.com" target="_blank" class="text-primary hover:underline">Tailwind CSS</a> - Estilos</li>
+            <li>• <a href="https://pages.github.com" target="_blank" class="text-primary hover:underline">GitHub Pages</a> - Hosting</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Recursos de Aprendizaje</h3>
+          <ul class="space-y-2 text-slate-600">
+            <li>• <a href="https://docs.astro.build" target="_blank" class="text-primary hover:underline">Astro Docs</a></li>
+            <li>• <a href="https://tailwindcss.com/docs" target="_blank" class="text-primary hover:underline">Tailwind Docs</a></li>
+            <li>• <a href="https://docs.github.com/pages" target="_blank" class="text-primary hover:underline">GitHub Pages Docs</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
