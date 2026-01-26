@@ -1,0 +1,96 @@
+---
+const { skills } = Astro.props;
+
+// Process skills for radar
+const categories = Object.values(skills);
+const totalCategories = categories.length;
+const radius = 100;
+const center = 120;
+const angleStep = (Math.PI * 2) / totalCategories;
+
+const points = categories.map((cat, i) => {
+  const level = cat.tools.reduce((acc, tool) => {
+    const score = tool.level === 'Avanzado' ? 90 : tool.level === 'Intermedio' ? 65 : 40;
+    return acc + score;
+  }, 0) / cat.tools.length;
+  
+  const r = (level / 100) * radius;
+  const x = center + r * Math.cos(i * angleStep - Math.PI / 2);
+  const y = center + r * Math.sin(i * angleStep - Math.PI / 2);
+  return { x, y, label: cat.title };
+});
+
+const polygonPoints = points.map(p => `${p.x},${p.y}`).join(' ');
+
+// Background circles and axes
+const bgCircles = [0.2, 0.4, 0.6, 0.8, 1].map(factor => radius * factor);
+const axes = categories.map((_, i) => {
+  const x2 = center + radius * Math.cos(i * angleStep - Math.PI / 2);
+  const y2 = center + radius * Math.sin(i * angleStep - Math.PI / 2);
+  return { x1: center, y1: center, x2, y2 };
+});
+---
+
+<div class="relative w-full aspect-square max-w-[400px] mx-auto group">
+  <div class="absolute inset-0 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/10 transition-colors"></div>
+  <svg viewBox="0 0 240 240" class="relative z-10 w-full h-full drop-shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+    <!-- Grid Circles -->
+    {bgCircles.map(r => (
+      <circle 
+        cx={center} 
+        cy={center} 
+        r={r} 
+        fill="none" 
+        stroke="rgba(255,255,255,0.05)" 
+        stroke-width="1"
+      />
+    ))}
+
+    <!-- Axes -->
+    {axes.map(axis => (
+      <line 
+        {...axis} 
+        stroke="rgba(255,255,255,0.05)" 
+        stroke-width="1"
+      />
+    ))}
+
+    <!-- Radar Shape -->
+    <polygon 
+      points={polygonPoints} 
+      fill="rgba(59, 130, 246, 0.2)" 
+      stroke="#3B82F6" 
+      stroke-width="2"
+      class="animate-pulse"
+    >
+      <animate attributeName="opacity" values="0.4;0.7;0.4" dur="4s" repeatCount="indefinite" />
+    </polygon>
+
+    <!-- Points -->
+    {points.map((p) => (
+      <g class="cursor-help group/point">
+        <circle 
+          cx={p.x} 
+          cy={p.y} 
+          r="4" 
+          fill="#60A5FA" 
+          class="hover:fill-cyan-400 transition-colors"
+        />
+        <text 
+          x={center + (radius + 25) * Math.cos(points.indexOf(p) * angleStep - Math.PI / 2)} 
+          y={center + (radius + 25) * Math.sin(points.indexOf(p) * angleStep - Math.PI / 2)}
+          text-anchor="middle"
+          fill="rgba(255,255,255,0.5)"
+          class="text-[8px] font-mono font-bold uppercase tracking-tighter group-hover/point:fill-blue-400 transition-colors"
+        >
+          {p.label.split(' ')[0]}
+        </text>
+      </g>
+    ))}
+  </svg>
+
+  <!-- Central Badge -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#0D0D1F] border border-blue-500/30 rounded-full p-2 w-12 h-12 flex items-center justify-center shadow-[0_0_20px_rgba(59,130,246,0.2)]">
+    <span class="text-[10px] font-mono font-black text-blue-400">BI_AI</span>
+  </div>
+</div>

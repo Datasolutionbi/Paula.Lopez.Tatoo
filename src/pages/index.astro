@@ -7,6 +7,7 @@ import DecisionWidget from '../components/DecisionWidget.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import SkillBadge from '../components/SkillBadge.astro';
 import ExperienceItem from '../components/ExperienceItem.astro';
+import SkillRadar from '../components/SkillRadar.astro';
 import { SITE } from '../data/site';
 import { skills } from '../data/skills';
 import { experience } from '../data/experience';
@@ -140,12 +141,12 @@ const featuredProjects = allProjects
       
       <div class="grid lg:grid-cols-12 gap-12 items-start relative">
         <!-- Visualización BI -->
-        <div class="lg:col-span-5 order-2 lg:order-1 flex flex-col gap-8 relative z-10">
-          <div class="w-full">
-            <CareerDashboard />
+        <div class="lg:col-span-5 order-2 lg:order-1 flex flex-col gap-8 relative z-10 items-center justify-center">
+          <div class="w-full mb-8">
+            <SkillRadar skills={skills} />
           </div>
           <div class="w-full">
-            <DecisionWidget />
+            <CareerDashboard />
           </div>
         </div>
 
