@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Static Growth Favicon (Circular - Bold Bars) -->
+  <circle cx="16" cy="16" r="16" fill="#080813"/>
+  
+  <!-- Bar 1 (Smallest - Bold) -->
+  <path d="M8 22V20" stroke="#3B82F6" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+  
+  <!-- Bar 2 (Medium - Bold) -->
+  <path d="M16 22V15" stroke="#22D3EE" stroke-width="5" stroke-linecap="round"/>
+  
+  <!-- Bar 3 (Largest - Bold) -->
+  <path d="M24 22V10" stroke="#3B82F6" stroke-width="5" stroke-linecap="round"/>
+</svg>
