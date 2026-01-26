@@ -1,0 +1,99 @@
+---
+import { SITE } from '../data/site';
+---
+
+<div id="ai-companion" class="fixed bottom-24 right-8 z-[100] flex flex-col items-end gap-4 pointer-events-none">
+  <!-- Chat Window -->
+  <div id="ai-chat-window" class="w-72 h-96 bg-[#0D0D1F] border border-blue-500/30 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col overflow-hidden opacity-0 translate-y-10 pointer-events-none transition-all duration-500">
+    <div class="p-4 border-b border-white/5 bg-blue-500/5 flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <div class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+        <span class="text-[10px] font-mono font-bold text-blue-400 uppercase tracking-widest">AndresBI_AI v1.0</span>
+      </div>
+      <button id="close-chat" class="text-slate-500 hover:text-white transition-colors pointer-events-auto">×</button>
+    </div>
+    
+    <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 font-mono text-[10px] leading-relaxed">
+      <div class="text-blue-300">
+        <span class="text-cyan-500">></span> SYSTEM_INITIALIZED... Hola, soy el asistente virtual de {SITE.author}. ¿En qué puedo ayudarte?
+      </div>
+    </div>
+
+    <div class="p-3 border-t border-white/5 bg-blue-500/5 pointer-events-auto">
+      <div class="flex gap-2">
+        <input 
+          type="text" 
+          id="chat-input" 
+          placeholder="Escribe un comando..." 
+          class="flex-1 bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-[10px] text-slate-300 outline-none focus:border-blue-500/50 transition-all"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Toggle Button -->
+  <button 
+    id="toggle-ai-chat" 
+    class="w-12 h-12 bg-blue-600 border border-blue-400/30 rounded-full flex items-center justify-center text-white shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:scale-110 active:scale-95 transition-all pointer-events-auto group"
+    aria-label="Hablar con IA"
+  >
+    <svg class="w-6 h-6 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+    </svg>
+  </button>
+</div>
+
+<script>
+  function initAIChat() {
+    const toggleBtn = document.getElementById('toggle-ai-chat');
+    const closeBtn = document.getElementById('close-chat');
+    const chatWindow = document.getElementById('ai-chat-window');
+    const chatInput = document.getElementById('chat-input') as HTMLInputElement;
+    const messages = document.getElementById('chat-messages');
+
+    const responses: Record<string, string> = {
+      'hola': 'Hola. Estoy analizando los datos de carrera de AndresCastano...',
+      'experiencia': 'Andres tiene más de 5 años en BI y Data Science, con fuerte enfoque en Azure y Power BI.',
+      'contacto': 'Puedes enviarle un email directamente o usar el comando Ctrl+K para ver sus redes.',
+      'cv': 'Puedes descargar el currículum actualizado en /cv.',
+      'stack': 'Domina Python, SQL, Power BI, Azure ML y metodologías ágiles de datos.',
+      'default': 'Interesante pregunta. Como soy una versión v1.0, mi conocimiento es limitado. Prueba con: stack, experiencia o contacto.'
+    };
+
+    function addMessage(text: string, isUser = false) {
+      if (!messages) return;
+      const msg = document.createElement('div');
+      msg.className = isUser ? 'text-slate-400 text-right' : 'text-blue-300';
+      msg.innerHTML = `<span class="${isUser ? 'text-slate-600' : 'text-cyan-500'}">${isUser ? '' : '> '}</span>${text}`;
+      messages.appendChild(msg);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    toggleBtn?.addEventListener('click', () => {
+      chatWindow?.classList.toggle('opacity-0');
+      chatWindow?.classList.toggle('translate-y-10');
+      chatWindow?.classList.toggle('pointer-events-none');
+    });
+
+    closeBtn?.addEventListener('click', () => {
+      chatWindow?.classList.add('opacity-0');
+      chatWindow?.classList.add('translate-y-10');
+      chatWindow?.classList.add('pointer-events-none');
+    });
+
+    chatInput?.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && chatInput.value.trim()) {
+        const input = chatInput.value.toLowerCase().trim();
+        addMessage(chatInput.value, true);
+        chatInput.value = '';
+        
+        setTimeout(() => {
+          const response = responses[Object.keys(responses).find(k => input.includes(k)) || 'default'];
+          addMessage(response);
+        }, 500);
+      }
+    });
+  }
+
+  document.addEventListener('astro:page-load', initAIChat);
+</script>
