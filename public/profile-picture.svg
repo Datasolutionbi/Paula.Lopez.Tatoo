@@ -31,11 +31,19 @@
   <!-- Fotón de Inteligencia -->
   <circle cx="256" cy="36" r="6" fill="#22D3EE" filter="url(#nexus-glow)" />
 
-  <!-- Barras de Crecimiento Ultra-Bold (Perfectamente Centradas) -->
-  <!-- Ancho total: 410px (4 barras de 80px + 3 gaps de 30px) -->
-  <!-- Inicio en X: (512 - 410) / 2 + 40 = 91 -->
-  <path d="M91 360V330" stroke="#3B82F6" stroke-width="80" stroke-linecap="round" opacity="0.3"/>
-  <path d="M201 360V260" stroke="#22D3EE" stroke-width="80" stroke-linecap="round" opacity="0.6"/>
-  <path d="M311 360V190" stroke="#3B82F6" stroke-width="80" stroke-linecap="round" />
-  <path d="M421 360V100" stroke="#22D3EE" stroke-width="80" stroke-linecap="round" filter="url(#nexus-glow)" />
+  <!-- Barras de Crecimiento Ultra-Bold (Cálculo exacto para centrado) -->
+  <!-- Cada barra tiene 80px de ancho. Espacio entre ellas: 20px. Total: 380px -->
+  <!-- Centrado: (512 - 380) / 2 = 66px de margen a cada lado -->
+  
+  <!-- Barra 1 (Pequeña) -->
+  <path d="M106 360V330" stroke="#3B82F6" stroke-width="80" stroke-linecap="round" opacity="0.3"/>
+  
+  <!-- Barra 2 (Mediana) -->
+  <path d="M206 360V260" stroke="#22D3EE" stroke-width="80" stroke-linecap="round" opacity="0.6"/>
+  
+  <!-- Barra 3 (Grande) -->
+  <path d="M306 360V190" stroke="#3B82F6" stroke-width="80" stroke-linecap="round" />
+  
+  <!-- Barra 4 (Máxima) -->
+  <path d="M406 360V100" stroke="#22D3EE" stroke-width="80" stroke-linecap="round" filter="url(#nexus-glow)" />
 </svg>
