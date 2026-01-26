@@ -69,9 +69,10 @@ const currentYear = new Date().getFullYear();
 
     <!-- Copyright -->
     <div class="mt-8 pt-8 border-t border-slate-800/50 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono">
-      <div class="text-slate-500 flex gap-4">
-        <span class="flex items-center gap-1.5"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> SYS_STATUS: STABLE</span>
-        <span>UPTIME: 99.99%</span>
+      <div class="text-slate-500 flex flex-wrap gap-4 md:gap-6">
+        <span class="flex items-center gap-1.5"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> SYS_STATUS: <span class="text-green-400">STABLE</span></span>
+        <span>LATENCY: <span id="sys-latency" class="text-blue-400">--ms</span></span>
+        <span>RENDER: <span id="sys-render" class="text-cyan-400">--ms</span></span>
         <span id="sys-clock"></span>
       </div>
       <p class="text-slate-500">&copy; {currentYear} {SITE.name}. Portafolio de Datos v2.0</p>
@@ -80,13 +81,37 @@ const currentYear = new Date().getFullYear();
 </footer>
 
 <script>
-  function updateClock() {
-    const clock = document.getElementById('sys-clock');
-    if (clock) {
-      const now = new Date();
-      clock.innerText = `L_TIME: ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+    function updateClock() {
+      const clock = document.getElementById('sys-clock');
+      if (clock) {
+        const now = new Date();
+        clock.innerText = `L_TIME: ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+      }
     }
-  }
-  setInterval(updateClock, 1000);
-  updateClock();
-</script>
+
+    function updateMetrics() {
+      const render = document.getElementById('sys-render');
+      const latency = document.getElementById('sys-latency');
+      
+      if (window.performance) {
+        const timing = window.performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+        if (render && timing) {
+          const loadTime = Math.round(timing.domContentLoadedEventEnd - timing.startTime);
+          render.innerText = `${loadTime}ms`;
+        }
+        
+        // Dynamic Latency (Simulated or based on connection)
+        if (latency) {
+          const connection = (navigator as any).connection;
+          const rtt = connection ? connection.rtt : 45;
+          latency.innerText = `${rtt}ms`;
+        }
+      }
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+    
+    document.addEventListener('astro:page-load', updateMetrics);
+    updateMetrics();
+  </script>

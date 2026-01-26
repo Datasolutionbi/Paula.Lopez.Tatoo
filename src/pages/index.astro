@@ -103,12 +103,28 @@ const featuredProjects = allProjects
       </p>
 
       <!-- Project Filters -->
-      <div class="flex flex-wrap justify-center gap-3 mb-12">
+      <div class="flex flex-wrap justify-center gap-3 mb-8">
         <button class="filter-btn active" data-filter="all">Todos</button>
         <button class="filter-btn" data-filter="Power BI">Power BI</button>
         <button class="filter-btn" data-filter="Python">Python</button>
         <button class="filter-btn" data-filter="Machine Learning">Machine Learning</button>
         <button class="filter-btn" data-filter="SQL">SQL</button>
+      </div>
+
+      <!-- Data Insights Widget -->
+      <div class="max-w-xl mx-auto mb-12 glass-panel p-4 border-blue-500/20 flex justify-around text-center">
+        <div>
+          <span class="block text-[8px] font-mono text-slate-500 uppercase">Proyectos_Filtrados</span>
+          <span id="insight-count" class="text-xl font-bold text-blue-400">0</span>
+        </div>
+        <div class="border-x border-white/5 px-8">
+          <span class="block text-[8px] font-mono text-slate-500 uppercase">Impacto_Dominante</span>
+          <span id="insight-main-tech" class="text-xl font-bold text-cyan-400">--</span>
+        </div>
+        <div>
+          <span class="block text-[8px] font-mono text-slate-500 uppercase">Status</span>
+          <span class="text-xl font-bold text-green-500">200_OK</span>
+        </div>
       </div>
       
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="project-grid">
@@ -205,14 +221,15 @@ const featuredProjects = allProjects
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        const filter = btn.getAttribute('data-filter');
+        const filter = btn.getAttribute('data-filter') || 'all';
+        let count = 0;
 
         projectCards.forEach(card => {
           if (card instanceof HTMLElement) {
             const tech = card.getAttribute('data-tech') || '';
-            if (filter === 'all' || tech.toLowerCase().includes(filter!.toLowerCase())) {
+            if (filter === 'all' || tech.toLowerCase().includes(filter.toLowerCase())) {
               card.style.display = 'flex';
-              card.style.opacity = '0';
+              count++;
               setTimeout(() => {
                 card.style.opacity = '1';
                 card.style.transition = 'opacity 0.5s ease';
@@ -222,8 +239,18 @@ const featuredProjects = allProjects
             }
           }
         });
+
+        // Update Insights
+        const countDisplay = document.getElementById('insight-count');
+        const techDisplay = document.getElementById('insight-main-tech');
+        if (countDisplay) countDisplay.innerText = count.toString();
+        if (techDisplay) techDisplay.innerText = filter === 'all' ? 'MIXED' : filter.toUpperCase();
       });
     });
+
+    // Initial Trigger
+    const activeFilter = document.querySelector('.filter-btn.active');
+    if (activeFilter) (activeFilter as HTMLElement).click();
   </script>
 
   <div class="section-divider"></div>

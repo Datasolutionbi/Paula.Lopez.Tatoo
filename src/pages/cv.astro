@@ -1,0 +1,114 @@
+---
+import { SITE } from '../data/site';
+import { skills } from '../data/skills';
+import { experience } from '../data/experience';
+import { education, certifications } from '../data/education';
+import '../styles/global.css';
+
+const title = `CV - ${SITE.author}`;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <style>
+      @media print {
+        @page { margin: 1.5cm; }
+        body { background: white !important; color: black !important; }
+        .no-print { display: none !important; }
+        .print-only { display: block !important; }
+        .card { border: 1px solid #eee !important; background: transparent !important; box-shadow: none !important; break-inside: avoid; }
+        .text-blue-400, .text-cyan-400 { color: #2563EB !important; }
+        .bg-blue-600 { background: #2563EB !important; }
+      }
+    </style>
+  </head>
+  <body class="bg-[#080813] text-slate-300 font-sans p-4 md:p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+      <!-- Actions -->
+      <div class="flex justify-between items-center no-print mb-8">
+        <a href="/" class="text-blue-400 flex items-center gap-2">← Volver al sitio</a>
+        <button onclick="window.print()" class="btn-primary">Descargar PDF</button>
+      </div>
+
+      <!-- Header -->
+      <header class="text-center space-y-2 border-b border-white/10 pb-8">
+        <h1 class="text-5xl font-black text-white">{SITE.author}</h1>
+        <p class="text-xl text-blue-400 font-mono tracking-widest uppercase">{SITE.tagline}</p>
+        <div class="flex justify-center gap-4 text-sm text-slate-500 font-mono">
+          <span>{SITE.email}</span>
+          <span>•</span>
+          <span>{SITE.linkedin.split('/').pop()}</span>
+        </div>
+      </header>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Sidebar -->
+        <div class="space-y-8">
+          <section>
+            <h2 class="text-lg font-bold text-white uppercase tracking-tighter mb-4 border-l-4 border-blue-500 pl-3">Habilidades</h2>
+            {Object.entries(skills).map(([key, cat]) => (
+              <div class="mb-4">
+                <h3 class="text-xs font-bold text-blue-400 uppercase mb-2">{cat.title}</h3>
+                <div class="flex flex-wrap gap-2">
+                  {cat.tools.map(tool => (
+                    <span class="text-[10px] bg-white/5 border border-white/10 px-2 py-0.5 rounded text-slate-300">{tool.name}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </section>
+
+          <section>
+            <h2 class="text-lg font-bold text-white uppercase tracking-tighter mb-4 border-l-4 border-blue-500 pl-3">Educación</h2>
+            {education.map(edu => (
+              <div class="mb-4">
+                <p class="font-bold text-sm text-white">{edu.degree}</p>
+                <p class="text-xs text-blue-400">{edu.institution}</p>
+                <p class="text-[10px] text-slate-500">{edu.period}</p>
+              </div>
+            ))}
+          </section>
+        </div>
+
+        <!-- Main Content -->
+        <div class="md:col-span-2 space-y-8">
+          <section>
+            <h2 class="text-lg font-bold text-white uppercase tracking-tighter mb-4 border-l-4 border-blue-500 pl-3">Experiencia</h2>
+            <div class="space-y-6">
+              {experience.map(job => (
+                <div class="relative pl-4 border-l border-white/5">
+                  <div class="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-blue-500"></div>
+                  <div class="flex justify-between items-start mb-1">
+                    <h3 class="font-bold text-white">{job.position}</h3>
+                    <span class="text-[10px] font-mono text-slate-500">{job.period}</span>
+                  </div>
+                  <p class="text-xs text-blue-400 mb-2">{job.company}</p>
+                  <p class="text-sm text-slate-400 mb-2">{job.description}</p>
+                  <ul class="list-disc list-inside text-xs text-slate-500 space-y-1">
+                    {job.achievements.map(ach => <li>{ach}</li>)}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section>
+            <h2 class="text-lg font-bold text-white uppercase tracking-tighter mb-4 border-l-4 border-blue-500 pl-3">Certificaciones</h2>
+            <div class="grid grid-cols-2 gap-4">
+              {certifications.map(cert => (
+                <div class="text-[10px] border border-white/5 p-2 rounded">
+                  <p class="font-bold text-white">{cert.name}</p>
+                  <p class="text-slate-500">{cert.issuer} • {cert.year}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

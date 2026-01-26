@@ -1,15 +1,29 @@
 ---
+interface SkillTool {
+  name: string;
+  level: string;
+}
+
+interface SkillCategory {
+  title: string;
+  tools: SkillTool[];
+}
+
+interface Props {
+  skills: Record<string, SkillCategory>;
+}
+
 const { skills } = Astro.props;
 
 // Process skills for radar
-const categories = Object.values(skills);
+const categories = Object.values(skills) as SkillCategory[];
 const totalCategories = categories.length;
 const radius = 100;
 const center = 120;
 const angleStep = (Math.PI * 2) / totalCategories;
 
 const points = categories.map((cat, i) => {
-  const level = cat.tools.reduce((acc, tool) => {
+  const level = cat.tools.reduce((acc: number, tool: SkillTool) => {
     const score = tool.level === 'Avanzado' ? 90 : tool.level === 'Intermedio' ? 65 : 40;
     return acc + score;
   }, 0) / cat.tools.length;
