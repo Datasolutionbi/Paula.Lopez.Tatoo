@@ -75,15 +75,6 @@ const { title, description, image } = Astro.props;
       </div>
     </div>
 
-    <!-- Code Background Decor -->
-    <div class="fixed inset-0 pointer-events-none z-[-1] opacity-[0.02] font-mono text-[10px] overflow-hidden select-none p-10 space-y-4">
-      <div class="translate-x-10">SELECT * FROM business_insights WHERE impact &gt; 0.85;</div>
-      <div class="translate-x-40">def build_neural_network(layers=[64, 32, 16]):</div>
-      <div class="translate-x-[-20px]">/* UX_FLOW: USER_CENTERED_DESIGN_PRINCIPLES */</div>
-      <div class="translate-x-60">measure = CALCULATE(SUM(Sales), ALL(Products))</div>
-      <div class="translate-x-[-10px]">predict_roi(data_volume=1M, confidence=0.98)</div>
-    </div>
-
     <div class="relative z-10">
       <Header />
       <main>
@@ -96,27 +87,7 @@ const { title, description, image } = Astro.props;
       let isInitialized = false;
 
       function initBaseScripts() {
-        // Intersection Observer for Reveal
-        const revealObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            }
-          });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal-blur').forEach(el => revealObserver.observe(el));
-
-        // Scroll Progress Logic
-        const progressBar = document.getElementById('scroll-progress');
-        window.addEventListener('scroll', () => {
-          const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-          const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-          const scrolled = (winScroll / height) * 100;
-          if (progressBar) progressBar.style.width = scrolled + "%";
-        });
-
-        // Command Palette Logic
+        // Variables for Command Palette
         const cp = document.getElementById('command-palette');
         const cpInput = document.getElementById('command-input') as HTMLInputElement;
         const cpResults = document.getElementById('command-results');
@@ -132,6 +103,7 @@ const { title, description, image } = Astro.props;
           { name: 'Contacto', url: '/#contacto', icon: '📧' }
         ];
 
+        // Functions for Command Palette
         function handleAction(action: string) {
           if (action === 'health') {
             const overlay = document.getElementById('glitch-overlay');
@@ -162,17 +134,17 @@ const { title, description, image } = Astro.props;
             </a>
           `).join('');
 
-          // Bind actions
           cpResults.querySelectorAll('[data-action]').forEach(el => {
             el.addEventListener('click', (e) => {
               e.preventDefault();
-              handleAction(el.getAttribute('data-action')!);
+              const action = el.getAttribute('data-action');
+              if (action) handleAction(action);
               toggleCP(false);
             });
           });
         }
-        }
 
+        // Event Listeners for Command Palette
         window.addEventListener('keydown', (e) => {
           if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
             e.preventDefault();
@@ -185,22 +157,29 @@ const { title, description, image } = Astro.props;
           if (e.target === cp) toggleCP(false);
         });
 
-        function renderResults(filter = '') {
-          if (!cpResults) return;
-          const filtered = commands.filter(c => c.name.toLowerCase().includes(filter.toLowerCase()));
-          cpResults.innerHTML = filtered.map((c) => `
-            <a href="${c.url}" class="flex items-center gap-3 p-3 rounded-lg hover:bg-blue-500/10 text-slate-300 transition-colors group">
-              <span class="text-xl">${c.icon}</span>
-              <span class="flex-1 font-mono text-sm">${c.name}</span>
-              <span class="text-[10px] text-slate-600 group-hover:text-blue-400">JUMP TO _</span>
-            </a>
-          `).join('');
-        }
-
         if (cpInput) {
           cpInput.addEventListener('input', (e) => renderResults((e.target as HTMLInputElement).value));
         }
         renderResults();
+
+        // Intersection Observer for Reveal
+        const revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal-blur').forEach(el => revealObserver.observe(el));
+
+        // Scroll Progress Logic
+        const progressBar = document.getElementById('scroll-progress');
+        window.addEventListener('scroll', () => {
+          const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+          const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          const scrolled = (winScroll / height) * 100;
+          if (progressBar) progressBar.style.width = scrolled + "%";
+        });
 
         // Scroll to Top Logic
         const scrollBtn = document.getElementById('scroll-to-top');
@@ -213,7 +192,6 @@ const { title, description, image } = Astro.props;
             scrollBtn?.classList.remove('opacity-100', 'translate-y-0');
           }
         });
-
         scrollBtn?.addEventListener('click', () => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         });
@@ -221,13 +199,7 @@ const { title, description, image } = Astro.props;
         // Subtle Cursor Logic
         const dot = document.getElementById('tech-cursor-dot');
         const ring = document.getElementById('tech-cursor-ring');
-
-        let mouseX = -100;
-        let mouseY = -100;
-        let dotX = -100;
-        let dotY = -100;
-        let ringX = -100;
-        let ringY = -100;
+        let mouseX = -100, mouseY = -100, dotX = -100, dotY = -100, ringX = -100, ringY = -100;
 
         window.addEventListener('mousemove', (e) => {
           mouseX = e.clientX;
@@ -238,11 +210,9 @@ const { title, description, image } = Astro.props;
           dotX += (mouseX - dotX) * 0.2;
           dotY += (mouseY - dotY) * 0.2;
           if (dot) dot.style.transform = `translate3d(${dotX - 3}px, ${dotY - 3}px, 0)`;
-
           ringX += (mouseX - ringX) * 0.1;
           ringY += (mouseY - ringY) * 0.1;
           if (ring) ring.style.transform = `translate3d(${ringX - 12}px, ${ringY - 12}px, 0)`;
-
           requestAnimationFrame(animateCursor);
         }
         animateCursor();
@@ -266,7 +236,6 @@ const { title, description, image } = Astro.props;
             }
             if (el instanceof HTMLElement) el.style.transform = '';
           });
-
           el.addEventListener('mousemove', (e) => {
             if (el instanceof HTMLElement) {
               const rect = el.getBoundingClientRect();
@@ -338,25 +307,17 @@ const { title, description, image } = Astro.props;
 
         function animate() {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-          
-          // Parallax effect based on scroll
           const scrollY = window.scrollY * 0.2;
-          
           for (let i = 0; i < particles.length; i++) {
             particles[i].update();
-            
-            // Apply parallax to drawing
             const drawX = particles[i].x;
             const drawY = (particles[i].y - scrollY + canvas.height) % canvas.height;
-            
             particles[i].draw(drawX, drawY);
-            
             for (let j = i + 1; j < particles.length; j++) {
               const p2DrawY = (particles[j].y - scrollY + canvas.height) % canvas.height;
               const dx = particles[i].x - particles[j].x;
               const dy = drawY - p2DrawY;
               const distance = Math.sqrt(dx * dx + dy * dy);
-              
               if (distance < connectionDistance) {
                 const opacity = 1 - (distance / connectionDistance);
                 const gradient = ctx.createLinearGradient(particles[i].x, drawY, particles[j].x, p2DrawY);
@@ -369,7 +330,6 @@ const { title, description, image } = Astro.props;
           }
           requestAnimationFrame(animate);
         }
-
         window.addEventListener('resize', init);
         window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
         init(); animate();
