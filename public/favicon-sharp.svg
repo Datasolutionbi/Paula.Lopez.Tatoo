@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <circle cx="16" cy="16" r="16" fill="#080813"/>
+  <!-- Sharp Brackets -->
+  <path d="M9 10H6V22H9 M23 10H26V22H23" stroke="#3B82F6" stroke-width="2" fill="none" opacity="0.4" stroke-linecap="square"/>
+  <!-- Balanced Bars -->
+  <rect x="11" y="18" width="3" height="4" rx="1" fill="#3B82F6" opacity="0.6"/>
+  <rect x="15" y="14" width="3" height="8" rx="1" fill="#22D3EE"/>
+  <rect x="19" y="10" width="3" height="12" rx="1" fill="#3B82F6"/>
+</svg>
