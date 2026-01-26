@@ -1,0 +1,99 @@
+---
+import ProjectCard from '../ProjectCard.astro';
+interface Props {
+  isEn?: boolean;
+  projects: any[];
+}
+const { isEn = false, projects } = Astro.props;
+---
+<section id="proyectos" class="section-padding reveal-blur">
+  <div class="container-custom">
+    <h2 class="text-section mb-4 text-center">{isEn ? 'Featured Projects' : 'Proyectos Destacados'}</h2>
+    <p class="text-lg text-slate-400 text-center mb-12 max-w-2xl mx-auto">
+      {isEn 
+        ? 'Case studies and projects demonstrating my expertise in BI, data visualization, and AI.' 
+        : 'Casos de estudio y proyectos que demuestran mi experiencia en BI, visualización de datos e inteligencia artificial.'}
+    </p>
+
+    <!-- Project Filters -->
+    <div class="flex flex-wrap justify-center gap-3 mb-8">
+      <button class="filter-btn active" data-filter="all">{isEn ? 'All' : 'Todos'}</button>
+      <button class="filter-btn" data-filter="Power BI">Power BI</button>
+      <button class="filter-btn" data-filter="Python">Python</button>
+      <button class="filter-btn" data-filter="Machine Learning">Machine Learning</button>
+      <button class="filter-btn" data-filter="SQL">SQL</button>
+    </div>
+
+    <!-- Data Insights Widget -->
+    <div class="max-w-xl mx-auto mb-12 glass-panel p-4 border-blue-500/20 flex justify-around text-center">
+      <div>
+        <span class="block text-[8px] font-mono text-slate-500 uppercase">{isEn ? 'Filtered_Projects' : 'Proyectos_Filtrados'}</span>
+        <span id="insight-count" class="text-xl font-bold text-blue-400">0</span>
+      </div>
+      <div class="border-x border-white/5 px-8">
+        <span class="block text-[8px] font-mono text-slate-500 uppercase">{isEn ? 'Main_Impact' : 'Impacto_Dominante'}</span>
+        <span id="insight-main-tech" class="text-xl font-bold text-cyan-400">--</span>
+      </div>
+      <div>
+        <span class="block text-[8px] font-mono text-slate-500 uppercase">Status</span>
+        <span class="text-xl font-bold text-green-500">200_OK</span>
+      </div>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="project-grid">
+      {projects.map((project) => (
+        <ProjectCard
+          title={isEn && project.data.title === "Dashboard de Ventas con Predicción ML" ? "Sales Dashboard with ML Prediction" : isEn && project.data.title === "Pipeline ETL Automatizado con Airflow" ? "Automated ETL Pipeline with Airflow" : project.data.title}
+          description={project.data.description}
+          tech={project.data.tech}
+          github={project.data.github}
+          demo={project.data.demo}
+          slug={project.slug}
+          metrics={(project.data as any).metrics}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  function initProjectFilters() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter') || 'all';
+        let count = 0;
+
+        projectCards.forEach(card => {
+          if (card instanceof HTMLElement) {
+            const tech = card.getAttribute('data-tech') || '';
+            if (filter === 'all' || tech.toLowerCase().includes(filter.toLowerCase())) {
+              card.style.display = 'flex';
+              count++;
+              setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transition = 'opacity 0.5s ease';
+              }, 10);
+            } else {
+              card.style.display = 'none';
+            }
+          }
+        });
+
+        const countDisplay = document.getElementById('insight-count');
+        const techDisplay = document.getElementById('insight-main-tech');
+        if (countDisplay) countDisplay.innerText = count.toString();
+        if (techDisplay) techDisplay.innerText = filter === 'all' ? 'MIXED' : filter.toUpperCase();
+      });
+    });
+
+    const activeFilter = document.querySelector('.filter-btn.active');
+    if (activeFilter) (activeFilter as HTMLElement).click();
+  }
+  document.addEventListener('astro:page-load', initProjectFilters);
+</script>

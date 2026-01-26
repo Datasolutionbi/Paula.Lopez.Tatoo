@@ -1,20 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import IATerminal from '../components/IATerminal.astro';
-import CareerDashboard from '../components/CareerDashboard.astro';
-import DecisionWidget from '../components/DecisionWidget.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import SkillBadge from '../components/SkillBadge.astro';
-import ExperienceItem from '../components/ExperienceItem.astro';
-import SkillRadar from '../components/SkillRadar.astro';
-import { SITE } from '../data/site';
+import About from '../components/sections/About.astro';
+import Projects from '../components/sections/Projects.astro';
+import Skills from '../components/sections/Skills.astro';
+import Experience from '../components/sections/Experience.astro';
+import Education from '../components/sections/Education.astro';
+import Contact from '../components/sections/Contact.astro';
+import NeuralPerceptron from '../components/NeuralPerceptron.astro';
 import { skills } from '../data/skills';
 import { experience } from '../data/experience';
 import { education, certifications } from '../data/education';
 import { getCollection } from 'astro:content';
 
-// Get featured projects
 const allProjects = await getCollection('projects');
 const featuredProjects = allProjects
   .filter(project => project.data.featured)
@@ -23,322 +21,31 @@ const featuredProjects = allProjects
 ---
 
 <BaseLayout>
-  <!-- Hero Section -->
   <div class="reveal-blur">
     <Hero />
   </div>
 
-  <!-- About Section -->
-  <section id="sobre-mi" class="section-padding section-glow-container reveal-blur">
-    <div class="container-custom">
-      <div class="max-w-4xl mx-auto">
-        <div class="grid md:grid-cols-3 gap-12 items-center">
-          <div class="md:col-span-2 space-y-6">
-            <h2 class="text-section mb-4 border-none pl-0">
-              <span class="text-blue-500 font-mono text-2xl mr-2">01.</span>Sobre_Mí
-            </h2>
-            
-            <div class="relative group">
-              <div class="absolute -inset-2 bg-blue-500/5 rounded-xl blur-lg group-hover:bg-blue-500/10 transition-all"></div>
-              <div class="relative bg-[#0D0D1F]/40 border border-white/5 p-6 rounded-xl font-mono text-sm leading-relaxed shadow-2xl">
-                <div class="flex gap-2 mb-4 border-b border-white/5 pb-2">
-                  <div class="w-2.5 h-2.5 rounded-full bg-red-500/40"></div>
-                  <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/40"></div>
-                  <div class="w-2.5 h-2.5 rounded-full bg-green-500/40"></div>
-                  <span class="ml-auto text-[10px] text-slate-600">profile.py</span>
-                </div>
-                
-                <span class="text-pink-400 italic"># Especialista en Inteligencia de Negocios y Datos</span><br/>
-                <span class="text-blue-400">class</span> <span class="text-yellow-300">AndresBI</span>:<br/>
-                &nbsp;&nbsp;<span class="text-blue-400">def</span> <span class="text-green-400">__init__</span>(<span class="text-orange-300">self</span>):<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-orange-300">self</span>.experience = <span class="text-yellow-200">"5+ years"</span><br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-orange-300">self</span>.focus = [<span class="text-yellow-200">"IA"</span>, <span class="text-yellow-200">"UX"</span>, <span class="text-yellow-200">"Data"</span>]<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-orange-300">self</span>.mission = <span class="text-yellow-200">"Transform data into strategic value"</span><br/>
-                <br/>
-                &nbsp;&nbsp;<span class="text-blue-400">def</span> <span class="text-green-400">get_summary</span>(<span class="text-orange-300">self</span>):<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">return</span> <span class="text-yellow-200">f"""</span><br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-300">Apasionado por crear dashboards interactivos que cuentan historias </span><br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-300">con datos y desarrollar modelos de IA que resuelven problemas </span><br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-300">reales de negocio. Mi enfoque combina UX con analítica avanzada.</span><br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-200">"""</span>
-              </div>
-            </div>
-          </div>
-          <div class="flex flex-col items-center gap-6">
-            <div class="flex justify-center relative">
-              <div class="w-48 h-48 bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-400 rounded-full flex items-center justify-center text-white text-6xl font-black shadow-[0_0_50px_rgba(59,130,246,0.3)] z-10 tracking-tighter">
-                ABI<span class="text-yellow-400 text-2xl animate-pulse">_</span>
-              </div>
-              <!-- Insight Graph Overlay -->
-              <svg class="absolute inset-0 w-64 h-64 -translate-x-8 -translate-y-8 opacity-30 z-0 pointer-events-none" viewBox="0 0 200 200">
-                <path 
-                  d="M 20 150 Q 50 140 70 110 T 120 90 T 170 40" 
-                  fill="none" 
-                  stroke="#60A5FA" 
-                  stroke-width="2" 
-                  class="animate-dash"
-                  style="stroke-dasharray: 200; stroke-dashoffset: 200;"
-                />
-                <circle cx="170" cy="40" r="4" fill="#22D3EE" class="animate-ping" />
-                <path d="M 20 160 L 180 160 M 20 20 L 20 160" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
-              </svg>
-            </div>
-            <div class="font-mono text-[10px] text-blue-500/40 bg-blue-500/5 px-3 py-1 rounded-full border border-blue-500/10">
-              STATUS: READY_TO_SCALE
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <About>
+    <NeuralPerceptron size={80} slot="perceptron" />
+  </About>
 
   <div class="section-divider"></div>
 
-  <!-- Projects Section -->
-  <section id="proyectos" class="section-padding reveal-blur">
-    <div class="container-custom">
-      <h2 class="text-section mb-4 text-center">Proyectos Destacados</h2>
-      <p class="text-lg text-slate-400 text-center mb-12 max-w-2xl mx-auto">
-        Casos de estudio y proyectos que demuestran mi experiencia en BI, visualización de datos e inteligencia artificial.
-      </p>
-
-      <!-- Project Filters -->
-      <div class="flex flex-wrap justify-center gap-3 mb-8">
-        <button class="filter-btn active" data-filter="all">Todos</button>
-        <button class="filter-btn" data-filter="Power BI">Power BI</button>
-        <button class="filter-btn" data-filter="Python">Python</button>
-        <button class="filter-btn" data-filter="Machine Learning">Machine Learning</button>
-        <button class="filter-btn" data-filter="SQL">SQL</button>
-      </div>
-
-      <!-- Data Insights Widget -->
-      <div class="max-w-xl mx-auto mb-12 glass-panel p-4 border-blue-500/20 flex justify-around text-center">
-        <div>
-          <span class="block text-[8px] font-mono text-slate-500 uppercase">Proyectos_Filtrados</span>
-          <span id="insight-count" class="text-xl font-bold text-blue-400">0</span>
-        </div>
-        <div class="border-x border-white/5 px-8">
-          <span class="block text-[8px] font-mono text-slate-500 uppercase">Impacto_Dominante</span>
-          <span id="insight-main-tech" class="text-xl font-bold text-cyan-400">--</span>
-        </div>
-        <div>
-          <span class="block text-[8px] font-mono text-slate-500 uppercase">Status</span>
-          <span class="text-xl font-bold text-green-500">200_OK</span>
-        </div>
-      </div>
-      
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="project-grid">
-        {featuredProjects.length > 0 ? (
-          featuredProjects.map((project) => (
-            <ProjectCard
-              title={project.data.title}
-              description={project.data.description}
-              tech={project.data.tech}
-              github={project.data.github}
-              demo={project.data.demo}
-              slug={project.slug}
-            />
-          ))
-        ) : (
-          <div class="col-span-full text-center text-slate-500 py-12">
-            <p>Próximamente agregaré proyectos destacados...</p>
-          </div>
-        )}
-      </div>
-    </div>
-  </section>
+  <Projects projects={featuredProjects} />
 
   <div class="section-divider"></div>
 
-  <!-- Skills Section -->
-  <section id="habilidades" class="section-padding section-glow-container reveal-blur">
-    <div class="container-custom">
-      <h2 class="text-section mb-12 text-center">Stack Técnico</h2>
-      
-      <div class="grid lg:grid-cols-12 gap-12 items-start relative">
-        <!-- Visualización BI -->
-        <div class="lg:col-span-5 order-2 lg:order-1 flex flex-col gap-8 relative z-10 items-center justify-center">
-          <div class="w-full mb-8">
-            <SkillRadar skills={skills} />
-          </div>
-          <div class="w-full">
-            <CareerDashboard />
-          </div>
-        </div>
-
-        <!-- Skills Grid -->
-        <div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
-          <div class="grid md:grid-cols-2 gap-6">
-            {Object.entries(skills).map(([key, category]) => (
-              <div class="card p-5">
-                <h3 class="text-lg font-semibold mb-4 text-blue-100">{category.title}</h3>
-                <div class="flex flex-wrap gap-2">
-                  {category.tools.map((tool) => (
-                    <SkillBadge name={tool.name} level={tool.level} />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <Skills skills={skills} />
 
   <div class="section-divider"></div>
 
-  <!-- Experience Section -->
-  <section id="experiencia" class="section-padding reveal-blur">
-    <div class="container-custom">
-      <h2 class="text-section mb-4 text-center">Experiencia Profesional</h2>
-      <p class="text-lg text-slate-400 text-center mb-12 max-w-2xl mx-auto">
-        Mi trayectoria profesional en análisis de datos, BI e inteligencia artificial.
-      </p>
-      
-      <div class="max-w-4xl mx-auto relative">
-        <!-- Vertical Timeline Line -->
-        <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-600 via-cyan-400 to-transparent opacity-20 hidden md:block"></div>
-        
-        <div class="space-y-12">
-          {experience.map((job, index) => (
-            <div class={`relative flex flex-col md:flex-row gap-8 items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-              <!-- Timeline Dot -->
-              <div class="absolute left-[-4px] md:left-1/2 md:-translate-x-1/2 top-0 w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)] z-10"></div>
-              
-              <div class="w-full md:w-1/2">
-                <ExperienceItem
-                  company={job.company}
-                  position={job.position}
-                  period={job.period}
-                  description={job.description}
-                  achievements={job.achievements}
-                  tech={job.tech}
-                />
-              </div>
-              <div class="hidden md:block md:w-1/2"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    // Project Filtering Logic
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Update active state
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const filter = btn.getAttribute('data-filter') || 'all';
-        let count = 0;
-
-        projectCards.forEach(card => {
-          if (card instanceof HTMLElement) {
-            const tech = card.getAttribute('data-tech') || '';
-            if (filter === 'all' || tech.toLowerCase().includes(filter.toLowerCase())) {
-              card.style.display = 'flex';
-              count++;
-              setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transition = 'opacity 0.5s ease';
-              }, 10);
-            } else {
-              card.style.display = 'none';
-            }
-          }
-        });
-
-        // Update Insights
-        const countDisplay = document.getElementById('insight-count');
-        const techDisplay = document.getElementById('insight-main-tech');
-        if (countDisplay) countDisplay.innerText = count.toString();
-        if (techDisplay) techDisplay.innerText = filter === 'all' ? 'MIXED' : filter.toUpperCase();
-      });
-    });
-
-    // Initial Trigger
-    const activeFilter = document.querySelector('.filter-btn.active');
-    if (activeFilter) (activeFilter as HTMLElement).click();
-  </script>
+  <Experience experience={experience} />
 
   <div class="section-divider"></div>
 
-  <!-- Education & Certifications Section -->
-  <section id="educacion" class="section-padding section-glow-container reveal-blur">
-    <div class="container-custom">
-      <h2 class="text-section mb-12 text-center">Educación y Certificaciones</h2>
-      
-      <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-        <!-- Education -->
-        <div>
-          <h3 class="text-xl font-semibold mb-6">Educación</h3>
-          <div class="space-y-4">
-            {education.map((edu) => (
-              <div class="card">
-                <h4 class="font-semibold text-white">{edu.degree}</h4>
-                <p class="text-blue-400">{edu.institution}</p>
-                <p class="text-sm text-slate-500">{edu.period}</p>
-                <p class="text-sm text-slate-400 mt-2">{edu.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- Certifications -->
-        <div>
-          <h3 class="text-xl font-semibold mb-6">Certificaciones</h3>
-          <div class="space-y-3">
-            {certifications.map((cert) => (
-              <div class="card">
-                <h4 class="font-semibold text-white text-sm">{cert.name}</h4>
-                <div class="flex items-center justify-between mt-2">
-                  <p class="text-sm text-slate-400">{cert.issuer}</p>
-                  <span class="text-xs text-slate-500">{cert.year}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <Education education={education} certifications={certifications} />
 
   <div class="section-divider"></div>
 
-  <!-- Contact Section -->
-  <section id="contacto" class="section-padding">
-    <div class="container-custom">
-      <div class="max-w-2xl mx-auto text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[10px] font-mono text-blue-400 mb-6 uppercase tracking-widest animate-pulse">
-          <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-          Ready_to_Transmmit
-        </div>
-        <h2 class="text-section mb-4">¿Trabajamos Juntos?</h2>
-        <p class="text-lg text-slate-400 mb-10">
-          Estoy disponible para proyectos de BI, analítica de datos y machine learning. 
-          Si tienes un proyecto interesante, ¡hablemos!
-        </p>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <a href={`mailto:${SITE.email}`} class="btn-primary group/btn relative overflow-hidden">
-            <span class="relative z-10 flex items-center gap-2">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              Enviar Email
-            </span>
-          </a>
-          <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="btn-secondary group/btn">
-            <span class="relative z-10 flex items-center gap-2">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-              LinkedIn Portal
-            </span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <Contact />
 </BaseLayout>

@@ -6,13 +6,20 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://tu-usuario.github.io',
   base: '/Pages',
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
   markdown: {
     shikiConfig: {
       theme: 'github-dark',
-      wrap: true
-    }
-  }
+      wrap: true,
+    },
+  },
 });

@@ -1,0 +1,44 @@
+---
+interface Props {
+  isEn?: boolean;
+  education: any[];
+  certifications: any[];
+}
+const { isEn = false, education, certifications } = Astro.props;
+---
+<section id="educacion" class="section-padding section-glow-container reveal-blur">
+  <div class="container-custom">
+    <h2 class="text-section mb-12 text-center">{isEn ? 'Education & Certifications' : 'Educación y Certificaciones'}</h2>
+    
+    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+      <div>
+        <h3 class="text-xl font-semibold mb-6">{isEn ? 'Education' : 'Educación'}</h3>
+        <div class="space-y-4">
+          {education.map((edu) => (
+            <div class="card">
+              <h4 class="font-semibold text-white">{edu.degree}</h4>
+              <p class="text-blue-400">{edu.institution}</p>
+              <p class="text-sm text-slate-500">{edu.period}</p>
+              <p class="text-sm text-slate-400 mt-2">{edu.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold mb-6">Certificaciones</h3>
+        <div class="space-y-3">
+          {certifications.map((cert) => (
+            <div class="card">
+              <h4 class="font-semibold text-white text-sm">{cert.name}</h4>
+              <div class="flex items-center justify-between mt-2">
+                <p class="text-sm text-slate-400">{cert.issuer}</p>
+                <span class="text-xs text-slate-500">{cert.year}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

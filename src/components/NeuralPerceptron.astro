@@ -1,0 +1,72 @@
+---
+interface Props {
+  className?: string;
+  size?: number;
+  pulse?: boolean;
+}
+
+const { className = "text-blue-500", size = 48, pulse = true } = Astro.props;
+---
+
+<svg 
+  width={size} 
+  height={size} 
+  viewBox="0 0 100 100" 
+  fill="none" 
+  xmlns="http://www.w3.org/2000/svg"
+  class={`${className} ${pulse ? 'animate-pulse-slow' : ''}`}
+>
+  <!-- Connection Lines (Synapses) -->
+  <g class="opacity-40">
+    <line x1="20" y1="30" x2="50" y2="50" stroke="currentColor" stroke-width="1" class="synapse-line" />
+    <line x1="20" y1="50" x2="50" y2="50" stroke="currentColor" stroke-width="1" class="synapse-line" />
+    <line x1="20" y1="70" x2="50" y2="50" stroke="currentColor" stroke-width="1" class="synapse-line" />
+    <line x1="50" y1="50" x2="80" y2="50" stroke="currentColor" stroke-width="1" class="synapse-line" />
+  </g>
+
+  <!-- Input Nodes -->
+  <circle cx="20" cy="30" r="4" fill="currentColor" class="node-glow" />
+  <circle cx="20" cy="50" r="4" fill="currentColor" class="node-glow" />
+  <circle cx="20" cy="70" r="4" fill="currentColor" class="node-glow" />
+
+  <!-- Central Perceptron Node -->
+  <g>
+    <circle cx="50" cy="50" r="12" stroke="currentColor" stroke-width="2" class="fill-[#0D0D1F]" />
+    <!-- Sigma Symbol (Activation Function) -->
+    <path 
+      d="M46 44H54L48 50L54 56H46" 
+      stroke="currentColor" 
+      stroke-width="1.5" 
+      stroke-linecap="round" 
+      stroke-linejoin="round"
+      class="text-cyan-400"
+    />
+  </g>
+
+  <!-- Output Node -->
+  <circle cx="80" cy="50" r="6" fill="currentColor" class="text-cyan-400 shadow-glow" />
+
+  <style>
+    .synapse-line {
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      animation: dash 3s ease-in-out infinite;
+    }
+    @keyframes dash {
+      to { stroke-dashoffset: 0; }
+    }
+    .node-glow {
+      filter: drop-shadow(0 0 5px currentColor);
+    }
+    .shadow-glow {
+      filter: drop-shadow(0 0 8px currentColor);
+    }
+    .animate-pulse-slow {
+      animation: pulse-slow 4s ease-in-out infinite;
+    }
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+  </style>
+</svg>

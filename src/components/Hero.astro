@@ -1,28 +1,44 @@
 ---
 import { SITE } from '../data/site';
+const currentPath = Astro.url.pathname;
+const isEn = currentPath.includes('/en');
+
+const content = {
+  tagline: isEn ? "Business Intelligence, Data Visualization and AI Specialist" : SITE.tagline,
+  description: isEn 
+    ? "I transform complex data into actionable insights through intelligent visualizations, predictive analysis and BI solutions that drive strategic decisions."
+    : "Transformo datos complejos en insights accionables mediante visualizaciones inteligentes, análisis predictivo y soluciones de BI que impulsan decisiones estratégicas.",
+  projectsBtn: isEn ? "View Projects" : "Ver Proyectos",
+  blogBtn: isEn ? "Read Blog" : "Leer Blog",
+  yearsExp: isEn ? "Years of Experience" : "Años de Experiencia",
+  yearsDesc: isEn 
+    ? "Specialized in transforming complex data architectures into strategic value."
+    : "Especializado en transformar arquitecturas de datos complejas en valor estratégico.",
+  dashboards: isEn ? "Dashboards" : "Dashboards",
+  models: isEn ? "ML Models" : "Modelos ML"
+};
 ---
 
 <section class="container-custom section-padding">
   <div class="max-w-4xl mx-auto text-center">
     <h1 class="text-hero font-black mb-6 animate-fade-in tracking-tighter text-noise">
-      <span class="text-slate-100 drop-shadow-[0_0_25px_rgba(255,255,255,0.25)]">Andres</span><span class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-500 px-1">BI</span><span class="text-blue-500 cursor-blink">_</span>
+      <span class="text-slate-100 drop-shadow-[0_0_25px_rgba(255,255,255,0.25)]">Andres</span><span class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-500 ml-6 px-1">BI</span><span class="text-blue-500 cursor-blink">_</span>
     </h1>
     
     <p class="text-xl md:text-2xl text-blue-100 mb-6 animate-slide-up text-balance">
-      {SITE.tagline}
+      {content.tagline}
     </p>
     
     <p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto text-center text-balance animate-slide-up">
-      Transformo datos complejos en insights accionables mediante visualizaciones inteligentes, 
-      análisis predictivo y soluciones de BI que impulsan decisiones estratégicas.
+      {content.description}
     </p>
-
+    
     <div class="flex flex-row justify-center gap-4 mb-16 animate-slide-up">
       <a href="#proyectos" class="btn-primary min-w-[140px] md:min-w-[180px] text-sm md:text-base">
-        Ver Proyectos
+        {content.projectsBtn}
       </a>
       <a href="/blog" class="btn-secondary min-w-[140px] md:min-w-[180px] text-sm md:text-base">
-        Leer Blog
+        {content.blogBtn}
       </a>
     </div>
 
@@ -32,20 +48,20 @@ import { SITE } from '../data/site';
       <div class="md:col-span-2 md:row-span-2 glass-panel p-8 flex flex-col items-center justify-center group hover:border-blue-500/50 transition-all duration-500 relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
         <div class="text-6xl font-black text-white mb-2 group-hover:scale-110 transition-transform duration-500" data-counter="5">0</div>
-        <div class="text-xs uppercase tracking-[0.3em] text-blue-400 font-bold">Años de Experiencia</div>
-        <p class="text-[10px] text-slate-500 mt-4 max-w-[200px] leading-relaxed">Especializado en transformar arquitecturas de datos complejas en valor estratégico.</p>
+        <div class="text-xs uppercase tracking-[0.3em] text-blue-400 font-bold">{content.yearsExp}</div>
+        <p class="text-[10px] text-slate-500 mt-4 max-w-[200px] leading-relaxed">{content.yearsDesc}</p>
       </div>
 
       <!-- Dashboards Metric -->
       <div class="glass-panel p-6 flex flex-col items-center justify-center group hover:border-cyan-500/50 transition-all">
         <div class="text-3xl font-bold text-cyan-400 mb-1" data-counter="50">0</div>
-        <div class="text-[9px] uppercase tracking-widest text-slate-500 font-bold">Dashboards</div>
+        <div class="text-[9px] uppercase tracking-widest text-slate-500 font-bold">{content.dashboards}</div>
       </div>
 
       <!-- ML Projects Metric -->
       <div class="glass-panel p-6 flex flex-col items-center justify-center group hover:border-blue-400/50 transition-all">
         <div class="text-3xl font-bold text-blue-400 mb-1" data-counter="100">0</div>
-        <div class="text-[9px] uppercase tracking-widest text-slate-500 font-bold">Modelos ML</div>
+        <div class="text-[9px] uppercase tracking-widest text-slate-500 font-bold">{content.models}</div>
       </div>
 
       <!-- System Status (Wide Box) -->
