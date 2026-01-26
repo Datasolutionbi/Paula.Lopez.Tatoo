@@ -1,0 +1,17 @@
+{
+  "name": "AndresBI Portfolio",
+  "short_name": "AndresBI",
+  "description": "Especialista en BI, Visualización de Datos e IA",
+  "start_url": "/AndresBI/",
+  "display": "standalone",
+  "background_color": "#080813",
+  "theme_color": "#080813",
+  "icons": [
+    {
+      "src": "/AndresBI/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
