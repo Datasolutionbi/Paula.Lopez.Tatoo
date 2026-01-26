@@ -11,6 +11,4 @@
   <!-- Bar 3 (Largest) -->
   <path d="M24 22V10" stroke="#3B82F6" stroke-width="3" stroke-linecap="round"/>
   
-  <!-- Central White Node (Fixed) -->
-  <circle cx="16" cy="16" r="1.5" fill="#FFF"/>
 </svg>
