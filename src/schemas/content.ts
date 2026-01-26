@@ -40,31 +40,37 @@ export const blogPostSchema = z.object({
 });
 
 // Schema para proyectos
-export const projectSchema = z.object({
-  title: z.string().min(1, 'El título es requerido').max(100, 'El título es demasiado largo'),
-  description: z
-    .string()
-    .min(30, 'La descripción debe tener al menos 30 caracteres')
-    .max(300, 'La descripción es demasiado larga'),
-  publishDate: z.coerce.date({
-    required_error: 'La fecha de publicación es requerida',
-  }),
-  tech: z
-    .array(z.string())
-    .min(1, 'Debe especificar al menos una tecnología')
-    .max(10, 'No más de 10 tecnologías'),
-  github: z.string().url('URL de GitHub inválida').optional(),
-  demo: z.string().url('URL de demo inválida').optional(),
-  featured: z.boolean().optional().default(false),
-  image: z.string().optional(),
-})
-  .refine(
-    (data) => data.github || data.demo,
-    {
-      message: 'Debe proporcionar al menos un enlace (GitHub o Demo)',
-      path: ['github'],
-    }
-  );
+export const projectSchema = z
+  .object({
+    title: z.string().min(1, 'El título es requerido').max(100, 'El título es demasiado largo'),
+    description: z
+      .string()
+      .min(30, 'La descripción debe tener al menos 30 caracteres')
+      .max(300, 'La descripción es demasiado larga'),
+    publishDate: z.coerce.date({
+      required_error: 'La fecha de publicación es requerida',
+    }),
+    tech: z
+      .array(z.string())
+      .min(1, 'Debe especificar al menos una tecnología')
+      .max(10, 'No más de 10 tecnologías'),
+    github: z.string().url('URL de GitHub inválida').optional(),
+    demo: z.string().url('URL de demo inválida').optional(),
+    featured: z.boolean().optional().default(false),
+    image: z.string().optional(),
+    metrics: z
+      .array(
+        z.object({
+          label: z.string(),
+          value: z.string(),
+        })
+      )
+      .optional(),
+  })
+  .refine((data) => data.github || data.demo, {
+    message: 'Debe proporcionar al menos un enlace (GitHub o Demo)',
+    path: ['github'],
+  });
 
 // Schema para documentación
 export const docsSchema = z.object({

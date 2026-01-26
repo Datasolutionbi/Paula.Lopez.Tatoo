@@ -1,9 +1,14 @@
 ---
-title: "Dashboard de Ventas con Predicción ML"
-description: "Sistema de BI integrado con machine learning para predecir tendencias de ventas y optimizar inventario en tiempo real."
+title: 'Dashboard de Ventas con Predicción ML'
+description: 'Sistema de BI integrado con machine learning para predecir tendencias de ventas y optimizar inventario en tiempo real.'
 publishDate: 2024-01-15
-tech: ["Power BI", "Python", "Azure ML", "SQL Server", "DAX"]
-github: "https://github.com/tu-usuario/sales-dashboard"
+tech: ['Power BI', 'Python', 'Azure ML', 'SQL Server', 'DAX']
+metrics:
+  - label: 'Precisión'
+    value: '90%'
+  - label: 'ROI Optimizado'
+    value: '25%'
+github: 'https://github.com/tu-usuario/sales-dashboard'
 featured: true
 ---
 
@@ -14,6 +19,7 @@ Desarrollé un dashboard interactivo en Power BI que integra modelos de machine 
 ## Problema de Negocio
 
 La empresa enfrentaba:
+
 - **Sobrestocking** en productos de baja rotación
 - **Falta de stock** en productos populares
 - **Tiempo de análisis** de 2-3 días para generar reportes
@@ -22,11 +28,13 @@ La empresa enfrentaba:
 ## Solución Implementada
 
 ### 1. Pipeline de Datos ETL
+
 - Automatización de extracción desde múltiples fuentes (SQL Server, archivos CSV, APIs)
 - Transformación y limpieza de datos con Python (Pandas)
 - Carga incremental optimizada
 
 ### 2. Modelo Predictivo
+
 ```python
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import TimeSeriesSplit
@@ -37,6 +45,7 @@ model.fit(X_train, y_train)
 ```
 
 ### 3. Dashboard Power BI
+
 - Visualizaciones interactivas con drill-down
 - Predicciones en tiempo real
 - Alertas automáticas para anomalías
