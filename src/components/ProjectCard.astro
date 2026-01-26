@@ -6,9 +6,10 @@ interface Props {
   github?: string;
   demo?: string;
   slug?: string;
+  metrics?: { label: string; value: string }[];
 }
 
-const { title, description, tech, github, demo, slug } = Astro.props;
+const { title, description, tech, github, demo, slug, metrics = [] } = Astro.props;
 ---
 
 <article class="card group flex flex-col h-full project-card overflow-hidden transition-all duration-300" data-tech={tech.join(',')}>
@@ -32,6 +33,18 @@ const { title, description, tech, github, demo, slug } = Astro.props;
   <p class="text-slate-400 mb-4 line-clamp-3 text-sm font-sans italic border-l border-blue-500/20 pl-3">
     <span class="text-slate-600 not-italic mr-1">/*</span> {description} <span class="text-slate-600 not-italic ml-1">*/</span>
   </p>
+
+  <!-- Project Metrics (Data Storytelling) -->
+  {metrics.length > 0 && (
+    <div class="grid grid-cols-2 gap-2 mb-6 opacity-60 group-hover:opacity-100 transition-opacity">
+      {metrics.map(metric => (
+        <div class="bg-blue-500/5 border border-white/5 rounded p-2">
+          <span class="block text-[8px] font-mono text-slate-500 uppercase">{metric.label}</span>
+          <span class="text-xs font-bold text-blue-400">{metric.value}</span>
+        </div>
+      ))}
+    </div>
+  )}
   
   <!-- Tech Stack -->
   <div class="flex flex-wrap gap-2 mb-6">

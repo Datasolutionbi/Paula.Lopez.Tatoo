@@ -127,8 +127,19 @@ const { title, description, image } = Astro.props;
           { name: 'Habilidades', url: '/#habilidades', icon: '🛠️' },
           { name: 'Experiencia', url: '/#experiencia', icon: '💼' },
           { name: 'Blog', url: '/blog', icon: '✍️' },
+          { name: 'Descargar CV', url: '/cv', icon: '📄' },
+          { name: 'Run Health Check', action: 'health', icon: '⚡' },
           { name: 'Contacto', url: '/#contacto', icon: '📧' }
         ];
+
+        function handleAction(action: string) {
+          if (action === 'health') {
+            const overlay = document.getElementById('glitch-overlay');
+            overlay?.classList.add('glitch-active');
+            setTimeout(() => overlay?.classList.remove('glitch-active'), 1000);
+            alert('SYSTEM_HEALTH: 100% | ALL_SYSTEMS_OPERATIONAL');
+          }
+        }
 
         function toggleCP(show: boolean) {
           if (cp) {
@@ -136,6 +147,30 @@ const { title, description, image } = Astro.props;
             cp.classList.toggle('flex', show);
             if (show) cpInput?.focus();
           }
+        }
+
+        function renderResults(filter = '') {
+          if (!cpResults) return;
+          const filtered = commands.filter(c => c.name.toLowerCase().includes(filter.toLowerCase()));
+          cpResults.innerHTML = filtered.map((c) => `
+            <a href="${c.url || '#'}" 
+               class="flex items-center gap-3 p-3 rounded-lg hover:bg-blue-500/10 text-slate-300 transition-colors group"
+               ${c.action ? `data-action="${c.action}"` : ''}>
+              <span class="text-xl">${c.icon}</span>
+              <span class="flex-1 font-mono text-sm">${c.name}</span>
+              <span class="text-[10px] text-slate-600 group-hover:text-blue-400">${c.action ? 'EXECUTE' : 'JUMP TO'} _</span>
+            </a>
+          `).join('');
+
+          // Bind actions
+          cpResults.querySelectorAll('[data-action]').forEach(el => {
+            el.addEventListener('click', (e) => {
+              e.preventDefault();
+              handleAction(el.getAttribute('data-action')!);
+              toggleCP(false);
+            });
+          });
+        }
         }
 
         window.addEventListener('keydown', (e) => {

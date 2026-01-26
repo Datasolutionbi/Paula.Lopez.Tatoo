@@ -195,17 +195,30 @@ const featuredProjects = allProjects
         Mi trayectoria profesional en análisis de datos, BI e inteligencia artificial.
       </p>
       
-      <div class="max-w-4xl mx-auto">
-        {experience.map((job) => (
-          <ExperienceItem
-            company={job.company}
-            position={job.position}
-            period={job.period}
-            description={job.description}
-            achievements={job.achievements}
-            tech={job.tech}
-          />
-        ))}
+      <div class="max-w-4xl mx-auto relative">
+        <!-- Vertical Timeline Line -->
+        <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-600 via-cyan-400 to-transparent opacity-20 hidden md:block"></div>
+        
+        <div class="space-y-12">
+          {experience.map((job, index) => (
+            <div class={`relative flex flex-col md:flex-row gap-8 items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+              <!-- Timeline Dot -->
+              <div class="absolute left-[-4px] md:left-1/2 md:-translate-x-1/2 top-0 w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)] z-10"></div>
+              
+              <div class="w-full md:w-1/2">
+                <ExperienceItem
+                  company={job.company}
+                  position={job.position}
+                  period={job.period}
+                  description={job.description}
+                  achievements={job.achievements}
+                  tech={job.tech}
+                />
+              </div>
+              <div class="hidden md:block md:w-1/2"></div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </section>
