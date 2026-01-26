@@ -2,7 +2,8 @@
 import { SITE } from '../data/site';
 
 const currentPath = Astro.url.pathname;
-const isHome = currentPath === '/';
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
+const isHome = currentPath === base || currentPath === base + '/' || currentPath === base + '/index.html';
 
 const sectionLinks = [
   { name: 'Sobre Mí', href: '#sobre-mi' },
@@ -18,7 +19,7 @@ const sectionLinks = [
   <nav class="container-custom py-4">
     <div class="flex items-center justify-between">
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-3 group">
+      <a href={base || '/'} class="flex items-center gap-3 group">
         <div class="relative w-10 h-10 flex items-center justify-center">
           <!-- Glassmorphism Ring -->
           <div class="absolute inset-0 bg-blue-500/5 rounded-xl border border-blue-500/20 group-hover:border-blue-400/50 group-hover:bg-blue-500/10 transition-all duration-500 rotate-45 group-hover:rotate-0 shadow-[0_0_15px_rgba(59,130,246,0.1)]"></div>
@@ -59,7 +60,7 @@ const sectionLinks = [
             <div class="w-48 glass-panel p-2 border-blue-500/20 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
               {sectionLinks.map((link) => (
                 <a 
-                  href={isHome ? link.href : `/${link.href}`}
+                  href={isHome ? link.href : `${base || ''}/${link.href}`}
                   class="flex items-center px-4 py-2.5 text-[10px] font-mono font-bold text-slate-400 hover:text-blue-400 hover:bg-blue-500/5 rounded-lg transition-all"
                   data-section-link
                 >
@@ -72,19 +73,31 @@ const sectionLinks = [
         </div>
 
         <a 
-          href="/blog" 
-          class={`text-sm font-bold uppercase tracking-widest transition-colors relative group/link ${currentPath.startsWith('/blog') ? 'text-blue-400' : 'text-slate-300 hover:text-blue-400'}`}
+          href={`${base}/blog`} 
+          class={`text-sm font-bold uppercase tracking-widest transition-colors relative group/link ${currentPath.startsWith(`${base}/blog`) ? 'text-blue-400' : 'text-slate-300 hover:text-blue-400'}`}
         >
           Blog
-          <span class={`absolute -bottom-1 left-0 h-px bg-blue-500 transition-all duration-300 ${currentPath.startsWith('/blog') ? 'w-full' : 'w-0 group-hover/link:w-full'}`}></span>
+          <span class={`absolute -bottom-1 left-0 h-px bg-blue-500 transition-all duration-300 ${currentPath.startsWith(`${base}/blog`) ? 'w-full' : 'w-0 group-hover/link:w-full'}`}></span>
         </a>
         
         <a 
-          href="/docs" 
-          class={`text-sm font-bold uppercase tracking-widest transition-colors relative group/link ${currentPath.startsWith('/docs') ? 'text-blue-400' : 'text-slate-300 hover:text-blue-400'}`}
+          href={`${base}/docs`} 
+          class={`text-sm font-bold uppercase tracking-widest transition-colors relative group/link ${currentPath.startsWith(`${base}/docs`) ? 'text-blue-400' : 'text-slate-300 hover:text-blue-400'}`}
         >
           Docs
-          <span class={`absolute -bottom-1 left-0 h-px bg-blue-500 transition-all duration-300 ${currentPath.startsWith('/docs') ? 'w-full' : 'w-0 group-hover/link:w-full'}`}></span>
+          <span class={`absolute -bottom-1 left-0 h-px bg-blue-500 transition-all duration-300 ${currentPath.startsWith(`${base}/docs`) ? 'w-full' : 'w-0 group-hover/link:w-full'}`}></span>
+        </a>
+
+        <a 
+          href={SITE.github} 
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-slate-300 hover:text-blue-400 transition-colors"
+          aria-label="GitHub"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+          </svg>
         </a>
 
         <!-- Availability -->
@@ -105,11 +118,11 @@ const sectionLinks = [
     <div id="mobile-menu" class="fixed inset-0 z-[100] bg-[#080813]/95 backdrop-blur-2xl hidden flex-col items-center justify-center p-8">
       <button id="close-menu" class="absolute top-8 right-8 text-slate-400 p-2"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="1.5"></path></svg></button>
       <div class="flex flex-col gap-6 w-full max-w-xs">
-        <a href="/" class="mobile-nav-link active"><span>01.</span> Inicio</a>
+        <a href={base || '/'} class={`mobile-nav-link ${isHome ? 'active' : ''}`}><span>01.</span> Inicio</a>
         <div class="pl-8 flex flex-col gap-4 border-l border-white/5">
           {sectionLinks.map((link, i) => (
             <a 
-              href={isHome ? link.href : `/${link.href}`} 
+              href={isHome ? link.href : `${base || ''}/${link.href}`} 
               class="text-sm font-mono text-slate-500 hover:text-blue-400"
               data-section-link
             >
@@ -117,8 +130,9 @@ const sectionLinks = [
             </a>
           ))}
         </div>
-        <a href="/blog" class="mobile-nav-link"><span>02.</span> Blog</a>
-        <a href="/docs" class="mobile-nav-link"><span>03.</span> Docs</a>
+        <a href={`${base}/blog`} class={`mobile-nav-link ${currentPath.startsWith(`${base}/blog`) ? 'active' : ''}`}><span>02.</span> Blog</a>
+        <a href={`${base}/docs`} class={`mobile-nav-link ${currentPath.startsWith(`${base}/docs`) ? 'active' : ''}`}><span>03.</span> Docs</a>
+        <a href={SITE.github} target="_blank" rel="noopener noreferrer" class="mobile-nav-link text-blue-400/60"><span>04.</span> GitHub_</a>
       </div>
     </div>
   </nav>
@@ -137,8 +151,8 @@ const sectionLinks = [
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
         if (href && href.includes('#')) {
-          const targetId = href.split('#')[1];
-          const targetElement = document.getElementById(targetId);
+          const targetId = href.split('#').pop();
+          const targetElement = targetId ? document.getElementById(targetId) : null;
 
           if (targetElement) {
             e.preventDefault();
@@ -172,10 +186,16 @@ const sectionLinks = [
 
     menuButton?.addEventListener('click', () => toggleMenu(true));
     closeButton?.addEventListener('click', () => toggleMenu(false));
-    allLinks.forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+    allLinks.forEach(link => {
+      // Don't close if it's a dropdown trigger or has specific logic, but usually we want to close on navigation
+      if (!link.hasAttribute('data-no-close')) {
+        link.addEventListener('click', () => toggleMenu(false));
+      }
+    });
 
     // Active Section Observer for Dropdown & Home Navigation
-    if (window.location.pathname === '/') {
+    const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
+    if (window.location.pathname === base || window.location.pathname === base + '/' || window.location.pathname.endsWith('/index.html')) {
       const observerOptions = {
         root: null,
         rootMargin: '-10% 0px -85% 0px', // Detect near top
@@ -188,8 +208,8 @@ const sectionLinks = [
             const id = entry.target.getAttribute('id');
             sectionLinks.forEach(link => {
               const href = link.getAttribute('href');
-              // Check for both absolute and relative anchor
-              if (href === `#${id}` || href === `/#${id}`) {
+              // Check if href ends with #id or is exactly #id
+              if (href && (href.endsWith(`#${id}`) || href === `#${id}`)) {
                 link.classList.add('text-blue-400', 'bg-blue-500/10');
                 link.classList.remove('text-slate-400');
               } else {
