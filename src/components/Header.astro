@@ -2,6 +2,16 @@
 import { SITE } from '../data/site';
 
 const currentPath = Astro.url.pathname;
+const isHome = currentPath === '/';
+
+const navItems = [
+  { name: 'Sobre Mí', href: isHome ? '#sobre-mi' : '/#sobre-mi' },
+  { name: 'Proyectos', href: isHome ? '#proyectos' : '/#proyectos' },
+  { name: 'Stack', href: isHome ? '#habilidades' : '/#habilidades' },
+  { name: 'Experiencia', href: isHome ? '#experiencia' : '/#experiencia' },
+  { name: 'Educación', href: isHome ? '#educacion' : '/#educacion' },
+  { name: 'Contacto', href: isHome ? '#contacto' : '/#contacto' },
+];
 ---
 
 <header class="sticky top-0 z-50 bg-[#080813]/40 backdrop-blur-lg border-b border-white/5">
@@ -42,9 +52,9 @@ const currentPath = Astro.url.pathname;
       </a>
 
       <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center gap-8">
+      <div class="hidden lg:flex items-center gap-6">
         <!-- Live Status Indicator -->
-        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/5 border border-green-500/10 mr-4">
+        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/5 border border-green-500/10 mr-2">
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -52,27 +62,31 @@ const currentPath = Astro.url.pathname;
           <span class="text-[9px] font-mono text-green-500/80 uppercase tracking-tighter">Availability: Open_to_Work</span>
         </div>
 
-        <a 
-          href="/" 
-          class={`text-sm font-medium transition-colors relative group/link ${currentPath === '/' ? 'text-blue-400' : 'text-slate-300 hover:text-blue-400'}`}
-        >
-          {currentPath === '/' && <span class="absolute -left-3 animate-pulse text-blue-500 font-bold">&gt;</span>}
-          Inicio
-          <span class={`absolute -bottom-1 left-0 h-px bg-blue-500 transition-all duration-300 ${currentPath === '/' ? 'w-full' : 'w-0 group-hover/link:w-full'}`}></span>
-        </a>
+        {navItems.map((item, index) => (
+          <a 
+            href={item.href}
+            class="text-[11px] font-bold uppercase tracking-widest text-slate-400 hover:text-blue-400 transition-all duration-300 relative group/link"
+            data-nav-link
+          >
+            <span class="text-blue-500/50 mr-1 opacity-0 group-hover/link:opacity-100 transition-opacity">0{index + 1}.</span>
+            {item.name}
+            <span class="absolute -bottom-1 left-0 w-0 h-px bg-blue-500 transition-all duration-300 group-hover/link:w-full"></span>
+          </a>
+        ))}
+        
+        <div class="w-px h-4 bg-white/10 mx-2"></div>
+
         <a 
           href="/blog" 
-          class={`text-sm font-medium transition-colors relative group/link ${currentPath.startsWith('/blog') ? 'text-blue-400' : 'text-slate-300 hover:text-blue-400'}`}
+          class={`text-[11px] font-bold uppercase tracking-widest transition-colors relative group/link ${currentPath.startsWith('/blog') ? 'text-blue-400' : 'text-slate-300 hover:text-blue-400'}`}
         >
-          {currentPath.startsWith('/blog') && <span class="absolute -left-3 animate-pulse text-blue-500 font-bold">&gt;</span>}
           Blog
           <span class={`absolute -bottom-1 left-0 h-px bg-blue-500 transition-all duration-300 ${currentPath.startsWith('/blog') ? 'w-full' : 'w-0 group-hover/link:w-full'}`}></span>
         </a>
         <a 
           href="/docs" 
-          class={`text-sm font-medium transition-colors relative group/link ${currentPath.startsWith('/docs') ? 'text-blue-400' : 'text-slate-300 hover:text-blue-400'}`}
+          class={`text-[11px] font-bold uppercase tracking-widest transition-colors relative group/link ${currentPath.startsWith('/docs') ? 'text-blue-400' : 'text-slate-300 hover:text-blue-400'}`}
         >
-          {currentPath.startsWith('/docs') && <span class="absolute -left-3 animate-pulse text-blue-500 font-bold">&gt;</span>}
           Docs
           <span class={`absolute -bottom-1 left-0 h-px bg-blue-500 transition-all duration-300 ${currentPath.startsWith('/docs') ? 'w-full' : 'w-0 group-hover/link:w-full'}`}></span>
         </a>
@@ -92,7 +106,7 @@ const currentPath = Astro.url.pathname;
       <!-- Mobile Menu Button -->
       <button 
         id="mobile-menu-button" 
-        class="md:hidden text-slate-300 hover:text-blue-400"
+        class="lg:hidden text-slate-300 hover:text-blue-400"
         aria-label="Abrir menú"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -109,25 +123,30 @@ const currentPath = Astro.url.pathname;
         </svg>
       </button>
 
-      <div class="flex flex-col gap-8 w-full max-w-xs">
-        <div class="font-mono text-[10px] text-blue-500/40 uppercase tracking-[0.5em] mb-4 border-b border-white/5 pb-4 text-center">
+      <div class="flex flex-col gap-6 w-full max-w-xs">
+        <div class="font-mono text-[10px] text-blue-500/40 uppercase tracking-[0.5em] mb-2 border-b border-white/5 pb-4 text-center">
           System_Navigation
         </div>
         
-        <a href="/" class={`mobile-nav-link ${currentPath === '/' ? 'active' : ''}`}>
-          <span>01.</span> Inicio
-        </a>
+        {navItems.map((item, index) => (
+          <a href={item.href} class="mobile-nav-link">
+            <span>0{index + 1}.</span> {item.name}
+          </a>
+        ))}
+
+        <div class="h-px bg-white/5 my-2"></div>
+        
         <a href="/blog" class={`mobile-nav-link ${currentPath.startsWith('/blog') ? 'active' : ''}`}>
-          <span>02.</span> Blog
+          <span>07.</span> Blog
         </a>
         <a href="/docs" class={`mobile-nav-link ${currentPath.startsWith('/docs') ? 'active' : ''}`}>
-          <span>03.</span> Docs
+          <span>08.</span> Docs
         </a>
         <a href={SITE.github} target="_blank" rel="noopener noreferrer" class="mobile-nav-link text-blue-400/60">
-          <span>04.</span> GitHub_
+          <span>09.</span> GitHub_
         </a>
 
-        <div class="mt-12 pt-8 border-t border-white/5 text-center">
+        <div class="mt-8 pt-6 border-t border-white/5 text-center">
           <p class="text-[8px] font-mono text-slate-600 uppercase tracking-widest">Session_AndresBI_Active</p>
         </div>
       </div>
@@ -141,6 +160,7 @@ const currentPath = Astro.url.pathname;
     const closeButton = document.getElementById('close-menu');
     const mobileMenu = document.getElementById('mobile-menu');
     const navLinks = document.querySelectorAll('.mobile-nav-link');
+    const desktopLinks = document.querySelectorAll('[data-nav-link]');
 
     function toggleMenu(show: boolean) {
       if (mobileMenu) {
@@ -162,8 +182,40 @@ const currentPath = Astro.url.pathname;
     navLinks.forEach(link => {
       link.addEventListener('click', () => toggleMenu(false));
     });
+
+    // Active State Observer
+    if (window.location.pathname === '/') {
+      const sections = ['sobre-mi', 'proyectos', 'habilidades', 'experiencia', 'educacion', 'contacto'];
+      const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            desktopLinks.forEach(link => {
+              const href = link.getAttribute('href');
+              if (href === `#${id}`) {
+                link.classList.add('text-blue-400');
+                link.classList.remove('text-slate-400');
+              } else {
+                link.classList.remove('text-blue-400');
+                link.classList.add('text-slate-400');
+              }
+            });
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+    }
   }
 
-  // Support for View Transitions
   document.addEventListener('astro:page-load', initHeader);
 </script>
