@@ -73,7 +73,7 @@ const { title, description, image } = Astro.props;
 
     <!-- Code Background Decor -->
     <div class="fixed inset-0 pointer-events-none z-[-1] opacity-[0.02] font-mono text-[10px] overflow-hidden select-none p-10 space-y-4">
-      <div class="translate-x-10">SELECT * FROM business_insights WHERE impact > 0.85;</div>
+      <div class="translate-x-10">SELECT * FROM business_insights WHERE impact &gt; 0.85;</div>
       <div class="translate-x-40">def build_neural_network(layers=[64, 32, 16]):</div>
       <div class="translate-x-[-20px]">/* UX_FLOW: USER_CENTERED_DESIGN_PRINCIPLES */</div>
       <div class="translate-x-60">measure = CALCULATE(SUM(Sales), ALL(Products))</div>
@@ -149,7 +149,7 @@ const { title, description, image } = Astro.props;
         function renderResults(filter = '') {
           if (!cpResults) return;
           const filtered = commands.filter(c => c.name.toLowerCase().includes(filter.toLowerCase()));
-          cpResults.innerHTML = filtered.map((c, i) => `
+          cpResults.innerHTML = filtered.map((c) => `
             <a href="${c.url}" class="flex items-center gap-3 p-3 rounded-lg hover:bg-blue-500/10 text-slate-300 transition-colors group">
               <span class="text-xl">${c.icon}</span>
               <span class="flex-1 font-mono text-sm">${c.name}</span>
@@ -257,7 +257,7 @@ const { title, description, image } = Astro.props;
       if (canvas && !isInitialized) {
         isInitialized = true;
         const ctx = canvas.getContext('2d')!;
-        let particles: any[] = [];
+        let particles: Particle[] = [];
         const connectionDistance = 150;
         const mouse = { x: 0, y: 0, radius: 150 };
 

@@ -11,7 +11,8 @@ interface Props {
 const { title, description, tech, github, demo, slug } = Astro.props;
 ---
 
-<article class="card group flex flex-col h-full project-card overflow-hidden" data-tech={tech.join(',')}>
+<article class="card group flex flex-col h-full project-card overflow-hidden transition-all duration-300" data-tech={tech.join(',')}>
+  <div class="glass-card-glow"></div>
   <!-- Visual Tech Decor -->
   <div class="absolute top-0 right-0 w-24 h-24 opacity-10 group-hover:opacity-30 transition-opacity pointer-events-none">
     <svg class="w-full h-full text-blue-400" viewBox="0 0 100 100">
@@ -72,3 +73,26 @@ const { title, description, tech, github, demo, slug } = Astro.props;
     )}
   </div>
 </article>
+
+<script>
+  function initProjectCards() {
+    const cards = document.querySelectorAll('.project-card');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        if (card instanceof HTMLElement) {
+          const rect = card.getBoundingClientRect();
+          const x = ((e as MouseEvent).clientX - rect.left);
+          const y = ((e as MouseEvent).clientY - rect.top);
+          
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        }
+      });
+    });
+  }
+
+  // Initialize on load
+  initProjectCards();
+  // Re-initialize on Astro page transitions
+  document.addEventListener('astro:page-load', initProjectCards);
+</script>

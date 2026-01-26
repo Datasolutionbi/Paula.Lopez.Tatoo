@@ -2,7 +2,7 @@
 title: "SQL Avanzado para Data Analytics: Window Functions y CTEs"
 description: "Domina window functions, CTEs y técnicas avanzadas de SQL para análisis de datos complejos sin salir de la base de datos."
 publishDate: 2026-01-18
-category: "Technical"
+category: "Tutorial"
 tags: ["SQL", "Data Analytics", "PostgreSQL", "Optimization"]
 author: "Andres Rivera"
 ---

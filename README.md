@@ -48,12 +48,44 @@ El sitio estará disponible en `http://localhost:4321`
 
 ## 🛠️ Comandos Disponibles
 
+### Desarrollo
 | Comando | Acción |
 |---------|--------|
 | `npm install` | Instala las dependencias |
 | `npm run dev` | Inicia servidor local en `localhost:4321` |
 | `npm run build` | Construye el sitio para producción en `./dist` |
 | `npm run preview` | Previsualiza la build localmente |
+
+### Testing y Calidad
+| Comando | Acción |
+|---------|--------|
+| `npm test` | Ejecuta todos los tests |
+| `npm run test:coverage` | Tests con reporte de cobertura |
+| `npm run lint` | Verifica código con ESLint |
+| `npm run format` | Formatea código con Prettier |
+| `npm run typecheck` | Verifica tipos TypeScript |
+| `npm run validate` | Ejecuta todas las validaciones (lint + test + build) |
+
+## 🧪 Testing
+
+El proyecto incluye un **sistema completo de pruebas** con 100% de cobertura en funciones críticas:
+
+- ✅ **112 tests** ejecutándose exitosamente
+- ✅ **Pruebas unitarias** para funciones de utilidad
+- ✅ **Validación de contenido** con Zod schemas
+- ✅ **Tests de accesibilidad** (WCAG 2.1 AA)
+- ✅ **CI/CD** con GitHub Actions
+- ✅ **100% coverage** en módulos críticos
+
+**Ver documentación completa:** [TESTING.md](./TESTING.md)
+
+```bash
+# Ejecutar tests
+npm test
+
+# Ver reporte de cobertura
+npm run test:coverage
+```
 
 ## 📁 Estructura del Proyecto
 

@@ -4,7 +4,6 @@ description: "Sistema de BI integrado con machine learning para predecir tendenc
 publishDate: 2024-01-15
 tech: ["Power BI", "Python", "Azure ML", "SQL Server", "DAX"]
 github: "https://github.com/tu-usuario/sales-dashboard"
-demo: "#"
 featured: true
 ---
 
