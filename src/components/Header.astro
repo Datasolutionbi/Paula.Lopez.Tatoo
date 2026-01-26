@@ -47,13 +47,12 @@ const sectionLinks = [
       <div class="hidden md:flex items-center gap-8">
         <!-- Inicio with Dropdown -->
         <div class="relative group/nav-item">
-          <a 
-            href="/" 
-            class={`text-sm font-bold uppercase tracking-widest transition-colors flex items-center gap-1 ${isHome ? 'text-blue-400' : 'text-slate-300 hover:text-blue-400'}`}
+          <div 
+            class={`text-sm font-bold uppercase tracking-widest transition-colors flex items-center gap-1 cursor-default ${isHome ? 'text-blue-400' : 'text-slate-300 group-hover/nav-item:text-blue-400'}`}
           >
             Inicio
             <svg class="w-3 h-3 transition-transform group-hover/nav-item:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3"></path></svg>
-          </a>
+          </div>
           
           <!-- Dropdown Menu -->
           <div class="absolute top-full left-0 pt-4 opacity-0 translate-y-2 pointer-events-none group-hover/nav-item:opacity-100 group-hover/nav-item:translate-y-0 group-hover/nav-item:pointer-events-auto transition-all duration-300 z-[100]">
@@ -62,6 +61,7 @@ const sectionLinks = [
                 <a 
                   href={isHome ? link.href : `/${link.href}`}
                   class="flex items-center px-4 py-2.5 text-[10px] font-mono font-bold text-slate-400 hover:text-blue-400 hover:bg-blue-500/5 rounded-lg transition-all"
+                  data-section-link
                 >
                   <span class="text-blue-500/40 mr-2">></span>
                   {link.name}
@@ -108,7 +108,11 @@ const sectionLinks = [
         <a href="/" class="mobile-nav-link active"><span>01.</span> Inicio</a>
         <div class="pl-8 flex flex-col gap-4 border-l border-white/5">
           {sectionLinks.map((link, i) => (
-            <a href={isHome ? link.href : `/${link.href}`} class="text-sm font-mono text-slate-500 hover:text-blue-400">
+            <a 
+              href={isHome ? link.href : `/${link.href}`} 
+              class="text-sm font-mono text-slate-500 hover:text-blue-400"
+              data-section-link
+            >
               <span class="text-blue-500/30 mr-2">1.{i+1}</span> {link.name}
             </a>
           ))}
@@ -126,6 +130,37 @@ const sectionLinks = [
     const closeButton = document.getElementById('close-menu');
     const mobileMenu = document.getElementById('mobile-menu');
     const allLinks = document.querySelectorAll('nav a');
+    const sectionLinks = document.querySelectorAll('[data-section-link]');
+
+    // Smooth Scroll Interceptor
+    sectionLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href && href.includes('#')) {
+          const targetId = href.split('#')[1];
+          const targetElement = document.getElementById(targetId);
+
+          if (targetElement) {
+            e.preventDefault();
+            // Close mobile menu if open
+            if (mobileMenu) {
+              mobileMenu.classList.add('hidden');
+              mobileMenu.classList.remove('flex');
+              document.body.style.overflow = 'auto';
+            }
+            
+            // Smooth scroll to target
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+
+            // Update URL without reload
+            window.history.pushState(null, '', `#${targetId}`);
+          }
+        }
+      });
+    });
 
     function toggleMenu(show: boolean) {
       if (mobileMenu) {
@@ -138,6 +173,41 @@ const sectionLinks = [
     menuButton?.addEventListener('click', () => toggleMenu(true));
     closeButton?.addEventListener('click', () => toggleMenu(false));
     allLinks.forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+    // Active Section Observer for Dropdown & Home Navigation
+    if (window.location.pathname === '/') {
+      const observerOptions = {
+        root: null,
+        rootMargin: '-10% 0px -85% 0px', // Detect near top
+        threshold: 0
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            sectionLinks.forEach(link => {
+              const href = link.getAttribute('href');
+              // Check for both absolute and relative anchor
+              if (href === `#${id}` || href === `/#${id}`) {
+                link.classList.add('text-blue-400', 'bg-blue-500/10');
+                link.classList.remove('text-slate-400');
+              } else {
+                link.classList.remove('text-blue-400', 'bg-blue-500/10');
+                link.classList.add('text-slate-400');
+              }
+            });
+          }
+        });
+      }, observerOptions);
+
+      // Explicitly monitor these IDs
+      const sectionIds = ['sobre-mi', 'proyectos', 'habilidades', 'experiencia', 'educacion', 'contacto'];
+      sectionIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+    }
   }
 
   document.addEventListener('astro:page-load', initHeader);
