@@ -22,6 +22,10 @@ const { title, description, image } = Astro.props;
   </head>
   <body class="relative">
     <div id="boot-scan" class="scan-line"></div>
+    <!-- Ambient Glow Orbs -->
+    <div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none z-0 animate-pulse"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-cyan-600/10 rounded-full blur-[120px] pointer-events-none z-0 animate-pulse" style="animation-delay: 2s;"></div>
+    
     <canvas id="neural-bg" class="fixed inset-0 pointer-events-none z-0 opacity-40" transition:persist></canvas>
     <div id="scroll-progress" class="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-blue-600 to-cyan-400 z-[100] w-0 transition-all duration-150 ease-out shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
     <div id="glitch-overlay" class="glitch-overlay"></div>
@@ -281,11 +285,11 @@ const { title, description, image } = Astro.props;
               this.x -= dx * force * 0.02; this.y -= dy * force * 0.02;
             }
           }
-          draw() {
-            const dx = mouse.x - this.x; const dy = mouse.y - this.y;
+          draw(x: number, y: number) {
+            const dx = mouse.x - x; const dy = mouse.y - y;
             const distance = Math.sqrt(dx * dx + dy * dy);
             ctx.fillStyle = distance < mouse.radius ? 'rgba(34, 211, 238, 0.9)' : 'rgba(59, 130, 246, 0.6)';
-            ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.arc(x, y, this.size, 0, Math.PI * 2); ctx.fill();
           }
         }
 
@@ -299,19 +303,32 @@ const { title, description, image } = Astro.props;
 
         function animate() {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
+          
+          // Parallax effect based on scroll
+          const scrollY = window.scrollY * 0.2;
+          
           for (let i = 0; i < particles.length; i++) {
-            particles[i].update(); particles[i].draw();
+            particles[i].update();
+            
+            // Apply parallax to drawing
+            const drawX = particles[i].x;
+            const drawY = (particles[i].y - scrollY + canvas.height) % canvas.height;
+            
+            particles[i].draw(drawX, drawY);
+            
             for (let j = i + 1; j < particles.length; j++) {
+              const p2DrawY = (particles[j].y - scrollY + canvas.height) % canvas.height;
               const dx = particles[i].x - particles[j].x;
-              const dy = particles[i].y - particles[j].y;
+              const dy = drawY - p2DrawY;
               const distance = Math.sqrt(dx * dx + dy * dy);
+              
               if (distance < connectionDistance) {
                 const opacity = 1 - (distance / connectionDistance);
-                const gradient = ctx.createLinearGradient(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
+                const gradient = ctx.createLinearGradient(particles[i].x, drawY, particles[j].x, p2DrawY);
                 gradient.addColorStop(0, `rgba(59, 130, 246, ${opacity * 0.5})`);
                 gradient.addColorStop(1, `rgba(34, 211, 238, ${opacity * 0.5})`);
                 ctx.strokeStyle = gradient; ctx.lineWidth = 1.2;
-                ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(particles[i].x, drawY); ctx.lineTo(particles[j].x, p2DrawY); ctx.stroke();
               }
             }
           }
