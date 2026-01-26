@@ -10,7 +10,7 @@
     </radialGradient>
   </defs>
 
-  <!-- Fondo -->
+  <!-- Fondo con Profundidad -->
   <circle cx="256" cy="256" r="256" fill="url(#bg-grad)"/>
   
   <!-- Red Neuronal Sutil (Textura de fondo) -->
@@ -25,19 +25,17 @@
     <circle cx="412" cy="412" r="2" fill="#3B82F6" fill-opacity="0.2" />
   </g>
 
-  <!-- Anillo Orbital -->
+  <!-- Anillo Orbital Nexus -->
   <circle cx="256" cy="256" r="220" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.1" stroke-dasharray="5 15" />
   
-  <!-- Fotón (Movido para no solapar con la barra 4) -->
-  <circle cx="101" cy="101" r="6" fill="#22D3EE" filter="url(#nexus-glow)" />
+  <!-- Fotón de Inteligencia -->
+  <circle cx="256" cy="36" r="6" fill="#22D3EE" filter="url(#nexus-glow)" />
 
-  <!-- Barras de Crecimiento (4 barras redistribuidas) -->
-  <!-- Barra 1 -->
-  <path d="M105 360V320" stroke="#3B82F6" stroke-width="75" stroke-linecap="round" opacity="0.3"/>
-  <!-- Barra 2 -->
-  <path d="M206 360V250" stroke="#22D3EE" stroke-width="75" stroke-linecap="round" opacity="0.6"/>
-  <!-- Barra 3 -->
-  <path d="M307 360V180" stroke="#3B82F6" stroke-width="75" stroke-linecap="round" />
-  <!-- Barra 4 (La meta de crecimiento) -->
-  <path d="M408 360V100" stroke="#22D3EE" stroke-width="75" stroke-linecap="round" filter="url(#nexus-glow)" />
+  <!-- Barras de Crecimiento Ultra-Bold (Perfectamente Centradas) -->
+  <!-- Ancho total: 410px (4 barras de 80px + 3 gaps de 30px) -->
+  <!-- Inicio en X: (512 - 410) / 2 + 40 = 91 -->
+  <path d="M91 360V330" stroke="#3B82F6" stroke-width="80" stroke-linecap="round" opacity="0.3"/>
+  <path d="M201 360V260" stroke="#22D3EE" stroke-width="80" stroke-linecap="round" opacity="0.6"/>
+  <path d="M311 360V190" stroke="#3B82F6" stroke-width="80" stroke-linecap="round" />
+  <path d="M421 360V100" stroke="#22D3EE" stroke-width="80" stroke-linecap="round" filter="url(#nexus-glow)" />
 </svg>
