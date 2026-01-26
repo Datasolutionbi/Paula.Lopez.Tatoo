@@ -182,27 +182,6 @@
     @apply opacity-0 blur-lg translate-y-4 transition-all duration-1000;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .reveal-blur,
-    .animate-pulse,
-    .animate-ping,
-    .scan-active,
-    .glitch-active {
-      animation: none !important;
-      transition: none !important;
-      opacity: 1 !important;
-      filter: none !important;
-      transform: none !important;
-    }
-
-    #neural-bg,
-    #tech-cursor-dot,
-    #tech-cursor-ring,
-    .scan-line {
-      display: none !important;
-    }
-  }
-
   .reveal-blur.visible {
     @apply opacity-100 translate-y-0;
     filter: blur(0);
