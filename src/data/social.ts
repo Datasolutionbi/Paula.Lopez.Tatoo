@@ -1,22 +1,22 @@
 export const social = [
   {
-    name: "GitHub",
-    url: "https://github.com/tu-usuario",
-    icon: "github"
-  },
-  {
     name: "LinkedIn",
-    url: "https://linkedin.com/in/tu-usuario",
+    url: "https://co.linkedin.com/in/michael-andr%C3%A9s-casta%C3%B1o-l%C3%B3pez-3652b4191",
     icon: "linkedin"
   },
   {
-    name: "Kaggle",
-    url: "https://kaggle.com/tu-usuario",
-    icon: "kaggle"
+    name: "GitHub",
+    url: "https://github.com/Datasolutionbi",
+    icon: "github"
   },
   {
     name: "Email",
-    url: "mailto:alex.rivera@example.com",
+    url: "mailto:analitica.bi.agentes.ia@gmail.com",
     icon: "mail"
+  },
+  {
+    name: "WhatsApp",
+    url: "https://wa.me/573503505586",
+    icon: "whatsapp"
   }
 ];

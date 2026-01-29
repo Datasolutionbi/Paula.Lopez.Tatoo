@@ -9,13 +9,13 @@ import Education from '../components/sections/Education.astro';
 import Contact from '../components/sections/Contact.astro';
 import NeuralPerceptron from '../components/NeuralPerceptron.astro';
 import { skills } from '../data/skills';
-import { experience } from '../data/experience';
+import { experience, consultancy } from '../data/experience';
 import { education, certifications } from '../data/education';
 import { getCollection } from 'astro:content';
 
 const allProjects = await getCollection('projects');
 const featuredProjects = allProjects
-  .filter(project => project.data.featured)
+  .filter((project) => project.data.featured)
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   .slice(0, 3);
 ---
@@ -39,7 +39,7 @@ const featuredProjects = allProjects
 
   <div class="section-divider"></div>
 
-  <Experience experience={experience} />
+  <Experience experience={experience} consultancy={consultancy} />
 
   <div class="section-divider"></div>
 

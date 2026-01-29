@@ -1,38 +1,115 @@
 export const experience = [
   {
-    company: "TechCorp Analytics",
-    position: "Senior BI & IA Specialist",
-    period: "2022 - Presente",
-    description: "Lidero proyectos de BI y análisis predictivo con IA. Desarrollo dashboards interactivos y modelos de machine learning para optimización de procesos.",
+    company: "Beiersdorf",
+    position: "Especialista en Business Intelligence",
+    period: "Nov 2024 - Presente",
+    description: "Liderazgo en el ecosistema Power BI para el sector Retail, diseñando arquitecturas de datos y dashboards de alta fidelidad. Especialista en el modelado de KPIs para el entrenamiento de IA aplicado al control y ejecución operativa mediante Computer Vision (captura de imágenes), optimizando la visibilidad estratégica con insights interactivos para niveles gerenciales y de campo.",
     achievements: [
-      "Reduje tiempo de reporting en 85% mediante automatización con Power BI",
-      "Implementé modelo de predicción de ventas con 92% de precisión",
-      "Diseñé pipeline ETL procesando 10M+ registros diarios"
+      "Estandarización de KPIS globales para áreas de marketing y cadena de suministro",
+      "Implementación de dashboards de alta fidelidad con enfoque UX/UI",
+      "Optimización de modelos de datos complejos para reporting corporativo"
     ],
-    tech: ["Power BI", "Python", "Azure ML", "SQL Server", "Airflow"]
+    tech: ["Power BI", "SQL Server", "DAX", "Azure", "UX Design"]
   },
   {
-    company: "DataViz Solutions",
-    position: "Data Analyst",
-    period: "2020 - 2022",
-    description: "Analista de datos enfocado en visualización y reportería empresarial. Creación de dashboards y análisis exploratorio de datos.",
+    company: "Terpel",
+    position: "Consultor BI",
+    period: "Abr 2024 - Oct 2024",
+    description: "Desarrollo de dashboards interactivos en Power BI con diseño UX/UI para mejorar la experiencia del usuario. Se logró proponer una mejor interactividad, con insights más relevantes y un enfoque visual más minimalista y claro, dirigido al área gerencial, productiva y comercial, con niveles de seguridad e interacción a nivel corporativo.",
     achievements: [
-      "Creé 50+ dashboards interactivos en Tableau",
-      "Optimicé queries SQL reduciendo tiempo de ejecución en 70%",
-      "Capacité a 30+ usuarios en herramientas BI"
+      "Propuse mejor interactividad con insights más relevantes y enfoque visual minimalista",
+      "Implementé niveles de seguridad RLS y OLS a nivel corporativo",
+      "Optimicé visualizaciones para áreas gerencial, productiva y comercial"
     ],
-    tech: ["Tableau", "SQL", "Excel", "Python", "Power Query"]
+    tech: ["Power BI", "UX/UI", "RLS", "OLS", "DAX"]
   },
   {
-    company: "StartupBI",
-    position: "Junior Data Analyst",
-    period: "2019 - 2020",
-    description: "Primer rol profesional en análisis de datos. Soporte en reportería y análisis de métricas de negocio.",
+    company: "Adecco",
+    position: "Especialista BI",
+    period: "Oct 2023 - Abr 2024",
+    description: "Se mejoró el proceso de desarrollo de dashboards en el área de producción con mejores visuales, estandarización para gran parte del proceso en datos y desarrollo, lo que aumentó la agilidad.",
     achievements: [
-      "Desarrollé sistema de métricas KPI para seguimiento diario",
-      "Automaticé reportes mensuales con Python",
-      "Participé en migración de datos a SQL Server"
+      "Estandarización de procesos de datos y desarrollo",
+      "Aumento significativo en la agilidad del área de producción",
+      "Implementación de mejores prácticas visuales"
     ],
-    tech: ["Excel", "SQL", "Python", "Power BI"]
+    tech: ["Power BI", "Data Automation", "Standardization"]
+  },
+  {
+    company: "Michael Page",
+    position: "Consultor BI",
+    period: "Ago 2022 - Nov 2022",
+    description: "Desarrollé un tablero de gestión de proyectos con análisis de presupuesto, portafolio y capacidad, automatizando el proceso de carga y análisis de datos en Azure e integrando múltiples fuentes con Power Query y DAX. Además, implementé scripts para la actualización automática de datos en Power BI.",
+    achievements: [
+      "Automatización de carga y análisis de datos en Azure",
+      "Integración de múltiples fuentes con Power Query y DAX",
+      "Implementación de scripts para actualización automática"
+    ],
+    tech: ["Power BI", "Azure", "Power Query", "DAX", "Python"]
+  },
+  {
+    company: "British American Tobacco",
+    position: "Data Analyst - Finance",
+    period: "Nov 2020 - Nov 2021",
+    description: "Automatización de validador de cartera por medio de macros. Automatización de informes para presentación de Dashboard. Control y revisión de proceso para liberación de pedidos según comportamiento de pago. Registro, elaboración y presentación de la operación contable.",
+    achievements: [
+      "Automatización de validador de cartera con macros",
+      "Generación de informes para dashboards contables",
+      "Control de procesos para liberación de pedidos"
+    ],
+    tech: ["Excel VBA", "Macros", "Financial Reporting"]
+  },
+  {
+    company: "Corficolombiana (Financial Corporation)",
+    position: "Financial Information Analyst III",
+    period: "Dic 2017 - Jun 2020",
+    description: "Gestión y consolidación de información financiera de diversas filiales, con presentación de estados financieros e informes tributarios. Optimización de la automatización de la reportería con dashboards dinámicos en SAP, Dynamics NAV e Hyperion Oracle. Programación de modelos de presupuesto con escenarios predictivos usando Excel y VBA. Diseño de herramientas para la sistematización de procesos y estandarización de datos.",
+    achievements: [
+      "Optimización de reportería SAP, Dynamics NAV e Hyperion Oracle",
+      "Desarrollo de modelos predictivos de presupuesto con VBA",
+      "Sistematización de procesos para reportes a Supersociedades y Grupo Aval"
+    ],
+    tech: ["SAP", "Dynamics NAV", "Hyperion Oracle", "Excel VBA"]
+  },
+  {
+    company: "BNP Paribas Cardif",
+    position: "Back Office operaciones",
+    period: "Ene 2016 - Mar 2017",
+    description: "Elaboración de cierre de producción alineando información contable. Conciliación para socios vinculados (Grupo Aval, Davivienda, Helm Bank, etc.) del área de cobranza. Consolidación de base de asegurados para facturación y elaboración de informes para gerencia y finanzas.",
+    achievements: [
+      "Cierres de producción alineados con contabilidad",
+      "Conciliación de cuentas sensibles de socios bancarios",
+      "Uso avanzado de Excel y programación Visual Basic para informes"
+    ],
+    tech: ["Excel Avanzado", "Visual Basic", "Accounting"]
+  },
+  {
+    company: "Conferencia Episcopal de Colombia",
+    position: "Accounting Analyst",
+    period: "Ene 2015 - Dic 2015",
+    description: "Conciliaciones bancarias, liquidación de impuestos (CREE, consumo, IVA, Retención). Control de provisiones, diferidos, depreciación e impuestos causados. Manejo de sistemas contables SIIGO e Excel avanzado para tablas dinámicas y macros.",
+    achievements: [
+      "Liquidación y control de impuestos nacionales",
+      "Manejo avanzado de SIIGO e tablas dinámicas",
+      "Elaboración de reportes de Exógena y requerimientos UGPP"
+    ],
+    tech: ["SIIGO", "Excel Macros", "Tax Accounting"]
+  }
+];
+
+export const consultancy = [
+  {
+    company: "Adyen (Ámsterdam - Freelance)",
+    position: "Especialista en Implementación de Agentes IA",
+    period: "2024 (Proyecto Corto)",
+    description: "Liderazgo técnico en la implementación de una arquitectura de agentes inteligentes para la mitigación proactiva de fraude.",
+    tech: ["LangChain", "OpenAI", "Python"]
+  },
+  {
+    company: "Coolblue (Róterdam - Freelance)",
+    position: "Implementador de Soluciones Machine Learning",
+    period: "2024 (Proyecto Corto)",
+    description: "Despliegue e implementación de optimización de última milla mediante modelos de Deep Learning y agentes autónomos.",
+    tech: ["TensorFlow", "Agentic Workflows", "GCP"]
   }
 ];

@@ -2,49 +2,56 @@ export const skills = {
   bi: {
     title: "Business Intelligence & Visualización",
     tools: [
-      { name: "Power BI", level: "Avanzado" },
-      { name: "Tableau", level: "Avanzado" },
-      { name: "Looker", level: "Intermedio" },
-      { name: "Google Data Studio", level: "Avanzado" },
-      { name: "DAX & Power Query", level: "Avanzado" }
+      { name: "Power BI (Service/Desktop)", level: "Avanzado (100%)" },
+      { name: "DAX & Power Query (M)", level: "Avanzado (100%)" },
+      { name: "Microsoft Fabric", level: "Intermedio" },
+      { name: "Tabular Editor & Bravo", level: "Avanzado (100%)" },
+      { name: "Deneb & SVG Custom", level: "Avanzado (85%)" },
+      { name: "Dashboards Web (Streamlit / Dash)", level: "Avanzado" },
+      { name: "Visualización Pro (D3.js / Plotly)", level: "Intermedio" },
+      { name: "ETL / ELT Pipelines", level: "Avanzado" }
     ]
   },
   ai: {
-    title: "Inteligencia Artificial & Machine Learning",
+    title: "Agentes de IA & Automatización",
     tools: [
-      { name: "Python (TensorFlow, PyTorch)", level: "Avanzado" },
-      { name: "Scikit-learn", level: "Avanzado" },
-      { name: "Hugging Face", level: "Intermedio" },
-      { name: "Azure ML", level: "Intermedio" },
-      { name: "MLflow", level: "Intermedio" }
+      { name: "Agentes IA (LangChain / LangGraph)", level: "Avanzado" },
+      { name: "Frameworks (CrewAI / AutoGen)", level: "Avanzado" },
+      { name: "Workflows Agénticos & RAG", level: "Avanzado" },
+      { name: "Vector DBs (Pinecone / Chroma)", level: "Intermedio" },
+      { name: "Machine Learning (Scikit / XGBoost)", level: "Avanzado" },
+      { name: "Modelos LLM (OpenAI / Claude / Llama)", level: "Avanzado" },
+      { name: "Prompt Engineering & Fine-tuning", level: "Avanzado" },
+      { name: "Power Automate & Logic Apps", level: "Avanzado (95%)" }
     ]
   },
   analytics: {
-    title: "Análisis de Datos",
+    title: "Análisis de Datos & Programación",
     tools: [
-      { name: "Python (Pandas, NumPy)", level: "Avanzado" },
-      { name: "SQL (PostgreSQL, SQL Server)", level: "Avanzado" },
-      { name: "R", level: "Intermedio" },
-      { name: "Jupyter Notebooks", level: "Avanzado" },
-      { name: "Plotly & Matplotlib", level: "Avanzado" }
-    ]
-  },
-  etl: {
-    title: "ETL & Data Engineering",
-    tools: [
-      { name: "Apache Airflow", level: "Intermedio" },
-      { name: "dbt", level: "Intermedio" },
-      { name: "SSIS", level: "Avanzado" },
-      { name: "Azure Data Factory", level: "Intermedio" }
+      { name: "Excel (VBA / Power Pivot)", level: "Avanzado (100%)" },
+      { name: "SQL (T-SQL / PostgreSQL)", level: "Avanzado (80%)" },
+      { name: "Python (Pandas / NumPy)", level: "Avanzado (85%)" },
+      { name: "R (Tidyverse / ggplot2)", level: "Intermedio (65%)" },
+      { name: "Snowflake & Databricks", level: "Intermedio" }
     ]
   },
   cloud: {
-    title: "Cloud & DevOps",
+    title: "Nube & Infraestructura",
     tools: [
-      { name: "Azure", level: "Avanzado" },
-      { name: "AWS", level: "Intermedio" },
-      { name: "Docker", level: "Intermedio" },
-      { name: "Git & GitHub", level: "Avanzado" }
+      { name: "Git & GitHub Actions (CI/CD)", level: "Avanzado (100%)" },
+      { name: "VS Code & Environments", level: "Avanzado (95%)" },
+      { name: "Azure (Synapse / Data Factory)", level: "Intermedio (65%)" },
+      { name: "AWS (S3 / Redshift)", level: "Intermedio (65%)" },
+      { name: "GCP (BigQuery)", level: "Intermedio (65%)" },
+      { name: "Docker Containers", level: "Intermedio" }
+    ]
+  },
+  erp: {
+    title: "Sistemas & Gestión ERP",
+    tools: [
+      { name: "SAP (S/4HANA / BW)", level: "Intermedio (65%)" },
+      { name: "Dynamics NAV / Business Central", level: "Intermedio" },
+      { name: "Microsoft 365 E5 Stack", level: "Avanzado (95%)" }
     ]
   }
 };

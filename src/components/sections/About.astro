@@ -1,20 +1,28 @@
 ---
+import { SITE } from '../../data/site';
+
 interface Props {
   isEn?: boolean;
 }
 const { isEn = false } = Astro.props;
 ---
+
 <section id="sobre-mi" class="section-padding section-glow-container reveal-blur">
   <div class="container-custom">
     <div class="max-w-4xl mx-auto">
       <div class="grid md:grid-cols-3 gap-12 items-center">
         <div class="md:col-span-2 space-y-6">
           <h2 class="text-section mb-4 border-none pl-0">
-            <span class="text-blue-500 font-mono text-2xl mr-2">01.</span>{isEn ? 'About_Me' : 'Sobre_Mí'}
+            <span class="text-blue-500 font-mono text-2xl mr-2">01.</span>{
+              isEn ? 'About_Me' : 'Sobre_Mí'
+            }
           </h2>
-          
+
           <div class="relative group">
-            <div class="absolute -inset-2 bg-blue-500/5 rounded-xl blur-lg group-hover:bg-blue-500/10 transition-all"></div>
+            <div
+              class="absolute -inset-2 bg-blue-500/5 rounded-xl blur-lg group-hover:bg-blue-500/10 transition-all"
+            >
+            </div>
             <div class="nexus-code-block">
               <div class="flex gap-2 mb-4 border-b border-white/5 pb-2">
                 <div class="w-2.5 h-2.5 rounded-full bg-red-500/40"></div>
@@ -22,33 +30,75 @@ const { isEn = false } = Astro.props;
                 <div class="w-2.5 h-2.5 rounded-full bg-green-500/40"></div>
                 <span class="ml-auto text-[10px] text-slate-600">profile.py</span>
               </div>
-              
-              <span class="text-pink-400 italic"># {isEn ? 'Business Intelligence & Data Specialist' : 'Especialista en Inteligencia de Negocios y Datos'}</span><br/>
-              <span class="text-blue-400">class</span> <span class="text-yellow-300">AndresBI</span>:<br/>
-              &nbsp;&nbsp;<span class="text-blue-400">def</span> <span class="text-green-400">__init__</span>(<span class="text-orange-300">self</span>):<br/>
-              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-orange-300">self</span>.experience = <span class="text-yellow-200">"5+ years"</span><br/>
-              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-orange-300">self</span>.focus = [<span class="text-yellow-200">"IA"</span>, <span class="text-yellow-200">"UX"</span>, <span class="text-yellow-200">"Data"</span>]<br/>
-              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-orange-300">self</span>.mission = <span class="text-yellow-200">"Transform data into strategic value"</span><br/>
-              <br/>
-              &nbsp;&nbsp;<span class="text-blue-400">def</span> <span class="text-green-400">get_summary</span>(<span class="text-orange-300">self</span>):<br/>
-              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">return</span> <span class="text-yellow-200">f"""</span><br/>
-              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-300">{isEn ? 'Passionate about creating interactive dashboards that tell stories ' : 'Apasionado por crear dashboards interactivos que cuentan historias '}</span><br/>
-              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-300">{isEn ? 'with data and developing AI models that solve real business ' : 'con datos y desarrollar modelos de IA que resuelven problemas '}</span><br/>
-              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-300">{isEn ? 'problems. My approach combines UX with advanced analytics.' : 'reales de negocio. Mi enfoque combina UX con analítica avanzada.'}</span><br/>
+
+              <span class="text-pink-400 italic"
+                ># {
+                  isEn
+                    ? 'Business Intelligence & Data Specialist'
+                    : 'Especialista en Inteligencia de Negocios y Datos'
+                }</span
+              ><br />
+              <span class="text-blue-400">class</span>
+              <span class="text-yellow-300">AndresBI</span>:<br />
+              &nbsp;&nbsp;<span class="text-blue-400">def</span>
+              <span class="text-green-400">__init__</span>(<span class="text-orange-300">self</span
+              >):<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-orange-300">self</span>.experience = <span
+                class="text-yellow-200">"5+ years"</span
+              ><br />
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-orange-300">self</span>.focus = [<span
+                class="text-yellow-200">"IA"</span
+              >, <span class="text-yellow-200">"UX"</span>, <span class="text-yellow-200"
+                >"Data"</span
+              >]<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-orange-300">self</span>.mission = <span
+                class="text-yellow-200">"Transform data into strategic value"</span
+              ><br />
+              <br />
+              &nbsp;&nbsp;<span class="text-blue-400">def</span>
+              <span class="text-green-400">get_summary</span>(<span class="text-orange-300"
+                >self</span
+              >):<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">return</span>
+              <span class="text-yellow-200">f"""</span><br />
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-300"
+                >{
+                  isEn
+                    ? 'Strategist and Architect of high-value solutions in Business Intelligence and Artificial Intelligence, specializing in transforming complex data into competitive advantages.'
+                    : 'Estratega y Arquitecto de soluciones de alto valor en Business Intelligence e Inteligencia Artificial, especializado en transformar datos complejos en ventajas competitivas.'
+                }</span
+              ><br />
+              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-300"
+                >{
+                  isEn
+                    ? 'Through a deep mastery of DAX, SQL, Python, and Agentic Workflows, combined with a premium UX/UI focus, I deliver advanced analytical tools that drive executive decision-making.'
+                    : 'Mediante un dominio profundo de DAX, SQL, Python y Workflows Agénticos, combinados con un enfoque UX/UI premium, entrego herramientas analíticas avanzadas que impulsan la toma de decisiones ejecutivas.'
+                }</span
+              ><br />
               &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-200">"""</span>
             </div>
           </div>
         </div>
         <div class="flex flex-col items-center gap-6">
           <div class="flex justify-center relative">
-            <div class="absolute -top-12 -right-12 opacity-40 group-hover:opacity-100 transition-opacity duration-700">
+            <div
+              class="absolute -top-12 -right-12 opacity-40 group-hover:opacity-100 transition-opacity duration-700"
+            >
               <slot name="perceptron" />
             </div>
-            <div class="w-48 h-48 bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-400 rounded-full flex items-center justify-center text-white text-6xl font-black shadow-[0_0_50px_rgba(59,130,246,0.3)] z-10 tracking-tighter">
-              ABI<span class="text-yellow-400 text-2xl animate-pulse">_</span>
+            <div
+              class="w-60 h-[23.5rem] rounded-[2.5rem] overflow-hidden border-2 border-blue-500/30 shadow-[0_0_50px_rgba(59,130,246,0.2)] z-10 group-hover:border-blue-500/60 transition-all duration-500 mt-8"
+            >
+              <img
+                src={SITE.avatar}
+                alt={SITE.name}
+                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100 object-top"
+              />
             </div>
           </div>
-          <div class="font-mono text-[10px] text-blue-500/40 bg-blue-500/5 px-3 py-1 rounded-full border border-blue-500/10">
+          <div
+            class="font-mono text-[10px] text-blue-500/40 bg-blue-500/5 px-3 py-1 rounded-full border border-blue-500/10"
+          >
             STATUS: READY_TO_SCALE
           </div>
         </div>

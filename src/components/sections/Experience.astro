@@ -3,38 +3,93 @@ import ExperienceItem from '../ExperienceItem.astro';
 interface Props {
   isEn?: boolean;
   experience: any[];
+  consultancy?: any[];
 }
-const { isEn = false, experience } = Astro.props;
+const { isEn = false, experience, consultancy = [] } = Astro.props;
 ---
+
 <section id="experiencia" class="section-padding reveal-blur">
   <div class="container-custom">
-    <h2 class="text-section mb-4 text-center">{isEn ? 'Professional Experience' : 'Experiencia Profesional'}</h2>
+    <h2 class="text-section mb-4 text-center">
+      {isEn ? 'Professional Experience' : 'Experiencia Profesional'}
+    </h2>
     <p class="text-lg text-slate-400 text-center mb-12 max-w-2xl mx-auto">
-      {isEn ? 'My career path in data analysis, BI, and artificial intelligence.' : 'Mi trayectoria profesional en análisis de datos, BI e inteligencia artificial.'}
+      {
+        isEn
+          ? 'My career path in data analysis, BI, and artificial intelligence.'
+          : 'Mi trayectoria profesional en análisis de datos, BI e inteligencia artificial.'
+      }
     </p>
-    
-    <div class="max-w-4xl mx-auto relative">
-      <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-600 via-cyan-400 to-transparent opacity-20 hidden md:block"></div>
-      
+
+    <!-- Sección Laboral -->
+    <div class="max-w-4xl mx-auto relative mb-20">
+      <h3
+        class="text-xl font-mono text-blue-400 mb-10 border-b border-blue-500/20 pb-2 inline-block"
+      >
+        {isEn ? 'Full-time Experience' : 'Experiencia Laboral'}
+      </h3>
+      <div
+        class="absolute left-0 md:left-1/2 top-10 bottom-0 w-px bg-gradient-to-b from-blue-600 via-cyan-400 to-transparent opacity-20 hidden md:block"
+      >
+      </div>
+
       <div class="space-y-12">
-        {experience.map((job, index) => (
-          <div class={`relative flex flex-col md:flex-row gap-8 items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-            <div class="absolute left-[-4px] md:left-1/2 md:-translate-x-1/2 top-0 w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)] z-10"></div>
-            
-            <div class="w-full md:w-1/2">
-              <ExperienceItem
-                company={job.company}
-                position={job.position}
-                period={job.period === '2022 - Presente' && isEn ? '2022 - Present' : job.period}
-                description={job.description}
-                achievements={job.achievements}
-                tech={job.tech}
-              />
+        {
+          experience.map((job, index) => (
+            <div
+              class={`relative flex flex-col md:flex-row gap-8 items-start ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+            >
+              <div class="absolute left-[-4px] md:left-1/2 md:-translate-x-1/2 top-2 w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)] z-10" />
+
+              <div class="w-full md:w-1/2">
+                <ExperienceItem
+                  company={job.company}
+                  position={job.position}
+                  period={job.period}
+                  description={job.description}
+                  achievements={job.achievements}
+                  tech={job.tech}
+                />
+              </div>
+              <div class="hidden md:block md:w-1/2" />
             </div>
-            <div class="hidden md:block md:w-1/2"></div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
+
+    <!-- Sección Prestación de Servicios -->
+    {
+      consultancy.length > 0 && (
+        <div class="max-w-4xl mx-auto relative mt-20">
+          <h3 class="text-xl font-mono text-cyan-400 mb-10 border-b border-cyan-500/20 pb-2 inline-block">
+            {isEn ? 'Freelance & Consulting Projects' : 'Prestación de Servicios & Freelance'}
+          </h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            {consultancy.map((project) => (
+              <div class="card p-6 border border-white/5 hover:border-cyan-500/30 transition-all group">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h4 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">
+                      {project.company}
+                    </h4>
+                    <p class="text-sm text-cyan-500/80 font-mono">{project.position}</p>
+                  </div>
+                  <span class="text-[10px] px-2 py-1 bg-cyan-500/10 text-cyan-400 rounded-full border border-cyan-500/20">
+                    {project.period}
+                  </span>
+                </div>
+                <p class="text-sm text-slate-400 mb-4">{project.description}</p>
+                <div class="flex flex-wrap gap-2">
+                  {project.tech.map((t) => (
+                    <span class="text-[10px] font-mono text-slate-500 uppercase">{t}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
   </div>
 </section>
