@@ -5,7 +5,7 @@
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
     <radialGradient id="bg-grad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="20%" stop-color="#1e1b4b" />
       <stop offset="100%" stop-color="#080813" />
     </radialGradient>
   </defs>
@@ -13,37 +13,22 @@
   <!-- Fondo con Profundidad -->
   <circle cx="256" cy="256" r="256" fill="url(#bg-grad)"/>
   
-  <!-- Red Neuronal Sutil (Textura de fondo) -->
-  <g stroke="#3B82F6" stroke-width="0.5" stroke-opacity="0.15">
-    <line x1="100" y1="100" x2="256" y2="256" />
-    <line x1="412" y1="100" x2="256" y2="256" />
-    <line x1="100" y1="412" x2="256" y2="256" />
-    <line x1="412" y1="412" x2="256" y2="256" />
-    <circle cx="100" cy="100" r="2" fill="#3B82F6" fill-opacity="0.2" />
-    <circle cx="412" cy="100" r="2" fill="#3B82F6" fill-opacity="0.2" />
-    <circle cx="100" cy="412" r="2" fill="#3B82F6" fill-opacity="0.2" />
-    <circle cx="412" cy="412" r="2" fill="#3B82F6" fill-opacity="0.2" />
-  </g>
 
   <!-- Anillo Orbital Nexus -->
-  <circle cx="256" cy="256" r="220" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.1" stroke-dasharray="5 15" />
-  
-  <!-- Fotón de Inteligencia -->
-  <circle cx="256" cy="36" r="6" fill="#22D3EE" filter="url(#nexus-glow)" />
+  <circle cx="256" cy="256" r="220" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.1" />
+
 
   <!-- Barras de Crecimiento Ultra-Bold (Cálculo exacto para centrado) -->
   <!-- Cada barra tiene 80px de ancho. Espacio entre ellas: 20px. Total: 380px -->
   <!-- Centrado: (512 - 380) / 2 = 66px de margen a cada lado -->
   
   <!-- Barra 1 (Pequeña) -->
-  <path d="M106 360V330" stroke="#3B82F6" stroke-width="80" stroke-linecap="round" opacity="0.3"/>
+  <path d="M106 360V330" stroke="#3B82F6" stroke-width="60" stroke-linecap="round" />
   
   <!-- Barra 2 (Mediana) -->
-  <path d="M206 360V260" stroke="#22D3EE" stroke-width="80" stroke-linecap="round" opacity="0.6"/>
+  <path d="M206 360V260" stroke="#22D3EE" stroke-width="60" stroke-linecap="round" />
   
   <!-- Barra 3 (Grande) -->
-  <path d="M306 360V190" stroke="#3B82F6" stroke-width="80" stroke-linecap="round" />
+  <path d="M306 360V190" stroke="#3B82F6" stroke-width="60" stroke-linecap="round" />
   
-  <!-- Barra 4 (Máxima) -->
-  <path d="M406 360V100" stroke="#22D3EE" stroke-width="80" stroke-linecap="round" filter="url(#nexus-glow)" />
 </svg>
