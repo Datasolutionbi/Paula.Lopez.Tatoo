@@ -18,7 +18,7 @@ export const experience = [
     description: "Desarrollo de dashboards interactivos en Power BI con diseño UX/UI para mejorar la experiencia del usuario. Se logró proponer una mejor interactividad, con insights más relevantes y un enfoque visual más minimalista y claro, dirigido al área gerencial, productiva y comercial, con niveles de seguridad e interacción a nivel corporativo.",
     achievements: [
       "Propuse mejor interactividad con insights más relevantes y enfoque visual minimalista",
-      "Implementé niveles de seguridad RLS y OLS a nivel corporativo",
+      "Implementé niveles de seguridad RLS and OLS a nivel corporativo",
       "Optimicé visualizaciones para áreas gerencial, productiva y comercial"
     ],
     tech: ["Power BI", "UX/UI", "RLS", "OLS", "DAX"]
@@ -99,17 +99,24 @@ export const experience = [
 
 export const consultancy = [
   {
-    company: "Adyen (Ámsterdam - Freelance)",
-    position: "Especialista en Implementación de Agentes IA",
-    period: "2024 (Proyecto Corto)",
-    description: "Liderazgo técnico en la implementación de una arquitectura de agentes inteligentes para la mitigación proactiva de fraude.",
-    tech: ["LangChain", "OpenAI", "Python"]
+    company: "SaaS RAG (Consultoría)",
+    position: "Arquitecto de Soluciones IA",
+    period: "2025",
+    description: "Diseño e implementación de un pipeline RAG escalable utilizando ChromaDB como base de datos vectorial, permitiendo búsquedas semánticas ultra-rápidas en documentos corporativos.",
+    tech: ["ChromaDB", "LangChain", "Python"]
   },
   {
-    company: "Coolblue (Róterdam - Freelance)",
-    position: "Implementador de Soluciones Machine Learning",
-    period: "2024 (Proyecto Corto)",
-    description: "Despliegue e implementación de optimización de última milla mediante modelos de Deep Learning y agentes autónomos.",
-    tech: ["TensorFlow", "Agentic Workflows", "GCP"]
+    company: "AutomatePro (Consultoría)",
+    position: "Especialista en Automatización",
+    period: "2025",
+    description: "Orquestación de flujos de trabajo autónomos con n8n, integrando múltiples APIs para la automatización de reportes de BI y alertas estratégicas en tiempo real.",
+    tech: ["n8n", "Webhooks", "API Integration"]
+  },
+  {
+    company: "Agravity.io (Consultoría)",
+    position: "Especialista en Flujos Agénticos",
+    period: "2025",
+    description: "Optimización de entornos de desarrollo agéntico mediante Antigravity, creando custom scripts y agentes de codificación autónoma para acelerar el ciclo de vida de software.",
+    tech: ["Antigravity", "AI Agents", "Automated Coding"]
   }
 ];

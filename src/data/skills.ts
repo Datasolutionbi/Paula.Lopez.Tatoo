@@ -18,11 +18,11 @@ export const skills = {
       { name: "Agentes IA (LangChain / LangGraph)", level: "Avanzado" },
       { name: "Frameworks (CrewAI / AutoGen)", level: "Avanzado" },
       { name: "Workflows Agénticos & RAG", level: "Avanzado" },
-      { name: "Vector DBs (Pinecone / Chroma)", level: "Intermedio" },
+      { name: "Vector DBs (ChromaDB / Pinecone)", level: "Avanzado" },
       { name: "Machine Learning (Scikit / XGBoost)", level: "Avanzado" },
       { name: "Modelos LLM (OpenAI / Claude / Llama)", level: "Avanzado" },
       { name: "Prompt Engineering & Fine-tuning", level: "Avanzado" },
-      { name: "Power Automate & Logic Apps", level: "Avanzado (95%)" }
+      { name: "Automation (n8n / Power Automate)", level: "Avanzado" }
     ]
   },
   analytics: {
@@ -39,7 +39,7 @@ export const skills = {
     title: "Nube & Infraestructura",
     tools: [
       { name: "Git & GitHub Actions (CI/CD)", level: "Avanzado (100%)" },
-      { name: "VS Code & Environments", level: "Avanzado (95%)" },
+      { name: "Agentic IDEs (Antigravity / Cursor)", level: "Avanzado" },
       { name: "Azure (Synapse / Data Factory)", level: "Intermedio (65%)" },
       { name: "AWS (S3 / Redshift)", level: "Intermedio (65%)" },
       { name: "GCP (BigQuery)", level: "Intermedio (65%)" },
