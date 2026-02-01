@@ -78,36 +78,40 @@ const content = {
     </div>
 
     <script>
-      const counters = document.querySelectorAll('[data-counter]');
-      const speed = 200;
+      const initCounters = () => {
+        const counters = document.querySelectorAll('[data-counter]');
+        const speed = 200;
 
-      const animateCounters = () => {
-        counters.forEach(counter => {
-          const updateCount = () => {
-            const target = +counter.getAttribute('data-counter')!;
-            const count = +counter.innerHTML;
-            const inc = target / speed;
+        const animateCounters = () => {
+          counters.forEach(counter => {
+            const updateCount = () => {
+              const target = +counter.getAttribute('data-counter')!;
+              const count = +counter.innerHTML;
+              const inc = target / speed;
 
-            if (count < target) {
-              counter.innerHTML = Math.ceil(count + inc).toString();
-              setTimeout(updateCount, 1);
-            } else {
-              counter.innerHTML = target.toString() + (target >= 50 ? '+' : '');
-            }
-          };
-          updateCount();
+              if (count < target) {
+                counter.innerHTML = Math.ceil(count + inc).toString();
+                setTimeout(updateCount, 1);
+              } else {
+                counter.innerHTML = target.toString() + (target >= 50 ? '+' : '');
+              }
+            };
+            updateCount();
+          });
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            animateCounters();
+            observer.disconnect();
+          }
         });
+
+        if (counters.length > 0) observer.observe(counters[0]);
       };
 
-      // Intersection Observer to trigger animation
-      const observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          animateCounters();
-          observer.disconnect();
-        }
-      });
-
-      if (counters.length > 0) observer.observe(counters[0]);
+      // Escuchar el evento de carga de página de Astro para que funcione con View Transitions
+      document.addEventListener('astro:page-load', initCounters);
     </script>
   </div>
 </section>

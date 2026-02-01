@@ -7,6 +7,7 @@ import Skills from '../../components/sections/Skills.astro';
 import Experience from '../../components/sections/Experience.astro';
 import Education from '../../components/sections/Education.astro';
 import Contact from '../../components/sections/Contact.astro';
+import TrustLogos from '../../components/sections/TrustLogos.astro';
 import NeuralPerceptron from '../../components/NeuralPerceptron.astro';
 import { skills } from '../../data/skills';
 import { getCollection } from 'astro:content';
@@ -63,6 +64,8 @@ const certifications = [
   <div class="reveal-blur">
     <Hero />
   </div>
+
+  <TrustLogos isEn={true} />
 
   <About isEn={true}>
     <NeuralPerceptron size={80} slot="perceptron" />
