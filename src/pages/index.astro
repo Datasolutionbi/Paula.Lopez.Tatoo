@@ -7,6 +7,7 @@ import Skills from '../components/sections/Skills.astro';
 import Experience from '../components/sections/Experience.astro';
 import Education from '../components/sections/Education.astro';
 import Contact from '../components/sections/Contact.astro';
+import TrustLogos from '../components/sections/TrustLogos.astro';
 import NeuralPerceptron from '../components/NeuralPerceptron.astro';
 import { skills } from '../data/skills';
 import { experience, consultancy } from '../data/experience';
@@ -24,6 +25,8 @@ const featuredProjects = allProjects
   <div class="reveal-blur">
     <Hero />
   </div>
+
+  <TrustLogos />
 
   <About>
     <NeuralPerceptron size={80} slot="perceptron" />

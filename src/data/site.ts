@@ -1,7 +1,7 @@
 export const SITE = {
   name: "Michael Castaño",
   title: "Michael Castaño | Visual BI & AI Agent Expert",
-  description: "Especialista en Visual BI, Agentes de IA y Machine Learning. Experiencia internacional prestando servicios para empresas tecnológicas en los Países Bajos (Adyen, Coolblue).",
+  description: "Especialista Senior con más de 6 años de experiencia en Visual BI, Agentes de IA y Machine Learning. Experiencia internacional prestando servicios para empresas tecnológicas en los Países Bajos (Adyen, Coolblue).",
   tagline: "Visual BI Expert | AI Agent Architect | ML & Data Strategy",
   url: "https://michaelcastano.github.io/Pages",
   author: "Michael Castaño",

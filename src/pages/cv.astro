@@ -335,6 +335,49 @@ const isEn = false;
         text-decoration: none;
         z-index: 1000;
       }
+      /* LOGO CLOUD */
+      .logo-cloud {
+        grid-column: 1 / span 2;
+        background: var(--card-white);
+        border-radius: var(--radius-lg);
+        padding: 20px 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        border: 1px solid rgba(0, 0, 0, 0.03);
+      }
+      .logo-cloud-title {
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text-light);
+        letter-spacing: 1.5px;
+      }
+      .logo-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        width: 100%;
+      }
+      .logo-item {
+        height: 35px;
+        filter: grayscale(1);
+        opacity: 0.7;
+        transition: all 0.3s ease;
+      }
+      .logo-item:hover {
+        filter: grayscale(0);
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      .logo-item img {
+        height: 100%;
+        width: auto;
+        object-fit: contain;
+      }
     </style>
   </head>
   <body>
@@ -348,7 +391,17 @@ const isEn = false;
       <div class="name-card">
         <a href="/AndresBI/" class="detail-tag no-print">Detalle Profesional</a>
         <h1>Michael Andres <br /> Castaño</h1>
-        <p>Especialista Senior en <span>BI</span></p>
+        <p>Especialista Senior con más de <span>6 años de experiencia</span></p>
+      </div>
+
+      <div class="logo-cloud">
+        <span class="logo-cloud-title">Trayectoria en Compañías Líderes</span>
+        <div class="logo-grid">
+          <div class="logo-item"><img src="/AndresBI/Beiersdorf.svg" alt="Beiersdorf" /></div>
+          <div class="logo-item"><img src="/AndresBI/terpel.svg" alt="Terpel" /></div>
+          <div class="logo-item"><img src="/AndresBI/Adecco.svg" alt="Adecco" /></div>
+          <div class="logo-item"><img src="/AndresBI/BAT.svg" alt="British American Tobacco" /></div>
+        </div>
       </div>
 
       <div class="sidebar-col">
@@ -451,9 +504,9 @@ const isEn = false;
         <div class="content-group">
           <h2>Resumen Estratégico</h2>
           <div class="profile-bio">
-            Estratega y Arquitecto de soluciones de alto valor en Business Intelligence e
-            Inteligencia Artificial, especializado en transformar datos complejos en ventajas
-            competitivas. Mediante un dominio profundo de DAX, SQL, Python, **ChromaDB, n8n** y **Workflows Agénticos** (Antigravity),
+            Estratega y Arquitecto Senior con más de **6 años de experiencia** liderando soluciones de alto valor en Business Intelligence e
+            Inteligencia Artificial. Especializado en transformar datos complejos en ventajas
+            competitivas mediante un dominio profundo de DAX, SQL, Python, **ChromaDB, n8n** y **Workflows Agénticos** (Antigravity).
             combinados con un enfoque UX/UI premium, entrego herramientas analíticas avanzadas que
             impulsan la toma de decisiones ejecutivas.
           </div>
