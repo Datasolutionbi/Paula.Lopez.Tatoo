@@ -8,19 +8,19 @@
 
 @layer base {
   :root {
-    /* Warm Studio Theme (Calidez 20) */
+    /* Revision: High-Contrast Ink Theme */
     --purple-primary: #521348;
     --purple-stencil: #6b1b5e;
-    /* Tattoo Transfer Ink */
     --purple-dark: #3a1033;
     --purple-light: #7a1d6b;
     --bg-page: #FDFCFB;
-    /* Warm Ivory/Parchment */
     --bg-card: #FDFCFB;
     --text-main: #1C1917;
-    /* Warm Charcoal */
     --text-muted: #78716c;
-    --accent-gold: rgba(212, 175, 55, 0.1);
+    --accent-ink: rgba(82, 19, 72, 0.05);
+    /* Fresh Ink tint */
+    --accent-red: #A4161A;
+    /* Traditional Flash Red */
   }
 
   html {
@@ -348,6 +348,80 @@
     content: "";
     @apply absolute inset-0 opacity-0 group-hover/img:opacity-20 transition-opacity duration-700 pointer-events-none;
     background: radial-gradient(600px circle at var(--x) var(--y), rgba(157, 78, 221, 0.4), transparent 40%);
+  }
+
+  /* Revision 1-5: Tattoo Focus Utilities */
+  .ink-wash {
+    background: linear-gradient(135deg, var(--bg-page) 0%, #F5F1EE 100%);
+    position: relative;
+  }
+
+  .needle-line {
+    border-bottom: 1.5px dashed rgba(28, 25, 23, 0.2);
+    position: relative;
+  }
+
+  .voltage-meter {
+    height: 4px;
+    background: #e7e5e4;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .voltage-meter-fill {
+    height: 100%;
+    background: var(--purple-primary);
+    width: 65%;
+    box-shadow: 0 0 10px var(--purple-primary);
+    animation: jitter 0.5s infinite alternate;
+  }
+
+  @keyframes jitter {
+    0% {
+      transform: scaleX(0.98);
+      opacity: 0.8;
+    }
+
+    100% {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  }
+
+  /* Custom Signature Stylings */
+  .signature-text {
+    font-family: 'Allura', cursive;
+    font-size: 2.25rem;
+    color: var(--purple-primary);
+    opacity: 0.8;
+  }
+
+  .traditional-red-dot {
+    @apply w-3 h-3 rounded-full;
+    background-color: var(--accent-red);
+    box-shadow: 0 0 10px rgba(164, 22, 26, 0.3);
+  }
+
+  /* Designer & Drafting Utilities */
+  .stencil-hover {
+    @apply transition-all duration-700;
+  }
+
+  .stencil-hover:hover {
+    filter: brightness(0.8) contrast(1.2) sepia(1) hue-rotate(180deg) saturate(2);
+    /* Stencil Blue Look */
+  }
+
+  .anatomical-grid {
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .draft-label {
+    @apply absolute -top-3 -left-3 bg-white border border-black/5 px-2 py-0.5 text-[8px] font-black uppercase tracking-widest z-20;
   }
 }
 
