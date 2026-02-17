@@ -10,5 +10,5 @@ export const SITE = {
   address: "Calle de la Tinta 42, Bogotá, Colombia",
   github: "https://github.com/Datasolutionbi",
   linkedin: "https://co.linkedin.com/in/michael-andr%C3%A9s-casta%C3%B1o-l%C3%B3pez",
-  avatar: "/AndresBI/studio-logo.png"
+  avatar: "/Paula.Lopez.Tatoo/studio-logo.png"
 };

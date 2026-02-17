@@ -7,7 +7,7 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://Datasolutionbi.github.io',
-  base: '/AndresBI',
+  base: '/Paula.Lopez.Tatoo',
 
   i18n: {
     defaultLocale: 'es',
