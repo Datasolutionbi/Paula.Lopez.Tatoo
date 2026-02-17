@@ -109,7 +109,7 @@ export const InkStories: React.FC<InkStoriesProps> = ({
 
                 {/* After Image (Background) */}
                 <img src={afterImage} className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none" alt="After" />
-                <div className="absolute top-4 right-4 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-[8px] uppercase tracking-widest font-bold text-white z-10">Healed / Final</div>
+                <div className="absolute top-4 right-4 px-3 py-1 bg-black/60 backdrop-blur-md rounded-none text-[8px] uppercase tracking-widest font-bold text-white z-10">Healed / Final</div>
 
                 {/* Before Image (Clipped) */}
                 <div
@@ -123,13 +123,13 @@ export const InkStories: React.FC<InkStoriesProps> = ({
                         alt="Before"
                         style={{ width: '100cqw', height: '100cqh' }}
                     />
-                    <div className="absolute top-4 left-4 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[8px] uppercase tracking-widest font-bold text-white">Stencil / Old</div>
+                    <div className="absolute top-4 left-4 px-3 py-1 bg-white/10 backdrop-blur-md rounded-none text-[8px] uppercase tracking-widest font-bold text-white">Stencil / Old</div>
                 </div>
 
                 {/* Handle */}
                 <div
                     ref={handleRef}
-                    className="absolute inset-y-0 left-1/2 w-8 -ml-4 flex items-center justify-center cursor-ew-resize z-20 group-hover:scale-110 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-studio-purple rounded-full outline-none"
+                    className="absolute inset-y-0 left-1/2 w-8 -ml-4 flex items-center justify-center cursor-ew-resize z-20 group-hover:scale-110 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-studio-purple rounded-none outline-none"
                     role="slider"
                     tabIndex={0}
                     aria-label="Comparison Slider"
@@ -141,7 +141,7 @@ export const InkStories: React.FC<InkStoriesProps> = ({
                     onKeyDown={handleKeyDown}
                     style={{ left: '50%' }}
                 >
-                    <div className="w-8 h-8 rounded-full bg-studio-purple border-2 border-white flex items-center justify-center shadow-[0_0_20px_rgba(157,78,221,0.6)]">
+                    <div className="w-8 h-8 rounded-none bg-studio-purple border-2 border-white flex items-center justify-center shadow-[0_0_20px_rgba(157,78,221,0.6)]">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="m9 18 6-6-6-6" /></svg>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white rotate-180 absolute"><path d="m9 18 6-6-6-6" /></svg>
                     </div>

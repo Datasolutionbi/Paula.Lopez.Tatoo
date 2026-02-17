@@ -64,11 +64,11 @@ const categories = [...new Set(allPosts.map(p => p.data.category))];
 
       <!-- Category Filter -->
       <div class="flex flex-wrap gap-4 mb-12 justify-center">
-        <button class="filter-btn active px-6 py-3 bg-black text-white border border-black rounded-full text-xs uppercase tracking-widest hover:bg-studio-purple hover:border-studio-purple transition-all shadow-lg" data-filter="all">
+        <button class="filter-btn active px-6 py-3 bg-black text-white border border-black rounded-none text-xs uppercase tracking-widest hover:bg-studio-purple hover:border-studio-purple transition-all shadow-lg" data-filter="all">
           All Posts
         </button>
         {categories.map(cat => (
-          <button class="filter-btn px-6 py-3 bg-white border border-black/10 text-black/60 rounded-full text-xs uppercase tracking-widest hover:border-studio-purple hover:text-studio-purple transition-all" data-filter={cat}>
+          <button class="filter-btn px-6 py-3 bg-white border border-black/10 text-black/60 rounded-none text-xs uppercase tracking-widest hover:border-studio-purple hover:text-studio-purple transition-all" data-filter={cat}>
             {cat.charAt(0).toUpperCase() + cat.slice(1)}
           </button>
         ))}

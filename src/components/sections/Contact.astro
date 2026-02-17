@@ -31,7 +31,7 @@ const content = {
 };
 ---
 
-<div class="relative w-full h-full flex flex-col md:flex-row overflow-hidden bg-white border border-black/5 rounded-3xl">
+<div class="relative w-full h-full flex flex-col md:flex-row overflow-hidden bg-white border border-black/5 rounded-none">
   <!-- Booking Info Side (Visual & Text) -->
   <div class="w-full md:w-5/12 p-12 md:p-16 lg:p-20 bg-studio-purple flex flex-col justify-center relative min-h-[450px] md:min-h-0">
     <!-- Background Texture Contrast -->
@@ -45,10 +45,10 @@ const content = {
       </div>
       
       <h2 class="flex flex-col mb-12 leading-[0.8]">
-        <span class="font-serif-editorial text-6xl md:text-7xl lg:text-8xl text-white italic opacity-80 -ml-1">
+        <span class="font-serif-editorial text-5xl md:text-6xl lg:text-7xl text-white italic opacity-80 -ml-1">
           {isEn ? "The" : "Tu"}
         </span>
-        <span class="text-white font-sans font-black text-7xl md:text-8xl lg:text-9xl tracking-tighter uppercase">
+        <span class="text-white font-sans font-black text-6xl md:text-7xl lg:text-8xl tracking-tighter uppercase">
           {isEn ? "Vision" : "Visión"}
         </span>
       </h2>
@@ -59,7 +59,7 @@ const content = {
          </p>
          <!-- Machine Vibration indicator for the contact form area -->
          <div class="flex items-center gap-3">
-             <div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+             <div class="w-2 h-2 rounded-none bg-red-500 animate-pulse"></div>
              <span class="text-[9px] font-black uppercase tracking-widest text-white/40">Agenda Open - Bogotá</span>
          </div>
       </div>
@@ -134,7 +134,7 @@ const content = {
       </div>
 
       <div class="flex items-center justify-center gap-4 pt-4">
-         <div class="w-1.5 h-1.5 rounded-full bg-studio-purple animate-pulse"></div>
+         <div class="w-1.5 h-1.5 rounded-none bg-studio-purple animate-pulse"></div>
          <span class="text-[9px] uppercase tracking-[0.5em] font-bold opacity-30">{content.system}</span>
       </div>
     </form>

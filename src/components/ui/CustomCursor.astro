@@ -1,6 +1,6 @@
 ---
 ---
-<div id="cursor-ring" class="fixed w-10 h-10 border border-white/20 rounded-full pointer-events-none z-[9999] opacity-0 transition-opacity duration-300 md:block hidden"></div>
+<div id="cursor-ring" class="fixed w-10 h-10 border border-white/20 rounded-none pointer-events-none z-[9999] opacity-0 transition-opacity duration-300 md:block hidden"></div>
 <div id="cursor-trail-container" class="fixed inset-0 pointer-events-none z-[9998] md:block hidden"></div>
 
 <script>
@@ -22,23 +22,6 @@
         transform: `translate(${x - 20}px, ${y - 20}px)`
       }, { duration: 500, fill: "forwards" });
 
-      // Ink Trail Logic
-      if (Math.abs(x - lastX) > 5 || Math.abs(y - lastY) > 5) {
-        const dot = document.createElement('div');
-        dot.className = 'absolute w-1.5 h-1.5 bg-studio-purple rounded-full opacity-40 pointer-events-none';
-        dot.style.left = `${x}px`;
-        dot.style.top = `${y}px`;
-        trailContainer.appendChild(dot);
-        
-        dot.animate([
-          { opacity: 0.4, transform: 'scale(1)' },
-          { opacity: 0, transform: 'scale(0.5) translateY(10px)' }
-        ], { duration: 800, fill: 'forwards' });
-        
-        setTimeout(() => dot.remove(), 800);
-        lastX = x;
-        lastY = y;
-      }
     });
 
     document.querySelectorAll('a, button, select, textarea').forEach(el => {

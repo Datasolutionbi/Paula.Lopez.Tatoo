@@ -16,7 +16,7 @@ const categories = [...new Set(allProjects.map(p => p.data.category))];
         Flash Design Atelier
       </div>
       <h2 class="font-serif-editorial text-6xl md:text-8xl text-black leading-none tracking-tighter">
-        Design <span class="text-studio-purple font-sans font-black italic">Atelier</span>
+        Top <span class="text-studio-purple font-sans font-black italic">Tattoo</span>
       </h2>
     </div>
 
@@ -27,7 +27,7 @@ const categories = [...new Set(allProjects.map(p => p.data.category))];
         data-filter="all"
       >
         <span class="opacity-100">All</span>
-        <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-[var(--purple-primary)] rounded-full opacity-100 transition-opacity"></span>
+        <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-[var(--purple-primary)] rounded-none opacity-100 transition-opacity"></span>
       </button>
       {categories.map(cat => (
         <button
@@ -35,7 +35,7 @@ const categories = [...new Set(allProjects.map(p => p.data.category))];
           data-filter={cat}
         >
           <span>{cat.replace('-', ' ')}</span>
-          <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-[var(--purple-primary)] rounded-full opacity-0 group-hover:opacity-40 transition-opacity"></span>
+          <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-[var(--purple-primary)] rounded-none opacity-0 group-hover:opacity-40 transition-opacity"></span>
         </button>
       ))}
     </div>
@@ -50,7 +50,7 @@ const categories = [...new Set(allProjects.map(p => p.data.category))];
           <!-- Technical Draft Label -->
           <div class="draft-label">COMP_#{index + 104}</div>
 
-          <div class="relative rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 bg-white anatomical-grid border border-black/5">
+          <div class="relative rounded-none overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 bg-white anatomical-grid border border-black/5">
             <!-- Image with Stencil Hover -->
             <div class="aspect-[4/5] overflow-hidden stencil-hover">
               <img
@@ -62,7 +62,7 @@ const categories = [...new Set(allProjects.map(p => p.data.category))];
             </div>
 
             <!-- Heart Icon Overaly -->
-            <button class="absolute top-6 right-6 w-10 h-10 bg-black/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-[var(--purple-primary)] transition-all">
+            <button class="absolute top-6 right-6 w-10 h-10 bg-black/10 backdrop-blur-md rounded-none flex items-center justify-center text-white hover:bg-white hover:text-[var(--purple-primary)] transition-all">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
@@ -70,7 +70,7 @@ const categories = [...new Set(allProjects.map(p => p.data.category))];
 
             <!-- Text Overlay (Match 'Fine Line' label) -->
             <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-              <span class="bg-white/90 backdrop-blur-sm px-6 py-2 rounded-full text-sm font-black uppercase tracking-widest text-[#222] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+              <span class="bg-white/90 backdrop-blur-sm px-6 py-2 rounded-none text-sm font-black uppercase tracking-widest text-[#222] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 {project.data.title}
               </span>
             </div>

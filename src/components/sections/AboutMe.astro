@@ -53,9 +53,9 @@ const t = isEn ? content.en : content.es;
       
       <!-- Artist Photo (B&W) -->
       <div class="">
-        <div class="rounded-[3rem] md:rounded-[4rem] overflow-hidden shadow-2xl bg-gray-200 aspect-[4/5]">
+        <div class="rounded-none md:rounded-none overflow-hidden shadow-2xl bg-gray-200 aspect-[4/5]">
           <img 
-            src="https://images.unsplash.com/photo-1598135753163-6167c1a1ad65?q=80&w=2069&auto=format&fit=crop" 
+            src="/AndresBI/paula-artisan.png" 
             alt="Paula López at work" 
             class="w-full h-full object-cover grayscale contrast-125"
           />
@@ -66,7 +66,9 @@ const t = isEn ? content.en : content.es;
       <div class="relative">
         <div class="absolute -right-10 -top-20 w-48 h-48 bg-studio-purple/5 ink-stain -z-10 opacity-30"></div>
         
-        <h2 class="font-serif-editorial text-5xl md:text-6xl text-[#111] mb-10 sketch-line inline-block uppercase tracking-tighter">The Artisan</h2>
+        <h2 class="font-serif-editorial text-6xl md:text-8xl text-black leading-none tracking-tighter mb-10">
+          The <span class="text-studio-purple font-sans font-black italic">Artisan</span>
+        </h2>
         
         <div class="space-y-8 text-black/70 font-medium text-lg leading-relaxed max-w-xl">
           <p class="first-letter:text-5xl first-letter:font-serif-editorial first-letter:text-studio-purple first-letter:mr-3 first-letter:float-left first-letter:leading-[1]">
@@ -82,43 +84,13 @@ const t = isEn ? content.en : content.es;
            <span class="signature-text">Paula López</span>
         </div>
 
-        <!-- The Atelier Process (Designer Focus) -->
-        <div class="mt-16 bg-black/[0.02] border border-black/5 rounded-3xl p-8 anatomical-grid">
-           <h3 class="text-[10px] font-black uppercase tracking-[0.4em] mb-8 text-studio-purple">The Atelier Process</h3>
-           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div class="space-y-3">
-                 <div class="flex items-center gap-2">
-                    <div class="w-1.5 h-1.5 rounded-full bg-studio-purple"></div>
-                    <span class="text-[9px] font-bold uppercase tracking-widest text-[#222]">Anatomy Mapping</span>
-                 </div>
-                 <div class="voltage-meter"><div class="voltage-meter-fill w-[85%]"></div></div>
-                 <p class="text-[10px] text-black/40 leading-relaxed font-bold italic">Precise placement aligned with muscle flow.</p>
-              </div>
-              <div class="space-y-3">
-                 <div class="flex items-center gap-2">
-                    <div class="w-1.5 h-1.5 rounded-full bg-studio-purple"></div>
-                    <span class="text-[9px] font-bold uppercase tracking-widest text-[#222]">Stencil Drafting</span>
-                 </div>
-                 <div class="voltage-meter"><div class="voltage-meter-fill w-[95%]"></div></div>
-                 <p class="text-[10px] text-black/40 leading-relaxed font-bold italic">High-fidelity blue carbon transfer precision.</p>
-              </div>
-              <div class="space-y-3">
-                 <div class="flex items-center gap-2">
-                    <div class="w-1.5 h-1.5 rounded-full bg-studio-purple"></div>
-                    <span class="text-[9px] font-bold uppercase tracking-widest text-[#222]">Pigment Alchemy</span>
-                 </div>
-                 <div class="voltage-meter"><div class="voltage-meter-fill w-[70%]"></div></div>
-                 <p class="text-[10px] text-black/40 leading-relaxed font-bold italic">Custom gradient saturation & ink density.</p>
-              </div>
-           </div>
-        </div>
 
         <!-- Social Proof Logos -->
         <div class="pt-12 mt-12 border-t border-black/5 flex flex-wrap items-center gap-8 md:gap-12 opacity-30 grayscale hover:grayscale-0 transition-all duration-700">
            <span class="font-serif italic text-xl font-bold tracking-tighter text-black/40">VOGUE</span>
            <span class="font-sans font-black text-lg tracking-tighter italic text-black/40">Inked</span>
            <span class="font-serif text-sm font-black uppercase tracking-widest text-black/40">Tattoo Life</span>
-           <div class="w-8 h-8 rounded-full border border-black/10 flex items-center justify-center text-black/20 text-[10px] font-black italic">PL</div>
+           <div class="w-8 h-8 rounded-none border border-black/10 flex items-center justify-center text-black/20 text-[10px] font-black italic">PL</div>
         </div>
       </div>
     </div>

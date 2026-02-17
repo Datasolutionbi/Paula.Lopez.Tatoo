@@ -22,7 +22,7 @@ const { class: className, variant = "minimal" } = Astro.props;
       <svg width="40%" height="2" viewBox="0 0 400 2" preserveAspectRatio="none">
         <path d="M0,1 L400,1" stroke="currentColor" stroke-width="1" class="text-black/20 separator-path" />
       </svg>
-      <div class="w-2 h-2 rounded-full bg-studio-purple animate-pulse"></div>
+      <div class="w-2 h-2 rounded-none bg-studio-purple animate-pulse"></div>
       <svg width="40%" height="2" viewBox="0 0 400 2" preserveAspectRatio="none">
         <path d="M400,1 L0,1" stroke="currentColor" stroke-width="1" class="text-black/20 separator-path" />
       </svg>
@@ -55,7 +55,7 @@ const { class: className, variant = "minimal" } = Astro.props;
     <div class="relative flex items-center gap-6 group">
       <div class="w-12 h-px bg-black/10 group-hover:w-20 transition-all duration-500"></div>
       <!-- Simple Needle Point -->
-      <div class="w-1.5 h-1.5 bg-black/40 rounded-full group-hover:bg-studio-purple transition-colors duration-300"></div>
+      <div class="w-1.5 h-1.5 bg-black/40 rounded-none group-hover:bg-studio-purple transition-colors duration-300"></div>
       <div class="w-12 h-px bg-black/10 group-hover:w-20 transition-all duration-500"></div>
     </div>
   )}
