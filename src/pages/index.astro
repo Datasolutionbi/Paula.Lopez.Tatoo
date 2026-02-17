@@ -31,7 +31,7 @@ import TattooSeparator from '../components/ui/TattooSeparator.astro';
     <TattooSeparator variant="minimal" className="my-12" />
 
     <!-- 4. FAQ Section -->
-    <section id="faq" class="py-24 bg-white">
+    <section id="faq" class="py-24 bg-[var(--bg-page)] transition-colors duration-700">
       <div class="px-6 md:px-12 max-w-[1400px] mx-auto">
         <h2 class="font-serif-editorial text-5xl md:text-6xl text-[#222] text-center mb-16">Questions</h2>
         <BoutiqueFAQ />
@@ -39,7 +39,7 @@ import TattooSeparator from '../components/ui/TattooSeparator.astro';
     </section>
 
     <!-- 5. Booking / Contact Section -->
-    <section id="booking" class="py-24 bg-white relative overflow-hidden">
+    <section id="booking" class="py-24 bg-[var(--bg-page)] relative overflow-hidden transition-colors duration-700">
       <div class="absolute -right-20 top-40 w-96 h-96 bg-studio-purple/5 ink-stain -z-10 opacity-20 rotate-45"></div>
       <div class="px-6 md:px-12 max-w-[1400px] mx-auto">
         <Contact />
