@@ -1,0 +1,87 @@
+---
+// Luxury Editorial Background - Soft Mesh & Fine Lines
+---
+
+<div class="editorial-bg">
+  <div class="mesh shimmer-1"></div>
+  <div class="mesh shimmer-2"></div>
+  <div class="mesh shimmer-3"></div>
+  
+  <div class="line-patterns">
+    <!-- Abstract Fine Line SVGs -->
+    <svg class="pattern p1" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.1"><path d="M10 50 Q 25 25, 50 50 T 90 50" /></svg>
+    <svg class="pattern p2" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.1"><circle cx="50" cy="50" r="40" /></svg>
+    <svg class="pattern p3" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.1"><path d="M20 20 L 80 80 M 80 20 L 20 80" /></svg>
+  </div>
+</div>
+
+<style>
+  .editorial-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+    background-color: transparent;
+  }
+
+  .mesh {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.15;
+  }
+
+  .shimmer-1 {
+    width: 60vw;
+    height: 60vw;
+    top: -10%;
+    left: -10%;
+    background: radial-gradient(circle, rgba(107, 27, 94, 0.4) 0%, transparent 70%);
+    animation: floating 20s infinite alternate ease-in-out;
+  }
+
+  .shimmer-2 {
+    width: 50vw;
+    height: 50vw;
+    bottom: -10%;
+    right: -10%;
+    background: radial-gradient(circle, rgba(184, 161, 196, 0.3) 0%, transparent 70%);
+    animation: floating 25s infinite alternate-reverse ease-in-out;
+  }
+
+  .shimmer-3 {
+    width: 40vw;
+    height: 40vw;
+    top: 40%;
+    left: 40%;
+    background: radial-gradient(circle, rgba(107, 27, 94, 0.15) 0%, transparent 70%);
+    animation: floating 30s infinite alternate ease-in-out;
+  }
+
+  .line-patterns {
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    color: #000;
+  }
+
+  .pattern {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+  }
+
+  .p1 { top: 5%; right: 10%; transform: rotate(15deg); }
+  .p2 { bottom: 10%; left: 5%; transform: rotate(-10deg); }
+  .p3 { top: 50%; left: 20%; transform: rotate(45deg); opacity: 0.5; }
+
+  @keyframes floating {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(5%, 5%) scale(1.1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mesh { animation: none; }
+  }
+</style>

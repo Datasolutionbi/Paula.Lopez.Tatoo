@@ -1,56 +1,74 @@
 ---
-import ProjectCard from '../ProjectCard.astro';
-interface Props {
-  isEn?: boolean;
-  projects: any[];
-}
-const { isEn = false, projects } = Astro.props;
+// Projects.astro - Modern Editorial Gallery
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects', ({ data }) => {
+  return data.published === true;
+});
+
+const categories = [...new Set(allProjects.map(p => p.data.category))];
 ---
-<section id="proyectos" class="section-padding reveal-blur">
-  <div class="container-custom">
-    <h2 class="text-section mb-4 text-center">{isEn ? 'Featured Projects' : 'Proyectos Destacados'}</h2>
-    <p class="text-lg text-slate-400 text-center mb-12 max-w-2xl mx-auto">
-      {isEn 
-        ? 'Case studies and projects demonstrating my expertise in BI, data visualization, and AI.' 
-        : 'Casos de estudio y proyectos que demuestran mi experiencia en BI, visualización de datos e inteligencia artificial.'}
-    </p>
 
-    <!-- Project Filters -->
-    <div class="flex flex-wrap justify-center gap-3 mb-8">
-      <button class="filter-btn active" data-filter="all">{isEn ? 'All' : 'Todos'}</button>
-      <button class="filter-btn" data-filter="Power BI">Power BI</button>
-      <button class="filter-btn" data-filter="Python">Python</button>
-      <button class="filter-btn" data-filter="Machine Learning">Machine Learning</button>
-      <button class="filter-btn" data-filter="SQL">SQL</button>
+<section id="gallery" class="py-24 bg-white">
+  <div class="px-6 md:px-12 max-w-[1400px] mx-auto">
+    <!-- Section Title -->
+    <div class="text-center mb-12">
+      <h2 class="font-serif-editorial text-5xl md:text-6xl text-[#222]">Gallery</h2>
     </div>
 
-    <!-- Data Insights Widget -->
-    <div class="max-w-xl mx-auto mb-12 glass-panel p-4 border-blue-500/20 flex justify-around text-center">
-      <div>
-        <span class="block text-[8px] font-mono text-slate-500 uppercase">{isEn ? 'Filtered_Projects' : 'Proyectos_Filtrados'}</span>
-        <span id="insight-count" class="text-xl font-bold text-blue-400">0</span>
-      </div>
-      <div class="border-x border-white/5 px-8">
-        <span class="block text-[8px] font-mono text-slate-500 uppercase">{isEn ? 'Main_Impact' : 'Impacto_Dominante'}</span>
-        <span id="insight-main-tech" class="text-xl font-bold text-cyan-400">--</span>
-      </div>
-      <div>
-        <span class="block text-[8px] font-mono text-slate-500 uppercase">Status</span>
-        <span class="text-xl font-bold text-green-500">200_OK</span>
-      </div>
+    <!-- Minimalist Category Filters -->
+    <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-16">
+      <button
+        class="filter-btn text-sm font-bold uppercase tracking-widest transition-all relative group active-filter"
+        data-filter="all"
+      >
+        <span class="opacity-100">All</span>
+        <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-[var(--purple-primary)] rounded-full opacity-100 transition-opacity"></span>
+      </button>
+      {categories.map(cat => (
+        <button
+          class="filter-btn text-sm font-bold uppercase tracking-widest transition-all relative group opacity-60 hover:opacity-100"
+          data-filter={cat}
+        >
+          <span>{cat.replace('-', ' ')}</span>
+          <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-[var(--purple-primary)] rounded-full opacity-0 group-hover:opacity-40 transition-opacity"></span>
+        </button>
+      ))}
     </div>
-    
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="project-grid">
-      {projects.map((project) => (
-        <ProjectCard
-          title={isEn && project.data.title === "Dashboard de Ventas con Predicción ML" ? "Sales Dashboard with ML Prediction" : isEn && project.data.title === "Pipeline ETL Automatizado con Airflow" ? "Automated ETL Pipeline with Airflow" : project.data.title}
-          description={project.data.description}
-          tech={project.data.tech}
-          github={project.data.github}
-          demo={project.data.demo}
-          slug={project.slug}
-          metrics={(project.data as any).metrics}
-        />
+
+    <!-- Editorial Staggered Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10" id="projects-grid">
+      {allProjects.map((project, index) => (
+        <article
+          class="project-card group"
+          data-category={project.data.category}
+        >
+          <div class="relative rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 bg-white">
+            <!-- Image -->
+            <div class="aspect-[4/5] overflow-hidden">
+              <img
+                src={project.data.images.thumbnail}
+                alt={project.data.title}
+                loading="lazy"
+                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              />
+            </div>
+
+            <!-- Heart Icon Overaly -->
+            <button class="absolute top-6 right-6 w-10 h-10 bg-black/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-[var(--purple-primary)] transition-all">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </button>
+
+            <!-- Text Overlay (Match 'Fine Line' label) -->
+            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+              <span class="bg-white/90 backdrop-blur-sm px-6 py-2 rounded-full text-sm font-black uppercase tracking-widest text-[#222] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                {project.data.title}
+              </span>
+            </div>
+          </div>
+        </article>
       ))}
     </div>
   </div>
@@ -58,42 +76,44 @@ const { isEn = false, projects } = Astro.props;
 
 <script>
   function initProjectFilters() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
 
-        const filter = btn.getAttribute('data-filter') || 'all';
-        let count = 0;
+        // Update active style
+        filterButtons.forEach(btn => {
+          btn.classList.add('opacity-60');
+          btn.classList.remove('opacity-100');
+          btn.querySelector('span:last-child')?.classList.replace('opacity-100', 'opacity-0');
+        });
+        button.classList.remove('opacity-60');
+        button.classList.add('opacity-100');
+        button.querySelector('span:last-child')?.classList.replace('opacity-0', 'opacity-100');
 
+        // Filter projects with animation
         projectCards.forEach(card => {
-          if (card instanceof HTMLElement) {
-            const tech = card.getAttribute('data-tech') || '';
-            if (filter === 'all' || tech.toLowerCase().includes(filter.toLowerCase())) {
-              card.style.display = 'flex';
-              count++;
-              setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transition = 'opacity 0.5s ease';
-              }, 10);
-            } else {
-              card.style.display = 'none';
-            }
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            (card as HTMLElement).style.display = 'block';
+            setTimeout(() => card.classList.add('is-visible'), 10);
+          } else {
+            card.classList.remove('is-visible');
+            setTimeout(() => { (card as HTMLElement).style.display = 'none'; }, 500);
           }
         });
-
-        const countDisplay = document.getElementById('insight-count');
-        const techDisplay = document.getElementById('insight-main-tech');
-        if (countDisplay) countDisplay.innerText = count.toString();
-        if (techDisplay) techDisplay.innerText = filter === 'all' ? 'MIXED' : filter.toUpperCase();
       });
     });
-
-    const activeFilter = document.querySelector('.filter-btn.active');
-    if (activeFilter) (activeFilter as HTMLElement).click();
   }
+
   document.addEventListener('astro:page-load', initProjectFilters);
+  initProjectFilters();
 </script>
+
+<style>
+  .filter-btn span:last-child {
+    pointer-events: none;
+  }
+</style>

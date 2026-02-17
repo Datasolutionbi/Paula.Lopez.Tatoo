@@ -1,54 +1,50 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import About from '../components/sections/About.astro';
+import AboutMe from '../components/sections/AboutMe.astro';
 import Projects from '../components/sections/Projects.astro';
-import Skills from '../components/sections/Skills.astro';
-import Experience from '../components/sections/Experience.astro';
-import Education from '../components/sections/Education.astro';
 import Contact from '../components/sections/Contact.astro';
-import TrustLogos from '../components/sections/TrustLogos.astro';
-import NeuralPerceptron from '../components/NeuralPerceptron.astro';
-import { skills } from '../data/skills';
-import { experience, consultancy } from '../data/experience';
-import { education, certifications } from '../data/education';
-import { getCollection } from 'astro:content';
-
-const allProjects = await getCollection('projects');
-const featuredProjects = allProjects
-  .filter((project) => project.data.featured)
-  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-  .slice(0, 3);
+import BookingCTA from '../components/sections/BookingCTA.astro';
+import InkStories from '../components/sections/InkStories.astro';
+import BoutiqueFAQ from '../components/sections/BoutiqueFAQ.astro';
+import Newsletter from '../components/sections/Newsletter.astro';
+import Testimonials from '../components/social/Testimonials.astro';
+import TattooSeparator from '../components/ui/TattooSeparator.astro';
 ---
 
 <BaseLayout>
-  <div class="reveal-blur">
+  <main>
+    <!-- 1. Hero Section -->
     <Hero />
-  </div>
 
-  <TrustLogos />
+    <!-- 2. Gallery Section -->
+    <div class="relative overflow-hidden">
+      <div class="absolute -left-20 top-20 w-80 h-80 bg-studio-purple/5 ink-stain -z-10 opacity-30"></div>
+      <Projects />
+    </div>
 
-  <About>
-    <NeuralPerceptron size={80} slot="perceptron" />
-  </About>
+    <TattooSeparator variant="sketch" className="my-12" />
 
-  <div class="section-divider"></div>
+    <!-- 3. About Me Section -->
+    <AboutMe />
 
-  <Projects projects={featuredProjects} />
+    <TattooSeparator variant="minimal" className="my-12" />
 
-  <div class="section-divider"></div>
+    <!-- 4. FAQ Section -->
+    <section id="faq" class="py-24 bg-white">
+      <div class="px-6 md:px-12 max-w-[1400px] mx-auto">
+        <h2 class="font-serif-editorial text-5xl md:text-6xl text-[#222] text-center mb-16">Questions</h2>
+        <BoutiqueFAQ />
+      </div>
+    </section>
 
-  <Skills skills={skills} />
+    <!-- 5. Booking / Contact Section -->
+    <section id="booking" class="py-24 bg-white relative overflow-hidden">
+      <div class="absolute -right-20 top-40 w-96 h-96 bg-studio-purple/5 ink-stain -z-10 opacity-20 rotate-45"></div>
+      <div class="px-6 md:px-12 max-w-[1400px] mx-auto">
+        <Contact />
+      </div>
+    </section>
 
-  <div class="section-divider"></div>
-
-  <Experience experience={experience} consultancy={consultancy} />
-
-  <div class="section-divider"></div>
-
-  <Education education={education} certifications={certifications} />
-
-  <div class="section-divider"></div>
-
-  <Contact />
+  </main>
 </BaseLayout>

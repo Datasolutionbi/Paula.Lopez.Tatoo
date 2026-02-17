@@ -1,0 +1,99 @@
+---
+---
+<script>
+  // Magnetic Interaction for Premium Feel
+  function initMagneticButtons() {
+    const magneticElements = document.querySelectorAll('.pill-button, .outline-pill, .magnetic-wrap');
+    
+    magneticElements.forEach(el => {
+      const element = el as HTMLElement;
+      element.addEventListener('mousemove', (e: MouseEvent) => {
+        const { clientX: x, clientY: y } = e;
+        const { left, top, width, height } = element.getBoundingClientRect();
+        
+        const center = {
+          x: left + width / 2,
+          y: top + height / 2
+        };
+
+        const distance = {
+          x: x - center.x,
+          y: y - center.y
+        };
+
+        // Magnetic strength
+        const strength = 0.3;
+        
+        element.style.transform = `translate(${distance.x * strength}px, ${distance.y * strength}px)`;
+      });
+
+      element.addEventListener('mouseleave', () => {
+        element.style.transform = `translate(0px, 0px)`;
+      });
+    });
+  }
+
+  // Simple Smooth Scroll (Native Alternative)
+  function initSmoothScroll() {
+    if (window.matchMedia("(pointer: fine)").matches) {
+      document.documentElement.style.scrollBehavior = 'smooth';
+    }
+  }
+
+  // Parallax Arched Items + Lighting
+  function initParallax() {
+    const archedItems = document.querySelectorAll('.arched-item');
+    
+    archedItems.forEach(item => {
+      const element = item as HTMLElement;
+      element.addEventListener('mousemove', (e) => {
+        const rect = element.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        element.style.setProperty('--x', `${x}px`);
+        element.style.setProperty('--y', `${y}px`);
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      archedItems.forEach(item => {
+        const element = item as HTMLElement;
+        const image = element.querySelector('img');
+        if (!image) return;
+        
+        const rect = element.getBoundingClientRect();
+        const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+        
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          const parallaxValue = (scrollPercent - 0.5) * 40; // Pixels to shift
+          image.style.transform = `translateY(${parallaxValue}px) scale(1.1)`;
+        }
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    initMagneticButtons();
+    initSmoothScroll();
+    initParallax();
+  });
+
+  // Initial run
+  initMagneticButtons();
+  initSmoothScroll();
+  initParallax();
+</script>
+
+<style is:global>
+  /* Global transition for magnetic reset - Using standard CSS to avoid T4 apply issues */
+  .pill-button, .outline-pill, .magnetic-wrap {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .arched-item img {
+    transition-property: transform;
+    transition-duration: 700ms;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+</style>

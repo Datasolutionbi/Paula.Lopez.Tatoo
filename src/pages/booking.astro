@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BookingWizard from '../components/booking/BookingWizard.astro';
+
+const isEn = Astro.url.pathname.includes('/en');
+---
+
+<BaseLayout 
+  title={isEn ? "Book Your Tattoo - Tattocaro" : "Reserva tu Tatuaje - Tattocaro"}
+  description={isEn ? "Book your custom tattoo with José Contreras" : "Reserva tu tatuaje personalizado con José Contreras"}
+>
+  <BookingWizard />
+</BaseLayout>

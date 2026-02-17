@@ -1,0 +1,58 @@
+---
+---
+<div id="cursor-ring" class="fixed w-10 h-10 border border-white/20 rounded-full pointer-events-none z-[9999] opacity-0 transition-opacity duration-300 md:block hidden"></div>
+<div id="cursor-trail-container" class="fixed inset-0 pointer-events-none z-[9998] md:block hidden"></div>
+
+<script>
+  function initCursor() {
+    const ring = document.getElementById('cursor-ring');
+    const trailContainer = document.getElementById('cursor-trail-container');
+    
+    if (!ring || !trailContainer) return;
+
+    let lastX = 0;
+    let lastY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      ring.style.opacity = '1';
+      
+      const { clientX: x, clientY: y } = e;
+      
+      ring.animate({
+        transform: `translate(${x - 20}px, ${y - 20}px)`
+      }, { duration: 500, fill: "forwards" });
+
+      // Ink Trail Logic
+      if (Math.abs(x - lastX) > 5 || Math.abs(y - lastY) > 5) {
+        const dot = document.createElement('div');
+        dot.className = 'absolute w-1.5 h-1.5 bg-studio-purple rounded-full opacity-40 pointer-events-none';
+        dot.style.left = `${x}px`;
+        dot.style.top = `${y}px`;
+        trailContainer.appendChild(dot);
+        
+        dot.animate([
+          { opacity: 0.4, transform: 'scale(1)' },
+          { opacity: 0, transform: 'scale(0.5) translateY(10px)' }
+        ], { duration: 800, fill: 'forwards' });
+        
+        setTimeout(() => dot.remove(), 800);
+        lastX = x;
+        lastY = y;
+      }
+    });
+
+    document.querySelectorAll('a, button, select, textarea').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        ring.style.borderColor = '#9D4EDD';
+        ring.style.transform += ' scale(1.5)';
+      });
+      el.addEventListener('mouseleave', () => {
+        ring.style.borderColor = 'rgba(255,255,255,0.2)';
+        ring.style.transform = ring.style.transform.replace(' scale(1.5)', '');
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initCursor);
+  initCursor();
+</script>

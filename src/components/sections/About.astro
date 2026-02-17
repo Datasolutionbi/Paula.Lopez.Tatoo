@@ -1,108 +1,46 @@
 ---
-import { SITE } from '../../data/site';
+import TattooSeparator from '../ui/TattooSeparator.astro';
+const currentPath = Astro.url.pathname;
+const isEn = currentPath.includes('/en');
 
-interface Props {
-  isEn?: boolean;
-}
-const { isEn = false } = Astro.props;
+const content = {
+  title: isEn ? "STORIES" : "HISTORIAS",
+  lead: isEn 
+    ? "BEYOND THE INK, EVERY PIECE HAS A SOUL."
+    : "MÁS ALLÁ DE LA TINTA, CADA PIEZA TIENE ALMA.",
+};
 ---
 
-<section id="sobre-mi" class="section-padding section-glow-container reveal-blur">
-  <div class="container-custom">
-    <div class="max-w-4xl mx-auto">
-      <div class="grid md:grid-cols-3 gap-12 items-center">
-        <div class="md:col-span-2 space-y-6">
-          <h2 class="text-section mb-4 border-none pl-0">
-            <span class="text-blue-500 font-mono text-2xl mr-2">01.</span>{
-              isEn ? 'About_Me' : 'Sobre_Mí'
-            }
-          </h2>
-
-          <div class="relative group">
-            <div
-              class="absolute -inset-2 bg-blue-500/5 rounded-xl blur-lg group-hover:bg-blue-500/10 transition-all"
-            >
-            </div>
-            <div class="nexus-code-block">
-              <div class="flex gap-2 mb-4 border-b border-white/5 pb-2">
-                <div class="w-2.5 h-2.5 rounded-full bg-red-500/40"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/40"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-green-500/40"></div>
-                <span class="ml-auto text-[10px] text-slate-600">profile.py</span>
-              </div>
-
-              <span class="text-pink-400 italic"
-                ># {
-                  isEn
-                    ? 'Business Intelligence & Data Specialist'
-                    : 'Especialista en Inteligencia de Negocios y Datos'
-                }</span
-              ><br />
-              <span class="text-blue-400">class</span>
-              <span class="text-yellow-300">AndresBI</span>:<br />
-              &nbsp;&nbsp;<span class="text-blue-400">def</span>
-              <span class="text-green-400">__init__</span>(<span class="text-orange-300">self</span
-              >):<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-orange-300">self</span>.experience = <span
-                class="text-yellow-200">"5+ years"</span
-              ><br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-orange-300">self</span>.focus = [<span
-                class="text-yellow-200">"IA"</span
-              >, <span class="text-yellow-200">"UX"</span>, <span class="text-yellow-200"
-                >"Data"</span
-              >]<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-orange-300">self</span>.mission = <span
-                class="text-yellow-200">"Transform data into strategic value"</span
-              ><br />
-              <br />
-              &nbsp;&nbsp;<span class="text-blue-400">def</span>
-              <span class="text-green-400">get_summary</span>(<span class="text-orange-300"
-                >self</span
-              >):<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">return</span>
-              <span class="text-yellow-200">f"""</span><br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-300"
-                >{
-                  isEn
-                    ? 'Strategist and Architect of high-value solutions in Business Intelligence (Dashboards, DAX, SQL) and Artificial Intelligence (RAG, vector databases, agents), specialized in transforming complex data into competitive advantages.'
-                    : 'Estratega y Arquitecto de soluciones de alto valor en Business Intelligence (Dashboards, DAX, SQL) e Inteligencia Artificial (RAG, bases de datos vectoriales, agentes), especializado en transformar datos complejos en ventajas competitivas.'
-                }</span
-              ><br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-slate-300"
-                >{
-                  isEn
-                    ? 'Through a deep mastery of DAX, SQL, Python, and Agentic Workflows, combined with a premium UX/UI focus, I deliver advanced analytical tools that drive executive decision-making.'
-                    : 'Mediante un dominio profundo de DAX, SQL, Python y Workflows Agénticos, combinados con un enfoque UX/UI premium, entrego herramientas analíticas avanzadas que impulsan la toma de decisiones ejecutivas.'
-                }</span
-              ><br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-200">"""</span>
-            </div>
-          </div>
-        </div>
-        <div class="flex flex-col items-center gap-6">
-          <div class="flex justify-center relative">
-            <div
-              class="absolute -top-12 -right-12 opacity-40 group-hover:opacity-100 transition-opacity duration-700"
-            >
-              <slot name="perceptron" />
-            </div>
-            <div
-              class="w-60 h-[23.5rem] rounded-[2.5rem] overflow-hidden border-2 border-blue-500/30 shadow-[0_0_50px_rgba(59,130,246,0.2)] z-10 group-hover:border-blue-500/60 transition-all duration-500 mt-8"
-            >
-              <img
-                src={SITE.avatar}
-                alt={SITE.name}
-                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100 object-top"
-              />
-            </div>
-          </div>
-          <div
-            class="font-mono text-[10px] text-blue-500/40 bg-blue-500/5 px-3 py-1 rounded-full border border-blue-500/10"
-          >
-            STATUS: READY_TO_SCALE
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="relative w-full py-12 bg-white overflow-hidden group">
+  
+  <!-- Decorative Background Text (Watermark) -->
+  <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none z-0">
+    <span class="font-display text-[10rem] md:text-[16rem] text-black/[0.02] whitespace-nowrap">STUDIO</span>
   </div>
-</section>
+
+  <!-- Content -->
+  <div class="relative z-10 container-custom flex flex-col items-center justify-center text-center">
+    
+    <div class="mb-4">
+      <h3 class="font-display text-4xl md:text-6xl text-black tracking-tighter uppercase mb-3 group-hover:scale-105 transition-transform duration-700">{content.title}</h3>
+      <div class="w-24 h-0.5 bg-studio-purple/50 mx-auto"></div>
+    </div>
+    
+    <p class="font-modern text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-black/60 mb-8 leading-relaxed max-w-lg">
+      {content.lead}
+    </p>
+
+    <a href="/blog" class="group/btn relative inline-flex items-center gap-3 px-6 py-3 bg-transparent border border-black/10 hover:border-studio-purple transition-colors duration-300 overflow-hidden">
+      <span class="font-modern text-[10px] font-black uppercase tracking-[0.3em] text-black group-hover/btn:text-studio-purple transition-colors z-10">
+        READ STORIES
+      </span>
+      <div class="absolute inset-0 bg-studio-purple/5 transform -translate-x-full group-hover/btn:translate-x-0 transition-transform duration-500"></div>
+    </a>
+
+    <!-- Subtle Ink Drop Decoration -->
+    <div class="mt-8 w-full max-w-xs mx-auto">
+      <TattooSeparator variant="needle" />
+    </div>
+
+  </div>
+</div>

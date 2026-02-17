@@ -4,39 +4,53 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: '#3B82F6',
-          dark: '#2563EB',
-          light: '#60A5FA'
+        studio: {
+          dark: '#050505',      // Deepest black background
+          charcoal: '#0A0A0A',  // Slightly lighter matte black
+          purple: '#521348',    // New Signature Purple
+          glass: 'rgba(255, 255, 255, 0.03)',
+          'glass-border': 'rgba(255, 255, 255, 0.08)',
         },
-        accent: {
-          DEFAULT: '#10B981',
-          dark: '#059669'
+        primary: {
+          DEFAULT: '#521348',
+          dark: '#3a1033',
+          light: '#7a1d6b'
         }
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'Menlo', 'monospace']
+        sans: ['"Space Grotesk"', 'sans-serif'],
+        display: ['Fraunces', 'serif'],
+        modern: ['"Space Grotesk"', 'sans-serif'],
       },
-      fontSize: {
-        'hero': ['3.5rem', { lineHeight: '1.1', fontWeight: '700' }],
-        'section': ['2.25rem', { lineHeight: '1.2', fontWeight: '600' }]
+      backdropBlur: {
+        xs: '2px',
+        '2xl': '40px',
+        '3xl': '60px',
       },
       animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'slide-up': 'slideUp 0.5s ease-out'
+        'grain': 'grain 8s steps(10) infinite',
+        'reveal': 'reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'float': 'float 6s ease-in-out infinite',
       },
       keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' }
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-20px)' },
         },
-        slideUp: {
-          '0%': { transform: 'translateY(20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' }
-        }
-      }
-    }
+        grain: {
+          '0%, 100%': { transform: 'translate(0, 0)' },
+          '10%': { transform: 'translate(-5%, -10%)' },
+          '20%': { transform: 'translate(-15%, 5%)' },
+          '30%': { transform: 'translate(7%, -25%)' },
+          '40%': { transform: 'translate(-5%, 25%)' },
+          '50%': { transform: 'translate(-15%, 10%)' },
+          '60%': { transform: 'translate(15%, 0%)' },
+          '70%': { transform: 'translate(0%, 15%)' },
+          '80%': { transform: 'translate(3%, 35%)' },
+          '90%': { transform: 'translate(-10%, 10%)' },
+        },
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 };

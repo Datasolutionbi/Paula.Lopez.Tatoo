@@ -1,0 +1,236 @@
+---
+const isEn = Astro.url.pathname.includes('/en');
+---
+
+<div class="space-y-8">
+  <div class="text-center reveal-effect">
+    <h2 class="font-display text-4xl md:text-5xl mb-4">
+      {isEn ? 'FINAL DETAILS' : 'DETALLES FINALES'}
+    </h2>
+    <p class="font-modern text-xs uppercase tracking-widest opacity-50">
+      {isEn ? 'Budget, availability & contact info' : 'Presupuesto, disponibilidad y contacto'}
+    </p>
+  </div>
+
+  <form id="booking-form" class="space-y-6">
+    <!-- Budget Range -->
+    <div class="glass-card p-6">
+      <label class="block font-modern text-sm uppercase tracking-widest mb-4 text-studio-purple">
+        {isEn ? 'Your Budget' : 'Tu Presupuesto'}
+      </label>
+      <div class="space-y-4">
+        <input 
+          type="range" 
+          id="budget-slider" 
+          min="100" 
+          max="3000" 
+          step="50" 
+          value="500"
+          class="w-full h-2 bg-white/10 rounded-none appearance-none cursor-pointer slider-purple"
+        >
+        <div class="flex justify-between items-center">
+          <span class="text-xs opacity-50">$100</span>
+          <span class="font-display text-2xl text-studio-purple" id="budget-display">$500</span>
+          <span class="text-xs opacity-50">$3,000+</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="glass-card p-6 space-y-4">
+      <h3 class="font-modern text-sm uppercase tracking-widest mb-4 text-studio-purple">
+        {isEn ? 'Contact Information' : 'Información de Contacto'}
+      </h3>
+      
+      <div class="grid md:grid-cols-2 gap-4">
+        <input 
+          type="text" 
+          id="name" 
+          placeholder={isEn ? "YOUR NAME" : "TU NOMBRE"}
+          required
+          class="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-studio-purple focus:bg-white/10 transition-colors"
+        >
+        
+        <input 
+          type="email" 
+          id="email" 
+          placeholder={isEn ? "YOUR EMAIL" : "TU EMAIL"}
+          required
+          class="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-studio-purple focus:bg-white/10 transition-colors"
+        >
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <input 
+          type="tel" 
+          id="phone" 
+          placeholder={isEn ? "PHONE (OPTIONAL)" : "TELÉFONO (OPCIONAL)"}
+          class="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-studio-purple focus:bg-white/10 transition-colors"
+        >
+        
+        <input 
+          type="text" 
+          id="instagram" 
+          placeholder="INSTAGRAM @"
+          class="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-studio-purple focus:bg-white/10 transition-colors"
+        >
+      </div>
+    </div>
+
+    <!-- Availability -->
+    <div class="glass-card p-6 space-y-4">
+      <h3 class="font-modern text-sm uppercase tracking-widest mb-4 text-studio-purple">
+        {isEn ? 'Preferred Dates' : 'Fechas Preferidas'}
+      </h3>
+      
+      <div class="grid md:grid-cols-3 gap-4">
+        <input 
+          type="date" 
+          id="date1" 
+          class="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-studio-purple focus:bg-white/10 transition-colors"
+        >
+        <input 
+          type="date" 
+          id="date2" 
+          class="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-studio-purple focus:bg-white/10 transition-colors"
+        >
+        <input 
+          type="date" 
+          id="date3" 
+          class="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-studio-purple focus:bg-white/10 transition-colors"
+        >
+      </div>
+
+      <div class="flex gap-4">
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="radio" name="timeSlot" value="morning" class="text-studio-purple focus:ring-studio-purple">
+          <span class="text-xs uppercase tracking-widest">{isEn ? 'Morning' : 'Mañana'}</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="radio" name="timeSlot" value="afternoon" class="text-studio-purple focus:ring-studio-purple" checked>
+          <span class="text-xs uppercase tracking-widest">{isEn ? 'Afternoon' : 'Tarde'}</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="radio" name="timeSlot" value="evening" class="text-studio-purple focus:ring-studio-purple">
+          <span class="text-xs uppercase tracking-widest">{isEn ? 'Evening' : 'Noche'}</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Additional Details -->
+    <div class="glass-card p-6">
+      <label class="block font-modern text-sm uppercase tracking-widest mb-4 text-studio-purple">
+        {isEn ? 'Tell us about your idea' : 'Cuéntanos sobre tu idea'}
+      </label>
+      <textarea 
+        id="description" 
+        rows="5"
+        placeholder={isEn ? "Describe your tattoo idea, style preferences, and any other details..." : "Describe tu idea de tatuaje, preferencias de estilo y cualquier otro detalle..."}
+        class="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 font-modern text-xs text-white outline-none focus:border-studio-purple focus:bg-white/10 transition-colors resize-none"
+      ></textarea>
+    </div>
+
+    <!-- Reference Images Upload -->
+    <div class="glass-card p-6">
+      <label class="block font-modern text-sm uppercase tracking-widest mb-4 text-studio-purple">
+        {isEn ? 'Reference Images (Optional)' : 'Imágenes de Referencia (Opcional)'}
+      </label>
+      <div class="border-2 border-dashed border-white/20 rounded-none p-8 text-center hover:border-studio-purple transition-colors cursor-pointer" id="upload-zone">
+        <input type="file" id="images" multiple accept="image/*" class="hidden">
+        <div class="space-y-2">
+          <div class="text-4xl">📸</div>
+          <p class="font-modern text-xs uppercase tracking-widest opacity-60">
+            {isEn ? 'Click to upload or drag & drop' : 'Haz clic para subir o arrastra y suelta'}
+          </p>
+          <p class="text-[10px] opacity-40">PNG, JPG up to 10MB</p>
+        </div>
+        <div id="preview-container" class="mt-4 grid grid-cols-3 gap-2"></div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+  function initStep3() {
+    const budgetSlider = document.getElementById('budget-slider') as HTMLInputElement;
+    const budgetDisplay = document.getElementById('budget-display');
+    const uploadZone = document.getElementById('upload-zone');
+    const fileInput = document.getElementById('images') as HTMLInputElement;
+    const previewContainer = document.getElementById('preview-container');
+
+    // Budget slider
+    budgetSlider?.addEventListener('input', (e) => {
+      const value = (e.target as HTMLInputElement).value;
+      if (budgetDisplay) {
+        budgetDisplay.textContent = `$${value}`;
+      }
+      sessionStorage.setItem('booking_budget', value);
+    });
+
+    // File upload
+    uploadZone?.addEventListener('click', () => fileInput?.click());
+
+    fileInput?.addEventListener('change', (e) => {
+      const files = (e.target as HTMLInputElement).files;
+      if (files && previewContainer) {
+        previewContainer.innerHTML = '';
+        Array.from(files).forEach(file => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const img = document.createElement('img');
+            img.src = e.target?.result as string;
+            img.className = 'w-full h-20 object-cover rounded-none';
+            previewContainer.appendChild(img);
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+    });
+
+    // Enable submit on form completion
+    const form = document.getElementById('booking-form');
+    form?.addEventListener('input', () => {
+      const name = (document.getElementById('name') as HTMLInputElement)?.value;
+      const email = (document.getElementById('email') as HTMLInputElement)?.value;
+      
+      if (name && email) {
+        const submitBtn = document.getElementById('wizard-submit');
+        if (submitBtn) {
+          submitBtn.removeAttribute('disabled');
+          submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+      }
+    });
+
+    // Restore budget
+    const savedBudget = sessionStorage.getItem('booking_budget');
+    if (savedBudget && budgetSlider && budgetDisplay) {
+      budgetSlider.value = savedBudget;
+      budgetDisplay.textContent = `$${savedBudget}`;
+    }
+  }
+
+  document.addEventListener('astro:page-load', initStep3);
+  initStep3();
+</script>
+
+<style>
+  .slider-purple::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #9D4EDD;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+  }
+
+  .slider-purple::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #9D4EDD;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+  }
+</style>

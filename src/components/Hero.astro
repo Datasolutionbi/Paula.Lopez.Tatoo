@@ -1,117 +1,127 @@
 ---
-import { SITE } from '../data/site';
-const currentPath = Astro.url.pathname;
-const isEn = currentPath.includes('/en');
+// Hero.astro - Modern Editorial Design
+const { isEn = false } = Astro.props;
 
 const content = {
-  tagline: isEn ? "Business Intelligence, Data Visualization and AI Specialist" : SITE.tagline,
-  description: isEn 
-    ? "I transform complex data into actionable insights through intelligent visualizations, predictive analysis and BI solutions that drive strategic decisions."
-    : "Transformo datos complejos en insights accionables mediante visualizaciones inteligentes, análisis predictivo y soluciones de BI que impulsan decisiones estratégicas.",
-  projectsBtn: isEn ? "View Projects" : "Ver Proyectos",
-  blogBtn: isEn ? "Read Blog" : "Leer Blog",
-  yearsExp: isEn ? "Years of Experience" : "Años de Experiencia",
-  yearsDesc: isEn 
-    ? "Specialized in transforming complex data architectures into strategic value."
-    : "Especializado en transformar arquitecturas de datos complejas en valor estratégico.",
-  dashboards: isEn ? "Dashboards" : "Dashboards",
-  models: isEn ? "ML Models" : "Modelos ML"
+  es: {
+    artist: "Paula",
+    surname: "López",
+    role: "Tattoo Artist",
+    description: "Tu elección para una experiencia de tatuaje diferente. Arte tradicional unido a la precisión moderna."
+  },
+  en: {
+    artist: "Paula",
+    surname: "López",
+    role: "Tattoo Artist",
+    description: "Your choice for a different tattooing experience. Traditional art meets modern precision."
+  }
 };
+
+const t = isEn ? content.en : content.es;
 ---
 
-<section class="container-custom pt-16 pb-16 md:pt-24 md:pb-24">
-  <div class="max-w-4xl mx-auto text-center">
-    <h1 class="text-hero font-black mb-6 animate-fade-in tracking-tighter text-noise">
-      <span class="text-slate-100 drop-shadow-[0_0_25px_rgba(255,255,255,0.25)]">Andres</span><span class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-500 px-1">BI</span><span class="text-blue-500 cursor-blink">_</span>
-    </h1>
+<section class="min-h-[95vh] flex items-center justify-center pt-32 pb-20 px-6 md:px-12 bg-white overflow-hidden">
+  <div class="max-w-[1400px] w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
     
-    <p class="text-xl md:text-2xl text-blue-100 mb-6 animate-slide-up text-balance">
-      {content.tagline}
-    </p>
-    
-    <p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto text-center text-balance animate-slide-up">
-      {content.description}
-    </p>
-    
-    <div class="flex flex-row justify-center gap-4 mb-16 animate-slide-up">
-      <a href="#proyectos" class="btn-primary min-w-[140px] md:min-w-[180px] text-sm md:text-base">
-        {content.projectsBtn}
-      </a>
-      <a href="/blog" class="btn-secondary min-w-[140px] md:min-w-[180px] text-sm md:text-base">
-        {content.blogBtn}
-      </a>
+    <!-- Left Column: Content -->
+    <div class="relative z-10 lg:pr-10">
+      <div class="space-y-10">
+        <h1 class="flex flex-col leading-[0.85] relative">
+          <!-- Decorative accent -->
+          <div class="absolute -top-12 -left-6 w-24 h-24 bg-studio-purple/5 blur-3xl rounded-full -z-10"></div>
+          
+          <span class="font-serif-editorial text-7xl md:text-8xl lg:text-[8rem] xl:text-[9.5rem] text-studio-purple italic mb-2">
+            {t.artist}
+          </span>
+          <span class="font-sans font-black text-6xl md:text-8xl lg:text-[7.5rem] xl:text-[10rem] text-[#222] tracking-tighter uppercase leading-[0.8]">
+            {t.surname}
+          </span>
+        </h1>
+        
+        <div class="space-y-8 pt-6 border-l border-black/5 pl-8 md:pl-12 relative">
+          <!-- Ink Splash decoration -->
+          <div class="absolute -right-20 top-0 w-64 h-64 bg-studio-purple/5 ink-stain -z-10 opacity-40"></div>
+          
+          <p class="text-studio-purple font-black uppercase tracking-[0.4em] text-xs md:text-sm sketch-line inline-block">
+            {t.role}
+          </p>
+          <p class="text-black/50 font-medium text-lg md:text-xl max-w-sm leading-relaxed">
+            {t.description}
+          </p>
+          
+          <!-- CTA Action -->
+          <div class="pt-4">
+             <a href="#booking" class="inline-flex items-center gap-6 group">
+                <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white transition-transform group-hover:scale-110">
+                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="text-[10px] font-black uppercase tracking-[0.3em] text-black/60 group-hover:text-black transition-colors">Start Journey</span>
+             </a>
+          </div>
+        </div>
+
+        <!-- Masterpieces Mini-Slider -->
+        <div class="pt-12">
+           <div class="bg-gray-50/50 backdrop-blur-md rounded-3xl p-8 border border-black/5 relative overflow-hidden group">
+              <!-- Glow -->
+              <div class="absolute -inset-1 bg-studio-purple/5 blur-xl group-hover:opacity-100 opacity-0 transition-opacity duration-1000"></div>
+              
+              <div class="relative z-10">
+                 <div class="flex items-center justify-between mb-8">
+                    <h3 class="text-[9px] font-black uppercase tracking-[0.3em] text-black opacity-40">Portfolio Highlights</h3>
+                    <div class="flex gap-3">
+                       <button class="w-6 h-6 flex items-center justify-center text-black/20 hover:text-black transition-colors">
+                          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                       </button>
+                       <button class="w-6 h-6 flex items-center justify-center text-black/20 hover:text-black transition-colors">
+                          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                       </button>
+                    </div>
+                 </div>
+
+                 <div class="grid grid-cols-3 gap-3">
+                    {[
+                      { img: "/AndresBI/tattoos/tattoo-1.png" },
+                      { img: "/AndresBI/tattoos/tattoo-2.png" },
+                      { img: "/AndresBI/tattoos/tattoo-3.png" }
+                    ].map((item) => (
+                      <div class="aspect-[4/5] rounded-xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 cursor-pointer">
+                        <img src={item.img} class="w-full h-full object-cover" alt="Portfolio Highlights" />
+                      </div>
+                    ))}
+                 </div>
+              </div>
+           </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Bento Grid Section -->
-    <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 mt-16 max-w-4xl mx-auto">
-      <!-- Main Metric: Years Exp (Large Box) -->
-      <div class="md:col-span-2 md:row-span-2 glass-panel p-8 flex flex-col items-center justify-center group hover:border-blue-500/50 transition-all duration-500 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-        <div class="text-6xl font-black text-white mb-2 group-hover:scale-110 transition-transform duration-500" data-counter="5">0</div>
-        <div class="text-xs uppercase tracking-[0.3em] text-blue-400 font-bold">{content.yearsExp}</div>
-        <p class="text-[10px] text-slate-500 mt-4 max-w-[200px] leading-relaxed">{content.yearsDesc}</p>
-      </div>
-
-      <!-- Dashboards Metric -->
-      <div class="glass-panel p-6 flex flex-col items-center justify-center group hover:border-cyan-500/50 transition-all">
-        <div class="text-3xl font-bold text-cyan-400 mb-1" data-counter="50">0</div>
-        <div class="text-[9px] uppercase tracking-widest text-slate-500 font-bold">{content.dashboards}</div>
-      </div>
-
-      <!-- ML Projects Metric -->
-      <div class="glass-panel p-6 flex flex-col items-center justify-center group hover:border-blue-400/50 transition-all">
-        <div class="text-3xl font-bold text-blue-400 mb-1" data-counter="100">0</div>
-        <div class="text-[9px] uppercase tracking-widest text-slate-500 font-bold">{content.models}</div>
-      </div>
-
-      <!-- System Status (Wide Box) -->
-      <div class="md:col-span-2 glass-panel p-4 bg-blue-500/5 flex flex-col justify-center relative overflow-hidden group">
-        <div class="flex justify-between items-center mb-2 px-2">
-          <span class="text-[9px] font-mono text-blue-500/60 uppercase tracking-widest animate-pulse">System_Core_Active</span>
-          <span class="text-[9px] font-mono text-cyan-400">STATUS: OK</span>
-        </div>
-        <div class="space-y-1 font-mono text-[8px] text-slate-600 px-2">
-          <div class="flex justify-between"><span>> LOADING_BI_NEURAL_ENGINE...</span><span class="text-blue-500/40">100%</span></div>
-          <div class="flex justify-between"><span>> SYNC_DATA_LAKE_PROD...</span><span class="text-blue-500/40">ACTIVE</span></div>
+    <!-- Right Column: Premium Portrait -->
+    <div class="relative group mt-12 lg:mt-0">
+      <div class="absolute -inset-4 bg-studio-purple/5 blur-3xl rounded-[3rem] opacity-50 group-hover:opacity-100 transition-opacity duration-1000"></div>
+      
+      <div class="relative rounded-[3rem] overflow-hidden aspect-[4/5] bg-gray-100 shadow-2xl shadow-black/5 transition-transform duration-700 group-hover:scale-[1.02]">
+        <img 
+          src="/AndresBI/paula_lopez_hero_portrait.png" 
+          alt="Paula López Portrait" 
+          class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000"
+        />
+        
+        <!-- Subtle Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-60"></div>
+        
+        <!-- Floating Label -->
+        <div class="absolute bottom-10 left-10 right-10 p-6 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl flex items-center justify-between">
+           <div class="flex flex-col">
+              <span class="text-[10px] font-black uppercase tracking-[0.3em] text-white">Direct Booking</span>
+              <span class="text-[9px] font-bold text-white/50 uppercase tracking-widest">Limited Slots 2024</span>
+           </div>
+           <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-black">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+           </div>
         </div>
       </div>
     </div>
 
-    <script>
-      const initCounters = () => {
-        const counters = document.querySelectorAll('[data-counter]');
-        const speed = 200;
-
-        const animateCounters = () => {
-          counters.forEach(counter => {
-            const updateCount = () => {
-              const target = +counter.getAttribute('data-counter')!;
-              const count = +counter.innerHTML;
-              const inc = target / speed;
-
-              if (count < target) {
-                counter.innerHTML = Math.ceil(count + inc).toString();
-                setTimeout(updateCount, 1);
-              } else {
-                counter.innerHTML = target.toString() + (target >= 50 ? '+' : '');
-              }
-            };
-            updateCount();
-          });
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-          if (entries[0].isIntersecting) {
-            animateCounters();
-            observer.disconnect();
-          }
-        });
-
-        if (counters.length > 0) observer.observe(counters[0]);
-      };
-
-      // Escuchar el evento de carga de página de Astro para que funcione con View Transitions
-      document.addEventListener('astro:page-load', initCounters);
-    </script>
   </div>
 </section>

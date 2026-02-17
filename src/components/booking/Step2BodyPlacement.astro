@@ -1,0 +1,187 @@
+---
+interface BodyPart {
+  id: string;
+  name: string;
+  multiplier: number;
+}
+
+const bodyParts: BodyPart[] = [
+  { id: 'arm', name: 'Arm', multiplier: 1.0 },
+  { id: 'forearm', name: 'Forearm', multiplier: 0.8 },
+  { id: 'shoulder', name: 'Shoulder', multiplier: 0.9 },
+  { id: 'chest', name: 'Chest', multiplier: 1.2 },
+  { id: 'back', name: 'Back', multiplier: 1.5 },
+  { id: 'leg', name: 'Leg', multiplier: 1.1 },
+  { id: 'calf', name: 'Calf', multiplier: 0.9 },
+  { id: 'thigh', name: 'Thigh', multiplier: 1.0 },
+  { id: 'ribs', name: 'Ribs', multiplier: 1.3 },
+  { id: 'neck', name: 'Neck', multiplier: 0.7 }
+];
+
+const sizes = [
+  { id: 'small', name: 'Small', description: '2-4 inches (Credit card size)', basePrice: 150 },
+  { id: 'medium', name: 'Medium', description: '4-8 inches (Phone size)', basePrice: 350 },
+  { id: 'large', name: 'Large', description: '8-12 inches (A4 paper)', basePrice: 600 },
+  { id: 'sleeve', name: 'Full Sleeve', description: 'Full arm coverage', basePrice: 1200 }
+];
+---
+
+<div class="space-y-8">
+  <div class="text-center reveal-effect">
+    <h2 class="font-display text-4xl md:text-5xl mb-4">WHERE & HOW BIG?</h2>
+    <p class="font-modern text-xs uppercase tracking-widest opacity-50">Select body placement and size</p>
+  </div>
+
+  <!-- Body Diagram -->
+  <div class="grid md:grid-cols-2 gap-8">
+    <div class="glass-card p-8">
+      <h3 class="font-modern text-sm uppercase tracking-widest mb-6 text-studio-purple">Body Placement</h3>
+      <div class="grid grid-cols-2 gap-3">
+        {bodyParts.map(part => (
+          <button
+            type="button"
+            class="body-part-btn px-4 py-3 bg-white/5 border border-white/10 rounded-none text-xs uppercase tracking-wider hover:border-studio-purple hover:bg-studio-purple/10 transition-all"
+            data-body-part={part.id}
+            data-multiplier={part.multiplier}
+          >
+            {part.name}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Size Selector -->
+    <div class="glass-card p-8">
+      <h3 class="font-modern text-sm uppercase tracking-widest mb-6 text-studio-purple">Size</h3>
+      <div class="space-y-3">
+        {sizes.map(size => (
+          <button
+            type="button"
+            class="size-btn w-full text-left px-4 py-4 bg-white/5 border border-white/10 rounded-none hover:border-studio-purple hover:bg-studio-purple/10 transition-all group"
+            data-size={size.id}
+            data-base-price={size.basePrice}
+          >
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-bold text-sm uppercase tracking-wide">{size.name}</span>
+              <span class="text-studio-purple font-bold">${size.basePrice}+</span>
+            </div>
+            <p class="text-[10px] opacity-60 uppercase tracking-widest">{size.description}</p>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Price Estimator -->
+  <div class="glass-card p-8 reveal-effect" id="price-estimator" style="display: none;">
+    <div class="flex items-center justify-between">
+      <div>
+        <h3 class="font-modern text-sm uppercase tracking-widest text-studio-purple mb-2">Estimated Price Range</h3>
+        <p class="text-[10px] opacity-50 uppercase tracking-widest">Based on your selections</p>
+      </div>
+      <div class="text-right">
+        <div class="font-display text-4xl text-studio-purple" id="price-display">$0</div>
+        <p class="text-[10px] opacity-50 uppercase tracking-widest mt-1">Starting from</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initStep2() {
+    const bodyPartBtns = document.querySelectorAll('.body-part-btn');
+    const sizeBtns = document.querySelectorAll('.size-btn');
+    const priceEstimator = document.getElementById('price-estimator');
+    const priceDisplay = document.getElementById('price-display');
+
+    let selectedBodyPart: string | null = null;
+    let selectedSize: string | null = null;
+    let bodyMultiplier = 1.0;
+    let basePrice = 0;
+
+    function updatePrice() {
+      if (selectedBodyPart && selectedSize) {
+        const projectType = sessionStorage.getItem('booking_projectType') || 'original';
+        const typeMultipliers = {
+          coverup: 1.3,
+          original: 1.0,
+          flash: 0.8
+        };
+
+        const typeMultiplier = typeMultipliers[projectType as keyof typeof typeMultipliers] || 1.0;
+        const estimatedPrice = Math.round(basePrice * bodyMultiplier * typeMultiplier);
+
+        if (priceDisplay) {
+          priceDisplay.textContent = `$${estimatedPrice}`;
+        }
+
+        if (priceEstimator) {
+          priceEstimator.style.display = 'block';
+        }
+
+        // Enable next button
+        const nextBtn = document.getElementById('wizard-next');
+        if (nextBtn) {
+          nextBtn.removeAttribute('disabled');
+          nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        // Store in session
+        sessionStorage.setItem('booking_bodyPart', selectedBodyPart || '');
+        sessionStorage.setItem('booking_size', selectedSize || '');
+        sessionStorage.setItem('booking_estimatedPrice', estimatedPrice.toString());
+      }
+    }
+
+    bodyPartBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        bodyPartBtns.forEach(b => b.classList.remove('border-studio-purple', 'bg-studio-purple/20'));
+        btn.classList.add('border-studio-purple', 'bg-studio-purple/20');
+        
+        selectedBodyPart = (btn as HTMLElement).dataset.bodyPart || null;
+        bodyMultiplier = parseFloat((btn as HTMLElement).dataset.multiplier || '1.0');
+        updatePrice();
+      });
+    });
+
+    sizeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        sizeBtns.forEach(b => b.classList.remove('border-studio-purple', 'bg-studio-purple/20'));
+        btn.classList.add('border-studio-purple', 'bg-studio-purple/20');
+        
+        selectedSize = (btn as HTMLElement).dataset.size || null;
+        basePrice = parseInt((btn as HTMLElement).dataset.basePrice || '0');
+        updatePrice();
+      });
+    });
+
+    // Restore selections
+    const savedBodyPart = sessionStorage.getItem('booking_bodyPart');
+    const savedSize = sessionStorage.getItem('booking_size');
+
+    if (savedBodyPart) {
+      const savedBtn = document.querySelector(`[data-body-part="${savedBodyPart}"]`);
+      if (savedBtn) {
+        savedBtn.classList.add('border-studio-purple', 'bg-studio-purple/20');
+        selectedBodyPart = savedBodyPart;
+        bodyMultiplier = parseFloat((savedBtn as HTMLElement).dataset.multiplier || '1.0');
+      }
+    }
+
+    if (savedSize) {
+      const savedBtn = document.querySelector(`[data-size="${savedSize}"]`);
+      if (savedBtn) {
+        savedBtn.classList.add('border-studio-purple', 'bg-studio-purple/20');
+        selectedSize = savedSize;
+        basePrice = parseInt((savedBtn as HTMLElement).dataset.basePrice || '0');
+      }
+    }
+
+    if (savedBodyPart && savedSize) {
+      updatePrice();
+    }
+  }
+
+  document.addEventListener('astro:page-load', initStep2);
+  initStep2();
+</script>

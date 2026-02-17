@@ -1,28 +1,127 @@
 ---
 import { getCollection } from 'astro:content';
-import BlogLayout from '../../layouts/BlogLayout.astro';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
-export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
-  return blogEntries.map(entry => ({
-    params: { slug: entry.slug },
-    props: { entry },
+export const getStaticPaths = (async () => {
+  const blogPosts = await getCollection('blog');
+  return blogPosts.map(post => ({
+    params: { slug: post.slug },
+    props: { post }
   }));
-}
+}) satisfies GetStaticPaths;
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { post } = Astro.props;
+const { Content } = await post.render();
 ---
 
-<BlogLayout
-  title={entry.data.title}
-  description={entry.data.description}
-  publishDate={entry.data.publishDate}
-  category={entry.data.category}
-  tags={entry.data.tags}
-  author={entry.data.author}
-  image={entry.data.image}
-  rawContent={() => entry.body}
->
-  <Content />
-</BlogLayout>
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <article class="min-h-screen py-20">
+    <div class="container-custom max-w-4xl">
+      <!-- Header -->
+      <header class="mb-12 reveal-effect">
+        <div class="flex items-center gap-4 mb-6 text-xs uppercase tracking-widest opacity-50">
+          <a href="/blog" class="hover:text-studio-purple transition-colors">← Back to Blog</a>
+          <span>•</span>
+          <span class="text-studio-purple">{post.data.category}</span>
+          <span>•</span>
+          <time>{post.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
+        </div>
+        
+        <h1 class="font-display text-5xl md:text-6xl mb-6 leading-tight">
+          {post.data.title}
+        </h1>
+        
+        <p class="text-lg opacity-70 mb-8">
+          {post.data.description}
+        </p>
+
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-studio-purple/20 flex items-center justify-center">
+            <span class="text-2xl">👨‍🎨</span>
+          </div>
+          <div>
+            <p class="font-bold">{post.data.author}</p>
+            <p class="text-xs opacity-50">Professional Tattoo Artist</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      {post.data.image && (
+        <div class="aspect-video mb-12 rounded-2xl overflow-hidden reveal-effect">
+          <img 
+            src={post.data.image} 
+            alt={post.data.title}
+            class="w-full h-full object-cover"
+          />
+        </div>
+      )}
+
+      <!-- Content -->
+      <div class="prose prose-invert prose-lg max-w-none mb-16 reveal-effect">
+        <Content />
+      </div>
+
+      <!-- CTA -->
+      <div class="glass-card p-8 text-center reveal-effect">
+        <h3 class="font-display text-3xl mb-4">Ready to Get Started?</h3>
+        <p class="mb-6 opacity-70">Book your tattoo session today</p>
+        <a href="/booking" class="square-btn inline-block">Book Now</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style is:global>
+  .prose {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .prose h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.875rem;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .prose h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .prose p {
+    margin-bottom: 1.5rem;
+    line-height: 1.75;
+  }
+  
+  .prose ul, .prose ol {
+    margin-bottom: 1.5rem;
+  }
+  
+  .prose li {
+    margin-top: 0.5rem;
+  }
+  
+  .prose a {
+    color: #9D4EDD;
+  }
+  
+  .prose a:hover {
+    text-decoration: underline;
+  }
+  
+  .prose strong {
+    color: white;
+    font-weight: bold;
+  }
+  
+  .prose code {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+  }
+</style>

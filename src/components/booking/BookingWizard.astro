@@ -1,0 +1,224 @@
+---
+import ProgressBar from './ProgressBar.astro';
+import Step1ProjectType from './Step1ProjectType.astro';
+import Step2BodyPlacement from './Step2BodyPlacement.astro';
+import Step3BudgetDetails from './Step3BudgetDetails.astro';
+
+const isEn = Astro.url.pathname.includes('/en');
+---
+
+<div class="booking-wizard-container min-h-screen py-20">
+  <div class="container-custom max-w-5xl">
+    <div class="glass-card p-8 md:p-12">
+      <!-- Progress Bar -->
+      <ProgressBar currentStep={1} totalSteps={3} />
+
+      <!-- Step Content -->
+      <div id="wizard-content" class="min-h-[500px]">
+        <div class="wizard-step" data-step="1">
+          <Step1ProjectType />
+        </div>
+        
+        <div class="wizard-step hidden" data-step="2">
+          <Step2BodyPlacement />
+        </div>
+        
+        <div class="wizard-step hidden" data-step="3">
+          <Step3BudgetDetails />
+        </div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="flex justify-between mt-12 pt-8 border-t border-white/10">
+        <button
+          id="wizard-prev"
+          class="px-8 py-4 border border-white/20 text-white font-modern font-bold text-xs uppercase tracking-[0.2em] rounded-none transition-all duration-300 hover:bg-white hover:text-black disabled:opacity-30 disabled:cursor-not-allowed"
+          disabled
+        >
+          ← {isEn ? 'Previous' : 'Anterior'}
+        </button>
+
+        <button
+          id="wizard-next"
+          class="px-8 py-4 bg-studio-purple text-black font-modern font-bold text-xs uppercase tracking-[0.2em] rounded-none transition-all duration-300 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled
+        >
+          {isEn ? 'Next' : 'Siguiente'} →
+        </button>
+
+        <button
+          id="wizard-submit"
+          class="hidden px-8 py-4 bg-studio-purple text-black font-modern font-bold text-xs uppercase tracking-[0.2em] rounded-none transition-all duration-300 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled
+        >
+          {isEn ? 'Submit Booking Request' : 'Enviar Solicitud'} ✓
+        </button>
+      </div>
+
+      <!-- Loading State -->
+      <div id="wizard-loading" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center">
+        <div class="text-center">
+          <div class="inline-block w-16 h-16 border-4 border-studio-purple border-t-transparent rounded-none animate-spin mb-4"></div>
+          <p class="font-modern text-sm uppercase tracking-widest text-white">
+            {isEn ? 'Sending your request...' : 'Enviando tu solicitud...'}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentStep = 1;
+  const totalSteps = 3;
+
+  function updateWizard() {
+    // Hide all steps
+    document.querySelectorAll('.wizard-step').forEach(step => {
+      step.classList.add('hidden');
+    });
+
+    // Show current step
+    const activeStep = document.querySelector(`[data-step="${currentStep}"]`);
+    if (activeStep) {
+      activeStep.classList.remove('hidden');
+    }
+
+    // Update progress bar
+    const progressBar = document.querySelector('.wizard-progress');
+    if (progressBar) {
+      const steps = progressBar.querySelectorAll('.w-10');
+      steps.forEach((step, index) => {
+        const stepNum = index + 1;
+        if (stepNum < currentStep) {
+          step.className = 'w-10 h-10 rounded-none flex items-center justify-center font-bold text-sm transition-all duration-300 bg-studio-purple text-black';
+          step.textContent = '✓';
+        } else if (stepNum === currentStep) {
+          step.className = 'w-10 h-10 rounded-none flex items-center justify-center font-bold text-sm transition-all duration-300 bg-studio-purple text-black ring-4 ring-studio-purple/30';
+          step.textContent = stepNum.toString();
+        } else {
+          step.className = 'w-10 h-10 rounded-none flex items-center justify-center font-bold text-sm transition-all duration-300 bg-white/10 text-white/40';
+          step.textContent = stepNum.toString();
+        }
+      });
+
+      const progressFill = progressBar.querySelector('.bg-gradient-to-r');
+      if (progressFill) {
+        const progress = (currentStep / totalSteps) * 100;
+        (progressFill as HTMLElement).style.width = `${progress}%`;
+      }
+    }
+
+    // Update buttons
+    const prevBtn = document.getElementById('wizard-prev') as HTMLButtonElement;
+    const nextBtn = document.getElementById('wizard-next') as HTMLButtonElement;
+    const submitBtn = document.getElementById('wizard-submit') as HTMLButtonElement;
+
+    if (prevBtn) {
+      prevBtn.disabled = currentStep === 1;
+    }
+
+    if (currentStep === totalSteps) {
+      nextBtn?.classList.add('hidden');
+      submitBtn?.classList.remove('hidden');
+    } else {
+      nextBtn?.classList.remove('hidden');
+      submitBtn?.classList.add('hidden');
+      nextBtn!.disabled = true; // Will be enabled by step validation
+    }
+  }
+
+  function initWizard() {
+    const prevBtn = document.getElementById('wizard-prev');
+    const nextBtn = document.getElementById('wizard-next');
+    const submitBtn = document.getElementById('wizard-submit');
+
+    prevBtn?.addEventListener('click', () => {
+      if (currentStep > 1) {
+        currentStep--;
+        updateWizard();
+      }
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      if (currentStep < totalSteps) {
+        currentStep++;
+        updateWizard();
+      }
+    });
+
+    submitBtn?.addEventListener('click', async () => {
+      const loadingEl = document.getElementById('wizard-loading');
+      if (loadingEl) loadingEl.classList.remove('hidden');
+
+      // Collect all form data
+      const bookingData = {
+        projectType: sessionStorage.getItem('booking_projectType'),
+        hasReference: sessionStorage.getItem('booking_hasReference') === 'true',
+        bodyPart: sessionStorage.getItem('booking_bodyPart'),
+        size: sessionStorage.getItem('booking_size'),
+        estimatedPrice: sessionStorage.getItem('booking_estimatedPrice'),
+        budget: sessionStorage.getItem('booking_budget'),
+        name: (document.getElementById('name') as HTMLInputElement)?.value,
+        email: (document.getElementById('email') as HTMLInputElement)?.value,
+        phone: (document.getElementById('phone') as HTMLInputElement)?.value,
+        instagram: (document.getElementById('instagram') as HTMLInputElement)?.value,
+        date1: (document.getElementById('date1') as HTMLInputElement)?.value,
+        date2: (document.getElementById('date2') as HTMLInputElement)?.value,
+        date3: (document.getElementById('date3') as HTMLInputElement)?.value,
+        timeSlot: (document.querySelector('input[name="timeSlot"]:checked') as HTMLInputElement)?.value,
+        description: (document.getElementById('description') as HTMLTextAreaElement)?.value,
+        timestamp: new Date().toISOString()
+      };
+
+      try {
+        // Send to API endpoint
+        const response = await fetch('/api/booking', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(bookingData)
+        });
+
+        if (response.ok) {
+          // Clear session storage
+          Object.keys(sessionStorage).forEach(key => {
+            if (key.startsWith('booking_')) {
+              sessionStorage.removeItem(key);
+            }
+          });
+
+          // Redirect to confirmation page
+          window.location.href = '/booking-confirmation';
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch (error) {
+        console.error('Booking submission error:', error);
+        alert('There was an error submitting your booking. Please try again or contact us directly.');
+        if (loadingEl) loadingEl.classList.add('hidden');
+      }
+    });
+
+    updateWizard();
+  }
+
+  document.addEventListener('astro:page-load', initWizard);
+  initWizard();
+</script>
+
+<style>
+  .wizard-step {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

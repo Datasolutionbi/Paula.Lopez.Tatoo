@@ -1,0 +1,73 @@
+---
+const { isEn = false } = Astro.props;
+
+interface Stat {
+  number: number;
+  label: string;
+  suffix?: string;
+}
+
+const stats: Stat[] = [
+  { number: 1247, label: isEn ? 'Tattoos Completed' : 'Tatuajes Realizados' },
+  { number: 8, label: isEn ? 'Years Experience' : 'Años de Experiencia' },
+  { number: 15, label: isEn ? 'Cities Visited' : 'Ciudades Visitadas' },
+  { number: 98, label: isEn ? 'Client Satisfaction' : 'Satisfacción Cliente', suffix: '%' }
+];
+---
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+  {stats.map((stat, index) => (
+    <div 
+      class="text-center reveal-effect stat-item"
+      style={`transition-delay: ${index * 100}ms`}
+      data-target={stat.number}
+    >
+      <div class="font-display text-5xl md:text-6xl text-studio-purple mb-2 stat-number">
+        0{stat.suffix || ''}
+      </div>
+      <p class="font-modern text-[10px] uppercase tracking-[0.3em] opacity-50">
+        {stat.label}
+      </p>
+    </div>
+  ))}
+</div>
+
+<script>
+  function animateCounter(element: HTMLElement, target: number, suffix: string = '') {
+    const duration = 2000;
+    const step = target / (duration / 16);
+    let current = 0;
+    
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
+        element.textContent = target.toString() + suffix;
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.floor(current).toString() + suffix;
+      }
+    }, 16);
+  }
+
+  function initStatsCounter() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const statItem = entry.target as HTMLElement;
+          const counter = statItem.querySelector('.stat-number') as HTMLElement;
+          const target = parseInt(statItem.dataset.target || '0');
+          const suffix = counter.textContent?.includes('%') ? '%' : '';
+          
+          if (counter && !statItem.classList.contains('animated')) {
+            statItem.classList.add('animated');
+            animateCounter(counter, target, suffix);
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    document.querySelectorAll('.stat-item').forEach(el => observer.observe(el));
+  }
+
+  document.addEventListener('astro:page-load', initStatsCounter);
+</script>

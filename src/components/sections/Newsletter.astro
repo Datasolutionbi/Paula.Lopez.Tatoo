@@ -1,0 +1,34 @@
+---
+const { isEn = false } = Astro.props;
+import TattooSeparator from '../ui/TattooSeparator.astro';
+---
+
+<div class="w-full py-12 bg-studio-dark relative overflow-hidden">
+  <TattooSeparator variant="voltage" class="absolute top-0 left-0 w-full z-20 opacity-30 pointer-events-none" />
+  <div class="container-custom flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+    
+    <div class="text-center md:text-left">
+      <h4 class="font-display text-2xl text-white mb-2">{isEn ? "STUDIO ALERTS" : "ALERTAS DEL ESTUDIO"}</h4>
+      <p class="text-[10px] uppercase tracking-widest text-white/40 max-w-xs">{isEn ? "Get notified when books open in your city." : "Recibe notificaciones cuando abra agenda en tu ciudad."}</p>
+    </div>
+
+    <form class="flex w-full max-w-md gap-0 relative group">
+      <input 
+        type="email" 
+        aria-label={isEn ? "Your email address" : "Tu correo electrónico"}
+        placeholder={isEn ? "YOUR EMAIL ADDRESS" : "TU CORREO ELECTRÓNICO"} 
+        class="w-full bg-white/5 border border-white/10 px-6 py-4 font-modern text-[10px] uppercase tracking-widest text-white outline-none focus:bg-white/10 focus:ring-1 focus:ring-studio-purple/50 transition-colors"
+      />
+      <button class="bg-studio-purple text-black px-8 py-4 font-bold text-[10px] uppercase tracking-widest hover:bg-white transition-colors">
+        {isEn ? "JOIN" : "UNIRME"}
+      </button>
+      
+      <!-- Glow effect on hover -->
+      <div class="absolute inset-0 border border-studio-purple opacity-0 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none blur-md"></div>
+    </form>
+
+  </div>
+  
+  <!-- Background Noise -->
+  <div class="noise-underlay opacity-50"></div>
+</div>

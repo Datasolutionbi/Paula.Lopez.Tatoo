@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const seoData = {
+  title: "Tattoo Artist in Bogotá | Custom Blackwork & Cover-ups | Tattocaro",
+  description: "Professional tattoo artist in Bogotá specializing in blackwork, cover-ups, and custom designs. Book your session with José Contreras. Private studio, 8+ years experience.",
+  keywords: "tattoo bogota, tatuador bogota, blackwork tattoo, cover up tattoo, custom tattoo bogota, tattoo artist colombia",
+  ogImage: "https://images.unsplash.com/photo-1590204753862-392842497b68?q=80&w=1200",
+  schema: {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Tattocaro - José Contreras",
+    "image": "https://images.unsplash.com/photo-1590204753862-392842497b68?q=80&w=1200",
+    "description": "Professional tattoo artist specializing in blackwork, cover-ups, and custom designs in Bogotá, Colombia.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bogotá",
+      "addressRegion": "Cundinamarca",
+      "addressCountry": "CO"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "4.7110",
+      "longitude": "-74.0721"
+    },
+    "url": "https://tattocaro.com",
+    "telephone": "+57-XXX-XXX-XXXX",
+    "priceRange": "$$",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "10:00",
+        "closes": "18:00"
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "127"
+    }
+  }
+};
+---
+
+<BaseLayout title={seoData.title} description={seoData.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(seoData.schema)} />
+  
+  <div class="min-h-screen py-20">
+    <div class="container-custom max-w-4xl">
+      <div class="text-center mb-16 reveal-effect">
+        <h1 class="font-display text-6xl md:text-7xl mb-6">
+          TATTOO ARTIST<br/>IN BOGOTÁ
+        </h1>
+        <p class="font-modern text-sm opacity-70 max-w-2xl mx-auto leading-relaxed">
+          Professional custom tattoos, blackwork, and cover-ups in Bogotá, Colombia. 
+          Private studio with 8+ years of experience creating unique body art.
+        </p>
+      </div>
+
+      <!-- Services -->
+      <section class="mb-20">
+        <h2 class="font-display text-4xl mb-8 text-center">Our Services</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="glass-card p-6">
+            <h3 class="font-display text-2xl mb-3">Custom Tattoos</h3>
+            <p class="text-sm opacity-70">Original designs created specifically for you</p>
+          </div>
+          <div class="glass-card p-6">
+            <h3 class="font-display text-2xl mb-3">Cover-ups</h3>
+            <p class="text-sm opacity-70">Transform old tattoos into new masterpieces</p>
+          </div>
+          <div class="glass-card p-6">
+            <h3 class="font-display text-2xl mb-3">Blackwork</h3>
+            <p class="text-sm opacity-70">Bold, high-contrast black ink designs</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Location -->
+      <section class="glass-card p-8 mb-12">
+        <h2 class="font-display text-3xl mb-6">Visit Our Studio in Bogotá</h2>
+        <p class="text-sm opacity-70 mb-4">
+          Located in the heart of Bogotá, our private studio offers a clean, professional environment 
+          for your tattoo experience. Easy access from all parts of the city.
+        </p>
+        <a href="/booking" class="square-btn inline-block">Book Your Appointment</a>
+      </section>
+
+      <!-- FAQ for SEO -->
+      <section>
+        <h2 class="font-display text-3xl mb-8">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div class="glass-card p-6">
+            <h3 class="font-bold mb-2">How much does a tattoo cost in Bogotá?</h3>
+            <p class="text-sm opacity-70">
+              Prices vary based on size, complexity, and placement. Small tattoos start at $150 USD, 
+              while full sleeves can range from $1,200-$2,500. Contact us for a personalized quote.
+            </p>
+          </div>
+          <div class="glass-card p-6">
+            <h3 class="font-bold mb-2">Do you do cover-up tattoos?</h3>
+            <p class="text-sm opacity-70">
+              Yes! We specialize in cover-ups and transformations. Send us a photo of your existing 
+              tattoo for a consultation.
+            </p>
+          </div>
+          <div class="glass-card p-6">
+            <h3 class="font-bold mb-2">How do I book an appointment?</h3>
+            <p class="text-sm opacity-70">
+              Use our online booking wizard to select your project type, size, and preferred dates. 
+              We'll respond within 24 hours to confirm availability.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

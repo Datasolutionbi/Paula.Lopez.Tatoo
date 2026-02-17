@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const isEn = Astro.url.pathname.includes('/en');
+---
+
+<BaseLayout>
+  <div class="min-h-screen flex items-center justify-center py-20">
+    <div class="container-custom max-w-3xl text-center">
+      <div class="glass-card p-12 md:p-20 reveal-effect">
+        <!-- Success Icon -->
+        <div class="mb-8">
+          <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-studio-purple/20 border-4 border-studio-purple">
+            <svg class="w-12 h-12 text-studio-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="font-display text-5xl md:text-6xl mb-6">
+          {isEn ? 'REQUEST RECEIVED!' : '¡SOLICITUD RECIBIDA!'}
+        </h1>
+
+        <!-- Message -->
+        <div class="space-y-6 mb-12">
+          <p class="font-modern text-sm opacity-80 leading-relaxed max-w-xl mx-auto">
+            {isEn 
+              ? "Thank you for your booking request! I've received all your details and will review them carefully."
+              : "¡Gracias por tu solicitud de reserva! He recibido todos tus detalles y los revisaré cuidadosamente."
+            }
+          </p>
+
+          <div class="glass-card p-6 max-w-md mx-auto">
+            <h3 class="font-modern text-xs uppercase tracking-widest text-studio-purple mb-4">
+              {isEn ? 'What happens next?' : '¿Qué sigue?'}
+            </h3>
+            <ul class="space-y-3 text-left text-xs opacity-70">
+              <li class="flex items-start gap-3">
+                <span class="text-studio-purple">1.</span>
+                <span>{isEn ? 'I will review your request within 24 hours' : 'Revisaré tu solicitud en menos de 24 horas'}</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-studio-purple">2.</span>
+                <span>{isEn ? 'You will receive an email with availability confirmation' : 'Recibirás un email con confirmación de disponibilidad'}</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-studio-purple">3.</span>
+                <span>{isEn ? 'We will discuss final details and secure your date' : 'Discutiremos los detalles finales y aseguraremos tu fecha'}</span>
+              </li>
+            </ul>
+          </div>
+
+          <p class="font-modern text-[10px] uppercase tracking-widest opacity-50">
+            {isEn 
+              ? 'Check your email (including spam folder) for my response'
+              : 'Revisa tu email (incluyendo spam) para mi respuesta'
+            }
+          </p>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/" class="square-btn">
+            {isEn ? 'Back to Home' : 'Volver al Inicio'}
+          </a>
+          <a href="https://instagram.com/tattocaro" target="_blank" class="outline-pill">
+            {isEn ? 'Follow on Instagram' : 'Seguir en Instagram'}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

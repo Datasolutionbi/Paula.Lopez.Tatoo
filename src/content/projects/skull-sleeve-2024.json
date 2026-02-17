@@ -1,0 +1,24 @@
+{
+    "title": "Blackwork Skull Sleeve",
+    "client": "Anonymous",
+    "date": "2024-01-15",
+    "category": "blackwork",
+    "bodyPart": "Full Arm",
+    "size": "sleeve",
+    "duration": "3 sessions (12 hours total)",
+    "images": {
+        "thumbnail": "/AndresBI/tattoos/tattoo-6.png",
+        "final": "/AndresBI/tattoos/tattoo-6.png",
+        "healed": "/AndresBI/tattoos/tattoo-6.png"
+    },
+    "description": "Full sleeve blackwork featuring traditional skull motifs with geometric patterns. High contrast design with bold linework.",
+    "tags": [
+        "skull",
+        "blackwork",
+        "sleeve",
+        "geometric",
+        "traditional"
+    ],
+    "featured": true,
+    "published": true
+}

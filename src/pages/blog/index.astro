@@ -1,67 +1,138 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import BlogPostCard from '../../components/BlogPostCard.astro';
 import { getCollection } from 'astro:content';
-import { getReadingTime } from '../../utils/readingTime';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
-// Get all blog posts
-const allPosts = await getCollection('blog');
+const allPosts = await getCollection('blog', ({ data }) => {
+  return data.published === true;
+});
 
-// Sort by date (newest first) and filter drafts
-const publishedPosts = allPosts
-  .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+const sortedPosts = allPosts.sort((a, b) => 
+  b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 
-// Get unique categories
-const categories = [...new Set(allPosts.map(post => post.data.category))];
-
-// Get reading times
-const postsWithReadingTime = publishedPosts.map(post => ({
-  ...post,
-  readingTime: getReadingTime(post.body)
-}));
+const featuredPosts = sortedPosts.filter(p => p.data.featured);
+const categories = [...new Set(allPosts.map(p => p.data.category))];
 ---
 
-<BaseLayout title="Blog | Insights sobre BI y Analítica de Datos">
-  <div class="container-custom section-padding">
-    <!-- Header -->
-    <div class="max-w-3xl mx-auto text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Blog</h1>
-      <p class="text-xl text-slate-600">
-        Insights, tutoriales y mejores prácticas en Business Intelligence, Analítica de Datos e Inteligencia Artificial.
-      </p>
-    </div>
+<BaseLayout 
+  title="Tattoo Blog - Tips, Aftercare & Process | Tattocaro"
+  description="Learn about tattoo aftercare, the tattooing process, and get expert tips from professional tattoo artist José Contreras."
+>
+  <div class="min-h-screen py-20">
+    <div class="container-custom max-w-6xl">
+      <!-- Header -->
+      <div class="text-center mb-16 reveal-effect">
+        <h1 class="font-display text-6xl md:text-7xl mb-6">TATTOO BLOG</h1>
+        <p class="font-modern text-sm opacity-70 max-w-2xl mx-auto">
+          Expert advice, aftercare tips, and insights into the tattooing process
+        </p>
+      </div>
 
-    <!-- Categories Filter (optional for future) -->
-    <div class="flex flex-wrap justify-center gap-2 mb-12">
-      <a href="/blog" class="badge-primary">
-        Todos
-      </a>
-      {categories.map(category => (
-        <a href={`/blog/category/${category.toLowerCase()}`} class="badge-secondary hover:bg-slate-200 transition-colors">
-          {category}
-        </a>
-      ))}
-    </div>
+      <!-- Featured Posts -->
+      {featuredPosts.length > 0 && (
+        <section class="mb-20">
+          <h2 class="font-display text-3xl mb-8">Featured Articles</h2>
+          <div class="grid md:grid-cols-2 gap-8">
+            {featuredPosts.slice(0, 2).map(post => (
+              <a 
+                href={`/blog/${post.slug}`}
+                class="glass-card overflow-hidden group hover:border-studio-purple transition-all duration-500"
+              >
+                <div class="aspect-video overflow-hidden">
+                  <img 
+                    src={post.data.image} 
+                    alt={post.data.title}
+                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                  />
+                </div>
+                <div class="p-6">
+                  <div class="flex items-center gap-4 mb-3 text-[10px] uppercase tracking-widest opacity-50">
+                    <span class="text-studio-purple">{post.data.category}</span>
+                    <span>•</span>
+                    <time>{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
+                  </div>
+                  <h3 class="font-display text-2xl mb-3 group-hover:text-studio-purple transition-colors">
+                    {post.data.title}
+                  </h3>
+                  <p class="text-sm opacity-70">{post.data.description}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
 
-    <!-- Blog Posts Grid -->
-    {postsWithReadingTime.length > 0 ? (
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {postsWithReadingTime.map((post) => (
-          <BlogPostCard
-            title={post.data.title}
-            description={post.data.description}
-            publishDate={post.data.publishDate}
-            category={post.data.category}
-            slug={post.slug}
-            readingTime={post.readingTime}
-          />
+      <!-- Category Filter -->
+      <div class="flex flex-wrap gap-4 mb-12 justify-center">
+        <button class="filter-btn active px-6 py-3 bg-black text-white border border-black rounded-full text-xs uppercase tracking-widest hover:bg-studio-purple hover:border-studio-purple transition-all shadow-lg" data-filter="all">
+          All Posts
+        </button>
+        {categories.map(cat => (
+          <button class="filter-btn px-6 py-3 bg-white border border-black/10 text-black/60 rounded-full text-xs uppercase tracking-widest hover:border-studio-purple hover:text-studio-purple transition-all" data-filter={cat}>
+            {cat.charAt(0).toUpperCase() + cat.slice(1)}
+          </button>
         ))}
       </div>
-    ) : (
-      <div class="text-center text-slate-500 py-12">
-        <p class="text-lg">Próximamente publicaré artículos sobre BI, Analytics e IA...</p>
+
+      <!-- All Posts Grid -->
+      <div class="grid md:grid-cols-3 gap-8" id="posts-grid">
+        {sortedPosts.map(post => (
+          <article 
+            class="post-card glass-card overflow-hidden group hover:border-studio-purple transition-all duration-500"
+            data-category={post.data.category}
+          >
+            <a href={`/blog/${post.slug}`}>
+              <div class="aspect-video overflow-hidden">
+                <img 
+                  src={post.data.image} 
+                  alt={post.data.title}
+                  class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-4 mb-3 text-[10px] uppercase tracking-widest opacity-50">
+                  <span class="text-studio-purple">{post.data.category}</span>
+                  <span>•</span>
+                  <time>{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</time>
+                </div>
+                <h3 class="font-display text-xl mb-2 group-hover:text-studio-purple transition-colors">
+                  {post.data.title}
+                </h3>
+                <p class="text-xs opacity-70 line-clamp-2">{post.data.description}</p>
+              </div>
+            </a>
+          </article>
+        ))}
       </div>
-    )}
+    </div>
   </div>
 </BaseLayout>
+
+<script>
+  function initBlogFilters() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const postCards = document.querySelectorAll('.post-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = (btn as HTMLElement).dataset.filter;
+
+        filterBtns.forEach(b => b.classList.remove('active', 'bg-black', 'text-white', 'border-black'));
+        btn.classList.add('active', 'bg-black', 'text-white', 'border-black');
+        btn.classList.remove('bg-white', 'text-black/60');
+
+        postCards.forEach(card => {
+          const category = (card as HTMLElement).dataset.category;
+          if (filter === 'all' || category === filter) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initBlogFilters);
+  initBlogFilters();
+</script>

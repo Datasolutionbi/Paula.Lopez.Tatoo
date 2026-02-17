@@ -1,93 +1,83 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
-import About from '../../components/sections/About.astro';
+import AboutMe from '../../components/sections/AboutMe.astro';
 import Projects from '../../components/sections/Projects.astro';
-import Skills from '../../components/sections/Skills.astro';
-import Experience from '../../components/sections/Experience.astro';
-import Education from '../../components/sections/Education.astro';
 import Contact from '../../components/sections/Contact.astro';
-import TrustLogos from '../../components/sections/TrustLogos.astro';
-import NeuralPerceptron from '../../components/NeuralPerceptron.astro';
-import { skills } from '../../data/skills';
-import { getCollection } from 'astro:content';
-
-const allProjects = await getCollection('projects');
-const featuredProjects = allProjects
-  .filter(project => project.data.featured)
-  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-  .slice(0, 3);
-
-const experience = [
-  {
-    company: "TechCorp Analytics",
-    position: "Senior BI & AI Specialist",
-    period: "2022 - Present",
-    description: "I lead BI projects and predictive analysis with AI. I develop interactive dashboards and machine learning models for process optimization.",
-    achievements: [
-      "Reduced reporting time by 85% through automation with Power BI",
-      "Implemented sales prediction model with 92% accuracy",
-      "Designed ETL pipeline processing 10M+ daily records"
-    ],
-    tech: ["Power BI", "Python", "Azure ML", "SQL Server", "Airflow"]
-  },
-  {
-    company: "DataViz Solutions",
-    position: "Data Analyst",
-    period: "2020 - 2022",
-    description: "Data analyst focused on visualization and business reporting. Creation of dashboards and exploratory data analysis.",
-    achievements: [
-      "Created 50+ interactive dashboards in Tableau",
-      "Optimized SQL queries reducing execution time by 70%",
-      "Trained 30+ users in BI tools"
-    ],
-    tech: ["Tableau", "SQL", "Excel", "Python", "Power Query"]
-  }
-];
-
-const education = [
-  {
-    degree: "Master in Data Science & BI",
-    institution: "Tech University",
-    period: "2018 - 2019",
-    description: "Specialization in advanced analytics and business intelligence."
-  }
-];
-
-const certifications = [
-  { name: "Microsoft Certified: Power BI Data Analyst", issuer: "Microsoft", year: "2023" },
-  { name: "Azure Machine Learning Associate", issuer: "Microsoft", year: "2022" }
-];
+import BookingCTA from '../../components/sections/BookingCTA.astro';
+import InkStories from '../../components/sections/InkStories.astro';
+import BoutiqueFAQ from '../../components/sections/BoutiqueFAQ.astro';
+import Newsletter from '../../components/sections/Newsletter.astro';
+import Testimonials from '../../components/social/Testimonials.astro';
+import TattooSeparator from '../../components/ui/TattooSeparator.astro';
 ---
 
-<BaseLayout title="Portfolio | AndresBI" description="BI Specialist, Data Visualization and AI" lang="en">
-  <div class="reveal-blur">
-    <Hero />
-  </div>
+<BaseLayout lang="en">
+  <main>
+    <!-- Hero Section -->
+    <Hero content={{ label: "ARTIST OF THE DAY", title: "THE KIND OF TATTOO YOU WON'T REGRET" }} />
 
-  <TrustLogos isEn={true} />
+    <!-- Gallery / Work -->
+    <section id="work" class="py-12 bg-white relative">
+        <div class="container-custom mb-10 text-center">
+            <h2 class="font-display text-4xl md:text-5xl text-black mb-2 uppercase tracking-tight">Selected Works</h2>
+            <div class="w-16 h-0.5 bg-studio-purple mx-auto"></div>
+        </div>
+        <Projects />
+    </section>
 
-  <About isEn={true}>
-    <NeuralPerceptron size={80} slot="perceptron" />
-  </About>
+    <TattooSeparator variant="needle" />
 
-  <div class="section-divider"></div>
+    <!-- About Me -->
+    <AboutMe isEn={true} />
 
-  <Projects isEn={true} projects={featuredProjects} />
+    <TattooSeparator variant="voltage" />
 
-  <div class="section-divider"></div>
+    <!-- Transformations -->
+    <section id="stories" class="py-12 bg-white relative">
+       <div class="container-custom">
+            <InkStories title="TRANSFORMATIONS" label="DRAG TO REVEAL" />
+       </div>
+    </section>
 
-  <Skills isEn={true} skills={skills} />
+    <TattooSeparator variant="minimal" />
+    
+    <!-- Testimonials -->
+    <section id="reviews" class="py-12 bg-bg-secondary">
+        <div class="container-custom mb-10 text-center">
+            <h2 class="font-display text-4xl md:text-5xl text-black mb-2 uppercase tracking-tight">Client Stories</h2>
+            <div class="w-16 h-0.5 bg-studio-purple mx-auto"></div>
+        </div>
+        <Testimonials isEn={true} />
+    </section>
 
-  <div class="section-divider"></div>
+    <TattooSeparator variant="needle" />
 
-  <Experience isEn={true} experience={experience} />
+    <!-- FAQ -->
+    <section id="faq" class="py-12 bg-white">
+        <div class="container-custom max-w-4xl">
+             <h2 class="font-display text-4xl text-center mb-8 uppercase tracking-tight">Common Questions</h2>
+             <BoutiqueFAQ isEn={true} />
+        </div>
+    </section>
 
-  <div class="section-divider"></div>
+    <TattooSeparator variant="voltage" />
 
-  <Education isEn={true} education={education} certifications={certifications} />
+    <!-- Booking Block -->
+    <div id="booking">
+        <!-- Hype & Socials -->
+        <BookingCTA isEn={true} />
+        
+        <TattooSeparator variant="minimal" />
 
-  <div class="section-divider"></div>
+        <!-- Actual Form -->
+        <section class="py-12 bg-bg-secondary">
+            <div class="container-custom">
+                <Contact />
+            </div>
+        </section>
+    </div>
 
-  <Contact isEn={true} />
+  </main>
+  <Newsletter />
 </BaseLayout>

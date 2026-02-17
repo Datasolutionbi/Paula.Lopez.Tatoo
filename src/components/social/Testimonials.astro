@@ -1,0 +1,94 @@
+---
+interface Testimonial {
+  name: string;
+  instagram: string;
+  quote: string;
+  rating: number;
+  project: string;
+  image: string;
+  video?: string;
+}
+
+const { isEn = false } = Astro.props;
+
+const translations = {
+  header: isEn ? "CLIENT STORIES" : "HISTORIAS DE CLIENTES",
+  subheader: isEn ? "What people say about their experience" : "Lo que dicen sobre su experiencia"
+};
+
+const testimonials: Testimonial[] = [
+  {
+    name: "María G.",
+    instagram: "@mariag_ink",
+    quote: isEn ? "José transformed my old tattoo into a masterpiece. The attention to detail is incredible and the healing process was perfect." : "José transformó mi viejo tatuaje en una obra maestra. La atención al detalle es increíble y el proceso de curación fue perfecto.",
+    rating: 5,
+    project: isEn ? "Rose Cover-up" : "Cover-up de Rosa",
+    image: "https://images.unsplash.com/photo-1565058379802-bbe93b2f703f?q=80&w=400"
+  },
+  {
+    name: "Carlos M.",
+    instagram: "@carlos_tattoos",
+    quote: isEn ? "Best blackwork artist in Bogotá. Professional, clean studio, and amazing results. Highly recommended!" : "El mejor artista de blackwork en Bogotá. Profesional, estudio limpio y resultados increíbles. ¡Altamente recomendado!",
+    rating: 5,
+    project: isEn ? "Geometric Sleeve" : "Manga Geométrica",
+    image: "https://images.unsplash.com/photo-1598371380356-6169994bc91d?q=80&w=400"
+  },
+  {
+    name: "Ana L.",
+    instagram: "@ana_inked",
+    quote: isEn ? "I traveled from Medellín specifically for José. Worth every kilometer. The custom design exceeded all my expectations." : "Viajé desde Medellín específicamente para José. Valió cada kilómetro. El diseño personalizado superó todas mis expectativas.",
+    rating: 5,
+    project: isEn ? "Custom Back Piece" : "Espalda Completa",
+    image: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=400"
+  }
+];
+---
+
+<div class="grid md:grid-cols-3 gap-8">
+  {testimonials.map((testimonial, index) => (
+    <div 
+      class="bg-white border border-black/5 p-8 hover:border-studio-purple transition-all duration-500 reveal-effect group relative"
+      style={`transition-delay: ${index * 100}ms`}
+    >
+      <!-- Client Image -->
+      <div class="relative mb-6">
+        <img 
+          src={testimonial.image} 
+          alt={testimonial.name}
+          class="w-full h-64 object-cover rounded-none grayscale group-hover:grayscale-0 transition-all duration-700"
+        />
+        <div class="absolute top-4 right-4 bg-studio-purple px-3 py-1 rounded-full">
+          <div class="flex gap-1">
+            {Array.from({ length: testimonial.rating }).map(() => (
+              <span class="text-black text-xs">★</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Quote -->
+      <div class="mb-6">
+        <p class="font-modern text-sm leading-relaxed opacity-80 italic">
+          "{testimonial.quote}"
+        </p>
+      </div>
+
+      <!-- Author -->
+      <div class="flex items-center justify-between pt-4 border-t border-black/10">
+        <div>
+          <p class="font-bold text-sm">{testimonial.name}</p>
+          <a 
+            href={`https://instagram.com/${testimonial.instagram.slice(1)}`}
+            target="_blank"
+            class="text-xs text-studio-purple hover:underline"
+          >
+            {testimonial.instagram}
+          </a>
+        </div>
+        <span class="text-[10px] uppercase tracking-widest opacity-50">
+          {testimonial.project}
+        </span>
+      </div>
+    </div>
+  ))}
+</div>

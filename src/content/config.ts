@@ -5,26 +5,36 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    publishDate: z.coerce.date(),
-    category: z.string(),
-    tags: z.array(z.string()),
-    author: z.string().default('Andres Rivera'),
-    image: z.string().optional(),
-    draft: z.boolean().default(false)
+    pubDate: z.coerce.date(),
+    author: z.string().default('José Contreras'),
+    category: z.enum(['aftercare', 'process', 'tips', 'travel']),
+    image: z.string(),
+    featured: z.boolean().default(false),
+    published: z.boolean().default(true)
   })
 });
 
 const projects = defineCollection({
-  type: 'content',
+  type: 'data',
   schema: z.object({
     title: z.string(),
+    client: z.string().optional(),
+    date: z.coerce.date(),
+    category: z.enum(['blackwork', 'realism', 'coverup', 'traditional', 'flash', 'geometric']),
+    bodyPart: z.string(),
+    size: z.enum(['small', 'medium', 'large', 'sleeve', 'full-body']),
+    duration: z.string(),
+    images: z.object({
+      thumbnail: z.string(),
+      stencil: z.string().optional(),
+      process: z.array(z.string()).optional(),
+      final: z.string(),
+      healed: z.string().optional()
+    }),
     description: z.string(),
-    publishDate: z.coerce.date(),
-    tech: z.array(z.string()),
-    github: z.string().optional(),
-    demo: z.string().optional(),
-    image: z.string().optional(),
-    featured: z.boolean().default(false)
+    tags: z.array(z.string()),
+    featured: z.boolean().default(false),
+    published: z.boolean().default(true)
   })
 });
 

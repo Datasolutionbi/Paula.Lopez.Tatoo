@@ -1,0 +1,37 @@
+---
+---
+
+<div class="fixed inset-0 w-full h-full pointer-events-none z-[-1] overflow-hidden opacity-30 mix-blend-multiply">
+  <svg class="hidden">
+    <filter id="liquid-filter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="turbulence">
+        <animate attributeName="baseFrequency" values="0.015;0.02;0.015" dur="30s" repeatCount="indefinite" />
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="35" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </svg>
+
+  <div class="liquid-blob blob-1"></div>
+  <div class="liquid-blob blob-2"></div>
+  <div class="liquid-blob blob-3"></div>
+</div>
+
+<style>
+  .liquid-blob {
+    position: absolute;
+    background: radial-gradient(circle, rgba(157, 78, 221, 0.2) 0%, rgba(90, 24, 154, 0.05) 40%, transparent 70%);
+    filter: url(#liquid-filter);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: drift 20s infinite alternate ease-in-out;
+  }
+
+  .blob-1 { top: -20%; left: -10%; width: 50vw; height: 50vw; animation-duration: 45s; }
+  .blob-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; animation-duration: 55s; animation-direction: reverse; }
+  .blob-3 { top: 40%; left: 40%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 0%, transparent 60%); animation-duration: 35s; }
+
+  @keyframes drift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 30px); }
+  }
+</style>

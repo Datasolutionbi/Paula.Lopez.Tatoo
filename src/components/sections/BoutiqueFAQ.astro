@@ -1,0 +1,57 @@
+---
+const { isEn = false } = Astro.props;
+
+const spanishQuestions = [
+  { q: "¿CÓMO RESERVO?", a: "Completa el formulario a continuación. Abro agenda cada 3 meses para nuevos proyectos en Bogotá y Europa. Se requiere un depósito para asegurar tu espacio." },
+  { q: "¿HACES COVER-UPS?", a: "Sí. Me especializo en cover-ups de alto contraste (Blackwork). Necesito ver tu tatuaje existente para determinar si es posible realizar el proyecto." },
+  { q: "¿PRECIO Y DEPÓSITO?", a: "Se requiere un depósito no reembolsable para asegurar tu fecha. El precio depende del tamaño y complejidad del diseño. Te daré un presupuesto tras analizar tu idea." },
+  { q: "¿CUIDADOS DEL TATUAJE?", a: "Te daré instrucciones detalladas y un kit de cuidado posterior al finalizar tu sesión. La curación es 50% del resultado final, por lo que es vital seguir el proceso." }
+];
+
+const englishQuestions = [
+  { q: "How do I book?", a: "To book a session, please send a request through the form on our contact page. We require a deposit to secure your spot." },
+  { q: "Tattoo aftercare tips", a: "Use a specialized tattoo ointment, keep the area clean with mild soap, and avoid direct sunlight or swimming for at least 2 weeks." },
+  { q: "Pricing information", a: "Prices vary depending on style, size, and complexity. A non-refundable deposit is required at the time of booking." },
+  { q: "Portfolio availability", a: "All designs shown in the gallery are custom pieces. If you'd like something similar, we can create a unique version for you." }
+];
+
+const questions = isEn ? englishQuestions : spanishQuestions;
+---
+
+<div class="w-full max-w-2xl mx-auto space-y-6">
+  {questions.map((item, index) => (
+    <details class="group border-b border-black/5 pb-6 cursor-pointer">
+      <summary class="flex items-center justify-between list-none focus:outline-none">
+        <span class="text-lg md:text-xl font-bold text-[#222] group-hover:text-[var(--purple-primary)] transition-colors">
+          {item.q}
+        </span>
+        <div class="w-8 h-8 rounded-full bg-black/5 flex items-center justify-center text-[var(--purple-primary)] transition-all group-open:bg-[var(--purple-primary)] group-open:text-white">
+          <span class="text-2xl font-light transform group-open:rotate-180 transition-transform">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path class="group-open:hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v12M6 12h12" />
+              <path class="hidden group-open:block" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M18 12H6" />
+            </svg>
+          </span>
+        </div>
+      </summary>
+      <div class="mt-4 text-black/60 font-medium text-base leading-relaxed overflow-hidden">
+        <p class="py-2 animate-fade-in-up">{item.a}</p>
+      </div>
+    </details>
+  ))}
+</div>
+
+<style>
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+</style>
