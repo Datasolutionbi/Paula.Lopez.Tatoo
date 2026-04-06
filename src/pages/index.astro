@@ -14,8 +14,8 @@ const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
                 class="w-full h-full object-cover opacity-40 blur-[2px]"
                 loading="eager"
             />
-            <div class="absolute inset-0 bg-gradient-to-b from-[#00010d] via-transparent to-[#00010d] z-10"></div>
-            <div class="absolute inset-0 bg-gradient-to-r from-[#00010d] via-transparent to-[#00010d] z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-[#00010d] via-transparent to-[#00010d] z-10 opacity-70 md:opacity-100"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-[#00010d] via-transparent to-[#00010d] z-10 opacity-70 md:opacity-100"></div>
         </div>
         
         <div class="relative z-10 text-center max-w-5xl px-6 mt-16">
@@ -39,7 +39,7 @@ const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
     </section>
 
     <!-- Visual Liturgy Section -->
-    <section id="liturgia" class="py-32 px-12 md:px-24 bg-[#090d1d] relative">
+    <section id="liturgia" class="py-24 md:py-32 px-5 md:px-24 bg-[#090d1d] relative">
          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#8c2786]/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
         <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
             <div>
@@ -52,7 +52,7 @@ const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
         </div>
         
         <!-- Grid: 3 panels per row -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
             <!-- Panel 1: Realismo -->
             <a href={`${base}/portafolio?filter=realismo`} class="block group relative aspect-[3/4] bg-[#00010d] overflow-hidden hover:-translate-y-2 transition-transform duration-700 altar-border">
                 <div class="absolute -top-px -left-px w-6 h-6 border-t border-l border-primary opacity-0 group-hover:opacity-100 z-10 transition-opacity duration-500"></div>

@@ -79,12 +79,12 @@ const navI18nKeys: Record<string, string> = {
                     return (
                         <a
                             href={link.href}
-                            class={`flex flex-col items-center justify-center gap-1.5 w-[54px] py-1 transition-all duration-300 ${
+                            class={`flex flex-col items-center justify-center gap-1.5 w-[60px] py-1 transition-all duration-300 ${
                                 isActive ? 'text-[#ffabf1]' : 'text-white/30'
                             }`}
                         >
-                            <span class="material-symbols-outlined text-[20px]">{link.icon}</span>
-                            <span class="font-headline text-[7px] tracking-[0.1em] uppercase whitespace-nowrap" data-i18n={i18nKey}>{link.label}</span>
+                            <span class="material-symbols-outlined text-[24px]">{link.icon}</span>
+                            <span class="font-headline text-[8.5px] tracking-[0.05em] uppercase whitespace-nowrap" data-i18n={i18nKey}>{link.label}</span>
                         </a>
                     );
                 })}
@@ -102,12 +102,12 @@ const navI18nKeys: Record<string, string> = {
                     return (
                         <a
                             href={link.href}
-                            class={`flex flex-col items-center justify-center gap-1.5 w-[54px] py-1 transition-all duration-300 ${
+                            class={`flex flex-col items-center justify-center gap-1.5 w-[60px] py-1 transition-all duration-300 ${
                                 isActive ? 'text-[#ffabf1]' : 'text-white/30'
                             }`}
                         >
-                            <span class={`material-symbols-outlined ${isContact ? 'text-[22px] text-[#ffabf1]' : 'text-[20px]'}`}>{link.icon}</span>
-                            <span class="font-headline text-[7px] tracking-[0.1em] uppercase whitespace-nowrap" data-i18n={i18nKey}>{link.label}</span>
+                            <span class={`material-symbols-outlined ${isContact ? 'text-[26px] text-[#ffabf1]' : 'text-[24px]'}`}>{link.icon}</span>
+                            <span class="font-headline text-[8.5px] tracking-[0.05em] uppercase whitespace-nowrap" data-i18n={i18nKey}>{link.label}</span>
                         </a>
                     );
                 })}
