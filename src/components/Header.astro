@@ -73,8 +73,8 @@ const navI18nKeys: Record<string, string> = {
                 <Image src={logoFull} alt="Logo" class="h-16 w-auto object-contain" />
             </a>
 
-            {/* Mobile Language Selector - Asigned by User Image */}
-            <div class="flex items-center gap-1 px-1">
+            {/* Mobile Language Selector - User asked to remove it from mobile experience */}
+            <div class="hidden items-center gap-1 px-1">
                 {(['ES', 'EN', 'NL', 'FR'] as const).map(code => (
                     <button 
                         data-lang={code} 
