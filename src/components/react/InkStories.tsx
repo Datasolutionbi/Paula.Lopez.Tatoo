@@ -119,7 +119,7 @@ export const InkStories: React.FC<InkStoriesProps> = ({
                 >
                     <img
                         src={beforeImage}
-                        className="absolute inset-0 w-full h-full max-w-none object-cover grayscale contrast-125 select-none pointer-events-none"
+                        className="absolute inset-0 w-full h-full max-w-none object-cover select-none pointer-events-none"
                         alt="Before"
                         style={{ width: '100cqw', height: '100cqh' }}
                     />

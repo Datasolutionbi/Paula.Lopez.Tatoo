@@ -77,7 +77,7 @@ export const ProjectsGallery: React.FC<ProjectsGalleryProps> = ({ projects, cate
                                         src={project.data.images.thumbnail}
                                         alt={project.data.title}
                                         loading="lazy"
-                                        className="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:contrast-100 transition-all duration-700"
+                                        className="w-full h-full object-cover transition-all duration-700"
                                     />
 
                                     {/* Featured Badge */}

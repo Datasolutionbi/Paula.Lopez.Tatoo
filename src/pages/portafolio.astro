@@ -50,7 +50,7 @@ const categories = ["Todas las Obras", "Blackwork", "Realismo", "Anime & Color",
 ---
 
 <BaseLayout title="LA OBRA | Catálogo">
-    <main class="pt-40 pb-20 px-5 md:px-16 min-h-screen relative">
+    <div id="portfolio-root" class="pt-40 pb-32 px-5 md:px-16 min-h-screen relative">
         <!-- Ambient lighting -->
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#8c2786]/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
         
@@ -100,7 +100,7 @@ const categories = ["Todas las Obras", "Blackwork", "Realismo", "Anime & Color",
 
                         <!-- Image Container with lazy loading and loading skeleton styles -->
                         <div class="relative w-full overflow-hidden bg-[#00010d]/50 min-h-[200px]">
-                            <img loading="lazy" src={img.src} alt={img.name} class="portfolio-img w-full h-auto object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000 aspect-auto mix-blend-luminosity hover:mix-blend-normal" />
+                            <img loading="lazy" src={img.src} alt={img.name} class="portfolio-img w-full h-auto object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000 aspect-auto  " />
                         </div>
 
                         <!-- Hover Overlay Text -->
@@ -137,7 +137,7 @@ const categories = ["Todas las Obras", "Blackwork", "Realismo", "Anime & Color",
                 </div>
             </div>
         </dialog>
-    </main>
+    </div>
 </BaseLayout>
 
 <script>
