@@ -35,13 +35,14 @@ const t = isEn ? content.en : content.es;
     <img 
       src={`${base}/paula-artisan.png`} 
       alt="" 
-      class="w-full h-full object-cover grayscale opacity-50 blur-[4px] scale-105"
+      class="w-full h-full object-cover grayscale opacity-40 blur-md scale-105"
       loading="eager"
     />
   </div>
   
-  <!-- Black Overlay gradient for depth -->
-  <div class="absolute inset-0 bg-gradient-to-t from-[#00010d] via-transparent to-[#00010d]/60 z-10"></div>
+  <!-- Content gradient overlays for depth (Radial & Linear) -->
+  <div class="absolute inset-0 bg-gradient-to-r from-[#00010d] via-transparent to-[#00010d] z-10 pointer-events-none"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-[#00010d] via-transparent to-transparent z-10 pointer-events-none"></div>
   
   <!-- Subtle Grain Texture -->
   <div class="absolute inset-0 opacity-[0.04] pointer-events-none z-20" style="background-image: url('https://www.transparenttextures.com/patterns/stardust.png');"></div>
