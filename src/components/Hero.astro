@@ -1,6 +1,7 @@
 ---
 // Hero.astro - Premium Dark Theme
 const { isEn = false } = Astro.props;
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
 
 const content = {
   es: {
@@ -30,17 +31,17 @@ const t = isEn ? content.en : content.es;
 
 <section class="relative min-h-screen flex items-end overflow-hidden bg-surface-container-lowest">
   <!-- Full-bleed Background Image -->
-  <div class="absolute inset-0 z-0">
+  <div class="absolute inset-0 z-0 bg-[#00010d]">
     <img 
-      src="/Paula.Lopez.Tatoo/paula-artisan.png" 
+      src={`${base}/paula-artisan.png`} 
       alt="" 
-      class="w-full h-full object-cover grayscale brightness-50 blur-md scale-105"
+      class="w-full h-full object-cover grayscale opacity-50 blur-[4px] scale-105"
       loading="eager"
     />
   </div>
   
   <!-- Black Overlay gradient for depth -->
-  <div class="absolute inset-0 bg-gradient-to-t from-[#00010d] via-[#00010d]/60 to-transparent z-10"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-[#00010d] via-transparent to-[#00010d]/60 z-10"></div>
   
   <!-- Subtle Grain Texture -->
   <div class="absolute inset-0 opacity-[0.04] pointer-events-none z-20" style="background-image: url('https://www.transparenttextures.com/patterns/stardust.png');"></div>
