@@ -454,8 +454,20 @@ const bottomNavItems = [
           });
         }
 
+        function getInitialLang() {
+          var saved = localStorage.getItem('site_lang');
+          if (saved && T[saved]) return saved;
+          
+          // Detección automática por configuración de navegador (idioma preferido)
+          var navLang = (navigator.language || navigator.userLanguage || 'es').toLowerCase();
+          if (navLang.startsWith('nl')) return 'NL';
+          if (navLang.startsWith('fr')) return 'FR';
+          if (navLang.startsWith('en')) return 'EN';
+          return 'ES'; // Default
+        }
+
         function run() {
-          var lang = localStorage.getItem('site_lang') || 'ES';
+          var lang = getInitialLang();
           applyLang(lang);
           attachButtons();
           initReveal();
