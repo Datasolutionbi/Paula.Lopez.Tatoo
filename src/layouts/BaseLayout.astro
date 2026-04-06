@@ -379,6 +379,7 @@ const bottomNavItems = [
           // Estado visual de los botones
           document.querySelectorAll('.lang-btn').forEach(function(btn) {
             var on = btn.getAttribute('data-lang') === lang;
+            btn.setAttribute('data-current', on ? 'true' : 'false');
             btn.classList.toggle('text-[#ffabf1]', on);
             btn.classList.toggle('border-[#ffabf1]', on);
             btn.classList.toggle('bg-white/5', on);

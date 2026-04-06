@@ -73,14 +73,14 @@ const navI18nKeys: Record<string, string> = {
                 <Image src={logoFull} alt="Logo" class="h-16 w-auto object-contain" />
             </a>
 
-            {/* Mobile Language Selector - User asked to remove it from mobile experience */}
-            <div class="hidden items-center gap-1 px-1">
+            {/* Mobile Language Selector - Top Right as per user request */}
+            <div class="lg:hidden absolute top-[105%] right-3 flex items-center gap-1.5 p-1.5 rounded-lg bg-[#00010d]/40 backdrop-blur-xl border border-white/10 shadow-2xl z-[45]">
                 {(['ES', 'EN', 'NL', 'FR'] as const).map(code => (
                     <button 
                         data-lang={code} 
                         data-haptic="light"
                         data-ripple
-                        class="lang-btn flex-none ripple-container font-headline text-[9px] tracking-widest px-2.5 py-1.5 transition-all duration-300 rounded-sm border border-white/5 bg-white/2 hover:border-[#ffabf1]/30 hover:text-[#ffabf1] data-[current=true]:text-[#ffabf1] data-[current=true]:border-[#ffabf1]/40 data-[current=true]:bg-[#ffabf1]/5 shadow-sm"
+                        class="lang-btn flex-none ripple-container font-headline text-[9px] tracking-widest px-2.5 py-1.5 transition-all duration-300 rounded-sm border border-white/5 bg-white/5 hover:border-[#ffabf1]/30 hover:text-[#ffabf1] data-[current=true]:text-[#ffabf1] data-[current=true]:border-[#ffabf1]/40 data-[current=true]:bg-[#ffabf1]/10 shadow-sm"
                     >
                         {code}
                     </button>
@@ -164,47 +164,61 @@ const navI18nKeys: Record<string, string> = {
 </style>
 
 
-<div id="mobile-menu" class="fixed inset-0 bg-[#00010d]/95 backdrop-blur-[30px] z-[60] flex flex-col pt-32 px-12 opacity-0 pointer-events-none transition-opacity duration-500 overflow-y-auto">
-    <button id="close-menu-btn" class="absolute top-8 right-12 text-[#ffabf1] hover:rotate-90 active:scale-125 transition-all duration-300" aria-label="Close Menu">
-        <span class="material-symbols-outlined text-[48px]">close</span>
+<div id="mobile-menu" class="fixed inset-0 bg-[#00010d] z-[60] flex flex-col pt-20 px-6 opacity-0 pointer-events-none transition-opacity duration-500 overflow-y-auto">
+    {/* Close Button Top Right */}
+    <button id="close-menu-btn" class="absolute top-6 right-6 text-[#ffabf1]/60 hover:text-[#ffabf1] active:scale-125 transition-all duration-300" aria-label="Close Menu">
+        <span class="material-symbols-outlined text-[34px]">close</span>
     </button>
 
-    <!-- Social top bar inside menu -->
-    <div class="flex items-center justify-center gap-8 mb-12">
+    {/* Social top bar inside menu */}
+    <div class="flex items-center justify-center gap-6 mb-12 mt-12">
         <a href="https://www.instagram.com/paulaangels/" target="_blank" rel="noopener noreferrer"
            aria-label="Instagram"
-           class="group flex items-center justify-center w-14 h-14 rounded-full border border-white/10 text-white/40 hover:text-[#ffabf1] hover:border-[#ffabf1]/50 hover:bg-[#ffabf1]/5 hover:drop-shadow-[0_0_15px_rgba(255,171,241,0.3)] transition-all duration-300 active:scale-125">
-            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+           class="group flex items-center justify-center w-12 h-12 rounded-full border border-white/10 text-white/40 transition-all duration-300 active:scale-110">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
         </a>
         <a href="https://www.facebook.com/paulaangels" target="_blank" rel="noopener noreferrer"
            aria-label="Facebook"
-           class="group flex items-center justify-center w-14 h-14 rounded-full border border-white/10 text-white/40 hover:text-[#ffabf1] hover:border-[#ffabf1]/50 hover:bg-[#ffabf1]/5 hover:drop-shadow-[0_0_15px_rgba(255,171,241,0.3)] transition-all duration-300 active:scale-125">
-            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+           class="group flex items-center justify-center w-12 h-12 rounded-full border border-white/10 text-white/40 transition-all duration-300 active:scale-110">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
             </svg>
         </a>
     </div>
 
-    <div class="w-full grid grid-cols-2 gap-3 pb-4">
+    {/* Menu Grid - 2 columns as per user design */}
+    <div class="w-full grid grid-cols-2 gap-2 mb-16">
         {topNavItems.filter(link => link.label !== 'HOME').map((link) => {
             const isActive = currentPath === link.href || currentPath === link.href + '/';
             const i18nKey = navI18nKeys[link.label] || '';
             return (
                 <a
                     href={link.href}
-                    class={`flex flex-col items-center justify-center gap-2 py-5 px-3 rounded-xl border transition-all duration-300 ${
+                    class={`flex flex-col items-center justify-center gap-3 py-10 rounded shadow-sm border border-white/5 transition-all duration-300 ${
                         isActive
-                            ? 'border-[#ffabf1]/50 bg-[#ffabf1]/8 text-[#ffabf1] drop-shadow-[0_0_12px_rgba(255,171,241,0.2)]'
-                            : 'border-white/8 bg-white/3 text-white/50 hover:text-[#ffabf1] hover:border-[#ffabf1]/30 hover:bg-white/5'
+                            ? 'bg-white/5 border-white/10 text-[#ffabf1]'
+                            : 'bg-[#050712] text-white/40 active:bg-white/5'
                     }`}
                 >
-                    <span class="material-symbols-outlined text-2xl">{link.icon}</span>
-                    <span class={`font-headline text-[9px] tracking-[0.25em] uppercase`} data-i18n={i18nKey}>{link.label}</span>
+                    <span class="material-symbols-outlined text-[26px] opacity-80">{link.icon}</span>
+                    <span class={`font-headline text-[9px] tracking-[0.3em] uppercase`} data-i18n={i18nKey}>{link.label}</span>
                 </a>
             );
         })}
+    </div>
+
+    {/* Language Selector Bottom */}
+    <div class="mt-auto pb-12 flex justify-center items-center gap-8 px-4">
+        {(['ES', 'EN', 'NL', 'FR'] as const).map(code => (
+            <button 
+                data-lang={code} 
+                class="lang-btn font-headline text-[13px] tracking-widest px-4 py-2 transition-all duration-300 rounded-sm border border-transparent text-white/30 data-[current=true]:text-[#ffabf1] data-[current=true]:border-[#ffabf1]/40"
+            >
+                {code}
+            </button>
+        ))}
     </div>
 </div>
 
