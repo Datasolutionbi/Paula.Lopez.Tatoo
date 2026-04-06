@@ -1,16 +1,16 @@
 {
-  "name": "AndresBI Portfolio",
-  "short_name": "AndresBI",
-  "description": "Especialista en BI, Visualización de Datos e IA",
-  "start_url": "/AndresBI/",
+  "name": "Paula Lopez Tattoo",
+  "short_name": "Paula Tattoo",
+  "description": "Portafolio Profesional de Tatuajes - Biorealismo, Anime y Blackwork",
+  "start_url": "/Paula.Lopez.Tatoo/",
   "display": "standalone",
   "background_color": "#080813",
   "theme_color": "#080813",
   "icons": [
     {
-      "src": "/AndresBI/favicon.svg",
+      "src": "/Paula.Lopez.Tatoo/paula lopez.png",
       "sizes": "any",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]

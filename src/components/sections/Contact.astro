@@ -3,140 +3,127 @@ const currentPath = Astro.url.pathname;
 const isEn = currentPath.includes('/en');
 
 const content = {
-  title: isEn ? "SECURE YOUR SPOT" : "ASEGURA TU LUGAR",
-  subtitle: isEn ? "SPOTS ARE EXTREMELY LIMITED" : "CUPOS EXTREMADAMENTE LIMITADOS",
+  subtitle: isEn ? "Let's Create Something" : "Creemos Algo Juntos",
   description: isEn 
-    ? "Due to high demand and frequent travel, please provide detailed information about your project. I will review and respond within 24 hours."
-    : "Debido a la alta demanda y viajes constantes, proporciona información detallada sobre tu proyecto. Revisaré y responderé en menos de 24 horas.",
-  submit: isEn ? "SEND BOOKING REQUEST" : "ENVIAR SOLICITUD DE RESERVA",
+    ? "Every tattoo is a collaboration. Tell me about your project and let's create something you'll wear with pride for a lifetime."
+    : "Cada tatuaje es una colaboración. Cuéntame sobre tu proyecto y creemos algo que llevarás con orgullo toda la vida.",
+  title: "BOOKING",
+  formTitle: isEn ? "BOOK YOUR SESSION" : "RESERVA TU SESIÓN",
+  submit: isEn ? "SEND MESSAGE" : "ENVIAR MENSAJE",
   labels: {
-    name: isEn ? "Full Name" : "Nombre Completo",
-    phone: isEn ? "Phone Number" : "Teléfono / WhatsApp",
-    placement: isEn ? "Placement & Size" : "Ubicación y Tamaño",
-    description: isEn ? "Project Description" : "Descripción del Proyecto",
-    placeholder_name: "MARCO ROJAS",
+    name: isEn ? "Name" : "Nombre",
+    email: isEn ? "Email" : "Correo Electrónico",
+    phone: isEn ? "Phone (optional)" : "Teléfono (opcional)",
+    message: isEn ? "Tell me about your project" : "Cuéntame sobre tu proyecto",
+    placeholder_name: "Your full name",
+    placeholder_email: "your@email.com",
     placeholder_phone: "+57 300 000 0000",
-    placeholder_desc: isEn ? "DESCRIBE YOUR IDEA IN DETAIL (STYLE, MEANING, ELEMENTS...)" : "DESCRIBE TU IDEA EN DETALLE (ESTILO, SIGNIFICADO, ELEMENTOS...)"
+    placeholder_message: isEn ? "Describe your tattoo idea, style preferences, placement, size..." : "Describe tu idea de tatuaje, estilo preferido, ubicación, tamaño..."
+  },
+  contact: {
+    title: isEn ? "GET IN TOUCH" : "CONTACTO",
+    email: "paulangelstattoo@gmail.com",
+    phone: "+34 600 000 000",
+    location: isEn ? "Madrid, Spain" : "Madrid, España",
+    follow: isEn ? "Follow on Instagram" : "Sígueme en Instagram",
+    social: {
+      instagram: "@paulaangels",
+      tiktok: "@paulaangels"
+    }
   },
   steps: {
-    1: isEn ? "Detail your idea" : "Detalla tu idea",
-    2: isEn ? "Select placement" : "Elige la ubicación",
-    3: isEn ? "Get quoted" : "Recibe cotización"
-  },
-  system: isEn ? "SYSTEM ONLINE • BOOKING NOW" : "SISTEMA ONLINE • AGENDA ABIERTA",
-  options: {
-    body: isEn ? ["BACK", "ARM", "LEG", "CHEST"] : ["ESPALDA", "BRAZO", "PIERNA", "PECHO"],
-    size: isEn ? ["SMALL (<10CM)", "MEDIUM (10-20CM)", "LARGE (>20CM)", "FULL SLEEVE"] : ["PEQUEÑO (<10CM)", "MEDIANO (10-20CM)", "GRANDE (>20CM)", "MANGA COMPLETA"]
+    1: isEn ? "Share your idea" : "Comparte tu idea",
+    2: isEn ? "Receive quote" : "Recibe cotización",
+    3: isEn ? "Book session" : "Reserva sesión"
   }
 };
 ---
 
-<div class="relative w-full h-full flex flex-col md:flex-row overflow-hidden bg-white border border-black/5 rounded-none">
-  <!-- Booking Info Side (Visual & Text) -->
-  <div class="w-full md:w-5/12 p-12 md:p-16 lg:p-20 bg-studio-purple flex flex-col justify-center relative min-h-[450px] md:min-h-0">
-    <!-- Background Texture Contrast -->
-    <div class="absolute inset-0 opacity-15 pointer-events-none mix-blend-overlay">
-      <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/clean-gray-paper.png')]"></div>
-    </div>
+<section class="relative w-full bg-surface-container-lowest py-20 md:py-28 overflow-hidden">
+  <!-- Grain texture overlay -->
+  <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');"></div>
 
-    <div class="relative z-10 w-full max-w-lg">
-      <div class="inline-block px-5 py-2 bg-white/5 backdrop-blur-md border border-white/10 text-[9px] font-black uppercase tracking-[0.4em] mb-12 text-white">
-        {content.subtitle}
-      </div>
+  <div class="relative z-10 max-w-4xl mx-auto px-6 md:px-8">
+    <div class="flex flex-col items-center">
       
-      <h2 class="flex flex-col mb-12 leading-[0.8]">
-        <span class="font-serif-editorial text-5xl md:text-6xl lg:text-7xl text-white italic opacity-80 -ml-1">
-          {isEn ? "The" : "Tu"}
-        </span>
-        <span class="text-white font-sans font-black text-6xl md:text-7xl lg:text-8xl tracking-tighter uppercase">
-          {isEn ? "Vision" : "Visión"}
-        </span>
-      </h2>
-      
-      <div class="space-y-6">
-         <p class="font-sans text-[11px] md:text-xs font-bold uppercase tracking-[0.25em] opacity-40 leading-relaxed max-w-sm text-white">
-           {content.description}
-         </p>
-         <!-- Machine Vibration indicator for the contact form area -->
-         <div class="flex items-center gap-3">
-             <div class="w-2 h-2 rounded-none bg-red-500 animate-pulse"></div>
-             <span class="text-[9px] font-black uppercase tracking-widest text-white/40">Agenda Open - Bogotá</span>
-         </div>
+      <!-- Seccion 1: Título Principal (RESERVA TU SESIÓN) -->
+      <div class="text-center mb-10 md:mb-16">
+        <h2 class="font-display text-white text-4xl md:text-6xl uppercase tracking-[4px] mb-4">{content.formTitle}</h2>
+        <div class="w-20 h-px mx-auto bg-gold/50"></div>
       </div>
 
-      <div class="grid grid-cols-1 gap-10">
-        {[1, 2, 3].map((num) => (
-          <div class="flex items-center gap-8 group">
-            <div class="relative flex flex-col items-center">
-              <span class="text-sm font-serif-editorial italic text-white mb-1">{num}</span>
-              <div class="w-px h-8 bg-white/20 transition-all duration-300 group-last:hidden"></div>
-            </div>
-            <span class="text-[11px] font-bold uppercase tracking-[0.25em] opacity-50 text-white group-hover:opacity-100 transition-opacity">
-              {(content.steps as any)[num]}
-            </span>
+      <!-- Seccion 2: Intro (Creemos Algo Juntos + Descripcion) -->
+      <div class="text-center max-w-2xl mb-12 md:mb-20">
+        <h3 class="font-display text-[#ffabf1] text-2xl md:text-3xl uppercase tracking-[0.1em] mb-4">{content.subtitle}</h3>
+        <p class="font-body text-white/50 text-sm md:text-base leading-relaxed">
+          {content.description}
+        </p>
+      </div>
+
+      <!-- Seccion 3: Iconos de Contacto (Centered Stack) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 mb-20 text-center w-full">
+        <!-- Location -->
+        <div class="flex flex-col items-center gap-3 group">
+          <span class="material-symbols-outlined text-gold text-4xl group-hover:scale-110 transition-transform">location_on</span>
+          <div class="flex flex-col">
+            <span class="font-display text-white text-[10px] uppercase tracking-widest opacity-40 mb-1">LOCATION</span>
+            <span class="font-body text-white text-sm tracking-wide">{content.contact.location}</span>
           </div>
-        ))}
+        </div>
+        <!-- Email -->
+        <div class="flex flex-col items-center gap-3 group">
+          <span class="material-symbols-outlined text-gold text-4xl group-hover:scale-110 transition-transform">mail</span>
+          <div class="flex flex-col">
+            <span class="font-display text-white text-[10px] uppercase tracking-widest opacity-40 mb-1">EMAIL</span>
+            <a href={`mailto:${content.contact.email}`} class="font-body text-white text-sm hover:text-gold transition-colors">{content.contact.email}</a>
+          </div>
+        </div>
+        <!-- Instagram -->
+        <div class="flex flex-col items-center gap-3 group">
+          <span class="material-symbols-outlined text-gold text-4xl group-hover:scale-110 transition-transform">public</span>
+          <div class="flex flex-col">
+            <span class="font-display text-white text-[10px] uppercase tracking-widest opacity-40 mb-1">INSTAGRAM</span>
+            <a href="https://instagram.com/paulaangels" target="_blank" class="font-body text-white text-sm hover:text-gold transition-colors">{content.contact.social.instagram}</a>
+          </div>
+        </div>
       </div>
+
+      <!-- Seccion 4: Formulario de Contacto (Premium Center) -->
+      <div class="w-full max-w-2xl bg-[#090d1d] border-t border-l border-white/5 p-8 md:p-12 shadow-2xl relative">
+        <form class="space-y-8" method="POST" action="/api/contact">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="space-y-2">
+              <label class="block font-body text-primary text-[10px] uppercase tracking-widest text-center md:text-left">{content.labels.name}</label>
+              <input type="text" name="name" required class="w-full text-center md:text-left" />
+            </div>
+            <div class="space-y-2">
+              <label class="block font-body text-primary text-[10px] uppercase tracking-widest text-center md:text-left">{content.labels.email}</label>
+              <input type="email" name="email" required class="w-full text-center md:text-left" />
+            </div>
+          </div>
+          <div class="space-y-2">
+            <label class="block font-body text-primary text-[10px] uppercase tracking-widest text-center md:text-left">{content.labels.message}</label>
+            <textarea name="message" rows="4" required class="w-full resize-none text-center md:text-left"></textarea>
+          </div>
+          <button type="submit" class="btn-primary w-full py-5 text-xs tracking-[0.4em] font-bold">
+            {content.submit}
+          </button>
+        </form>
+      </div>
+
+      <!-- Seccion 5: Info adicional (Process Steps) -->
+      <div class="w-full max-w-2xl mt-16 pt-8 border-t border-white/5">
+        <h4 class="font-display text-white text-xs uppercase tracking-[0.2em] mb-8 opacity-40 text-center">PROCESS</h4>
+        <div class="flex flex-col md:flex-row justify-center items-center gap-10 md:gap-16">
+          {[1, 2, 3].map((num) => (
+            <div class="flex flex-col items-center gap-3">
+              <span class="font-display text-gold text-2xl leading-none">{num}</span>
+              <span class="font-body text-white/60 text-[10px] uppercase tracking-[0.2em] leading-tight text-center max-w-[120px]">{(content.steps as any)[num]}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </div>
   </div>
-
-  <!-- Form Side -->
-  <div class="w-full md:w-7/12 p-10 md:p-16 lg:p-20 bg-white flex flex-col justify-center">
-    <form class="space-y-10">
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
-        <div class="space-y-3">
-          <label class="block text-[9px] uppercase tracking-[0.3em] font-bold opacity-30 text-black">{content.labels.name}</label>
-          <input 
-            type="text"
-            placeholder={content.labels.placeholder_name}
-            class="w-full bg-transparent border-b border-black/10 focus:border-studio-purple rounded-none py-3 font-sans text-[11px] uppercase tracking-widest outline-none transition-all duration-500 text-black placeholder:text-black/10"
-          />
-        </div>
-        <div class="space-y-3">
-          <label class="block text-[9px] uppercase tracking-[0.3em] font-bold opacity-30 text-black">{content.labels.phone}</label>
-          <input 
-            type="tel"
-            placeholder={content.labels.placeholder_phone}
-            class="w-full bg-transparent border-b border-black/10 focus:border-studio-purple rounded-none py-3 font-sans text-[11px] uppercase tracking-widest outline-none transition-all duration-500 text-black placeholder:text-black/10"
-          />
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
-        <div class="space-y-3">
-          <label class="text-[9px] uppercase tracking-[0.3em] font-bold opacity-30 text-black">{content.labels.placement}</label>
-          <select class="w-full bg-transparent border-b border-black/10 focus:border-studio-purple rounded-none py-3 font-sans text-[11px] uppercase tracking-widest outline-none transition-all duration-500 appearance-none cursor-pointer text-black/60">
-            {content.options.body.map(opt => <option>{opt}</option>)}
-          </select>
-        </div>
-        <div class="space-y-3">
-          <label class="text-[9px] uppercase tracking-[0.3em] font-bold opacity-30 text-black">Tamaño</label>
-          <select class="w-full bg-transparent border-b border-black/10 focus:border-studio-purple rounded-none py-3 font-sans text-[11px] uppercase tracking-widest outline-none transition-all duration-500 appearance-none cursor-pointer text-black/60">
-            {content.options.size.map(opt => <option>{opt}</option>)}
-          </select>
-        </div>
-      </div>
-
-      <div class="space-y-3">
-        <label class="text-[9px] uppercase tracking-[0.3em] font-bold opacity-30 text-black">{content.labels.description}</label>
-        <textarea 
-          rows="3" 
-          placeholder={content.labels.placeholder_desc}
-          class="w-full bg-transparent border-b border-black/10 focus:border-studio-purple rounded-none py-3 font-sans text-[11px] uppercase tracking-widest outline-none transition-all duration-500 resize-none text-black placeholder:text-black/10"
-        ></textarea>
-      </div>
-
-      <div class="pt-6">
-        <button type="submit" class="group relative w-full bg-studio-purple text-white py-6 overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-purple-900/20 active:scale-[0.98]">
-          <span class="relative z-10 text-[10px] font-black uppercase tracking-[0.4em]">{content.submit}</span>
-          <div class="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-        </button>
-      </div>
-
-      <div class="flex items-center justify-center gap-4 pt-4">
-         <div class="w-1.5 h-1.5 rounded-none bg-studio-purple animate-pulse"></div>
-         <span class="text-[9px] uppercase tracking-[0.5em] font-bold opacity-30">{content.system}</span>
-      </div>
-    </form>
-  </div>
-</div>
+</section>

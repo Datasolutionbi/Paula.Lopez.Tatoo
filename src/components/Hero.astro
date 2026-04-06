@@ -1,109 +1,134 @@
 ---
-// Hero.astro - Modern Editorial Design
+// Hero.astro - Premium Dark Theme
 const { isEn = false } = Astro.props;
 
 const content = {
   es: {
     artist: "Paula",
     surname: "López",
-    role: "Tattoo Artist",
-    description: "Tu elección para una experiencia de tatuaje diferente. Arte tradicional unido a la precisión moderna."
+    role: "Tatuadora Profesional",
+    description: "Tu elección para una experiencia de tatuaje diferente. Arte tradicional unido a la precisión moderna.",
+    bookNow: "RESERVAR AHORA",
+    viewPortfolio: "VER PORTFOLIO",
+    portfolioHighlights: "DESTACADOS DEL PORTFOLIO",
+    scrollDown: "Desplázate hacia abajo"
   },
   en: {
     artist: "Paula",
     surname: "López",
     role: "Tattoo Artist",
-    description: "Your choice for a different tattooing experience. Traditional art meets modern precision."
+    description: "Your choice for a different tattooing experience. Traditional art meets modern precision.",
+    bookNow: "BOOK NOW",
+    viewPortfolio: "VIEW PORTFOLIO",
+    portfolioHighlights: "PORTFOLIO HIGHLIGHTS",
+    scrollDown: "Scroll down"
   }
 };
 
 const t = isEn ? content.en : content.es;
 ---
 
-<section class="min-h-[95vh] flex items-center justify-center pt-32 pb-20 px-6 md:px-12 bg-[var(--bg-page)] overflow-hidden relative">
-  <!-- Subtle Parchment Texture Layer -->
-  <div class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]"></div>
+<section class="relative min-h-screen flex items-end overflow-hidden bg-surface-container-lowest">
+  <!-- Full-bleed Background Image -->
+  <div class="absolute inset-0 z-0">
+    <img 
+      src="/Paula.Lopez.Tatoo/paula-studio.png" 
+      alt="" 
+      class="w-full h-full object-cover grayscale brightness-50"
+      loading="eager"
+    />
+  </div>
   
-  <div class="max-w-[1400px] w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center relative z-10">
-    
-    <!-- Left Column: Content -->
-    <div class="relative z-10 lg:pr-10">
-      <div class="space-y-10">
-          <h1 class="flex flex-col leading-[0.85] relative">
-            <!-- Decorative accent -->
-            <div class="absolute -top-12 -left-6 w-32 h-32 bg-studio-purple/10 ink-stain -z-10 opacity-30"></div>
-            
-            <span class="font-serif-editorial text-7xl md:text-8xl lg:text-[8rem] xl:text-[9.5rem] text-studio-purple italic mb-2 relative">
-              {t.artist}
-            </span>
-            <span class="font-sans font-black text-6xl md:text-8xl lg:text-[7.5rem] xl:text-[10rem] text-[#222] tracking-tighter uppercase leading-[0.8]">
-              {t.surname}
-            </span>
-          </h1>
-          
-          <div class="space-y-8 pt-6 border-l-2 border-studio-purple/20 pl-8 md:pl-12 relative">
-            <p class="text-studio-purple font-black uppercase tracking-[0.4em] text-xs md:text-sm sketch-line inline-block">
-              {t.role}
-            </p>
-            <p class="text-black/50 font-medium text-lg md:text-xl max-w-sm leading-relaxed">
-              {t.description}
-            </p>
-            
-          
-        </div>
-
-        <!-- Masterpieces Mini-Slider -->
-        <div class="pt-12">
-           <div class="bg-gray-50/50 backdrop-blur-md rounded-none p-8 border border-black/5 relative overflow-hidden group">
-              <!-- Glow -->
-              <div class="absolute -inset-1 bg-studio-purple/5 blur-xl group-hover:opacity-100 opacity-0 transition-opacity duration-1000"></div>
-              
-              <div class="relative z-10">
-                 <div class="flex items-center justify-between mb-8">
-                    <h3 class="text-[9px] font-black uppercase tracking-[0.3em] text-black opacity-40">Portfolio Highlights</h3>
-                    <div class="flex gap-3">
-                       <button class="w-6 h-6 flex items-center justify-center text-black/20 hover:text-black transition-colors">
-                          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                       </button>
-                       <button class="w-6 h-6 flex items-center justify-center text-black/20 hover:text-black transition-colors">
-                          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                       </button>
-                    </div>
-                 </div>
-
-                 <div class="grid grid-cols-3 gap-3">
-                    {[
-                      { img: "/Paula.Lopez.Tatoo/tattoos/tattoo-1.png" },
-                      { img: "/Paula.Lopez.Tatoo/tattoos/tattoo-2.png" },
-                      { img: "/Paula.Lopez.Tatoo/tattoos/tattoo-3.png" }
-                    ].map((item) => (
-                      <div class="aspect-[4/5] rounded-none overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 cursor-pointer">
-                        <img src={item.img} class="w-full h-full object-cover" alt="Portfolio Highlights" />
-                      </div>
-                    ))}
-                 </div>
-              </div>
-           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Right Column: Premium Portrait -->
-    <div class="relative group mt-12 lg:mt-0">
-      <div class="absolute -inset-4 bg-studio-purple/10 blur-3xl rounded-none opacity-50 group-hover:opacity-100 transition-opacity duration-1000"></div>
+  <!-- Black Overlay gradient for depth -->
+  <div class="absolute inset-0 bg-gradient-to-t from-[#00010d] via-[#00010d]/60 to-transparent z-10"></div>
+  
+  <!-- Subtle Grain Texture -->
+  <div class="absolute inset-0 opacity-[0.04] pointer-events-none z-20" style="background-image: url('https://www.transparenttextures.com/patterns/stardust.png');"></div>
+  
+  <!-- Neon Dotted Vertical Line -->
+  <div class="absolute left-6 md:left-12 top-0 bottom-0 flex flex-col items-center justify-center gap-2 z-30 opacity-40">
+    {Array.from({ length: 40 }).map(() => (
+      <div class="w-[2px] h-[2px] bg-primary rounded-full shadow-[0_0_8px_rgba(255,171,241,0.8)]"></div>
+    ))}
+  </div>
+  
+  <!-- Content Container -->
+  <div class="relative z-30 w-full px-6 md:px-12 lg:px-20 pb-24 md:pb-32 max-w-[1400px] mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-end">
       
-      <div class="relative rounded-none overflow-hidden aspect-[4/5] bg-stone-100 shadow-2xl shadow-black/5 transition-transform duration-700 group-hover:scale-[1.02] border border-black/5">
-        <img 
-          src="/Paula.Lopez.Tatoo/paula-studio.png" 
-          alt="Paula López Portrait" 
-          class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000"
-        />
+      <!-- Left Column: Main Content -->
+      <div class="space-y-8">
+        <!-- Artist Name -->
+        <h1 class="leading-[0.85] animate-slide-up">
+          <span class="block font-display font-light text-5xl md:text-7xl lg:text-[4.5rem] xl:text-[6rem] text-white/90 uppercase tracking-[3px]">
+            {t.artist}
+          </span>
+          <span class="block font-display font-bold text-6xl md:text-8xl lg:text-[7rem] xl:text-[9rem] text-white uppercase tracking-[2px] drop-shadow-[0_0_30px_rgba(255,171,241,0.2)]">
+            {t.surname}
+          </span>
+        </h1>
         
-        <!-- Subtle Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-60"></div>
+        <!-- Role Subtitle -->
+        <p class="text-primary font-headline font-semibold uppercase tracking-[0.4em] text-xs md:text-sm animate-fade-in" style="animation-delay: 0.2s;">
+          {t.role}
+        </p>
         
+        <!-- Description -->
+        <p class="text-white/60 font-body text-sm md:text-base max-w-md leading-[1.8] animate-fade-in" style="animation-delay: 0.3s;">
+          {t.description}
+        </p>
+        
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-4 pt-4 animate-slide-up" style="animation-delay: 0.4s;">
+          <a 
+            href="/Paula.Lopez.Tatoo/booking" 
+            class="inline-block bg-primary-container text-on-primary-container font-headline font-semibold uppercase tracking-[0.25em] text-xs md:text-sm px-10 py-4 hover:shadow-[0_0_20px_rgba(140,39,134,0.6)] hover:-translate-y-1 transition-all duration-300"
+          >
+            {t.bookNow}
+          </a>
+          <a 
+            href="/Paula.Lopez.Tatoo/portafolio" 
+            class="inline-block border border-primary/50 text-primary font-headline font-semibold uppercase tracking-[0.25em] text-xs md:text-sm px-10 py-4 hover:bg-primary/10 hover:border-primary transition-all duration-300"
+          >
+            {t.viewPortfolio}
+          </a>
+        </div>
       </div>
+      
+      <!-- Right Column: Portfolio Mini-Preview -->
+      <div class="hidden lg:block animate-fade-in" style="animation-delay: 0.6s;">
+        <!-- Label -->
+        <p class="text-secondary font-headline font-bold uppercase tracking-[0.3em] text-[9px] mb-6">
+          {t.portfolioHighlights}
+        </p>
+        
+        <!-- 3-Image Grid -->
+        <div class="grid grid-cols-3 gap-3">
+          {[
+            { img: "/Paula.Lopez.Tatoo/tattoos/tattoo-1.png" },
+            { img: "/Paula.Lopez.Tatoo/tattoos/tattoo-2.png" },
+            { img: "/Paula.Lopez.Tatoo/tattoos/tattoo-3.png" }
+          ].map((item) => (
+            <a href="/Paula.Lopez.Tatoo/portafolio" class="aspect-[4/5] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 cursor-pointer group rounded-sm border border-white/5 hover:border-primary/30">
+              <img 
+                src={item.img} 
+                alt="Portfolio highlight" 
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+            </a>
+          ))}
+        </div>
+      </div>
+      
     </div>
-
+  </div>
+  
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 animate-fade-in" style="animation-delay: 1s;">
+    <a href="#about" aria-label={t.scrollDown} class="text-primary hover:text-white transition-colors animate-bounce">
+      <svg class="w-5 h-5 drop-shadow-[0_0_8px_rgba(255,171,241,0.5)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </a>
   </div>
 </section>
