@@ -74,7 +74,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     'nav.blog': 'BLOG',
     'nav.cta': 'Consultation',
 
-    'hero.label': 'TATTOO ARTIST · MADRID, SPAIN',
+    'hero.label': 'TATTOO ARTIST · MADRID, ESPAÑA',
     'hero.headline1': 'Art that lives',
     'hero.headline2': 'on your skin',
     'hero.body': 'Specialist in Biorealism, Anime, and Blackwork. Each line is a story. Each session, a ritual.',
@@ -109,7 +109,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     'about.headline': 'Paula Angels',
     'about.bio': 'Tattoo artist based in Madrid. My work explores the tension between the organic and the synthetic — hypersaturated biorealism, anime universes and the eternal weight of blackwork.',
 
-    'general.location': 'Madrid, Spain',
+    'general.location': 'Madrid, España',
     'general.booknow': 'Book Now',
     'general.viewwork': 'View Work',
     'general.loading': 'Loading...',
