@@ -1,82 +1,74 @@
 ---
-// Projects.astro - Modern Editorial Gallery
+// Projects.astro - Premium Dark Gallery
 import { getCollection } from 'astro:content';
 
 const allProjects = await getCollection('projects', ({ data }) => {
   return data.published === true;
 });
 
-const categories = [...new Set(allProjects.map(p => p.data.category))];
+const categories = ['All', ...new Set(allProjects.map(p => p.data.category))];
 ---
 
-<section id="gallery" class="py-24 bg-white">
-  <div class="px-6 md:px-12 max-w-[1400px] mx-auto">
+<section id="gallery" class="py-24 bg-studio-dark relative overflow-hidden">
+  <!-- Subtle grain texture overlay -->
+  <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%224%22 stitchTiles=%22stitch%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%221%22/></svg>');"></div>
+
+  <div class="relative z-10 px-6 md:px-12 max-w-[1600px] mx-auto">
+    <!-- Section Header -->
     <div class="text-center mb-16">
-      <div class="inline-block px-5 py-2 bg-black/5 border border-black/10 text-[10px] font-black uppercase tracking-[0.4em] mb-6">
-        Flash Design Atelier
+      <p class="text-gold text-[12px] font-body uppercase tracking-[0.3em] mb-4">Selected Works</p>
+      <h2 class="font-display text-[40px] md:text-[50px] text-white uppercase tracking-[3px] leading-none mb-6">Portfolio</h2>
+      <div class="flex items-center justify-center gap-3">
+        <span class="block w-12 h-[1px] bg-gold/40"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+        <span class="block w-12 h-[1px] bg-gold/40"></span>
       </div>
-      <h2 class="font-serif-editorial text-6xl md:text-8xl text-black leading-none tracking-tighter">
-        Top <span class="text-studio-purple font-sans font-black italic">Tattoo</span>
-      </h2>
     </div>
 
-    <!-- Minimalist Category Filters -->
-    <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-16">
-      <button
-        class="filter-btn text-sm font-bold uppercase tracking-widest transition-all relative group active-filter"
-        data-filter="all"
-      >
-        <span class="opacity-100">All</span>
-        <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-[var(--purple-primary)] rounded-none opacity-100 transition-opacity"></span>
-      </button>
-      {categories.map(cat => (
+    <!-- Category Filters -->
+    <div class="flex flex-wrap justify-center gap-3 mb-12" id="category-filters">
+      {categories.map((cat, i) => (
         <button
-          class="filter-btn text-sm font-bold uppercase tracking-widest transition-all relative group opacity-60 hover:opacity-100"
-          data-filter={cat}
+          class={`filter-btn font-body text-[11px] uppercase tracking-[0.2em] px-5 py-2 transition-all duration-300 cursor-pointer ${i === 0 ? 'active text-white border border-gold/60 bg-gold/10' : 'text-white/40 border border-transparent hover:text-white/70 hover:border-white/20'}`}
+          data-filter={cat.toLowerCase()}
         >
-          <span>{cat.replace('-', ' ')}</span>
-          <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-[var(--purple-primary)] rounded-none opacity-0 group-hover:opacity-40 transition-opacity"></span>
+          {cat.replace('-', ' ')}
         </button>
       ))}
     </div>
 
-    <!-- Editorial Staggered Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10" id="projects-grid">
-      {allProjects.map((project, index) => (
+    <!-- Image Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[6px]" id="projects-grid">
+      {allProjects.map((project) => (
         <article
-          class="project-card group relative"
-          data-category={project.data.category}
+          class="project-card group relative cursor-pointer"
+          data-category={project.data.category?.toLowerCase()}
         >
-          <!-- Technical Draft Label -->
-          <div class="draft-label">COMP_#{index + 104}</div>
+          <div class="relative overflow-hidden">
+            <img
+              src={project.data.images.thumbnail}
+              alt={project.data.title}
+              loading="lazy"
+              class="w-full h-full object-cover aspect-[4/5] grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:border-gold/50 border border-transparent"
+            />
 
-          <div class="relative rounded-none overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 bg-white anatomical-grid border border-black/5">
-            <!-- Image with Stencil Hover -->
-            <div class="aspect-[4/5] overflow-hidden stencil-hover">
-              <img
-                src={project.data.images.thumbnail}
-                alt={project.data.title}
-                loading="lazy"
-                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-              />
-            </div>
-
-            <!-- Heart Icon Overaly -->
-            <button class="absolute top-6 right-6 w-10 h-10 bg-black/10 backdrop-blur-md rounded-none flex items-center justify-center text-white hover:bg-white hover:text-[var(--purple-primary)] transition-all">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-            </button>
-
-            <!-- Text Overlay (Match 'Fine Line' label) -->
-            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-              <span class="bg-white/90 backdrop-blur-sm px-6 py-2 rounded-none text-sm font-black uppercase tracking-widest text-[#222] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                {project.data.title}
-              </span>
+            <!-- Hover Overlay -->
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center gap-2">
+              <span class="text-gold font-display text-sm uppercase tracking-[0.2em]">{project.data.category}</span>
+              <h3 class="text-white font-body text-lg tracking-wide">{project.data.title}</h3>
             </div>
           </div>
         </article>
       ))}
+    </div>
+
+    <!-- CTA Button -->
+    <div class="text-center mt-16">
+      <a href="/portfolio" class="inline-block bg-gold text-black font-body text-[12px] uppercase tracking-[0.25em] px-10 py-4 transition-all duration-300 hover:bg-white cursor-pointer">
+        View All Works
+      </a>
     </div>
   </div>
 </section>
@@ -86,41 +78,65 @@ const categories = [...new Set(allProjects.map(p => p.data.category))];
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
+    function applyFilter(filterClass) {
+      filterButtons.forEach(btn => {
+        btn.classList.remove('active', 'text-white', 'border-gold/60', 'bg-gold/10');
+        btn.classList.add('text-white/40', 'border-transparent');
+      });
+      
+      const activeButton = document.querySelector(`.filter-btn[data-filter="${filterClass}"]`) || document.querySelector('.filter-btn[data-filter="all"]');
+      if (activeButton) {
+        activeButton.classList.add('active', 'text-white', 'border-gold/60', 'bg-gold/10');
+        activeButton.classList.remove('text-white/40', 'border-transparent');
+      }
+
+      projectCards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (filterClass === 'all' || category === filterClass) {
+          card.style.display = 'block';
+          setTimeout(() => card.classList.add('is-visible'), 10);
+        } else {
+          card.classList.remove('is-visible');
+          setTimeout(() => { card.style.display = 'none'; }, 500);
+        }
+      });
+    }
+
     filterButtons.forEach(button => {
       button.addEventListener('click', () => {
-        const filter = button.getAttribute('data-filter');
-
-        // Update active style
-        filterButtons.forEach(btn => {
-          btn.classList.add('opacity-60');
-          btn.classList.remove('opacity-100');
-          btn.querySelector('span:last-child')?.classList.replace('opacity-100', 'opacity-0');
-        });
-        button.classList.remove('opacity-60');
-        button.classList.add('opacity-100');
-        button.querySelector('span:last-child')?.classList.replace('opacity-0', 'opacity-100');
-
-        // Filter projects with animation
-        projectCards.forEach(card => {
-          const category = card.getAttribute('data-category');
-          if (filter === 'all' || category === filter) {
-            (card as HTMLElement).style.display = 'block';
-            setTimeout(() => card.classList.add('is-visible'), 10);
-          } else {
-            card.classList.remove('is-visible');
-            setTimeout(() => { (card as HTMLElement).style.display = 'none'; }, 500);
-          }
-        });
+        const filter = button.getAttribute('data-filter') || 'all';
+        applyFilter(filter);
       });
     });
+
+    // Check URL parameters on load
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterParam = urlParams.get('filter');
+    if (filterParam) {
+      applyFilter(filterParam);
+    }
   }
 
   document.addEventListener('astro:page-load', initProjectFilters);
-  initProjectFilters();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProjectFilters);
+  } else {
+    initProjectFilters();
+  }
 </script>
 
 <style>
-  .filter-btn span:last-child {
-    pointer-events: none;
+  .filter-btn {
+    pointer-events: auto;
+  }
+
+  .project-card {
+    opacity: 1;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .project-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 </style>

@@ -4,23 +4,68 @@ export default {
   theme: {
     extend: {
       colors: {
-        studio: {
-          dark: '#050505',      // Deepest black background
-          charcoal: '#0A0A0A',  // Slightly lighter matte black
-          purple: '#521348',    // New Signature Purple
-          glass: 'rgba(255, 255, 255, 0.03)',
-          'glass-border': 'rgba(255, 255, 255, 0.08)',
-        },
-        primary: {
-          DEFAULT: '#521348',
-          dark: '#3a1033',
-          light: '#7a1d6b'
-        }
+        "tertiary-fixed": "#ffdbcb",
+        "on-tertiary-fixed-variant": "#6b3a1f",
+        "surface-tint": "#ffabf1",
+        "surface-container": "#1b1f30",
+        "surface-variant": "#303446",
+        "on-primary-fixed-variant": "#7c1678",
+        "primary": "#ffabf1",
+        "outline-variant": "#51424d",
+        "tertiary": "#fdb693",
+        "primary-fixed-dim": "#ffabf1",
+        "on-primary-container": "#ffadf1",
+        "surface-container-low": "#171b2c",
+        "on-error-container": "#ffdad6",
+        "tertiary-container": "#7a462a",
+        "on-error": "#690005",
+        "background": "#0f1223",
+        "primary-fixed": "#ffd7f4",
+        "surface-bright": "#35384b",
+        "primary-container": "#8c2786",
+        "surface-container-highest": "#303446",
+        "on-primary": "#5c0059",
+        "secondary-fixed-dim": "#9bcaff",
+        "on-tertiary-fixed": "#341100",
+        "inverse-primary": "#993392",
+        "error-container": "#93000a",
+        "on-tertiary-container": "#feb793",
+        "on-secondary-fixed": "#001d35",
+        "on-surface": "#dfe1f9",
+        "on-surface-variant": "#d6c1ce",
+        "on-secondary-fixed-variant": "#004a7a",
+        "outline": "#9e8b98",
+        "inverse-on-surface": "#2c2f41",
+        "surface": "#0f1223",
+        "tertiary-fixed-dim": "#fdb693",
+        "on-secondary-container": "#002c4b",
+        "on-primary-fixed": "#380037",
+        "inverse-surface": "#dfe1f9",
+        "surface-dim": "#0f1223",
+        "on-secondary": "#003256",
+        "surface-container-high": "#25293b",
+        "secondary-fixed": "#d0e4ff",
+        "on-background": "#dfe1f9",
+        "error": "#ffb4ab",
+        "on-tertiary": "#4f240b",
+        "surface-container-lowest": "#090d1d",
+        "secondary-container": "#0096f1",
+        "secondary": "#9bcaff"
+      },
+      borderRadius: {
+        "DEFAULT": "0px",
+        "lg": "0px",
+        "xl": "0px",
+        "full": "9999px"
       },
       fontFamily: {
-        sans: ['"Space Grotesk"', 'sans-serif'],
-        display: ['Fraunces', 'serif'],
-        modern: ['"Space Grotesk"', 'sans-serif'],
+        "headline": ["Epilogue", "sans-serif"],
+        "body": ["Newsreader", "serif"],
+        "label": ["Epilogue", "sans-serif"],
+        display: ['"Epilogue"', 'sans-serif'],
+        sans: ['"Epilogue"', 'sans-serif'],
+        tattoo: ['"Epilogue"', 'sans-serif'],
+        script: ['"Newsreader"', 'serif'],
       },
       backdropBlur: {
         xs: '2px',
@@ -28,9 +73,13 @@ export default {
         '3xl': '60px',
       },
       animation: {
-        'grain': 'grain 8s steps(10) infinite',
-        'reveal': 'reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-        'float': 'float 6s ease-in-out infinite',
+        grain: 'grain 8s steps(10) infinite',
+        reveal: 'reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        float: 'float 6s ease-in-out infinite',
+        'fade-in': 'fadeIn 0.6s ease-out forwards',
+        'slide-up': 'slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'scale-in': 'scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        shimmer: 'shimmer 2s linear infinite',
       },
       keyframes: {
         float: {
@@ -49,6 +98,46 @@ export default {
           '80%': { transform: 'translate(3%, 35%)' },
           '90%': { transform: 'translate(-10%, 10%)' },
         },
+        reveal: {
+          '0%': { opacity: '0', transform: 'translateY(30px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { opacity: '0', transform: 'translateY(40px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        scaleIn: {
+          '0%': { opacity: '0', transform: 'scale(0.95)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+      },
+      spacing: {
+        18: '4.5rem',
+        88: '22rem',
+        editorial: 'clamp(2rem, 8vw, 8rem)',
+      },
+      maxWidth: {
+        editorial: '1400px',
+        content: '720px',
+      },
+      letterSpacing: {
+        'ultra-wide': '0.25em',
+        nav: '0.15em',
+      },
+      lineHeight: {
+        'tight-display': '0.95',
+        editorial: '1.7',
+      },
+      borderWidth: {
+        3: '3px',
       },
     },
   },

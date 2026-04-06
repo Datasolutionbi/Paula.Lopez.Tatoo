@@ -35,12 +35,12 @@ const sizes = [
   <!-- Body Diagram -->
   <div class="grid md:grid-cols-2 gap-8">
     <div class="glass-card p-8">
-      <h3 class="font-modern text-sm uppercase tracking-widest mb-6 text-studio-purple">Body Placement</h3>
+      <h3 class="font-modern text-sm uppercase tracking-widest mb-6 text-gold">Body Placement</h3>
       <div class="grid grid-cols-2 gap-3">
         {bodyParts.map(part => (
           <button
             type="button"
-            class="body-part-btn px-4 py-3 bg-white/5 border border-white/10 rounded-none text-xs uppercase tracking-wider hover:border-studio-purple hover:bg-studio-purple/10 transition-all"
+            class="body-part-btn px-4 py-3 bg-[#1a1a1a] border border-white/10 rounded-none text-xs uppercase tracking-wider hover:border-gold hover:bg-gold/10 transition-all"
             data-body-part={part.id}
             data-multiplier={part.multiplier}
           >
@@ -52,18 +52,18 @@ const sizes = [
 
     <!-- Size Selector -->
     <div class="glass-card p-8">
-      <h3 class="font-modern text-sm uppercase tracking-widest mb-6 text-studio-purple">Size</h3>
+      <h3 class="font-modern text-sm uppercase tracking-widest mb-6 text-gold">Size</h3>
       <div class="space-y-3">
         {sizes.map(size => (
           <button
             type="button"
-            class="size-btn w-full text-left px-4 py-4 bg-white/5 border border-white/10 rounded-none hover:border-studio-purple hover:bg-studio-purple/10 transition-all group"
+            class="size-btn w-full text-left px-4 py-4 bg-[#1a1a1a] border border-white/10 rounded-none hover:border-gold hover:bg-gold/10 transition-all group"
             data-size={size.id}
             data-base-price={size.basePrice}
           >
             <div class="flex items-center justify-between mb-1">
               <span class="font-bold text-sm uppercase tracking-wide">{size.name}</span>
-              <span class="text-studio-purple font-bold">${size.basePrice}+</span>
+              <span class="text-gold font-bold">${size.basePrice}+</span>
             </div>
             <p class="text-[10px] opacity-60 uppercase tracking-widest">{size.description}</p>
           </button>
@@ -76,11 +76,11 @@ const sizes = [
   <div class="glass-card p-8 reveal-effect" id="price-estimator" style="display: none;">
     <div class="flex items-center justify-between">
       <div>
-        <h3 class="font-modern text-sm uppercase tracking-widest text-studio-purple mb-2">Estimated Price Range</h3>
+        <h3 class="font-modern text-sm uppercase tracking-widest text-gold mb-2">Estimated Price Range</h3>
         <p class="text-[10px] opacity-50 uppercase tracking-widest">Based on your selections</p>
       </div>
       <div class="text-right">
-        <div class="font-display text-4xl text-studio-purple" id="price-display">$0</div>
+        <div class="font-display text-4xl text-gold" id="price-display">$0</div>
         <p class="text-[10px] opacity-50 uppercase tracking-widest mt-1">Starting from</p>
       </div>
     </div>
@@ -135,8 +135,8 @@ const sizes = [
 
     bodyPartBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        bodyPartBtns.forEach(b => b.classList.remove('border-studio-purple', 'bg-studio-purple/20'));
-        btn.classList.add('border-studio-purple', 'bg-studio-purple/20');
+        bodyPartBtns.forEach(b => b.classList.remove('border-gold', 'bg-gold/20'));
+        btn.classList.add('border-gold', 'bg-gold/20');
         
         selectedBodyPart = (btn as HTMLElement).dataset.bodyPart || null;
         bodyMultiplier = parseFloat((btn as HTMLElement).dataset.multiplier || '1.0');
@@ -146,8 +146,8 @@ const sizes = [
 
     sizeBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        sizeBtns.forEach(b => b.classList.remove('border-studio-purple', 'bg-studio-purple/20'));
-        btn.classList.add('border-studio-purple', 'bg-studio-purple/20');
+        sizeBtns.forEach(b => b.classList.remove('border-gold', 'bg-gold/20'));
+        btn.classList.add('border-gold', 'bg-gold/20');
         
         selectedSize = (btn as HTMLElement).dataset.size || null;
         basePrice = parseInt((btn as HTMLElement).dataset.basePrice || '0');
@@ -162,7 +162,7 @@ const sizes = [
     if (savedBodyPart) {
       const savedBtn = document.querySelector(`[data-body-part="${savedBodyPart}"]`);
       if (savedBtn) {
-        savedBtn.classList.add('border-studio-purple', 'bg-studio-purple/20');
+        savedBtn.classList.add('border-gold', 'bg-gold/20');
         selectedBodyPart = savedBodyPart;
         bodyMultiplier = parseFloat((savedBtn as HTMLElement).dataset.multiplier || '1.0');
       }
@@ -171,7 +171,7 @@ const sizes = [
     if (savedSize) {
       const savedBtn = document.querySelector(`[data-size="${savedSize}"]`);
       if (savedBtn) {
-        savedBtn.classList.add('border-studio-purple', 'bg-studio-purple/20');
+        savedBtn.classList.add('border-gold', 'bg-gold/20');
         selectedSize = savedSize;
         basePrice = parseInt((savedBtn as HTMLElement).dataset.basePrice || '0');
       }

@@ -13,115 +13,148 @@ export const getStaticPaths = (async () => {
 
 const { post } = Astro.props;
 const { Content } = await post.render();
+
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description}>
-  <article class="min-h-screen py-20">
-    <div class="container-custom max-w-4xl">
-      <!-- Header -->
-      <header class="mb-12 reveal-effect">
-        <div class="flex items-center gap-4 mb-6 text-xs uppercase tracking-widest opacity-50">
-          <a href="/blog" class="hover:text-studio-purple transition-colors">← Back to Blog</a>
-          <span>•</span>
-          <span class="text-studio-purple">{post.data.category}</span>
-          <span>•</span>
-          <time>{post.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
+<BaseLayout title={`PAULA LOPEZ | ${post.data.title}`} description={post.data.description}>
+  <article class="w-full min-h-screen pb-20 px-8 lg:px-24 mx-auto flex flex-col z-10 max-w-[1200px]">
+    <!-- Spacer invisible para asegurar área bajo el navbar fijo -->
+    <div class="w-full h-32 md:h-48 shrink-0"></div>
+
+    <!-- Header -->
+    <header class="mb-16 md:mb-24 text-center md:text-left flex flex-col items-center md:items-start">
+        <div class="flex flex-wrap justify-center md:justify-start items-center gap-4 mb-8 text-[10px] uppercase tracking-[0.3em] opacity-60 font-headline">
+            <a href={`${base}/blog`} class="hover:text-[#ffabf1] transition-colors">Volver al Archivo</a>
+            <span class="w-1 h-1 rounded-full bg-outline-variant/50"></span>
+            <span class="text-[#ffabf1]">{post.data.category}</span>
+            <span class="w-1 h-1 rounded-full bg-outline-variant/50"></span>
+            <time>{post.data.pubDate.toLocaleDateString('es-ES', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
         </div>
         
-        <h1 class="font-display text-5xl md:text-6xl mb-6 leading-tight">
-          {post.data.title}
+        <h1 class="font-headline text-4xl md:text-6xl lg:text-7xl mb-8 leading-[1.1] text-white">
+            {post.data.title}
         </h1>
         
-        <p class="text-lg opacity-70 mb-8">
-          {post.data.description}
+        <p class="font-body italic text-xl md:text-2xl text-on-surface-variant max-w-3xl leading-relaxed opacity-80 md:text-left border-l-2 border-[#ffabf1]/30 pl-6">
+            {post.data.description}
         </p>
+    </header>
 
-        <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-none bg-studio-purple/20 flex items-center justify-center">
-            <span class="text-2xl">👨‍🎨</span>
-          </div>
-          <div>
-            <p class="font-bold">{post.data.author}</p>
-            <p class="text-xs opacity-50">Professional Tattoo Artist</p>
-          </div>
-        </div>
-      </header>
-
-      <!-- Featured Image -->
-      {post.data.image && (
-        <div class="aspect-video mb-12 rounded-none overflow-hidden reveal-effect">
-          <img 
-            src={post.data.image} 
+    <!-- Featured Image -->
+    {post.data.image && (
+        <div class="w-full aspect-[21/9] md:aspect-[3/1] overflow-hidden border border-outline-variant/10 mb-16 relative bg-[#090d1d]">
+        <img 
+            src={post.data.image.startsWith('http') ? post.data.image : `${base}${post.data.image}`} 
+            onerror={`this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuAGSml2HFzCewoCIaDjxidM90iY7LXBq6uDFzvxPdiUG1PzNIv13f5v5KEWmWPLIlGxcAA8n53NaCshzhu4QhGfQh308MaCpUfr-zoxMb1nJ5FfrHzIQB7x9BL_tNHnj7sLFnsc398TZGukeWDqJoZOcZsJxjb4HxawaT_WmQTDWR-sy_ghaPKIkyo0Y7gIBIP830IlGpvAru3436cTPbQy8QzpUzWgh8aCyMVoGwW7g2W1vMPs4rGYrAgHS_paao-XGczmY8OsThE'`}
             alt={post.data.title}
-            class="w-full h-full object-cover"
-          />
+            class="w-full h-full object-cover filter grayscale contrast-125 brightness-75 hover:grayscale-0 hover:brightness-100 transition-all duration-[2000ms]"
+        />
         </div>
-      )}
+    )}
 
-      <!-- Content -->
-      <div class="prose prose-invert prose-lg max-w-none mb-16 reveal-effect">
+    <!-- Content (Markdown Prose) -->
+    <div class="cathedral-prose w-full max-w-4xl mx-auto md:mx-0">
         <Content />
-      </div>
-
-      <!-- CTA -->
-      <div class="glass-card p-8 text-center reveal-effect">
-        <h3 class="font-display text-3xl mb-4">Ready to Get Started?</h3>
-        <p class="mb-6 opacity-70">Book your tattoo session today</p>
-        <a href="/booking" class="square-btn inline-block">Book Now</a>
-      </div>
     </div>
+
+    <!-- CTA / Conclusion -->
+    <div class="mt-32 max-w-4xl border-t border-outline-variant/10 pt-16 flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
+        <div>
+            <h3 class="font-headline text-2xl tracking-widest uppercase text-[#ffabf1] mb-4">¿Preparado para tu Cita?</h3>
+            <p class="font-body italic text-on-surface-variant opacity-70">
+                La teoría se materializa en la piel. Concreta tu ritual de tatuaje.
+            </p>
+        </div>
+        <a href={`${base}/contacto`} class="inline-block relative overflow-hidden group/btn px-10 py-5 bg-transparent border border-outline-variant hover:border-[#ffabf1] transition-colors duration-500 whitespace-nowrap">
+            <span class="relative z-10 font-headline tracking-[0.3em] text-[10px] uppercase text-white">Consultation</span>
+            <div class="absolute inset-0 bg-[#ffabf1] opacity-0 group-hover/btn:opacity-10 transition-opacity duration-500"></div>
+        </a>
+    </div>
+
   </article>
 </BaseLayout>
 
 <style is:global>
-  .prose {
-    color: rgba(255, 255, 255, 0.9);
+  .cathedral-prose {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.125rem;
+    line-height: 1.8;
+    font-family: var(--font-body), serif;
+    font-style: italic;
   }
   
-  .prose h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.875rem;
-    margin-top: 3rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .prose h3 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.5rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .prose p {
-    margin-bottom: 1.5rem;
-    line-height: 1.75;
-  }
-  
-  .prose ul, .prose ol {
-    margin-bottom: 1.5rem;
-  }
-  
-  .prose li {
-    margin-top: 0.5rem;
-  }
-  
-  .prose a {
-    color: #9D4EDD;
-  }
-  
-  .prose a:hover {
-    text-decoration: underline;
-  }
-  
-  .prose strong {
+  .cathedral-prose h1, .cathedral-prose h2, .cathedral-prose h3, .cathedral-prose h4 {
     color: white;
-    font-weight: bold;
+    font-family: var(--font-headline), sans-serif;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cathedral-prose h2 { font-size: 2rem; }
+  .cathedral-prose h3 { font-size: 1.5rem; color: #ffabf1; }
+  
+  .cathedral-prose p {
+    margin-bottom: 2rem;
   }
   
-  .prose code {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 0.125rem 0.5rem;
-    border-radius: 0;
-    font-size: 0.875rem;
+  .cathedral-prose ul, .cathedral-prose ol {
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+    list-style-type: square;
+  }
+  
+  .cathedral-prose li {
+    margin-top: 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  .cathedral-prose a {
+    color: #ffabf1;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 171, 241, 0.3);
+    transition: all 0.3s;
+  }
+  
+  .cathedral-prose a:hover {
+    color: white;
+    border-bottom-color: white;
+  }
+  
+  .cathedral-prose strong {
+    color: white;
+    font-weight: normal;
+    font-style: normal;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .cathedral-prose blockquote {
+    border-left: 2px solid rgba(255, 171, 241, 0.5);
+    padding-left: 1.5rem;
+    margin-left: 0;
+    margin-right: 0;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .cathedral-prose code {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 0.2rem 0.4rem;
+    font-family: monospace;
+    font-size: 0.8em;
+    font-style: normal;
+  }
+  .cathedral-prose img {
+      width: 100%;
+      height: auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 2rem 0;
+      filter: grayscale(100%);
+      transition: filter 0.5s;
+  }
+  .cathedral-prose img:hover {
+      filter: grayscale(0%);
   }
 </style>

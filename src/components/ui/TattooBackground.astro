@@ -40,13 +40,13 @@ const icons = [
 ];
 ---
 
-<!-- Paper Texture Background -->
-<div class="fixed inset-0 -z-20 bg-[#FAFAFA]"></div>
+<!-- Dark Background -->
+<div class="fixed inset-0 -z-20 bg-studio-dark"></div>
 
 <!-- Animated Drifting Icons Overlay -->
 <div class="fixed inset-0 -z-10 pointer-events-none overflow-hidden select-none">
   {icons.map(icon => (
-    <div class="absolute text-black mix-blend-multiply floating-icon opacity-[0.04]" style={icon.style}>
+    <div class="absolute text-gold mix-blend-screen floating-icon opacity-[0.04]" style={icon.style}>
       <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full">
         <path d={icon.path} />
       </svg>

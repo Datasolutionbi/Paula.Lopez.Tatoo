@@ -1,104 +1,100 @@
 ---
-interface Props {
-  isEn?: boolean;
-}
-
-const { isEn = false } = Astro.props;
-
-const content = {
-  es: {
-    title: "SOBRE MÍ",
-    subtitle: "La Artista",
-    intro: "Hola, soy Paula López",
-    description: "Artista del tatuaje con pasión por transformar ideas en arte permanente. Mi enfoque combina técnicas tradicionales con precisión moderna, creando piezas únicas que cuentan historias.",
-    philosophy: "Mi Filosofía",
-    philosophyText: "Cada tatuaje es una colaboración entre el artista y el cliente. Creo en tomarse el tiempo necesario para entender tu visión y crear algo que llevarás con orgullo toda la vida.",
-    specialties: "Especialidades",
-    specialtiesList: [
-      "Tatuajes personalizados y diseño único",
-      "Estilo blackwork y linework fino",
-      "Tatuajes florales y orgánicos",
-      "Lettering y tipografía artística"
-    ],
-    experience: "8+ años de experiencia",
-    location: "Bogotá, Colombia"
-  },
-  en: {
-    title: "ABOUT ME",
-    subtitle: "The Artist",
-    intro: "Hi, I'm Paula López",
-    description: "Tattoo artist with a passion for transforming ideas into permanent art. My approach combines traditional techniques with modern precision, creating unique pieces that tell stories.",
-    philosophy: "My Philosophy",
-    philosophyText: "Every tattoo is a collaboration between artist and client. I believe in taking the time to understand your vision and create something you'll wear with pride for life.",
-    specialties: "Specialties",
-    specialtiesList: [
-      "Custom tattoos and unique design",
-      "Blackwork and fine linework style",
-      "Floral and organic tattoos",
-      "Lettering and artistic typography"
-    ],
-    experience: "8+ years of experience",
-    location: "Bogotá, Colombia"
-  }
-};
-
-const t = isEn ? content.en : content.es;
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
 ---
 
-<section id="about" class="py-24 bg-[var(--bg-page)] relative overflow-hidden">
-  <!-- Organic Texture -->
-  <div class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]"></div>
-  <div class="px-6 md:px-12 max-w-[1400px] mx-auto">
+<section id="about" class="relative py-24 md:py-32 bg-[#090d1d] overflow-hidden">
+  <!-- Anatomical Grid Background -->
+  <div class="absolute inset-0 anatomical-grid opacity-20 pointer-events-none"></div>
+
+  <!-- Ambient Glow Accents -->
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#ffabf1]/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#9bcaff]/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+
+  <!-- Side Marker Line -->
+  <div class="absolute left-6 md:left-12 top-0 bottom-0 w-px border-l border-dashed border-white/5 pointer-events-none"></div>
+
+  <div class="relative px-6 md:px-12 max-w-[1400px] mx-auto">
+    <!-- Section Header -->
+    <div class="mb-16 md:mb-24 reveal">
+      <span class="font-headline text-[10px] uppercase tracking-[0.4em] text-[#ffabf1] mb-4 block" data-i18n="about.label">SOBRE LA ARTISTA</span>
+      <h2 class="font-display text-4xl md:text-7xl font-light uppercase tracking-tighter text-white leading-none">
+        <span data-i18n="about.headline1">CREANDO</span> <br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/50 to-white/20" data-i18n="about.headline2">ETERNIDAD</span>
+      </h2>
+    </div>
+
+    <!-- 2-Column Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-      
-      <!-- Artist Photo (B&W) -->
-      <div class="">
-        <div class="rounded-none md:rounded-none overflow-hidden shadow-2xl bg-gray-200 aspect-[4/5]">
-          <img 
-            src="/Paula.Lopez.Tatoo/paula-artisan.png" 
-            alt="Paula López at work" 
-            class="w-full h-full object-cover grayscale contrast-125"
+
+      <!-- Image Side -->
+      <div class="relative group reveal">
+        <!-- Frame Accents -->
+        <div class="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-[#ffabf1]/40 z-10"></div>
+        <div class="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-[#ffabf1]/40 z-10"></div>
+
+        <div class="relative overflow-hidden altar-border aspect-[4/5]">
+          <img
+            src={`${base}/paula-artisan.png`}
+            alt="Paula López - Tattoo Artist"
+            class="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-110 group-hover:scale-105 transition-all duration-1000"
           />
+          <!-- Glass Overlay on hover -->
+          <div class="absolute inset-0 bg-gradient-to-t from-[#00010d]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        </div>
+
+        <!-- Floating Badge -->
+        <div class="absolute -bottom-8 -left-8 bg-white/5 backdrop-blur-xl border border-white/10 p-6 shadow-2xl hidden md:block">
+           <span class="font-script text-4xl text-[#ffabf1]">Paula Lopez</span>
         </div>
       </div>
 
-      <!-- About Content -->
-      <div class="relative">
-        <div class="absolute -right-10 -top-20 w-48 h-48 bg-studio-purple/5 ink-stain -z-10 opacity-30"></div>
-        
-        <h2 class="font-serif-editorial text-6xl md:text-8xl text-black leading-none tracking-tighter mb-10">
-          The <span class="text-studio-purple font-sans font-black italic">Artisan</span>
-        </h2>
-        
-        <div class="space-y-8 text-black/70 font-medium text-lg leading-relaxed max-w-xl">
-          <p class="first-letter:text-5xl first-letter:font-serif-editorial first-letter:text-studio-purple first-letter:mr-3 first-letter:float-left first-letter:leading-[1]">
-            {t.description}
+      <!-- Text Side -->
+      <div class="relative reveal">
+        <div class="space-y-8">
+          <p class="font-body text-lg md:text-xl leading-relaxed text-white/80 italic border-l-2 border-[#ffabf1] pl-8" data-i18n="about.p1">
+            "Mi visión del tatuaje trasciende la simple inyección de tinta en la dermis. Lo considero un rito de paso, un proceso de arquitectura corporal."
           </p>
-          <p class="italic text-black/50 border-l-2 border-studio-purple/20 pl-8">
-            {t.philosophyText}
-          </p>
-        </div>
-        
-        <!-- Artisan Signature -->
-        <div class="pt-12">
-           <span class="signature-text">Paula López</span>
-        </div>
+          
+          <div class="space-y-6 text-white/60 font-body text-base md:text-lg leading-relaxed">
+            <p data-i18n="about.p2">Especializada en Biorealismo, Cultura Anime y Blackwork de autor, cada diseño es una colaboración nacida de la escucha técnica.</p>
+            <p data-i18n="about.p3">El estudio no es una tienda de paso: The Synthetic Cathedral, un espacio seguro de silencio donde el arte se respeta.</p>
+          </div>
 
+          <!-- Stats Grid -->
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-8 pt-12 border-t border-white/5">
+            <div class="reveal-item">
+              <span class="block font-display text-3xl text-[#ffabf1] mb-1">8+</span>
+              <span class="font-headline text-[8px] uppercase tracking-widest opacity-40" data-i18n="about.stats.years">Años de Rito</span>
+            </div>
+            <div class="reveal-item">
+              <span class="block font-display text-3xl text-[#ffabf1] mb-1">2.5k+</span>
+              <span class="font-headline text-[8px] uppercase tracking-widest opacity-40" data-i18n="about.stats.works">Obras en Piel</span>
+            </div>
+            <div class="reveal-item">
+              <span class="block font-display text-3xl text-[#ffabf1] mb-1">Madrid</span>
+              <span class="font-headline text-[8px] uppercase tracking-widest opacity-40" data-i18n="about.stats.base">Santuario Base</span>
+            </div>
+          </div>
 
-        <!-- Social Proof Logos -->
-        <div class="pt-12 mt-12 border-t border-black/5 flex flex-wrap items-center gap-8 md:gap-12 opacity-30 grayscale hover:grayscale-0 transition-all duration-700">
-           <span class="font-serif italic text-xl font-bold tracking-tighter text-black/40">VOGUE</span>
-           <span class="font-sans font-black text-lg tracking-tighter italic text-black/40">Inked</span>
-           <span class="font-serif text-sm font-black uppercase tracking-widest text-black/40">Tattoo Life</span>
-           <div class="w-8 h-8 rounded-none border border-black/10 flex items-center justify-center text-black/20 text-[10px] font-black italic">PL</div>
+          <!-- CTA -->
+          <div class="pt-8">
+            <a href="#contacto" class="inline-flex items-center gap-4 group">
+              <span class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#ffabf1] group-hover:bg-[#ffabf1]/10 transition-all duration-500">
+                <span class="material-symbols-outlined text-sm text-white group-hover:text-[#ffabf1]">arrow_forward</span>
+              </span>
+              <span class="font-headline text-[10px] tracking-[0.4em] uppercase text-white/60 group-hover:text-white transition-colors" data-i18n="about.cta">AGENDAR CONSULTA</span>
+            </a>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
 <style>
-  .transition-delay-300 {
-    transition-delay: 300ms;
+  .anatomical-grid {
+    background-image: radial-gradient(circle at 2px 2px, rgba(255,171,241,0.1) 1px, transparent 0);
+    background-size: 40px 40px;
   }
 </style>

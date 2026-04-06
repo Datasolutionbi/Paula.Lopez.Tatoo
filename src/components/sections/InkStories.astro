@@ -1,18 +1,84 @@
 ---
-import { InkStories as InkStoriesReact } from '../react/InkStories';
+import { getCollection } from 'astro:content';
 
-const { 
-  beforeImage = "https://images.unsplash.com/photo-1590204753862-392842497b68?q=80&w=800", 
-  afterImage = "https://images.unsplash.com/photo-1560707303-4e980ce876ad?q=80&w=800",
-  title = "COVER-UP TRANSFORMATION",
-  label = "DRAG TO REVEAL"
-} = Astro.props;
+const posts = (await getCollection('blog'))
+  .filter(post => post.data.published)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
-<InkStoriesReact 
-  client:visible 
-  beforeImage={beforeImage} 
-  afterImage={afterImage} 
-  title={title} 
-  label={label} 
-/>
+<section class="relative bg-studio-dark py-24 overflow-hidden">
+  <!-- Grain texture overlay -->
+  <div class="pointer-events-none absolute inset-0 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');"></div>
+
+  <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="mb-16 flex items-end gap-6">
+      <div class="relative">
+        <p class="font-body text-[12px] tracking-[0.3em] text-gold uppercase mb-2">From the Studio</p>
+        <h2 class="font-display text-[44px] leading-none tracking-[3px] text-white uppercase">Ink Stories</h2>
+      </div>
+      <div class="hidden sm:flex flex-col items-center gap-1 pb-2">
+        <div class="w-px h-16 bg-gold [background-image:radial-gradient(circle,_#d4a853_1px,_transparent_1px)] [background-size:1px_6px] [background-repeat:repeat-y]"></div>
+      </div>
+    </div>
+
+    <!-- Blog Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {posts.map((post) => (
+        <a href={`/blog/${post.slug}`} class="group block bg-[#111111] transition-all duration-300 hover:border-b hover:border-gold">
+          <!-- Image -->
+          <div class="overflow-hidden">
+            <img
+              src={post.data.image || 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=800'}
+              alt={post.data.title}
+              class="w-full h-56 object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Card Content -->
+          <div class="p-5">
+            <!-- Category Tag -->
+            {post.data.category && (
+              <span class="inline-block bg-gold px-2 py-0.5 text-[9px] font-body font-bold tracking-[0.2em] text-black uppercase mb-3">
+                {post.data.category}
+              </span>
+            )}
+
+            <!-- Title -->
+            <h3 class="font-display text-[18px] leading-tight tracking-[0.05em] text-white uppercase mb-3 group-hover:text-gold transition-colors duration-300">
+              {post.data.title}
+            </h3>
+
+            <!-- Excerpt -->
+            <p class="font-body text-[13px] leading-[1.7] text-white/50 mb-4 line-clamp-3">
+              {post.data.description}
+            </p>
+
+            <!-- Date -->
+            <time class="font-body text-[11px] tracking-[0.15em] text-gold uppercase block mb-3">
+              {post.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+            </time>
+
+            <!-- Read More -->
+            <span class="font-body text-[11px] tracking-[0.2em] text-gold uppercase inline-flex items-center gap-2 group/link">
+              Read More
+              <span class="inline-block w-4 h-px bg-gold transition-all duration-300 group-hover/link:w-6"></span>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- CTA Button -->
+    <div class="mt-14 text-center">
+      <a
+        href="/blog"
+        class="inline-block bg-gold px-10 py-3 font-body text-[12px] font-bold tracking-[0.2em] text-black uppercase transition-all duration-300 hover:bg-white"
+      >
+        Read All Stories
+      </a>
+    </div>
+  </div>
+</section>

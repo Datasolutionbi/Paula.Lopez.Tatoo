@@ -1,7 +1,7 @@
 ---
 const { class: className, variant = "minimal" } = Astro.props;
 
-// Variants: 'voltage', 'needle', 'minimal'
+// Variants: 'voltage', 'needle', 'minimal', 'sketch'
 ---
 
 <div class={`w-full flex items-center justify-center py-6 opacity-80 ${className}`}>
@@ -12,7 +12,7 @@ const { class: className, variant = "minimal" } = Astro.props;
         fill="none" 
         stroke="currentColor" 
         stroke-width="1"
-        class="text-studio-purple separator-path" 
+        class="text-gold separator-path" 
       />
     </svg>
   )}
@@ -20,18 +20,18 @@ const { class: className, variant = "minimal" } = Astro.props;
   {variant === "needle" && (
     <div class="relative w-full flex items-center justify-center gap-4">
       <svg width="40%" height="2" viewBox="0 0 400 2" preserveAspectRatio="none">
-        <path d="M0,1 L400,1" stroke="currentColor" stroke-width="1" class="text-black/20 separator-path" />
+        <path d="M0,1 L400,1" stroke="currentColor" stroke-width="1" class="text-gold/20 separator-path" />
       </svg>
-      <div class="w-2 h-2 rounded-none bg-studio-purple animate-pulse"></div>
+      <div class="w-2 h-2 rounded-none bg-gold animate-pulse"></div>
       <svg width="40%" height="2" viewBox="0 0 400 2" preserveAspectRatio="none">
-        <path d="M400,1 L0,1" stroke="currentColor" stroke-width="1" class="text-black/20 separator-path" />
+        <path d="M400,1 L0,1" stroke="currentColor" stroke-width="1" class="text-gold/20 separator-path" />
       </svg>
     </div>
   )}
 
   {variant === "sketch" && (
     <div class="relative w-full flex items-center justify-center opacity-40">
-       <svg width="200" height="20" viewBox="0 0 200 20" class="text-studio-purple">
+       <svg width="200" height="20" viewBox="0 0 200 20" class="text-gold">
           <path 
             d="M0,10 C30,8 70,12 100,10 C130,8 170,12 200,10" 
             fill="none" 
@@ -53,10 +53,10 @@ const { class: className, variant = "minimal" } = Astro.props;
 
   {variant === "minimal" && (
     <div class="relative flex items-center gap-6 group">
-      <div class="w-12 h-px bg-black/10 group-hover:w-20 transition-all duration-500"></div>
+      <div class="w-12 h-px bg-gold/10 group-hover:w-20 transition-all duration-500"></div>
       <!-- Simple Needle Point -->
-      <div class="w-1.5 h-1.5 bg-black/40 rounded-none group-hover:bg-studio-purple transition-colors duration-300"></div>
-      <div class="w-12 h-px bg-black/10 group-hover:w-20 transition-all duration-500"></div>
+      <div class="w-1.5 h-1.5 bg-gold/40 rounded-none group-hover:bg-gold transition-colors duration-300"></div>
+      <div class="w-12 h-px bg-gold/10 group-hover:w-20 transition-all duration-500"></div>
     </div>
   )}
 

@@ -15,7 +15,7 @@ const isEn = Astro.url.pathname.includes('/en');
   <form id="booking-form" class="space-y-6">
     <!-- Budget Range -->
     <div class="glass-card p-6">
-      <label class="block font-modern text-sm uppercase tracking-widest mb-4 text-studio-purple">
+      <label class="block font-modern text-sm uppercase tracking-widest mb-4 text-gold">
         {isEn ? 'Your Budget' : 'Tu Presupuesto'}
       </label>
       <div class="space-y-4">
@@ -26,11 +26,11 @@ const isEn = Astro.url.pathname.includes('/en');
           max="3000" 
           step="50" 
           value="500"
-          class="w-full h-2 bg-white/10 rounded-none appearance-none cursor-pointer slider-purple"
+          class="w-full h-2 bg-white/10 rounded-none appearance-none cursor-pointer slider-gold"
         >
         <div class="flex justify-between items-center">
           <span class="text-xs opacity-50">$100</span>
-          <span class="font-display text-2xl text-studio-purple" id="budget-display">$500</span>
+          <span class="font-display text-2xl text-gold" id="budget-display">$500</span>
           <span class="text-xs opacity-50">$3,000+</span>
         </div>
       </div>
@@ -38,7 +38,7 @@ const isEn = Astro.url.pathname.includes('/en');
 
     <!-- Contact Information -->
     <div class="glass-card p-6 space-y-4">
-      <h3 class="font-modern text-sm uppercase tracking-widest mb-4 text-studio-purple">
+      <h3 class="font-modern text-sm uppercase tracking-widest mb-4 text-gold">
         {isEn ? 'Contact Information' : 'Información de Contacto'}
       </h3>
       
@@ -48,7 +48,7 @@ const isEn = Astro.url.pathname.includes('/en');
           id="name" 
           placeholder={isEn ? "YOUR NAME" : "TU NOMBRE"}
           required
-          class="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-studio-purple focus:bg-white/10 transition-colors"
+          class="w-full bg-[#1a1a1a] border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-gold focus:bg-[#222] transition-colors"
         >
         
         <input 
@@ -56,7 +56,7 @@ const isEn = Astro.url.pathname.includes('/en');
           id="email" 
           placeholder={isEn ? "YOUR EMAIL" : "TU EMAIL"}
           required
-          class="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-studio-purple focus:bg-white/10 transition-colors"
+          class="w-full bg-[#1a1a1a] border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-gold focus:bg-[#222] transition-colors"
         >
       </div>
 
@@ -65,21 +65,21 @@ const isEn = Astro.url.pathname.includes('/en');
           type="tel" 
           id="phone" 
           placeholder={isEn ? "PHONE (OPTIONAL)" : "TELÉFONO (OPCIONAL)"}
-          class="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-studio-purple focus:bg-white/10 transition-colors"
+          class="w-full bg-[#1a1a1a] border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-gold focus:bg-[#222] transition-colors"
         >
         
         <input 
           type="text" 
           id="instagram" 
           placeholder="INSTAGRAM @"
-          class="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-studio-purple focus:bg-white/10 transition-colors"
+          class="w-full bg-[#1a1a1a] border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-gold focus:bg-[#222] transition-colors"
         >
       </div>
     </div>
 
     <!-- Availability -->
     <div class="glass-card p-6 space-y-4">
-      <h3 class="font-modern text-sm uppercase tracking-widest mb-4 text-studio-purple">
+      <h3 class="font-modern text-sm uppercase tracking-widest mb-4 text-gold">
         {isEn ? 'Preferred Dates' : 'Fechas Preferidas'}
       </h3>
       
@@ -87,31 +87,31 @@ const isEn = Astro.url.pathname.includes('/en');
         <input 
           type="date" 
           id="date1" 
-          class="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-studio-purple focus:bg-white/10 transition-colors"
+          class="w-full bg-[#1a1a1a] border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-gold focus:bg-[#222] transition-colors"
         >
         <input 
           type="date" 
           id="date2" 
-          class="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-studio-purple focus:bg-white/10 transition-colors"
+          class="w-full bg-[#1a1a1a] border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-gold focus:bg-[#222] transition-colors"
         >
         <input 
           type="date" 
           id="date3" 
-          class="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-studio-purple focus:bg-white/10 transition-colors"
+          class="w-full bg-[#1a1a1a] border border-white/10 rounded-none px-4 py-3 font-modern text-xs uppercase tracking-widest text-white outline-none focus:border-gold focus:bg-[#222] transition-colors"
         >
       </div>
 
       <div class="flex gap-4">
         <label class="flex items-center gap-2 cursor-pointer">
-          <input type="radio" name="timeSlot" value="morning" class="text-studio-purple focus:ring-studio-purple">
+          <input type="radio" name="timeSlot" value="morning" class="text-gold focus:ring-gold">
           <span class="text-xs uppercase tracking-widest">{isEn ? 'Morning' : 'Mañana'}</span>
         </label>
         <label class="flex items-center gap-2 cursor-pointer">
-          <input type="radio" name="timeSlot" value="afternoon" class="text-studio-purple focus:ring-studio-purple" checked>
+          <input type="radio" name="timeSlot" value="afternoon" class="text-gold focus:ring-gold" checked>
           <span class="text-xs uppercase tracking-widest">{isEn ? 'Afternoon' : 'Tarde'}</span>
         </label>
         <label class="flex items-center gap-2 cursor-pointer">
-          <input type="radio" name="timeSlot" value="evening" class="text-studio-purple focus:ring-studio-purple">
+          <input type="radio" name="timeSlot" value="evening" class="text-gold focus:ring-gold">
           <span class="text-xs uppercase tracking-widest">{isEn ? 'Evening' : 'Noche'}</span>
         </label>
       </div>
@@ -119,23 +119,23 @@ const isEn = Astro.url.pathname.includes('/en');
 
     <!-- Additional Details -->
     <div class="glass-card p-6">
-      <label class="block font-modern text-sm uppercase tracking-widest mb-4 text-studio-purple">
+      <label class="block font-modern text-sm uppercase tracking-widest mb-4 text-gold">
         {isEn ? 'Tell us about your idea' : 'Cuéntanos sobre tu idea'}
       </label>
       <textarea 
         id="description" 
         rows="5"
         placeholder={isEn ? "Describe your tattoo idea, style preferences, and any other details..." : "Describe tu idea de tatuaje, preferencias de estilo y cualquier otro detalle..."}
-        class="w-full bg-white/5 border border-white/10 rounded-none px-4 py-3 font-modern text-xs text-white outline-none focus:border-studio-purple focus:bg-white/10 transition-colors resize-none"
+        class="w-full bg-[#1a1a1a] border border-white/10 rounded-none px-4 py-3 font-modern text-xs text-white outline-none focus:border-gold focus:bg-[#222] transition-colors resize-none"
       ></textarea>
     </div>
 
     <!-- Reference Images Upload -->
     <div class="glass-card p-6">
-      <label class="block font-modern text-sm uppercase tracking-widest mb-4 text-studio-purple">
+      <label class="block font-modern text-sm uppercase tracking-widest mb-4 text-gold">
         {isEn ? 'Reference Images (Optional)' : 'Imágenes de Referencia (Opcional)'}
       </label>
-      <div class="border-2 border-dashed border-white/20 rounded-none p-8 text-center hover:border-studio-purple transition-colors cursor-pointer" id="upload-zone">
+      <div class="border-2 border-dashed border-white/20 rounded-none p-8 text-center hover:border-gold transition-colors cursor-pointer" id="upload-zone">
         <input type="file" id="images" multiple accept="image/*" class="hidden">
         <div class="space-y-2">
           <div class="text-4xl">📸</div>
@@ -215,22 +215,22 @@ const isEn = Astro.url.pathname.includes('/en');
 </script>
 
 <style>
-  .slider-purple::-webkit-slider-thumb {
+  .slider-gold::-webkit-slider-thumb {
     appearance: none;
     width: 20px;
     height: 20px;
     border-radius: 0;
-    background: #9D4EDD;
+    background: #A87E2F;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+    box-shadow: 0 0 10px rgba(168, 126, 47, 0.5);
   }
 
-  .slider-purple::-moz-range-thumb {
+  .slider-gold::-moz-range-thumb {
     width: 20px;
     height: 20px;
     border-radius: 0;
-    background: #9D4EDD;
+    background: #A87E2F;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+    box-shadow: 0 0 10px rgba(168, 126, 47, 0.5);
   }
 </style>

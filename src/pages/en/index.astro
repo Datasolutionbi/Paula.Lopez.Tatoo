@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import AboutMe from '../../components/sections/AboutMe.astro';
-import Projects from '../../components/sections/Projects.astro';
+import IconAltarGallery from '../../components/sections/IconAltarGallery.astro';
 import Contact from '../../components/sections/Contact.astro';
 import BookingCTA from '../../components/sections/BookingCTA.astro';
 import InkStories from '../../components/sections/InkStories.astro';
@@ -17,14 +17,8 @@ import TattooSeparator from '../../components/ui/TattooSeparator.astro';
     <!-- Hero Section -->
     <Hero content={{ label: "ARTIST OF THE DAY", title: "THE KIND OF TATTOO YOU WON'T REGRET" }} />
 
-    <!-- Gallery / Work -->
-    <section id="work" class="py-12 bg-white relative">
-        <div class="container-custom mb-10 text-center">
-            <h2 class="font-display text-4xl md:text-5xl text-black mb-2 uppercase tracking-tight">Selected Works</h2>
-            <div class="w-16 h-0.5 bg-studio-purple mx-auto"></div>
-        </div>
-        <Projects />
-    </section>
+    <!-- Gallery / Work - Icon Altar -->
+    <IconAltarGallery />
 
     <TattooSeparator variant="minimal" />
 

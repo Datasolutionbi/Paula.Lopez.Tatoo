@@ -2,10 +2,6 @@
 import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import CustomCursor from '../components/ui/CustomCursor.astro';
-import InteractionEngine from '../components/ui/InteractionEngine.astro';
-import TattooAnimatedBg from '../components/ui/TattooAnimatedBg.astro';
-import GrainBackground from '../components/ui/GrainBackground.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -15,50 +11,329 @@ interface Props {
 }
 
 const { 
-	title = "Tattocaro - Artist Profile", 
+	title = "EL ALTAR | Paula Lopez", 
 	description = "Professional Tattoo Artist Portfolio",
 	lang = "es"
 } = Astro.props;
+
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} class="dark">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/docs/diseños/logo.png" />
-		<link rel="apple-touch-icon" href="/docs/diseños/logo.png" />
+		<link rel="icon" type="image/png" href={`${base}/paula%20lopez.png`} />
+		<link rel="apple-touch-icon" href={`${base}/paula%20lopez.png`} />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<title>{title}</title>
 		<ClientRouter />
+
+		<style is:global>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Great+Vibes&display=swap');
+
+			:root {
+				--primary: #ffabf1;
+				--secondary: #9bcaff;
+				--bg-dark: #00010d;
+			}
+
+			/* Scroll Reveal Utility */
+			.reveal {
+				opacity: 0;
+				transform: translateY(20px);
+				transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+			}
+
+			.reveal.revealed {
+				opacity: 1;
+				transform: translateY(0);
+			}
+
+			body {
+				background-color: var(--bg-dark);
+				color: white;
+				font-family: 'Inter', sans-serif;
+				overflow-x: hidden;
+			}
+
+			.font-display { font-family: 'Inter', sans-serif; font-weight: 300; }
+			.font-headline { font-family: 'Inter', sans-serif; font-weight: 500; }
+			.font-body { font-family: 'Inter', sans-serif; font-weight: 400; }
+			.font-script { font-family: 'Great Vibes', cursive; }
+
+			/* Custom Scrollbar */
+			::-webkit-scrollbar { width: 4px; }
+			::-webkit-scrollbar-track { background: var(--bg-dark); }
+			::-webkit-scrollbar-thumb { 
+				background: linear-gradient(to bottom, var(--primary), var(--secondary));
+				border-radius: 10px;
+			}
+		</style>
 	</head>
-	<body class="selection:bg-studio-purple selection:text-white">
-    <GrainBackground />
-      <CustomCursor />
-      <InteractionEngine />
+	<body class="bg-[#00010d] text-on-surface selection:bg-primary selection:text-on-primary">
       <Header />
-      <main>
-        <slot />
+      <main class="pt-0 pb-20 lg:pb-0">
+          <slot />
       </main>
       <Footer />
 
-    <script>
+      <!-- ═══ STICKY BOTTOM ACTION BAR — Mobile only ═══ -->
+      <div class="lg:hidden fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 bg-[#00010d]/85 backdrop-blur-[20px] border-t border-[#ffabf1]/10 safe-bottom" style="padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));">
 
-      function initScrollProgress() {
-        window.addEventListener('scroll', () => {
-          const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-          const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-          const scrolled = (winScroll / height) * 100;
-          const bar = document.querySelector('.voltage-scroll-bar') as HTMLElement;
-          if (bar) bar.style.width = scrolled + "%";
-        });
-      }
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/paulaangels/" target="_blank" rel="noopener noreferrer"
+           aria-label="Instagram"
+           class="flex flex-col items-center gap-1 text-white/40 hover:text-[#ffabf1] transition-colors duration-300 min-w-[44px]">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          <span class="font-headline text-[7px] tracking-widest uppercase opacity-60">IG</span>
+        </a>
 
-      document.addEventListener('astro:page-load', () => {
-        initScrollProgress();
-      });
-      initScrollProgress(); // Initial run
-    </script>
+        <!-- Divider -->
+        <div class="w-px h-8 bg-white/10"></div>
+
+        <!-- Language Pills -->
+        <div class="flex items-center gap-1.5">
+          {(['ES', 'EN', 'NL', 'FR'] as const).map(code => (
+            <button
+              data-lang={code}
+              class="lang-btn font-headline text-[10px] tracking-widest px-2.5 py-1.5 rounded border border-white/10 text-white/40 transition-all duration-200 hover:text-[#ffabf1] hover:border-[#ffabf1]/50 hover:bg-[#ffabf1]/5 min-w-[36px]"
+            >
+              {code}
+            </button>
+          ))}
+        </div>
+
+        <!-- Divider -->
+        <div class="w-px h-8 bg-white/10"></div>
+
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/paulaangels" target="_blank" rel="noopener noreferrer"
+           aria-label="Facebook"
+           class="flex flex-col items-center gap-1 text-white/40 hover:text-[#ffabf1] transition-colors duration-300 min-w-[44px]">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+          <span class="font-headline text-[7px] tracking-widest uppercase opacity-60">FB</span>
+        </a>
+
+      </div>
+      <!-- ══════════════════════════════════════════════ -->
+
+      <!-- i18n Engine: traduce ES/EN/NL/FR en toda la página al instante -->
+      <script is:inline>
+      (function () {
+        var T = {
+          ES: {
+            'nav.home':'HOME','nav.about':'SOBRE MÍ','nav.media':'MEDIA','nav.portfolio':'PORTAFOLIO','nav.contact':'CONTACTA','nav.faq':'FAQ','nav.seminarios':'SEMINARIOS','nav.blog':'BLOG','nav.cta':'Consulta',
+            'hero.label':'Anime · Realismo · Tinta de Autor',
+            'hero.quote':'"Una convergencia entre la obsesión técnica por el color vibrante de la estética geek y el absoluto silencio del ritual del tatuaje."',
+            'home.pillars.title':'Los Tres Pilares','home.pillars.sub':'Saturación suprema y contrastes absolutos en piel.','home.pillars.link':'Ver Obra Completa',
+            'home.p1.title':'Biorealismo','home.p1.sub':'Texturas precisas y retratos hiper-detallados.',
+            'home.p2.title':'Anime & Full Color','home.p2.sub':'Saturación cromática extrema y fidelidad a la línea.',
+            'home.p3.title':'Blackwork de Autor','home.p3.sub':'Altos contrastes, línea sólida y sombras profundas.',
+            'home.quote.text':'"La piel humana no es un papel en blanco, es una catedral que exige devoción. Traemos el neón a la oscuridad."','home.quote.author':'Paula Angels',
+            'home.process.title':'Protocolo de Estudio',
+            'home.step1.title':'Atmósfera & Diseño','home.step1.sub':'Música selecta, estética visual de autor y privacidad. El nacimiento de la pieza única.',
+            'home.step2.title':'Curación','home.step2.sub':'Diseños personalizados enfocados en longevidad visual en la piel y fluidez orgánica.',
+            'home.step3.title':'La Sesión','home.step3.sub':'Técnica impecable y esterilización clínica. Equipamiento de élite para traumatismo minimizado.',
+            'portfolio.title':'La Obra','portfolio.subtitle':'Piel, aguja y el testamento visual de quienes han pasado por La Catedral Sintética.',
+            'contact.title':'Reserva tu Sesión','contact.headline1':'Creemos Algo','contact.headline2':'Juntos',
+            'contact.body':'Cada tatuaje es una colaboración. Cuéntame sobre tu proyecto y creemos algo que llevarás con orgullo toda la vida.',
+            'contact.name':'Nombre Completo *','contact.email':'Correo Electrónico *','contact.instagram':'Instagram (Ej: @tu_usuario)','contact.phone':'Teléfono / WhatsApp *',
+            'contact.city':'Ciudad de Residencia','contact.age':'Edad (Mín. 18 años) *','contact.source':'¿Dónde nos encontraste? *','contact.placement':'Ubicación del Tatuaje *',
+            'contact.concept':'Describe tu idea, elementos, blackwork/color... *','contact.refs':'Fotos de Referencia (Máx 2) *','contact.zone':'Foto zona a tatuar (Máx 1) *',
+            'contact.consent':'«Permito que el proceso del tatuaje y el tatuaje en sí sean fotografiados y mostrados en el portafolio del estudio.»','contact.submit':'Enviar Solicitud de Reserva',
+            'about.label':'Sobre la Artista','about.headline1':'Creando','about.headline2':'Eternidad',
+            'about.p1':'"Mi visión del tatuaje trasciende la simple inyección de tinta en la dermis. Lo considero un rito de paso, un proceso de arquitectura corporal donde la luz, las sombras y la anatomía dictan la estructura."',
+            'about.p2':'Especializada en Biorealismo, Cultura Anime y Blackwork de autor, cada diseño es una colaboración nacida de la escucha técnica.',
+            'about.p3':'El estudio no es una tienda de paso: The Synthetic Cathedral, un espacio seguro de silencio donde el arte se respeta.',
+            'about.cta':'Agendar Consulta',
+            'about.v1.title':'Curaduría de Color','about.v1.sub':'Saturación cromática extrema, fidelidad absoluta a la estética fuente y contrastes vivos que garantizan longevidad.',
+            'about.v2.title':'El Ritual','about.v2.sub':'Cada sesión se diseña para ser inmersiva. Entorno curado y privado enfocado en el desarrollo de la obra.',
+            'about.v3.title':'Presencia','about.v3.sub':'Basada en Madrid, España. Aceptando propuestas internacionales para curadurías de cuerpo completo.',
+            'about.stats.years':'Años de Rito','about.stats.works':'Obras en Piel','about.stats.base':'Santuario Base',
+            'general.location':'Madrid, España','general.booknow':'Reservar Ahora','general.close':'Cerrar',
+          },
+          EN: {
+            'nav.home':'HOME','nav.about':'ABOUT ME','nav.media':'MEDIA','nav.portfolio':'PORTFOLIO','nav.contact':'CONTACT','nav.faq':'FAQ','nav.seminarios':'WORKSHOPS','nav.blog':'BLOG','nav.cta':'Consultation',
+            'hero.label':'Anime · Realism · Signature Ink',
+            'hero.quote':'"A convergence between the technical obsession for vibrant geek-aesthetic colour and the absolute silence of the tattoo ritual."',
+            'home.pillars.title':'The Three Pillars','home.pillars.sub':'Supreme saturation and absolute contrasts on skin.','home.pillars.link':'View Full Work',
+            'home.p1.title':'Biorealism','home.p1.sub':'Precise textures and hyper-detailed portraits.',
+            'home.p2.title':'Anime & Full Colour','home.p2.sub':'Extreme chromatic saturation and line fidelity.',
+            'home.p3.title':'Signature Blackwork','home.p3.sub':'High contrast, solid line and deep shadows.',
+            'home.quote.text':'"Human skin is not a blank page — it is a cathedral that demands devotion. We bring the neon into the dark."','home.quote.author':'Paula Angels',
+            'home.process.title':'Studio Protocol',
+            'home.step1.title':'Atmosphere & Design','home.step1.sub':'Curated music, original visual aesthetics and privacy. The birth of the unique piece.',
+            'home.step2.title':'Curation','home.step2.sub':'Custom designs focused on visual longevity and organic fluidity on skin.',
+            'home.step3.title':'The Session','home.step3.sub':'Impeccable technique and clinical sterilisation. Elite equipment for minimised trauma.',
+            'portfolio.title':'The Work','portfolio.subtitle':'Skin, needle, and the visual testament of those who have passed through The Synthetic Cathedral.',
+            'contact.title':'Book Your Session','contact.headline1':"Let's Create",'contact.headline2':'Something',
+            'contact.body':"Every tattoo is a collaboration. Tell me about your project and let's create something you'll carry with pride for life.",
+            'contact.name':'Full Name *','contact.email':'Email Address *','contact.instagram':'Instagram (e.g. @your_user)','contact.phone':'Phone / WhatsApp *',
+            'contact.city':'City of Residence','contact.age':'Age (Min. 18 years) *','contact.source':'Where did you find us? *','contact.placement':'Tattoo Placement *',
+            'contact.concept':'Describe your idea, elements, blackwork/colour... *','contact.refs':'Reference Photos (Max 2) *','contact.zone':'Photo of body area (Max 1) *',
+            'contact.consent':'«I allow the tattoo process and the final tattoo to be photographed and shown in the studio portfolio.»','contact.submit':'Send Booking Request',
+            'about.label':'About the Artist','about.headline1':'Creating','about.headline2':'Eternity',
+            'about.p1':'"My vision of tattooing transcends mere ink injection into the dermis. I see it as a rite of passage — a process of bodily architecture where light, shadow and anatomy dictate the structure."',
+            'about.p2':'Specialising in Biorealism, Anime Culture and Signature Blackwork, each design is a collaboration born from technical listening.',
+            'about.p3':'The studio is not a walk-in shop — it is The Synthetic Cathedral: A safe space of silence where art is respected.',
+            'about.cta':'Book a Consultation',
+            'about.v1.title':'Colour Curation','about.v1.sub':'Extreme chromatic saturation, absolute fidelity to source aesthetics and vivid contrasts that guarantee longevity.',
+            'about.v2.title':'The Ritual','about.v2.sub':'Each session is designed to be immersive. A curated private environment focused entirely on monumental work.',
+            'about.v3.title':'Presence','about.v3.sub':'Based in Madrid, Spain. Accepting international proposals for full body curation (body suits).',
+            'about.stats.years':'Years of Rite','about.stats.works':'Works on Skin','about.stats.base':'Base Sanctuary',
+            'general.location':'Madrid, Spain','general.booknow':'Book Now','general.close':'Close',
+          },
+          NL: {
+            'nav.home':'HOME','nav.about':'OVER MIJ','nav.media':'MEDIA','nav.portfolio':'PORTFOLIO','nav.contact':'CONTACT','nav.faq':'FAQ','nav.seminarios':'WORKSHOPS','nav.blog':'BLOG','nav.cta':'Consultatie',
+            'hero.label':'Anime · Biorealisme · Signatuurinkt',
+            'hero.quote':'"Een convergentie tussen de technische obsessie voor levendige geek-esthetische kleuren en de absolute stilte van het tatoeageritueel."',
+            'home.pillars.title':'De Drie Pijlers','home.pillars.sub':'Ultieme verzadiging en absolute contrasten op de huid.','home.pillars.link':'Volledig Werk Bekijken',
+            'home.p1.title':'Biorealisme','home.p1.sub':'Precieze texturen en hypergedetailleerde portretten.',
+            'home.p2.title':'Anime & Vol Kleur','home.p2.sub':'Extreme chromatische verzadiging en lijngetrouwheid.',
+            'home.p3.title':'Signatuur Blackwork','home.p3.sub':'Hoog contrast, stevige lijn en diepe schaduwen.',
+            'home.quote.text':'"Menselijke huid is geen blanco vel — het is een kathedraal die toewijding vereist. Wij brengen het neon in het donker."','home.quote.author':'Paula Angels',
+            'home.process.title':'Studioprotocol',
+            'home.step1.title':'Sfeer & Ontwerp','home.step1.sub':'Uitgelezen muziek, originele visuele esthetiek en privacy. De geboorte van het unieke stuk.',
+            'home.step2.title':'Curatie','home.step2.sub':'Aangepaste ontwerpen gericht op visuele levensduur en organische vloeibaarheid op de huid.',
+            'home.step3.title':'De Sessie','home.step3.sub':'Onberispelijke techniek en klinische sterilisatie. Elite-apparatuur voor minimaal trauma.',
+            'portfolio.title':'Het Werk','portfolio.subtitle':'Huid, naald en het visuele testament van hen die door de Synthetische Kathedraal zijn gegaan.',
+            'contact.title':'Boek Je Sessie','contact.headline1':'Laten We Iets','contact.headline2':'Maken',
+            'contact.body':'Elke tatoeage is een samenwerking. Vertel me over je project en laten we iets maken dat je met trots voor het leven zult dragen.',
+            'contact.name':'Volledige Naam *','contact.email':'E-mailadres *','contact.instagram':'Instagram (bijv. @jouw_gebruiker)','contact.phone':'Telefoon / WhatsApp *',
+            'contact.city':'Woonplaats','contact.age':'Leeftijd (Min. 18 jaar) *','contact.source':'Hoe vond je ons? *','contact.placement':'Locatie Tatoeage *',
+            'contact.concept':'Beschrijf je idee, elementen, blackwork/kleur... *','contact.refs':"Referentiefoto's (Max 2) *",'contact.zone':'Foto van lichaamszone (Max 1) *',
+            'contact.consent':'«Ik geef toestemming dat het tatoeageproces en de tatoeage zelf worden gefotografeerd en getoond in het studioportfolio.»','contact.submit':'Boekingsverzoek Sturen',
+            'about.label':'Over de Artiest','about.headline1':'Het Scheppen','about.headline2':'van Eeuwigheid',
+            'about.p1':'"Mijn visie op tatoeëren overstijgt het simpele injecteren van inkt in de huid. Ik beschouw het als een overgangsritueel — een proces van lichamelijke architectuur."',
+            'about.p2':'Gespecialiseerd in Biorealisme, Anime-cultuur en Handtekening-blackwork, elk ontwerp is een samenwerking geboren uit technisch luisteren.',
+            'about.p3':'De studio is geen doorloopwinkel — het is The Synthetic Cathedral: Een veilige ruimte van stilte waar kunst wordt gerespecteerd.',
+            'about.cta':'Consultatie Boeken',
+            'about.v1.title':'Kleurcuratie','about.v1.sub':'Extreme chromatische verzadiging, absolute trouw aan bronesthetiek en levendige contrasten die levensduur garanderen.',
+            'about.v2.title':'Het Ritueel','about.v2.sub':'Elke sessie is ontworpen om meeslepend te zijn. Een gecureerde privéomgeving gericht op monumentaal werk.',
+            'about.v3.title':'Aanwezigheid','about.v3.sub':'Gevestigd in Madrid, Spanje. Internationale voorstellen voor volledige lichaamscuratie welkom.',
+            'about.stats.years':'Jaren van Rite','about.stats.works':'Werken op Huid','about.stats.base':'Basis Heiligdom',
+            'general.location':'Madrid, Spanje','general.booknow':'Nu Boeken','general.close':'Sluiten',
+          },
+          FR: {
+            'nav.home':'ACCUEIL','nav.about':'À PROPOS','nav.media':'MÉDIAS','nav.portfolio':'PORTFOLIO','nav.contact':'CONTACT','nav.faq':'FAQ','nav.seminarios':'ATELIERS','nav.blog':'BLOG','nav.cta':'Consultation',
+            'hero.label':'Anime · Réalisme · Encre Signature',
+            'hero.quote':"\"Une convergence entre l'obsession technique pour la couleur vibrante de l'esthétique geek et le silence absolu du rituel du tatouage.\"",
+            'home.pillars.title':'Les Trois Piliers','home.pillars.sub':'Saturation suprême et contrastes absolus sur la peau.','home.pillars.link':'Voir le Travail Complet',
+            'home.p1.title':'Biorealisme','home.p1.sub':'Textures précises et portraits hyper-détaillés.',
+            'home.p2.title':'Anime & Couleur Totale','home.p2.sub':'Saturation chromatique extrême et fidélité à la ligne.',
+            'home.p3.title':'Blackwork Signature','home.p3.sub':'Hauts contrastes, lignes solides et ombres profondes.',
+            'home.quote.text':"\"La peau humaine n'est pas une page blanche — c'est une cathédrale qui exige la dévotion. Nous apportons le néon dans l'obscurité.\"",'home.quote.author':'Paula Angels',
+            'home.process.title':'Protocole de Studio',
+            'home.step1.title':'Atmosphère & Design','home.step1.sub':'Musique sélectionnée, esthétique visuelle personnelle et confidentialité. La naissance de la pièce unique.',
+            'home.step2.title':'Curation','home.step2.sub':'Designs personnalisés axés sur la longévité visuelle et la fluidité organique sur la peau.',
+            'home.step3.title':'La Séance','home.step3.sub':"Technique irréprochable et stérilisation clinique. Équipement d'élite pour un traumatisme minimisé.",
+            'portfolio.title':"L'Œuvre",'portfolio.subtitle':"Peau, aiguille et le testament visuel de ceux qui ont traversé La Cathédrale Synthétique.",
+            'contact.title':'Réserver une Séance','contact.headline1':'Créons Quelque','contact.headline2':'Chose Ensemble',
+            'contact.body':"Chaque tatouage est une collaboration. Parle-moi de ton projet et créons quelque chose que tu porteras avec fierté toute ta vie.",
+            'contact.name':'Nom Complet *','contact.email':'Adresse E-mail *','contact.instagram':'Instagram (ex: @ton_utilisateur)','contact.phone':'Téléphone / WhatsApp *',
+            'contact.city':'Ville de Résidence','contact.age':'Âge (Min. 18 ans) *','contact.source':'Où nous avez-vous trouvés? *','contact.placement':'Emplacement du Tatouage *',
+            'contact.concept':'Décris ton idée, éléments, blackwork/couleur... *','contact.refs':'Photos de Référence (Max 2) *','contact.zone':'Photo de la zone à tatouer (Max 1) *',
+            'contact.consent':"«J'autorise que le processus du tatouage et le tatouage lui-même soient photographiés et montrés dans le portfolio du studio.»",'contact.submit':'Envoyer la Demande de Réservation',
+            'about.label':"Sur l'Artiste",'about.headline1':'Créer','about.headline2':"l'Éternité",
+            'about.p1':"\"Ma vision du tatouage transcende la simple injection d'encre dans le derme. Je le considère comme un rite de passage — un processus d'architecture corporelle.\"",
+            'about.p2':"Spécialisée en Biorealisme, Culture Anime et Blackwork Signature, chaque design est une collaboration née d'une écoute technique.",
+            'about.p3':"Le studio n'est pas une boutique de passage — c'est The Synthetic Cathedral: Un espace sûr de silence où l'art est respecté.",
+            'about.cta':'Réserver une Consultation',
+            'about.v1.title':'Curation Couleur','about.v1.sub':"Saturation chromatique extrême, fidélité absolue à l'esthétique source et contrastes vifs garantissant la longévité.",
+            'about.v2.title':'Le Rituel','about.v2.sub':"Chaque séance est conçue pour être immersive. Un environnement privé curé entièrement dédié à la création de l'œuvre.",
+            'about.v3.title':'Présence','about.v3.sub':'Basée à Madrid, Espagne. Acceptant des propositions internationales pour la curation de corps complets.',
+            'about.stats.years':'Années de Rite','about.stats.works':'Œuvres sur Peau','about.stats.base':'Sanctuaire de Base',
+            'general.location':'Madrid, Espagne','general.booknow':'Réserver Maintenant','general.close':'Fermer',
+          }
+        };
+
+        function applyLang(lang) {
+          var dict = T[lang];
+          if (!dict) return;
+          // Textos inline
+          document.querySelectorAll('[data-i18n]').forEach(function(el) {
+            var v = dict[el.getAttribute('data-i18n')];
+            if (v !== undefined) el.textContent = v;
+          });
+          // Placeholders de inputs / textareas
+          document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+            var v = dict[el.getAttribute('data-i18n-placeholder')];
+            if (v !== undefined) el.placeholder = v;
+          });
+          // lang en <html>
+          var m = {ES:'es',EN:'en',NL:'nl',FR:'fr'};
+          document.documentElement.setAttribute('lang', m[lang] || 'es');
+          // Estado visual de los botones
+          document.querySelectorAll('.lang-btn').forEach(function(btn) {
+            var on = btn.getAttribute('data-lang') === lang;
+            btn.classList.toggle('text-[#ffabf1]', on);
+            btn.classList.toggle('border-[#ffabf1]', on);
+            btn.classList.toggle('bg-white/5', on);
+            btn.classList.toggle('pointer-events-none', on);
+            btn.classList.toggle('text-white/40', !on);
+            btn.classList.toggle('border-transparent', !on);
+          });
+        }
+
+        function attachButtons() {
+          document.querySelectorAll('.lang-btn').forEach(function(btn) {
+            if (btn._i18n) return;
+            btn._i18n = true;
+            btn.addEventListener('click', function() {
+              var l = btn.getAttribute('data-lang');
+              if (l && T[l]) {
+                localStorage.setItem('site_lang', l);
+                applyLang(l);
+              }
+            });
+          });
+        }
+
+        // Scroll Reveal Observer
+        function initReveal() {
+          var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+              }
+            });
+          }, { threshold: 0.1 });
+
+          document.querySelectorAll('section, .reveal-item').forEach(function(el) {
+            if (!el.classList.contains('no-reveal')) {
+              el.classList.add('reveal');
+              observer.observe(el);
+            }
+          });
+        }
+
+        function run() {
+          var lang = localStorage.getItem('site_lang') || 'ES';
+          applyLang(lang);
+          attachButtons();
+          initReveal();
+        }
+
+        // astro:after-swap = nuevo HTML ya está en DOM (para ClientRouter)
+        document.addEventListener('astro:after-swap', run);
+        // astro:page-load = primera carga y después de transiciones completas
+        document.addEventListener('astro:page-load', run);
+        // Seguridad: también al DOMContentLoaded en carga inicial directa
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', run);
+        } else {
+          run();
+        }
+      })();
+      </script>
 	</body>
 </html>

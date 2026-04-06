@@ -42,16 +42,16 @@ const projectTypes: ProjectType[] = [
     {projectTypes.map(type => (
       <button
         type="button"
-        class="project-type-card glass-card p-8 text-left transition-all duration-300 hover:scale-105 hover:border-studio-purple group cursor-pointer reveal-effect"
+        class="project-type-card glass-card p-8 text-left transition-all duration-300 hover:scale-105 hover:border-gold group cursor-pointer reveal-effect"
         data-project-type={type.id}
       >
         <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">{type.icon}</div>
-        <h3 class="font-display text-2xl mb-3 group-hover:text-studio-purple transition-colors">{type.title}</h3>
+        <h3 class="font-display text-2xl mb-3 group-hover:text-gold transition-colors">{type.title}</h3>
         <p class="font-modern text-xs opacity-60 mb-4 leading-relaxed">{type.description}</p>
         <div class="flex items-center justify-between">
-          <span class="text-studio-purple font-bold text-sm">{type.priceRange}</span>
-          <div class="w-6 h-6 rounded-none border-2 border-white/20 group-hover:border-studio-purple group-hover:bg-studio-purple transition-all flex items-center justify-center">
-            <div class="w-3 h-3 rounded-none bg-studio-purple opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <span class="text-gold font-bold text-sm">{type.priceRange}</span>
+          <div class="w-6 h-6 rounded-none border-2 border-white/20 group-hover:border-gold group-hover:bg-gold transition-all flex items-center justify-center">
+            <div class="w-3 h-3 rounded-none bg-gold opacity-0 group-hover:opacity-100 transition-opacity"></div>
           </div>
         </div>
       </button>
@@ -60,7 +60,7 @@ const projectTypes: ProjectType[] = [
 
   <div class="text-center mt-8">
     <label class="inline-flex items-center gap-3 cursor-pointer group">
-      <input type="checkbox" id="hasReference" class="w-5 h-5 rounded-none border-white/20 bg-white/5 text-studio-purple focus:ring-studio-purple focus:ring-offset-0">
+      <input type="checkbox" id="hasReference" class="w-5 h-5 rounded-none border-white/20 bg-[#1a1a1a] text-gold focus:ring-gold focus:ring-offset-0">
       <span class="font-modern text-xs uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">
         I have reference images
       </span>
@@ -77,11 +77,11 @@ const projectTypes: ProjectType[] = [
       card.addEventListener('click', () => {
         // Remove selection from all cards
         cards.forEach(c => {
-          c.classList.remove('border-studio-purple', 'bg-studio-purple/10');
+          c.classList.remove('border-gold', 'bg-gold/10');
         });
 
         // Add selection to clicked card
-        card.classList.add('border-studio-purple', 'bg-studio-purple/10');
+        card.classList.add('border-gold', 'bg-gold/10');
         selectedType = (card as HTMLElement).dataset.projectType || null;
 
         // Store in session
@@ -113,7 +113,7 @@ const projectTypes: ProjectType[] = [
     if (savedType) {
       const savedCard = document.querySelector(`[data-project-type="${savedType}"]`);
       if (savedCard) {
-        savedCard.classList.add('border-studio-purple', 'bg-studio-purple/10');
+        savedCard.classList.add('border-gold', 'bg-gold/10');
         const nextBtn = document.getElementById('wizard-next');
         if (nextBtn) {
           nextBtn.removeAttribute('disabled');
@@ -139,6 +139,6 @@ const projectTypes: ProjectType[] = [
   }
 
   .project-type-card:hover {
-    border-color: rgba(157, 78, 221, 0.5);
+    border-color: rgba(168, 126, 47, 0.5);
   }
 </style>

@@ -12,49 +12,63 @@ const sortedPosts = allPosts.sort((a, b) =>
 
 const featuredPosts = sortedPosts.filter(p => p.data.featured);
 const categories = [...new Set(allPosts.map(p => p.data.category))];
+
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
 ---
 
 <BaseLayout 
-  title="Tattoo Blog - Tips, Aftercare & Process | Tattocaro"
-  description="Learn about tattoo aftercare, the tattooing process, and get expert tips from professional tattoo artist José Contreras."
+  title="PAULA LOPEZ | THE ARCHIVE (BLOG)"
+  description="Expert advice, aftercare tips, and insights into the tattooing process"
 >
-  <div class="min-h-screen py-20">
-    <div class="container-custom max-w-6xl">
-      <!-- Header -->
-      <div class="text-center mb-16 reveal-effect">
-        <h1 class="font-display text-6xl md:text-7xl mb-6">TATTOO BLOG</h1>
-        <p class="font-modern text-sm opacity-70 max-w-2xl mx-auto">
-          Expert advice, aftercare tips, and insights into the tattooing process
-        </p>
-      </div>
+    <main class="w-full min-h-screen pb-20 px-8 lg:px-24 mx-auto flex flex-col z-10 max-w-[1400px]">
+        <!-- Spacer invisible para asegurar área bajo el navbar fijo -->
+        <div class="w-full h-32 md:h-48 shrink-0"></div>
+        
+        <!-- Header -->
+        <div class="mb-16 md:mb-24 text-center md:text-left flex flex-col items-center md:items-start">
+            <h1 class="font-headline text-[10px] tracking-[0.5em] text-secondary uppercase mb-6">El Archivo Literario</h1>
+            <h2 class="font-headline text-4xl md:text-5xl lg:text-7xl font-extralight tracking-tight uppercase text-on-surface">
+                Tattoo <span class="text-primary italic font-body">Blog</span>
+            </h2>
+            <div class="h-px w-24 bg-outline-variant/30 mt-12 md:mr-auto"></div>
+            <p class="font-body italic text-on-surface-variant max-w-2xl mt-12 leading-relaxed opacity-80 md:text-left">
+                Consejos de curación profunda, teorías de modificación corporal, y notas personales acerca de la liturgia visual del Blackwork.
+            </p>
+        </div>
 
       <!-- Featured Posts -->
       {featuredPosts.length > 0 && (
-        <section class="mb-20">
-          <h2 class="font-display text-3xl mb-8">Featured Articles</h2>
-          <div class="grid md:grid-cols-2 gap-8">
+        <section class="mb-24 border-b border-outline-variant/10 pb-20">
+          <h2 class="font-headline text-sm tracking-[0.3em] uppercase text-secondary mb-12">Escritos Destacados</h2>
+          <div class="grid md:grid-cols-2 gap-8 lg:gap-16">
             {featuredPosts.slice(0, 2).map(post => (
               <a 
-                href={`/blog/${post.slug}`}
-                class="glass-card overflow-hidden group hover:border-studio-purple transition-all duration-500"
+                href={`${base}/blog/${post.slug}`}
+                class="group flex flex-col"
               >
-                <div class="aspect-video overflow-hidden">
+                <div class="aspect-video overflow-hidden border border-outline-variant/10 mb-6 relative bg-[#090d1d]">
+                  <!-- Hover effect -->
+                  <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-[30px] z-0 pointer-events-none"></div>
+
                   <img 
-                    src={post.data.image} 
+                    src={post.data.image.startsWith('http') ? post.data.image : `${base}${post.data.image}`} 
+                    onerror={`this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuAGSml2HFzCewoCIaDjxidM90iY7LXBq6uDFzvxPdiUG1PzNIv13f5v5KEWmWPLIlGxcAA8n53NaCshzhu4QhGfQh308MaCpUfr-zoxMb1nJ5FfrHzIQB7x9BL_tNHnj7sLFnsc398TZGukeWDqJoZOcZsJxjb4HxawaT_WmQTDWR-sy_ghaPKIkyo0Y7gIBIP830IlGpvAru3436cTPbQy8QzpUzWgh8aCyMVoGwW7g2W1vMPs4rGYrAgHS_paao-XGczmY8OsThE'`}
                     alt={post.data.title}
-                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                    class="w-full h-full object-cover filter grayscale contrast-[1.1] brightness-[0.6] group-hover:grayscale-0 group-hover:brightness-100 group-hover:scale-105 transition-all duration-[1500ms] relative z-10"
                   />
                 </div>
-                <div class="p-6">
-                  <div class="flex items-center gap-4 mb-3 text-[10px] uppercase tracking-widest opacity-50">
-                    <span class="text-studio-purple">{post.data.category}</span>
-                    <span>•</span>
-                    <time>{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
+                <div>
+                  <div class="flex items-center gap-4 mb-4 text-[9px] uppercase tracking-[0.2em] opacity-60">
+                    <span class="text-[#ffabf1]">{post.data.category}</span>
+                    <span class="w-1 h-1 rounded-full bg-outline-variant/50"></span>
+                    <time>{post.data.pubDate.toLocaleDateString('es-ES', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
                   </div>
-                  <h3 class="font-display text-2xl mb-3 group-hover:text-studio-purple transition-colors">
+                  <h3 class="font-headline text-2xl lg:text-3xl mb-4 text-white group-hover:text-[#ffabf1] transition-colors leading-snug">
                     {post.data.title}
                   </h3>
-                  <p class="text-sm opacity-70">{post.data.description}</p>
+                  <p class="font-body italic text-sm text-on-surface-variant opacity-70 leading-relaxed">
+                    {post.data.description}
+                  </p>
                 </div>
               </a>
             ))}
@@ -63,49 +77,51 @@ const categories = [...new Set(allPosts.map(p => p.data.category))];
       )}
 
       <!-- Category Filter -->
-      <div class="flex flex-wrap gap-4 mb-12 justify-center">
-        <button class="filter-btn active px-6 py-3 bg-black text-white border border-black rounded-none text-xs uppercase tracking-widest hover:bg-studio-purple hover:border-studio-purple transition-all shadow-lg" data-filter="all">
-          All Posts
+      <div class="flex flex-wrap gap-6 mb-16 justify-center md:justify-start">
+        <button class="filter-btn active font-headline text-[10px] tracking-widest text-[#ffabf1] uppercase border-b border-[#ffabf1] pb-2 transition-all" data-filter="all">
+          Todos los Textos
         </button>
         {categories.map(cat => (
-          <button class="filter-btn px-6 py-3 bg-white border border-black/10 text-black/60 rounded-none text-xs uppercase tracking-widest hover:border-studio-purple hover:text-studio-purple transition-all" data-filter={cat}>
-            {cat.charAt(0).toUpperCase() + cat.slice(1)}
+          <button class="filter-btn font-headline text-[10px] tracking-widest opacity-50 hover:opacity-100 hover:text-[#ffabf1] text-on-surface border-b border-transparent hover:border-[#ffabf1]/40 uppercase pb-2 transition-all" data-filter={cat}>
+            {cat}
           </button>
         ))}
       </div>
 
-      <!-- All Posts Grid -->
-      <div class="grid md:grid-cols-3 gap-8" id="posts-grid">
+      <!-- All Posts Grid (Modern Bento Logic) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-16" id="posts-grid">
         {sortedPosts.map(post => (
           <article 
-            class="post-card glass-card overflow-hidden group hover:border-studio-purple transition-all duration-500"
+            class="post-card group"
             data-category={post.data.category}
           >
-            <a href={`/blog/${post.slug}`}>
-              <div class="aspect-video overflow-hidden">
+            <a href={`${base}/blog/${post.slug}`} class="flex flex-col h-full">
+              <div class="aspect-[4/3] overflow-hidden border border-outline-variant/10 mb-6 bg-[#00010d] relative">
                 <img 
-                  src={post.data.image} 
+                    src={post.data.image.startsWith('http') ? post.data.image : `${base}${post.data.image}`} 
+                    onerror={`this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuAGSml2HFzCewoCIaDjxidM90iY7LXBq6uDFzvxPdiUG1PzNIv13f5v5KEWmWPLIlGxcAA8n53NaCshzhu4QhGfQh308MaCpUfr-zoxMb1nJ5FfrHzIQB7x9BL_tNHnj7sLFnsc398TZGukeWDqJoZOcZsJxjb4HxawaT_WmQTDWR-sy_ghaPKIkyo0Y7gIBIP830IlGpvAru3436cTPbQy8QzpUzWgh8aCyMVoGwW7g2W1vMPs4rGYrAgHS_paao-XGczmY8OsThE'`}
                   alt={post.data.title}
-                  class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                  class="w-full h-full object-cover filter grayscale contrast-125 brightness-50 group-hover:scale-105 group-hover:brightness-90 transition-all duration-[2000ms]"
                 />
               </div>
-              <div class="p-6">
-                <div class="flex items-center gap-4 mb-3 text-[10px] uppercase tracking-widest opacity-50">
-                  <span class="text-studio-purple">{post.data.category}</span>
-                  <span>•</span>
-                  <time>{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</time>
+              <div class="flex-grow flex flex-col">
+                <div class="flex items-center gap-4 mb-3 text-[8px] uppercase tracking-[0.2em] opacity-50">
+                  <span class="text-[#ffabf1]">{post.data.category}</span>
+                  <span class="w-1 h-1 rounded-full bg-outline-variant/30"></span>
+                  <time>{post.data.pubDate.toLocaleDateString('es-ES', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
                 </div>
-                <h3 class="font-display text-xl mb-2 group-hover:text-studio-purple transition-colors">
+                <h3 class="font-headline text-lg lg:text-xl mb-3 text-white group-hover:text-[#ffabf1] transition-colors leading-tight">
                   {post.data.title}
                 </h3>
-                <p class="text-xs opacity-70 line-clamp-2">{post.data.description}</p>
+                <p class="font-body italic text-sm text-on-surface-variant opacity-60 line-clamp-3">
+                  {post.data.description}
+                </p>
               </div>
             </a>
           </article>
         ))}
       </div>
-    </div>
-  </div>
+    </main>
 </BaseLayout>
 
 <script>
@@ -113,20 +129,29 @@ const categories = [...new Set(allPosts.map(p => p.data.category))];
     const filterBtns = document.querySelectorAll('.filter-btn');
     const postCards = document.querySelectorAll('.post-card');
 
+    if (filterBtns.length === 0) return;
+
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         const filter = (btn as HTMLElement).dataset.filter;
 
-        filterBtns.forEach(b => b.classList.remove('active', 'bg-black', 'text-white', 'border-black'));
-        btn.classList.add('active', 'bg-black', 'text-white', 'border-black');
-        btn.classList.remove('bg-white', 'text-black/60');
+        filterBtns.forEach(b => {
+            b.classList.remove('active', 'text-[#ffabf1]', 'border-[#ffabf1]', 'opacity-100');
+            b.classList.add('opacity-50', 'text-on-surface', 'border-transparent');
+        });
+        
+        btn.classList.add('active', 'text-[#ffabf1]', 'border-[#ffabf1]', 'opacity-100');
+        btn.classList.remove('opacity-50', 'text-on-surface', 'border-transparent');
 
         postCards.forEach(card => {
           const category = (card as HTMLElement).dataset.category;
           if (filter === 'all' || category === filter) {
-            card.classList.remove('hidden');
+            // Apply a slight fade-in transition
+            card.style.display = 'block';
+            setTimeout(() => card.style.opacity = '1', 10);
           } else {
-            card.classList.add('hidden');
+            card.style.opacity = '0';
+            setTimeout(() => card.style.display = 'none', 300);
           }
         });
       });

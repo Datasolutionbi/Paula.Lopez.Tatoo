@@ -5,53 +5,146 @@ const spanishQuestions = [
   { q: "¿CÓMO RESERVO?", a: "Completa el formulario a continuación. Abro agenda cada 3 meses para nuevos proyectos en Bogotá y Europa. Se requiere un depósito para asegurar tu espacio." },
   { q: "¿HACES COVER-UPS?", a: "Sí. Me especializo en cover-ups de alto contraste (Blackwork). Necesito ver tu tatuaje existente para determinar si es posible realizar el proyecto." },
   { q: "¿PRECIO Y DEPÓSITO?", a: "Se requiere un depósito no reembolsable para asegurar tu fecha. El precio depende del tamaño y complejidad del diseño. Te daré un presupuesto tras analizar tu idea." },
-  { q: "¿CUIDADOS DEL TATUAJE?", a: "Te daré instrucciones detalladas y un kit de cuidado posterior al finalizar tu sesión. La curación es 50% del resultado final, por lo que es vital seguir el proceso." }
+  { q: "¿CUIDADOS DEL TATUAJE?", a: "Te daré instrucciones detalladas y un kit de cuidado posterior al finalizar tu sesión. La curación es 50% del resultado final, por lo que es vital seguir el proceso." },
+  { q: "¿QUÉ TANTO DURA UNA SESIÓN?", a: "Depende del tamaño y detalle del diseño. Sesiones pequeñas pueden durar 2-3 horas, piezas grandes pueden requerir sesiones de 5-8 horas." },
+  { q: "¿HACES DISEÑOS PERSONALIZADOS?", a: "Sí, todos mis diseños son 100% personalizados. Trabajamos juntos para crear algo único que refleje tu visión." }
 ];
 
 const englishQuestions = [
-  { q: "How do I book?", a: "To book a session, please send a request through the form on our contact page. We require a deposit to secure your spot." },
-  { q: "Tattoo aftercare tips", a: "Use a specialized tattoo ointment, keep the area clean with mild soap, and avoid direct sunlight or swimming for at least 2 weeks." },
-  { q: "Pricing information", a: "Prices vary depending on style, size, and complexity. A non-refundable deposit is required at the time of booking." },
-  { q: "Portfolio availability", a: "All designs shown in the gallery are custom pieces. If you'd like something similar, we can create a unique version for you." }
+  { q: "HOW DO I BOOK A SESSION?", a: "Complete the form below. I open my schedule every 3 months for new projects in Bogotá and Europe. A deposit is required to secure your spot." },
+  { q: "WHAT SHOULD I DO TO PREPARE FOR MY TATTOO?", a: "Stay hydrated, eat well before your session, avoid alcohol 24 hours prior, and moisturize the area daily in the week leading up to your appointment." },
+  { q: "DO YOU DO CUSTOM DESIGNS?", a: "Yes, all my designs are 100% custom. We work together to create something unique that reflects your vision and fits your body perfectly." },
+  { q: "WHAT IS YOUR DEPOSIT POLICY?", a: "A non-refundable deposit is required to secure your date. The deposit goes toward the final cost of your tattoo. The amount depends on the size and complexity of the piece." },
+  { q: "HOW LONG DOES A SESSION TAKE?", a: "It depends on the size and detail of the design. Small pieces can take 2-3 hours, larger pieces may require sessions of 5-8 hours." },
+  { q: "DO YOU DO COVER-UPS?", a: "Yes. I specialize in high-contrast cover-ups (Blackwork). I need to see your existing tattoo to determine if the project is possible." }
 ];
 
 const questions = isEn ? englishQuestions : spanishQuestions;
 ---
 
-<div class="w-full max-w-2xl mx-auto space-y-6">
-  {questions.map((item, index) => (
-    <details class="group border-b border-black/5 pb-6 cursor-pointer">
-      <summary class="flex items-center justify-between list-none focus:outline-none">
-        <span class="text-lg md:text-xl font-bold text-[#222] group-hover:text-[var(--purple-primary)] transition-colors">
-          {item.q}
-        </span>
-        <div class="w-8 h-8 rounded-none bg-black/5 flex items-center justify-center text-[var(--purple-primary)] transition-all group-open:bg-[var(--purple-primary)] group-open:text-white">
-          <span class="text-2xl font-light transform group-open:rotate-180 transition-transform">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path class="group-open:hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v12M6 12h12" />
-              <path class="hidden group-open:block" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M18 12H6" />
-            </svg>
-          </span>
-        </div>
-      </summary>
-      <div class="mt-4 text-black/60 font-medium text-base leading-relaxed overflow-hidden">
-        <p class="py-2 animate-fade-in-up">{item.a}</p>
+<section class="relative bg-studio-charcoal py-20 md:py-28 overflow-hidden">
+  <!-- Grain texture overlay -->
+  <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');"></div>
+
+  <!-- Gold dotted vertical accent line -->
+  <div class="absolute left-6 md:left-12 top-0 bottom-0 w-px border-l border-dotted border-gold/30 pointer-events-none"></div>
+
+  <div class="relative max-w-3xl mx-auto px-6 md:px-12">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="font-display text-white text-[40px] md:text-[50px] uppercase tracking-[3px] leading-tight mb-3">
+        FAQ
+      </h2>
+      <p class="font-body text-gold text-[12px] uppercase tracking-[0.3em] mb-6">
+        Frequently Asked Questions
+      </p>
+      <!-- Gold dotted divider -->
+      <div class="flex items-center justify-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold/60"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-gold/60"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-gold/60"></span>
       </div>
-    </details>
-  ))}
-</div>
+    </div>
+
+    <!-- Accordion -->
+    <div class="space-y-3" id="faq-accordion">
+      {questions.map((item, index) => (
+        <div class="faq-item bg-[#111111] border border-white/5 rounded-sm transition-all duration-300" data-index={index}>
+          <button
+            class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none group"
+            aria-expanded="false"
+          >
+            <span class="font-body text-white text-[14px] uppercase tracking-[0.1em] pr-4 transition-colors duration-300 group-hover:text-gold">
+              {item.q}
+            </span>
+            <span class="faq-icon relative w-6 h-6 flex-shrink-0 flex items-center justify-center transition-transform duration-300">
+              <span class="absolute w-3 h-[1.5px] bg-gold transition-all duration-300"></span>
+              <span class="absolute w-3 h-[1.5px] bg-gold transition-all duration-300 rotate-90"></span>
+            </span>
+          </button>
+          <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+            <div class="px-6 pb-5">
+              <p class="font-body text-white/60 text-[14px] leading-[1.8]">
+                {item.a}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-16">
+      <p class="font-display text-gold text-[14px] uppercase tracking-[0.2em] mb-6">
+        {isEn ? "STILL HAVE QUESTIONS?" : "¿AÚN TIENES PREGUNTAS?"}
+      </p>
+      <a
+        href="/contact"
+        class="inline-block bg-gold text-black font-body text-[13px] uppercase tracking-[0.15em] px-10 py-4 rounded-none hover:bg-white transition-colors duration-300"
+      >
+        {isEn ? "Contact Me" : "Contáctame"}
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-toggle').forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      const item = toggle.closest('.faq-item');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+      const bars = icon.querySelectorAll('span');
+      const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+
+      // Close all other items
+      document.querySelectorAll('.faq-item').forEach((otherItem) => {
+        if (otherItem !== item) {
+          const otherAnswer = otherItem.querySelector('.faq-answer');
+          const otherToggle = otherItem.querySelector('.faq-toggle');
+          const otherIcon = otherItem.querySelector('.faq-icon');
+          const otherBars = otherIcon.querySelectorAll('span');
+
+          otherAnswer.style.maxHeight = '0';
+          otherToggle.setAttribute('aria-expanded', 'false');
+          otherItem.classList.remove('border-gold/30');
+          otherBars[0].style.transform = 'rotate(0deg)';
+          otherBars[1].style.transform = 'rotate(90deg)';
+        }
+      });
+
+      // Toggle current item
+      if (isExpanded) {
+        answer.style.maxHeight = '0';
+        toggle.setAttribute('aria-expanded', 'false');
+        item.classList.remove('border-gold/30');
+        bars[0].style.transform = 'rotate(0deg)';
+        bars[1].style.transform = 'rotate(90deg)';
+      } else {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        toggle.setAttribute('aria-expanded', 'true');
+        item.classList.add('border-gold/30');
+        bars[0].style.transform = 'rotate(90deg)';
+        bars[1].style.transform = 'rotate(90deg)';
+      }
+    });
+  });
+</script>
 
 <style>
-  details > summary::-webkit-details-marker {
-    display: none;
+  .faq-item {
+    transition: border-color 0.3s ease, background-color 0.3s ease;
   }
-  
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+
+  .faq-item:hover {
+    background-color: #161616;
   }
-  
-  .animate-fade-in-up {
-    animation: fadeInUp 0.5s ease-out forwards;
+
+  .faq-answer {
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .faq-icon span {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 </style>
