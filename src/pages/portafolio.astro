@@ -63,7 +63,7 @@ const categories = ["Todas las Obras", "Blackwork", "Realismo", "Anime & Color",
             </p>
         </header>
 
-        <section class="max-w-[1600px] mx-auto">
+        <section class="max-w-[1600px] mx-auto no-reveal">
             <!-- Filter Bar: Asertive Chips (DORA Style) -->
             <div class="flex items-center justify-start md:justify-center gap-3 mb-16 pb-6 overflow-x-auto no-scrollbar scroll-smooth px-4 -mx-5 md:mx-0">
                 {categories.map((cat, i) => (
@@ -83,7 +83,7 @@ const categories = ["Todas las Obras", "Blackwork", "Realismo", "Anime & Color",
             </div>
 
             <!-- Masonry Grid -->
-            <div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6" id="portfolio-grid">
+            <div class="block columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6" id="portfolio-grid">
                 {images.map((img) => (
                     <div class="portfolio-item group relative bg-[#090d1d] overflow-hidden altar-border transform transition-all duration-700 hover:-translate-y-2 break-inside-avoid cursor-pointer hover:shadow-[0_0_30px_rgba(255,171,241,0.15)]" data-category={img.category}>
                         <!-- Decorative Corners -->
@@ -99,7 +99,7 @@ const categories = ["Todas las Obras", "Blackwork", "Realismo", "Anime & Color",
                         )}
 
                         <!-- Image Container with lazy loading and loading skeleton styles -->
-                        <div class="relative w-full overflow-hidden bg-[#00010d]/50 min-h-[300px]">
+                        <div class="relative w-full overflow-hidden bg-[#00010d]/50 aspect-[4/5] min-h-[300px]">
                             <img loading="lazy" src={img.src} alt={img.name} class="portfolio-img w-full h-auto object-cover lg:opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000 aspect-auto lg:grayscale group-hover:grayscale-0" />
                         </div>
 
@@ -120,7 +120,7 @@ const categories = ["Todas las Obras", "Blackwork", "Realismo", "Anime & Color",
         </section>
 
         <!-- Lightbox Dialog -->
-        <dialog id="lightbox" class="bg-transparent m-0 p-0 max-w-none w-full h-full backdrop:bg-[#00010d]/95 backdrop:backdrop-blur-md open:flex flex-col items-center justify-center hidden">
+        <dialog id="lightbox" class="bg-transparent m-0 p-0 max-w-none w-full h-full backdrop:bg-[#00010d]/95 backdrop:backdrop-blur-md open:flex flex-col items-center justify-center">
             <!-- Close Button -->
             <button id="close-lightbox" class="absolute top-8 right-8 lg:top-12 lg:right-12 text-white/50 hover:text-primary transition-colors z-50 focus:outline-none">
                 <span class="material-symbols-outlined text-4xl">close</span>
