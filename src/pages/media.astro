@@ -35,7 +35,7 @@ const mediaItems = [
             {mediaItems.map((item, index) => {
                 const Element = item.href ? 'a' : 'div';
                 return (
-                <Element href={item.href} class={`relative block group overflow-hidden bg-[#090d1d] border border-outline-variant/10 cursor-pointer ${index === 0 ? 'md:col-span-2 lg:row-span-2' : ''} ${index === 2 ? 'lg:col-span-2' : ''}`}>
+                <Element href={item.href} class={`relative block group overflow-hidden bg-[#090d1d] border border-outline-variant/10 cursor-pointer aspect-[4/5] md:aspect-auto ${index === 0 ? 'md:col-span-2 lg:row-span-2' : ''} ${index === 2 ? 'lg:col-span-2' : ''}`}>
                     <!-- Ambient Glow Effect on Hover -->
                     <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-[50px] z-0"></div>
                     
@@ -48,7 +48,7 @@ const mediaItems = [
                         src={item.src} 
                         onerror={`this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuAGSml2HFzCewoCIaDjxidM90iY7LXBq6uDFzvxPdiUG1PzNIv13f5v5KEWmWPLIlGxcAA8n53NaCshzhu4QhGfQh308MaCpUfr-zoxMb1nJ5FfrHzIQB7x9BL_tNHnj7sLFnsc398TZGukeWDqJoZOcZsJxjb4HxawaT_WmQTDWR-sy_ghaPKIkyo0Y7gIBIP830IlGpvAru3436cTPbQy8QzpUzWgh8aCyMVoGwW7g2W1vMPs4rGYrAgHS_paao-XGczmY8OsThE'`}
                         alt={item.title}
-                        class="absolute inset-0 w-full h-full object-cover filter   brightness-50 group-hover:brightness-90 scale-100 group-hover:scale-105 transition-all duration-[1500ms] z-10"
+                        class="absolute inset-0 w-full h-full object-cover filter   brightness-90 md:brightness-50 group-hover:brightness-90 scale-100 group-hover:scale-105 transition-all duration-[1500ms] z-10"
                     />
 
                     <!-- Overlay UI Elements -->
