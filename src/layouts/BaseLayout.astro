@@ -24,10 +24,52 @@ const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 		<link rel="icon" type="image/png" href={`${base}/paula%20lopez.png`} />
 		<link rel="apple-touch-icon" href={`${base}/paula%20lopez.png`} />
+		<!-- SEO & Discovery -->
 		<meta name="generator" content={Astro.generator} />
+		<link rel="canonical" href={Astro.url.href} />
+		
+		<!-- Open Graph / Social Media -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url.href} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={`${base}/paula-artisan.png`} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={Astro.url.href} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={`${base}/paula-artisan.png`} />
+
+		<!-- JSON-LD LocalBusiness Schema -->
+		<script is:inline type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "LocalBusiness",
+		  "name": "Paula López Tattoo",
+		  "image": "/paula-artisan.png",
+		  "description": "Professional Tattoo Artist Portfolio specializing in Biorealism, Anime culture, and Blackwork.",
+		  "address": {
+			"@type": "PostalAddress",
+			"addressLocality": "Madrid",
+			"addressCountry": "ES"
+		  },
+		  "geo": {
+			"@type": "GeoCoordinates",
+			"latitude": 40.4168,
+			"longitude": -3.7038
+		  },
+		  "url": "https://paula-lopez.art",
+		  "sameAs": [
+			"https://www.instagram.com/paulaangels/",
+			"https://www.instagram.com/tattocaro/"
+		  ]
+		}
+		</script>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<title>{title}</title>
@@ -73,6 +115,41 @@ const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
 				background: linear-gradient(to bottom, var(--primary), var(--secondary));
 				border-radius: 10px;
 			}
+
+			/* Ripple Effect */
+			.ripple-container {
+				position: relative;
+				overflow: hidden;
+			}
+			.ripple-effect {
+				position: absolute;
+				border-radius: 50%;
+				background-color: rgba(255, 171, 241, 0.4);
+				transform: scale(0);
+				animation: ripple-animation 0.6s linear;
+				pointer-events: none;
+			}
+			@keyframes ripple-animation {
+				to { transform: scale(4); opacity: 0; }
+			}
+
+			/* Active Indicator */
+			.nav-active-indicator {
+				position: absolute;
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 30px;
+				height: 2px;
+				background: var(--primary);
+				box-shadow: 0 0 10px var(--primary);
+				border-radius: 0 0 4px 4px;
+				opacity: 0;
+				transition: opacity 0.3s ease;
+			}
+			.active .nav-active-indicator {
+				opacity: 1;
+			}
 		</style>
 	</head>
 	<body class="bg-[#00010d] text-on-surface selection:bg-primary selection:text-on-primary">
@@ -83,27 +160,30 @@ const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
       <Footer />
 
       <!-- ═══ STICKY BOTTOM ACTION BAR — Mobile only ═══ -->
-      <div class="lg:hidden fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 bg-[#00010d]/85 backdrop-blur-[20px] border-t border-[#ffabf1]/10 safe-bottom" style="padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));">
+      <div class="lg:hidden fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-6 bg-[#00010d]/90 backdrop-blur-[30px] border-t border-[#ffabf1]/10 safe-bottom" style="padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));">
 
         <!-- Instagram -->
         <a href="https://www.instagram.com/paulaangels/" target="_blank" rel="noopener noreferrer"
            aria-label="Instagram"
-           class="flex flex-col items-center gap-1 text-white/40 hover:text-[#ffabf1] transition-colors duration-300 min-w-[44px]">
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+           data-haptic="light"
+           data-ripple
+           class="ripple-container flex flex-col items-center justify-center p-2 text-white/40 hover:text-[#ffabf1] transition-all duration-300 min-w-[70px] active:scale-95">
+          <svg class="w-12 h-12" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
           </svg>
-          <span class="font-headline text-[7px] tracking-widest uppercase opacity-60">IG</span>
         </a>
 
         <!-- Divider -->
         <div class="w-px h-8 bg-white/10"></div>
 
         <!-- Language Pills -->
-        <div class="flex items-center gap-1.5">
+        <div class="flex items-center gap-3">
           {(['ES', 'EN', 'NL', 'FR'] as const).map(code => (
             <button
               data-lang={code}
-              class="lang-btn font-headline text-[10px] tracking-widest px-2.5 py-1.5 rounded border border-white/10 text-white/40 transition-all duration-200 hover:text-[#ffabf1] hover:border-[#ffabf1]/50 hover:bg-[#ffabf1]/5 min-w-[36px]"
+              data-haptic="light"
+              data-ripple
+              class="lang-btn ripple-container font-headline text-[14px] font-bold tracking-widest px-4 py-3 rounded border border-white/10 text-white/40 transition-all duration-200 hover:text-[#ffabf1] hover:border-[#ffabf1]/50 hover:bg-[#ffabf1]/5 min-w-[60px] active:scale-90"
             >
               {code}
             </button>
@@ -116,11 +196,12 @@ const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
         <!-- Facebook -->
         <a href="https://www.facebook.com/paulaangels" target="_blank" rel="noopener noreferrer"
            aria-label="Facebook"
-           class="flex flex-col items-center gap-1 text-white/40 hover:text-[#ffabf1] transition-colors duration-300 min-w-[44px]">
-          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+           data-haptic="light"
+           data-ripple
+           class="ripple-container flex flex-col items-center justify-center p-2 text-white/40 hover:text-[#ffabf1] transition-all duration-300 min-w-[70px] active:scale-95">
+          <svg class="w-12 h-12" viewBox="0 0 24 24" fill="currentColor">
             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
           </svg>
-          <span class="font-headline text-[7px] tracking-widest uppercase opacity-60">FB</span>
         </a>
 
       </div>
@@ -316,11 +397,46 @@ const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
           });
         }
 
+        function initFeedback() {
+          // Haptics
+          document.addEventListener('click', function(e) {
+            var el = e.target.closest('[data-haptic]');
+            if (el && navigator.vibrate) {
+              var type = el.getAttribute('data-haptic');
+              var pattern = type === 'medium' ? [20, 50, 20] : 10;
+              navigator.vibrate(pattern);
+            }
+          });
+
+          // Ripple Effect
+          document.addEventListener('click', function(e) {
+            var el = e.target.closest('[data-ripple]');
+            if (!el) return;
+            
+            var ripple = document.createElement('span');
+            ripple.classList.add('ripple-effect');
+            
+            var rect = el.getBoundingClientRect();
+            var size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = size + 'px';
+            
+            var x = e.clientX - rect.left - size/2;
+            var y = e.clientY - rect.top - size/2;
+            
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            
+            el.appendChild(ripple);
+            setTimeout(function() { ripple.remove(); }, 600);
+          });
+        }
+
         function run() {
           var lang = localStorage.getItem('site_lang') || 'ES';
           applyLang(lang);
           attachButtons();
           initReveal();
+          initFeedback();
         }
 
         // astro:after-swap = nuevo HTML ya está en DOM (para ClientRouter)

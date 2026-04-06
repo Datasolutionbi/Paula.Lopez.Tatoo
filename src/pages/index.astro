@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import artisanHero from '../assets/hero-artisan.png';
+
 const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
 ---
 
@@ -8,8 +11,8 @@ const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
     <section class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0 bg-[#00010d]">
             <!-- Hero atmospheric image - Artisan -->
-            <img 
-                src={`${base}/paula-artisan.png`} 
+            <Image 
+                src={artisanHero} 
                 alt="Paula Lopez - Artisan" 
                 class="w-full h-full object-cover opacity-40 blur-[2px]"
                 loading="eager"

@@ -13,17 +13,17 @@ const progress = (currentStep / totalSteps) * 100;
     {Array.from({ length: totalSteps }, (_, i) => i + 1).map(step => (
       <div class="flex flex-col items-center flex-1">
         <div 
-          class={`w-10 h-10 rounded-none flex items-center justify-center font-bold text-sm transition-all duration-300 ${
+          class={`w-16 h-16 rounded-none flex items-center justify-center font-bold text-2xl transition-all duration-300 ${
             step < currentStep 
               ? 'bg-gold text-black' 
               : step === currentStep 
-              ? 'bg-gold text-black ring-4 ring-gold/30' 
+              ? 'bg-gold text-black ring-8 ring-gold/30' 
               : 'bg-white/10 text-white/40'
           }`}
         >
           {step < currentStep ? '✓' : step}
         </div>
-        <span class="text-[8px] uppercase tracking-widest mt-2 opacity-50">
+        <span class="text-[10px] uppercase tracking-[0.2em] mt-3 opacity-60 font-headline">
           {step === 1 ? 'Type' : step === 2 ? 'Placement' : 'Details'}
         </span>
       </div>

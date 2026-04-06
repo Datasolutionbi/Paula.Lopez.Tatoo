@@ -32,7 +32,7 @@ const isEn = Astro.url.pathname.includes('/en');
       <div class="flex justify-between mt-12 pt-8 border-t border-white/10">
         <button
           id="wizard-prev"
-          class="px-8 py-4 border border-white/20 text-white font-modern font-bold text-xs uppercase tracking-[0.2em] rounded-none transition-all duration-300 hover:bg-white hover:text-black disabled:opacity-30 disabled:cursor-not-allowed"
+          class="px-10 py-5 border border-white/20 text-white font-modern font-bold text-sm md:text-base uppercase tracking-[0.2em] rounded-none transition-all duration-300 hover:bg-white hover:text-black disabled:opacity-30 disabled:cursor-not-allowed active:scale-95"
           disabled
         >
           ← {isEn ? 'Previous' : 'Anterior'}
@@ -40,7 +40,7 @@ const isEn = Astro.url.pathname.includes('/en');
 
         <button
           id="wizard-next"
-          class="px-8 py-4 bg-gold text-black font-modern font-bold text-xs uppercase tracking-[0.2em] rounded-none transition-all duration-300 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
+          class="px-10 py-5 bg-gold text-black font-modern font-bold text-sm md:text-base uppercase tracking-[0.2em] rounded-none transition-all duration-300 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
           disabled
         >
           {isEn ? 'Next' : 'Siguiente'} →
@@ -48,7 +48,7 @@ const isEn = Astro.url.pathname.includes('/en');
 
         <button
           id="wizard-submit"
-          class="hidden px-8 py-4 bg-gold text-black font-modern font-bold text-xs uppercase tracking-[0.2em] rounded-none transition-all duration-300 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
+          class="hidden px-10 py-5 bg-gold text-black font-modern font-bold text-sm md:text-base uppercase tracking-[0.2em] rounded-none transition-all duration-300 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 shadow-[0_0_30px_rgba(255,171,241,0.2)]"
           disabled
         >
           {isEn ? 'Submit Booking Request' : 'Enviar Solicitud'} ✓
@@ -91,13 +91,13 @@ const isEn = Astro.url.pathname.includes('/en');
       steps.forEach((step, index) => {
         const stepNum = index + 1;
         if (stepNum < currentStep) {
-          step.className = 'w-10 h-10 rounded-none flex items-center justify-center font-bold text-sm transition-all duration-300 bg-gold text-black';
+          step.className = 'w-16 h-16 rounded-none flex items-center justify-center font-bold text-2xl transition-all duration-300 bg-gold text-black';
           step.textContent = '✓';
         } else if (stepNum === currentStep) {
-          step.className = 'w-10 h-10 rounded-none flex items-center justify-center font-bold text-sm transition-all duration-300 bg-gold text-black ring-4 ring-gold/30';
+          step.className = 'w-16 h-16 rounded-none flex items-center justify-center font-bold text-2xl transition-all duration-300 bg-gold text-black ring-8 ring-gold/30';
           step.textContent = stepNum.toString();
         } else {
-          step.className = 'w-10 h-10 rounded-none flex items-center justify-center font-bold text-sm transition-all duration-300 bg-white/10 text-white/40';
+          step.className = 'w-16 h-16 rounded-none flex items-center justify-center font-bold text-2xl transition-all duration-300 bg-white/10 text-white/40';
           step.textContent = stepNum.toString();
         }
       });
