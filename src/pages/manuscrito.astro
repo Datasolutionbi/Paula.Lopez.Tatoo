@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="EL MANUSCRITO | Process">
+<main class="min-h-screen flex flex-col md:flex-row pt-20">
+<!-- Left Side: Dramatic Visual Anchor -->
+<section class="w-full md:w-1/2 h-[614px] md:h-screen sticky top-0 bg-surface-container-lowest overflow-hidden">
+<div class="absolute inset-0 z-10 bg-gradient-to-r from-transparent via-transparent to-[#00010d]"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#00010d] via-transparent to-transparent"></div>
+<img class="w-full h-full object-cover grayscale opacity-60 hover:opacity-80 transition-opacity duration-1000" data-alt="Macro close-up of a detailed blackwork tattoo on skin, illuminated by a single sharp magenta neon light beam, dramatic shadows, photographic relic style" src={`${base}/tatuajes/tattoo-7.png`}/>
+<!-- Decorative Glow Element -->
+<div class="absolute bottom-12 left-12 z-20">
+<span class="font-headline text-[10px] tracking-[0.6em] text-primary uppercase mb-2 block">Fragment No. 042</span>
+<h2 class="font-headline text-4xl font-light tracking-widest text-on-surface uppercase">LA RELIQUIA</h2>
+</div>
+</section>
+<!-- Right Side: The Manuscript Narrative -->
+<section class="w-full md:w-1/2 min-h-screen bg-[#00010d] flex flex-col justify-center px-8 md:px-24 py-24 relative">
+<!-- Subtle Background Light Bleed -->
+<div class="absolute top-1/4 right-0 w-64 h-64 bg-primary-container/5 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="absolute bottom-1/4 left-0 w-64 h-64 bg-secondary-container/5 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="relative z-10 space-y-16">
+<!-- Header Label -->
+<div class="flex items-center space-x-4">
+<div class="h-[1px] w-12 bg-outline-variant/30"></div>
+<span class="font-label text-[11px] tracking-[0.4em] text-secondary uppercase">EL MANUSCRITO DE LA PIEL</span>
+</div>
+<!-- Editorial Copy -->
+<div class="space-y-12 max-w-xl">
+<p class="font-body italic text-4xl md:text-5xl text-on-surface leading-tight font-extralight text-glow-primary">
+                        Every needle stroke is a prayer to the <span class="text-secondary italic">synthetic soul</span>, a baptism of ink and light within this dark chamber.
+                    </p>
+<div class="h-[1px] w-24 bg-primary-container/40"></div>
+<div class="space-y-8 font-body italic text-xl md:text-2xl text-on-surface-variant leading-relaxed opacity-90">
+<p>
+                            We do not merely mark the surface; we curate the internal altar. The tattoo is a relic of a time before the neon, a tangible anchor in an ethereal world of fleeting data.
+                        </p>
+<p>
+                            Behold the geometry of the sacred. Here, where the pulse of the machine meets the warmth of the blood, we find the absolute.
+                        </p>
+</div>
+</div>
+<!-- Signature Block -->
+<div class="pt-12 space-y-2">
+<div class="font-body italic text-5xl text-primary font-thin tracking-tighter">Paula Lopez</div>
+<div class="font-label text-[10px] tracking-[0.5em] text-outline uppercase ml-1">CUSTODIAN OF THE ICONOGRAPHY</div>
+</div>
+<!-- Call to Action -->
+<div class="pt-8">
+<button class="group flex items-center space-x-6 text-[#9bcaff] hover:text-[#ffabf1] transition-colors duration-500">
+<span class="font-headline text-sm tracking-[0.3em] uppercase">Enter the Archive</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-500">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+</BaseLayout>

@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="PAULA LOPEZ | ABOUT ME">
+    <main class="w-full min-h-screen pb-20 px-8 lg:px-24 mx-auto flex flex-col z-10 max-w-[1800px]">
+        <!-- Spacer invisible para el navbar fijo -->
+        <div class="w-full h-32 md:h-48 shrink-0"></div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            <!-- Left: Portrait / Brand Image -->
+            <div class="lg:col-span-6 relative group aspect-[3/4] w-full max-w-none mx-auto lg:mx-0 overflow-hidden bg-[#171b2c] border border-outline-variant/20 z-20 shadow-2xl">
+                <!-- Decorative border corner effects -->
+                <div class="absolute -top-px -left-px w-12 h-12 border-t border-l border-primary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-30"></div>
+                <div class="absolute -bottom-px -right-px w-12 h-12 border-b border-r border-primary/50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-30"></div>
+                
+                <!-- Fallback to a local studio or artisan image if available -->
+                <img 
+                    src={(await import('../../docs/diseños/tattuajes/image copy 37.png')).default.src} 
+                    onerror={`this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuAGSml2HFzCewoCIaDjxidM90iY7LXBq6uDFzvxPdiUG1PzNIv13f5v5KEWmWPLIlGxcAA8n53NaCshzhu4QhGfQh308MaCpUfr-zoxMb1nJ5FfrHzIQB7x9BL_tNHnj7sLFnsc398TZGukeWDqJoZOcZsJxjb4HxawaT_WmQTDWR-sy_ghaPKIkyo0Y7gIBIP830IlGpvAru3436cTPbQy8QzpUzWgh8aCyMVoGwW7g2W1vMPs4rGYrAgHS_paao-XGczmY8OsThE'`}
+                    alt="Paula Lopez - Portrait" 
+                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
+                />
+                
+                <!-- Ambient Glow -->
+                <div class="absolute inset-0 bg-gradient-to-t from-[#00010d] via-transparent to-transparent opacity-80 z-10"></div>
+                <div class="absolute inset-0 border-[12px] border-[#51424d]/10 pointer-events-none z-20"></div>
+            </div>
+
+            <!-- Right: The Narrative -->
+            <div class="lg:col-span-6 flex flex-col justify-center space-y-12 lg:pl-12 xl:pl-24">
+                <div>
+                    <h1 class="font-headline text-[10px] tracking-[0.5em] text-secondary uppercase mb-6" data-i18n="about.label">Sobre la Artista</h1>
+                    <h2 class="font-headline text-5xl lg:text-7xl font-extralight tracking-tight uppercase text-on-surface">
+                        <span data-i18n="about.headline1">Creando</span> <br/><span class="text-primary italic font-body" data-i18n="about.headline2">Eternidad</span>
+                    </h2>
+                </div>
+
+                <div class="h-px w-24 bg-outline-variant/30"></div>
+
+                <div class="space-y-8 font-body italic text-xl text-on-surface-variant leading-relaxed">
+                    <p data-i18n="about.p1">
+                        "Mi visión del tatuaje trasciende la simple inyección de tinta en la dermis. Lo considero un rito de paso, un proceso de arquitectura corporal donde la luz, las sombras y la anatomía dictan la estructura."
+                    </p>
+                    <p class="text-tertiary opacity-80" data-i18n="about.p2">
+                        Especializada en Biorealismo, Cultura Anime y Blackwork de autor, cada diseño es una colaboración nacida de la escucha técnica y la obsesión por llevar referencias visuales de la cultura pop y la naturaleza a la máxima saturación y vitalidad en la piel.
+                    </p>
+                    <p data-i18n="about.p3">
+                        El estudio no es una tienda de paso, es The Synthetic Cathedral: Un espacio seguro de silencio, donde el arte se respeta y la creatividad se materializa en la piel como lienzos vivos.
+                    </p>
+                </div>
+
+                <div class="pt-8">
+                     <a href={`${base}/contacto`} class="inline-block relative overflow-hidden group/btn px-12 py-5 bg-transparent border border-primary/40 hover:border-primary transition-colors duration-500">
+                        <span class="relative z-10 font-headline tracking-[0.4em] text-xs uppercase text-primary group-hover/btn:text-white transition-colors" data-i18n="about.cta">Agendar Consulta</span>
+                        <div class="absolute inset-0 bg-primary opacity-0 group-hover/btn:opacity-10 transition-opacity duration-500"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vision/Philosophy Blocks -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-32 border-t border-outline-variant/10 pt-20">
+            <div class="space-y-4">
+                <span class="material-symbols-outlined text-secondary text-3xl">brush</span>
+                <h3 class="font-headline text-sm tracking-[0.2em] uppercase text-on-surface" data-i18n="about.v1.title">Curaduía de Color</h3>
+                <p class="font-body italic text-on-surface-variant/70 leading-relaxed" data-i18n="about.v1.sub">Saturación cromática extrema, fidelidad absoluta a la estética fuente (Anime/Realismo) y contrastes vivos que garantizan longevidad.</p>
+            </div>
+            <div class="space-y-4">
+                <span class="material-symbols-outlined text-secondary text-3xl">local_fire_department</span>
+                <h3 class="font-headline text-sm tracking-[0.2em] uppercase text-on-surface" data-i18n="about.v2.title">El Ritual</h3>
+                <p class="font-body italic text-on-surface-variant/70 leading-relaxed" data-i18n="about.v2.sub">Cada sesión se diseña para ser inmersiva. Un entorno curado y privado enfocado totalmente en el desarrollo de la obra monumental.</p>
+            </div>
+            <div class="space-y-4">
+                <span class="material-symbols-outlined text-secondary text-3xl">public</span>
+                <h3 class="font-headline text-sm tracking-[0.2em] uppercase text-on-surface" data-i18n="about.v3.title">Presencia</h3>
+                <p class="font-body italic text-on-surface-variant/70 leading-relaxed" data-i18n="about.v3.sub">Basada en Madrid, España. Aceptando propuestas a nivel internacional para curadurías de cuerpo completo («body suits»).</p>
+            </div>
+        </div>
+
+    </main>
+</BaseLayout>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdbcb",
+                    "on-tertiary-fixed-variant": "#6b3a1f",
+                    "surface-tint": "#ffabf1",
+                    "surface-container": "#1b1f30",
+                    "surface-variant": "#303446",
+                    "on-primary-fixed-variant": "#7c1678",
+                    "primary": "#ffabf1",
+                    "outline-variant": "#51424d",
+                    "tertiary": "#fdb693",
+                    "primary-fixed-dim": "#ffabf1",
+                    "on-primary-container": "#ffadf1",
+                    "surface-container-low": "#171b2c",
+                    "on-error-container": "#ffdad6",
+                    "tertiary-container": "#7a462a",
+                    "on-error": "#690005",
+                    "background": "#0f1223",
+                    "primary-fixed": "#ffd7f4",
+                    "surface-bright": "#35384b",
+                    "primary-container": "#8c2786",
+                    "surface-container-highest": "#303446",
+                    "on-primary": "#5c0059",
+                    "secondary-fixed-dim": "#9bcaff",
+                    "on-tertiary-fixed": "#341100",
+                    "inverse-primary": "#993392",
+                    "error-container": "#93000a",
+                    "on-tertiary-container": "#feb793",
+                    "on-secondary-fixed": "#001d35",
+                    "on-surface": "#dfe1f9",
+                    "on-surface-variant": "#d6c1ce",
+                    "on-secondary-fixed-variant": "#004a7a",
+                    "outline": "#9e8b98",
+                    "inverse-on-surface": "#2c2f41",
+                    "surface": "#0f1223",
+                    "tertiary-fixed-dim": "#fdb693",
+                    "on-secondary-container": "#002c4b",
+                    "on-primary-fixed": "#380037",
+                    "inverse-surface": "#dfe1f9",
+                    "surface-dim": "#0f1223",
+                    "on-secondary": "#003256",
+                    "surface-container-high": "#25293b",
+                    "secondary-fixed": "#d0e4ff",
+                    "on-background": "#dfe1f9",
+                    "error": "#ffb4ab",
+                    "on-tertiary": "#4f240b",
+                    "surface-container-lowest": "#090d1d",
+                    "secondary-container": "#0096f1",
+                    "secondary": "#9bcaff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Epilogue"],
+                    "body": ["Newsreader"],
+                    "label": ["Epilogue"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #00010d;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(140, 39, 134, 0.05) 0%, transparent 100%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l15 30-15 30-15-30z' fill='%2351424d' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(140, 39, 134, 0.15);
+        }
+        .altar-border {
+            border: 1px solid rgba(81, 66, 77, 0.3);
+            position: relative;
+        }
+        .altar-border::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            border: 1px solid rgba(140, 39, 134, 0.1);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="text-on-surface font-label selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full h-20 bg-[#00010d]/80 backdrop-blur-xl flex justify-between items-center px-12 z-50 tonal-shift bg-gradient-to-b from-[#8C2786]/5 to-transparent">
+<div class="font-['Epilogue'] text-2xl font-light tracking-[0.5em] text-[#ffabf1]">EL ALTAR</div>
+<div class="hidden md:flex items-center space-x-12">
+<a class="font-['Epilogue'] tracking-[0.2em] uppercase text-sm text-[#ffabf1] border-b border-[#ffabf1] pb-1 hover:tracking-[0.3em] transition-all duration-700 ease-in-out" href="#">GALLERY</a>
+<a class="font-['Epilogue'] tracking-[0.2em] uppercase text-sm text-[#9bcaff] hover:text-[#ffabf1] transition-colors duration-500 hover:tracking-[0.3em] transition-all duration-700 ease-in-out" href="#">ARCHIVE</a>
+<a class="font-['Epilogue'] tracking-[0.2em] uppercase text-sm text-[#9bcaff] hover:text-[#ffabf1] transition-colors duration-500 hover:tracking-[0.3em] transition-all duration-700 ease-in-out" href="#">PROCESS</a>
+<a class="font-['Epilogue'] tracking-[0.2em] uppercase text-sm text-[#9bcaff] hover:text-[#ffabf1] transition-colors duration-500 hover:tracking-[0.3em] transition-all duration-700 ease-in-out" href="#">MANIFESTO</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="font-['Epilogue'] tracking-[0.2em] uppercase text-sm px-6 py-2 border border-outline-variant text-[#ffabf1] hover:bg-primary-container/10 transition-all duration-500">
+                ENTER SANCTUM
+            </button>
+<span class="material-symbols-outlined text-[#ffabf1] cursor-pointer">menu</span>
+</div>
+</nav>
+<main class="pt-32 pb-20 px-8 md:px-24 max-w-[1600px] mx-auto">
+<!-- The Altar Hero Section -->
+<header class="mb-32 text-center relative">
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/5 via-transparent to-transparent -z-10 blur-3xl"></div>
+<p class="font-body italic text-tertiary text-lg tracking-[0.3em] mb-6">Sacred Geometry &amp; Flesh</p>
+<h1 class="font-headline font-extrabold text-6xl md:text-8xl tracking-[-0.02em] uppercase text-on-surface mb-8">
+                The <span class="text-primary">Iconography</span>
+</h1>
+<div class="w-24 h-[1px] bg-outline-variant mx-auto mb-8"></div>
+<p class="max-w-2xl mx-auto font-body italic text-on-surface-variant text-xl leading-relaxed">
+                "Each mark is a silent prayer, etched into the temple of the body. A convergence of digital precision and ancestral ritual."
+            </p>
+</header>
+<!-- Monumental Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+<!-- Panel 01 -->
+<div class="group relative bg-surface-container-lowest altar-border overflow-hidden">
+<div class="aspect-[3/4] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-1000">
+<img class="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" data-alt="high-contrast studio photography of a detailed geometric back tattoo with heavy blackwork and neon purple spotlighting in a dark room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB03ZOvaRltcvwdGQ84o50ZvPP9sDIFWecoa2SusMuFcYFOVKx2Fka6kEUCTRZjuzP1hmR48vG6kCdglzxNnq5UY43vUYu-11y-BS6-iJSm4YyYpqt-uB69Fr3B528pS9DhIDlNjcO7VLhEwKOQobZ1ikCpj2fzVg8Fhux1YMdadxI2r-ReFqar6fQVwG5_dRRiltT4KJmmLX0KThhhRg4c8Q8DpW4cE29XGVf7HwMCmCc4esSjZDy0zEQGjFVzNrG2kDc7HYRG0Ng"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#00010d] via-transparent to-transparent opacity-80"></div>
+</div>
+<div class="absolute bottom-0 left-0 w-full p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+<span class="font-label text-[10px] tracking-[0.4em] text-secondary uppercase mb-2 block">Fragment I</span>
+<h3 class="font-headline text-2xl text-on-surface tracking-widest uppercase">Obsidian Core</h3>
+<div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">
+<p class="font-body italic text-sm text-on-surface-variant">Technique: Symmetrical Fracture</p>
+</div>
+</div>
+<div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">north_east</span>
+</div>
+</div>
+<!-- Panel 02 (Large Span) -->
+<div class="group relative bg-surface-container-lowest altar-border overflow-hidden md:col-span-2">
+<div class="aspect-[16/9] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-1000">
+<img class="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" data-alt="cinematic close-up of complex sleeve tattoo featuring cybernetic and organic motifs lit with deep electric blue neon light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFX_mT6wdJxpohz2WRhghCcZjkw-JcfCgyjNkCPXXGtoGKzmZ6LAzdgh6iaw_s6UOnbxhFYKZt7Cp6xk6bxb9mpEjvZR4oupOZ_wlyG_RMAjGKXQ6DKonHw-wZdLkUjDtLZg6mA2ATAp1s-cbh_HowHiTA3DSua6JiC3glvastEEhfP4XpBdREJuzVPIgLf0hvvqcp60nwfwmrHCozQWos228dexjILYYo3jRYf91O3osaaQzieNYwkUaTA1P-tRDYXyVrill7lfo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#00010d] via-transparent to-transparent opacity-80"></div>
+</div>
+<div class="absolute bottom-0 left-0 w-full p-12 translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+<span class="font-label text-[10px] tracking-[0.4em] text-secondary uppercase mb-2 block">Fragment II</span>
+<h3 class="font-headline text-4xl text-on-surface tracking-[0.2em] uppercase">Synthetic Soul</h3>
+<div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">
+<p class="font-body italic text-lg text-on-surface-variant">Full Sleeve Commission — 2024</p>
+</div>
+</div>
+</div>
+<!-- Panel 03 -->
+<div class="group relative bg-surface-container-lowest altar-border overflow-hidden">
+<div class="aspect-[3/4] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-1000">
+<img class="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" data-alt="minimalist neck tattoo of a single vertical line and fine dotwork spotlighted from above with sharp shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9vStpet-N7RPzzik6HSw7fHV1rg2qAfx8K9kXwApBBgfEaQrNceiB_aQcQ41ufTwHvhGbnT-QpfOKdxBMX5oBLaphxoVIAT9RtxPJyiqLLWA4syApoaodCBKikjSJUSKAFJEm4dHzwxHDuCApdBR00kdTLOImzqYnfD5Dlhz_5eqeCLrua5TFXxreyraV7fhPqix3T954We9lxUK21LimUOQimAbeD-cBmcvF77r1Jslk0J902j7YKS5a5T91P_dmgsezP7rleSE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#00010d] via-transparent to-transparent opacity-80"></div>
+</div>
+<div class="absolute bottom-0 left-0 w-full p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+<span class="font-label text-[10px] tracking-[0.4em] text-secondary uppercase mb-2 block">Fragment III</span>
+<h3 class="font-headline text-2xl text-on-surface tracking-widest uppercase">The Meridian</h3>
+<div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">
+<p class="font-body italic text-sm text-on-surface-variant">Concept: Alignment of Silence</p>
+</div>
+</div>
+</div>
+<!-- Panel 04 -->
+<div class="group relative bg-surface-container-lowest altar-border overflow-hidden">
+<div class="aspect-[3/4] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-1000">
+<img class="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" data-alt="intricate chest piece tattoo with gothic architecture influence lit in moody purple and magenta studio lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlJG8iYNSHF96YoG56IBjB5ljjidYKFevnUwBvGnH_OHii5sj7CbZm78j6HuwZZVrZvBaWf4Sug0lnpaMKCAN530A8RGAoGvnUcQcFAtSnJV5SVQAJ_cUH3DKMmur4haas2i8aVbX46112rH5hn4v0j2ocQRj8Jt_d8_L55_N7iMkSDvMP5vkS_D1rvLRyU2jxjT02DJONTgrrTEdk6mVJEg7qvMGk-QMEmPzjs2fERHoS2Xh3dBn_T63r3g4IaKPvhlG6UHCMEv8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#00010d] via-transparent to-transparent opacity-80"></div>
+</div>
+<div class="absolute bottom-0 left-0 w-full p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+<span class="font-label text-[10px] tracking-[0.4em] text-secondary uppercase mb-2 block">Fragment IV</span>
+<h3 class="font-headline text-2xl text-on-surface tracking-widest uppercase">Gothic Ether</h3>
+<div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">
+<p class="font-body italic text-sm text-on-surface-variant">Collection: Cathedral Veins</p>
+</div>
+</div>
+</div>
+<!-- Panel 05 -->
+<div class="group relative bg-surface-container-lowest altar-border overflow-hidden">
+<div class="aspect-[3/4] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-1000">
+<img class="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000" data-alt="dramatic macro shot of fresh black ink on skin with light reflecting off the skin texture and deep purple hues" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjMQNLs10uTyZctyW9vESr_ndECjalv3DV_b5UhFmwkGWdoSjRBiy8tP5huhRuAes3gWVKTtFy_2JnyusG4T2XanTmLcCB_7pdSLVNLdQ7U8kXUP0bMOdXfhgOW2AH-L-ZdfhZE8dNRz9_HHWHQ62-CAYCG2rMeF_SIqT-TIq3zoe4CopqGqsFX8PvUp-OS1WCsbOVZ48sIhX9GdWtXe_fuTeFlEbhaehRpKmAuJm059DUVmnlwsKKJGCJPD59VH0dPqxMz1KRRz8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#00010d] via-transparent to-transparent opacity-80"></div>
+</div>
+<div class="absolute bottom-0 left-0 w-full p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+<span class="font-label text-[10px] tracking-[0.4em] text-secondary uppercase mb-2 block">Fragment V</span>
+<h3 class="font-headline text-2xl text-on-surface tracking-widest uppercase">Living Ink</h3>
+<div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">
+<p class="font-body italic text-sm text-on-surface-variant">Focus: Texture &amp; Depth</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Call to Action Section -->
+<section class="mt-48 text-center bg-surface-container-lowest p-20 altar-border">
+<div class="mb-12">
+<span class="font-label text-xs tracking-[0.5em] text-primary uppercase">The Invitation</span>
+<h2 class="font-headline text-5xl mt-6 uppercase tracking-widest">Commence Your <span class="italic font-body text-secondary">Transfiguration</span></h2>
+</div>
+<div class="flex flex-col md:flex-row justify-center items-center gap-8">
+<button class="bg-primary-container text-[#ffabf1] px-12 py-5 font-headline tracking-[0.3em] uppercase text-sm border border-primary/20 hover:neon-glow transition-all duration-700">
+                    Book Consultation
+                </button>
+<button class="bg-transparent text-secondary px-12 py-5 font-headline tracking-[0.3em] uppercase text-sm border border-outline-variant hover:border-secondary transition-all duration-700">
+                    View Methodology
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 border-t border-[#51424d]/15 bg-[#00010d] mt-32 flex flex-col items-center justify-center space-y-8">
+<div class="font-['Epilogue'] font-bold text-[#8C2786] tracking-[0.8em] text-xl">EL ALTAR</div>
+<div class="flex space-x-12">
+<a class="font-['Newsreader'] italic text-xs tracking-widest text-[#7a462a] hover:text-[#9bcaff] transition-colors duration-1000" href="#">PRIVACY</a>
+<a class="font-['Newsreader'] italic text-xs tracking-widest text-[#7a462a] hover:text-[#9bcaff] transition-colors duration-1000" href="#">TERMS</a>
+<a class="font-['Newsreader'] italic text-xs tracking-widest text-[#7a462a] hover:text-[#9bcaff] transition-colors duration-1000" href="#">CONTACT</a>
+</div>
+<div class="font-['Newsreader'] italic text-xs tracking-widest text-[#7a462a] opacity-50 uppercase">
+            © MMXXIV EL ALTAR DE LA ICONOGRAFÍA. ALL RIGHTS RESERVED.
+        </div>
+</footer>
+</body></html>

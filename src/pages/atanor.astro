@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="EL ATANOR | Archive">
+<main class="pt-20 min-h-screen flex flex-col">
+<!-- Hero Altar Section -->
+<section class="grid grid-cols-1 md:grid-cols-2 min-h-[calc(100vh-5rem)]">
+<!-- Left Column: Portrait -->
+<div class="relative bg-surface-container-lowest overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-tr from-[#8c2786]/20 via-transparent to-[#0096f1]/20 mix-blend-overlay z-10"></div>
+<img alt="Paula Lopez Artist Portrait" class="w-full h-full object-cover grayscale contrast-125 transition-transform duration-[2000ms] group-hover:scale-105" data-alt="Close-up artistic black and white portrait of Paula Lopez with high contrast shadows and sharp neon blue and magenta rim lighting highlights on her face and hair." src={`${base}/paula-studio.png`}/>
+<div class="absolute bottom-12 left-12 z-20">
+<span class="font-label text-[#9bcaff] tracking-[0.4em] text-xs uppercase block mb-2">The Alchemist</span>
+<h2 class="font-headline text-5xl font-extrabold tracking-tighter text-[#ffabf1]">PAULA LOPEZ</h2>
+</div>
+</div>
+<!-- Right Column: Philosophical Text -->
+<div class="flex flex-col justify-center px-12 md:px-24 bg-surface border-l border-outline-variant/10">
+<div class="max-w-xl">
+<h1 class="font-headline text-6xl md:text-8xl font-thin tracking-[0.2em] text-on-surface mb-12">
+                        EL ATANOR
+                    </h1>
+<div class="space-y-8">
+<p class="font-body italic text-2xl md:text-3xl text-tertiary leading-relaxed">
+                            "The Alchemy of Form is not merely a transformation of matter, but a sanctification of digital space where neon light meets the void."
+                        </p>
+<div class="h-px w-24 bg-primary-container"></div>
+<div class="space-y-6">
+<p class="font-label text-sm tracking-[0.15em] leading-loose text-on-surface-variant uppercase">
+                                Within the chamber of EL ATANOR, Paula Lopez decodes the geometry of the sacred. Her work acts as a synthetic bridge between the ancient manuscript and the future pulse—a rhythmic architecture of shadow and luminescence.
+                            </p>
+<p class="font-label text-sm tracking-[0.15em] leading-loose text-on-surface-variant uppercase">
+                                Every pixel is a calculated spark, every line a ritual. Through the fusion of electric blue and ritualistic magenta, she creates a digital sanctum for the wandering soul.
+                            </p>
+</div>
+<div class="pt-12">
+<button class="bg-primary-container text-on-primary-container px-10 py-4 font-label tracking-[0.3em] uppercase text-xs hover:neon-glow transition-all duration-700">
+                                EXPLORE THE RITUAL
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Secondary Section: The Process -->
+<section class="py-32 px-12 md:px-24 bg-surface-container-lowest">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-24">
+<div class="space-y-6">
+<span class="font-body italic text-primary text-xl">I. Transmutation</span>
+<p class="font-label text-xs tracking-[0.2em] text-on-surface-variant uppercase leading-relaxed">
+                        The process begins in the dark. Raw data is filtered through the lens of antiquity, stripped of its modern utility to reveal its spiritual core.
+                    </p>
+</div>
+<div class="space-y-6">
+<span class="font-body italic text-secondary text-xl">II. Illumination</span>
+<p class="font-label text-xs tracking-[0.2em] text-on-surface-variant uppercase leading-relaxed">
+                        Synthetic light is injected into the structure. We use the neon pulse to draw the eye to the divine proportion hidden within the noise.
+                    </p>
+</div>
+<div class="space-y-6">
+<span class="font-body italic text-tertiary text-xl">III. Coagulation</span>
+<p class="font-label text-xs tracking-[0.2em] text-on-surface-variant uppercase leading-relaxed">
+                        The final form emerges—sharp, uncompromising, and eternal. A digital relic that exists at the intersection of history and hallucination.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Asymmetric Gallery/Visual Moment -->
+<section class="pb-32 px-12 md:px-24">
+<div class="grid grid-cols-12 gap-8 items-end">
+<div class="col-span-12 md:col-span-7 aspect-[16/9] bg-surface-container overflow-hidden">
+<img alt="The Altar Detail" class="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity duration-1000" data-alt="Abstract macro shot of glass and light reflections, deep purples and electric blues merging in a dark, smoked glass texture with subtle grain." src={`${base}/tatuajes/tattoo-6.png`}/>
+</div>
+<div class="col-span-12 md:col-span-5 p-12 bg-surface-container-high border-t-4 border-primary">
+<h3 class="font-headline text-2xl tracking-[0.4em] text-[#ffabf1] mb-6 uppercase">MANIFESTO</h3>
+<p class="font-body italic text-lg text-on-surface mb-8">
+                        "In the synthetic cathedral, we do not pray for salvation, we design the sanctuary ourselves."
+                    </p>
+<a class="text-tertiary font-label text-xs tracking-widest hover:text-primary transition-colors" href="#">READ THE FULL TEXT —</a>
+</div>
+</div>
+</section>
+</main>
+</BaseLayout>

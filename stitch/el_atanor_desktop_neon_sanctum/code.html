@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EL ATANOR | Paula Lopez</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@100;200;300;400;700;800&amp;family=Newsreader:ital,opsz,wght@1,6..72,200;1,6..72,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ffdbcb",
+                        "on-tertiary-fixed-variant": "#6b3a1f",
+                        "surface-tint": "#ffabf1",
+                        "surface-container": "#1b1f30",
+                        "surface-variant": "#303446",
+                        "on-primary-fixed-variant": "#7c1678",
+                        "primary": "#ffabf1",
+                        "outline-variant": "#51424d",
+                        "tertiary": "#fdb693",
+                        "primary-fixed-dim": "#ffabf1",
+                        "on-primary-container": "#ffadf1",
+                        "surface-container-low": "#171b2c",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-container": "#7a462a",
+                        "on-error": "#690005",
+                        "background": "#0f1223",
+                        "primary-fixed": "#ffd7f4",
+                        "surface-bright": "#35384b",
+                        "primary-container": "#8c2786",
+                        "surface-container-highest": "#303446",
+                        "on-primary": "#5c0059",
+                        "secondary-fixed-dim": "#9bcaff",
+                        "on-tertiary-fixed": "#341100",
+                        "inverse-primary": "#993392",
+                        "error-container": "#93000a",
+                        "on-tertiary-container": "#feb793",
+                        "on-secondary-fixed": "#001d35",
+                        "on-surface": "#dfe1f9",
+                        "on-surface-variant": "#d6c1ce",
+                        "on-secondary-fixed-variant": "#004a7a",
+                        "outline": "#9e8b98",
+                        "inverse-on-surface": "#2c2f41",
+                        "surface": "#0f1223",
+                        "tertiary-fixed-dim": "#fdb693",
+                        "on-secondary-container": "#002c4b",
+                        "on-primary-fixed": "#380037",
+                        "inverse-surface": "#dfe1f9",
+                        "surface-dim": "#0f1223",
+                        "on-secondary": "#003256",
+                        "surface-container-high": "#25293b",
+                        "secondary-fixed": "#d0e4ff",
+                        "on-background": "#dfe1f9",
+                        "error": "#ffb4ab",
+                        "on-tertiary": "#4f240b",
+                        "surface-container-lowest": "#090d1d",
+                        "secondary-container": "#0096f1",
+                        "secondary": "#9bcaff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Epilogue"],
+                        "body": ["Newsreader"],
+                        "label": ["Epilogue"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #00010d;
+            color: #dfe1f9;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift {
+            background: linear-gradient(to bottom, rgba(140, 39, 134, 0.05) 0%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="font-headline selection:bg-primary-container selection:text-primary">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full h-20 bg-[#00010d]/80 backdrop-blur-xl z-50 flex justify-between items-center px-12 w-full tonal-shift">
+<div class="font-['Epilogue'] text-2xl font-light tracking-[0.5em] text-[#ffabf1]">
+            EL ALTAR
+        </div>
+<div class="hidden md:flex items-center space-x-12">
+<a class="font-['Epilogue'] tracking-[0.2em] uppercase text-sm text-[#9bcaff] hover:text-[#ffabf1] transition-colors duration-500 hover:tracking-[0.3em]" href="#">GALLERY</a>
+<a class="font-['Epilogue'] tracking-[0.2em] uppercase text-sm text-[#9bcaff] hover:text-[#ffabf1] transition-colors duration-500 hover:tracking-[0.3em]" href="#">ARCHIVE</a>
+<a class="font-['Epilogue'] tracking-[0.2em] uppercase text-sm text-[#9bcaff] hover:text-[#ffabf1] transition-colors duration-500 hover:tracking-[0.3em]" href="#">PROCESS</a>
+<a class="font-['Epilogue'] tracking-[0.2em] uppercase text-sm text-[#9bcaff] hover:text-[#ffabf1] transition-colors duration-500 hover:tracking-[0.3em]" href="#">MANIFESTO</a>
+</div>
+<div class="flex items-center space-x-8">
+<button class="font-['Epilogue'] tracking-[0.2em] uppercase text-sm text-[#ffabf1] border border-[#ffabf1]/30 px-6 py-2 hover:bg-[#8c2786] hover:text-white transition-all duration-500">
+                ENTER SANCTUM
+            </button>
+<span class="material-symbols-outlined text-[#ffabf1] cursor-pointer" data-icon="menu">menu</span>
+</div>
+</nav>
+<main class="pt-20 min-h-screen flex flex-col">
+<!-- Hero Altar Section -->
+<section class="grid grid-cols-1 md:grid-cols-2 min-h-[calc(100vh-5rem)]">
+<!-- Left Column: Portrait -->
+<div class="relative bg-surface-container-lowest overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-tr from-[#8c2786]/20 via-transparent to-[#0096f1]/20 mix-blend-overlay z-10"></div>
+<img alt="Paula Lopez Artist Portrait" class="w-full h-full object-cover grayscale contrast-125 transition-transform duration-[2000ms] group-hover:scale-105" data-alt="Close-up artistic black and white portrait of Paula Lopez with high contrast shadows and sharp neon blue and magenta rim lighting highlights on her face and hair." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0ljpgwBzC8tTRtZkWRae8X7YKtHjXqYWwRIkOOmaBLB5TvrsPY9vdUQZv6qiP2I7C--CR0krRSnKUenJfrncIFWctQ9aVaMzY_Y1yDCMAAXhB5OQIAT8D7wUjda9IWbAupaece7kUNcVkgJ6J1nOZJ_iOuRlzdwKWEGdc3t5YT7CUuhsBzC8Q6SWaoBSLBpX-X-mZDj_skSBLZ9QEf0m__Lt1sUrABDhxxmi-STWRpVpttd9okBVC08dtEO6XoHlL80OSLSYUQOg"/>
+<div class="absolute bottom-12 left-12 z-20">
+<span class="font-label text-[#9bcaff] tracking-[0.4em] text-xs uppercase block mb-2">The Alchemist</span>
+<h2 class="font-headline text-5xl font-extrabold tracking-tighter text-[#ffabf1]">PAULA LOPEZ</h2>
+</div>
+</div>
+<!-- Right Column: Philosophical Text -->
+<div class="flex flex-col justify-center px-12 md:px-24 bg-surface border-l border-outline-variant/10">
+<div class="max-w-xl">
+<h1 class="font-headline text-6xl md:text-8xl font-thin tracking-[0.2em] text-on-surface mb-12">
+                        EL ATANOR
+                    </h1>
+<div class="space-y-8">
+<p class="font-body italic text-2xl md:text-3xl text-tertiary leading-relaxed">
+                            "The Alchemy of Form is not merely a transformation of matter, but a sanctification of digital space where neon light meets the void."
+                        </p>
+<div class="h-px w-24 bg-primary-container"></div>
+<div class="space-y-6">
+<p class="font-label text-sm tracking-[0.15em] leading-loose text-on-surface-variant uppercase">
+                                Within the chamber of EL ATANOR, Paula Lopez decodes the geometry of the sacred. Her work acts as a synthetic bridge between the ancient manuscript and the future pulse—a rhythmic architecture of shadow and luminescence.
+                            </p>
+<p class="font-label text-sm tracking-[0.15em] leading-loose text-on-surface-variant uppercase">
+                                Every pixel is a calculated spark, every line a ritual. Through the fusion of electric blue and ritualistic magenta, she creates a digital sanctum for the wandering soul.
+                            </p>
+</div>
+<div class="pt-12">
+<button class="bg-primary-container text-on-primary-container px-10 py-4 font-label tracking-[0.3em] uppercase text-xs hover:shadow-[0_0_40px_rgba(140,39,134,0.4)] transition-all duration-700">
+                                EXPLORE THE RITUAL
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Secondary Section: The Process -->
+<section class="py-32 px-12 md:px-24 bg-surface-container-lowest">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-24">
+<div class="space-y-6">
+<span class="font-body italic text-primary text-xl">I. Transmutation</span>
+<p class="font-label text-xs tracking-[0.2em] text-on-surface-variant uppercase leading-relaxed">
+                        The process begins in the dark. Raw data is filtered through the lens of antiquity, stripped of its modern utility to reveal its spiritual core.
+                    </p>
+</div>
+<div class="space-y-6">
+<span class="font-body italic text-secondary text-xl">II. Illumination</span>
+<p class="font-label text-xs tracking-[0.2em] text-on-surface-variant uppercase leading-relaxed">
+                        Synthetic light is injected into the structure. We use the neon pulse to draw the eye to the divine proportion hidden within the noise.
+                    </p>
+</div>
+<div class="space-y-6">
+<span class="font-body italic text-tertiary text-xl">III. Coagulation</span>
+<p class="font-label text-xs tracking-[0.2em] text-on-surface-variant uppercase leading-relaxed">
+                        The final form emerges—sharp, uncompromising, and eternal. A digital relic that exists at the intersection of history and hallucination.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Asymmetric Gallery/Visual Moment -->
+<section class="pb-32 px-12 md:px-24">
+<div class="grid grid-cols-12 gap-8 items-end">
+<div class="col-span-12 md:col-span-7 aspect-[16/9] bg-surface-container overflow-hidden">
+<img alt="The Altar Detail" class="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity duration-1000" data-alt="Abstract macro shot of glass and light reflections, deep purples and electric blues merging in a dark, smoked glass texture with subtle grain." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6_hINrAl1hfiL-9DEVmbDwvboAenG81iUqxVEcjyEr_QfWDFVrmPvBYaREkPzwXWF94GxkvojqspTBPSiK6WsxMlN5vacpPU-eOCako0_-eB54rlyMbQ_gE-vpvNuubDwBR5GizFMtdMHeIJjVcnFS76xvSiq1GHPdR-pMTImC1-Pe8KQSAlc2Puib7Eh_sIbQ54JWqzt0heLV7o5-hxmwduSFng0UXsUGXDYd4z_4I0hQqmW0eWD6YTS3VYBwkqdKl5XNnXv3sQ"/>
+</div>
+<div class="col-span-12 md:col-span-5 p-12 bg-surface-container-high border-t-4 border-primary">
+<h3 class="font-headline text-2xl tracking-[0.4em] text-[#ffabf1] mb-6 uppercase">MANIFESTO</h3>
+<p class="font-body italic text-lg text-on-surface mb-8">
+                        "In the synthetic cathedral, we do not pray for salvation, we design the sanctuary ourselves."
+                    </p>
+<a class="text-tertiary font-label text-xs tracking-widest hover:text-primary transition-colors" href="#">READ THE FULL TEXT —</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 border-t border-[#51424d]/15 bg-[#00010d] mt-32 flex flex-col items-center justify-center space-y-8 w-full">
+<div class="font-['Epilogue'] font-bold text-[#8C2786] text-xl tracking-[0.5em]">
+            EL ALTAR
+        </div>
+<div class="flex space-x-12">
+<a class="font-['Newsreader'] italic text-xs tracking-widest text-[#7a462a] hover:text-[#9bcaff] transition-colors duration-1000" href="#">PRIVACY</a>
+<a class="font-['Newsreader'] italic text-xs tracking-widest text-[#7a462a] hover:text-[#9bcaff] transition-colors duration-1000" href="#">TERMS</a>
+<a class="font-['Newsreader'] italic text-xs tracking-widest text-[#7a462a] hover:text-[#9bcaff] transition-colors duration-1000" href="#">CONTACT</a>
+</div>
+<div class="font-['Newsreader'] italic text-xs tracking-widest text-[#7a462a] opacity-50">
+            © MMXXIV EL ALTAR DE LA ICONOGRAFÍA. ALL RIGHTS RESERVED.
+        </div>
+</footer>
+</body></html>

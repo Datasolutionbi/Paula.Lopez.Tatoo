@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100&amp;family=Newsreader:ital,opsz,wght@1,6..72,200;1,6..72,400;1,6..72,800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdbcb",
+                    "on-tertiary-fixed-variant": "#6b3a1f",
+                    "surface-tint": "#ffabf1",
+                    "surface-container": "#1b1f30",
+                    "surface-variant": "#303446",
+                    "on-primary-fixed-variant": "#7c1678",
+                    "primary": "#ffabf1",
+                    "outline-variant": "#51424d",
+                    "tertiary": "#fdb693",
+                    "primary-fixed-dim": "#ffabf1",
+                    "on-primary-container": "#ffadf1",
+                    "surface-container-low": "#171b2c",
+                    "on-error-container": "#ffdad6",
+                    "tertiary-container": "#7a462a",
+                    "on-error": "#690005",
+                    "background": "#0f1223",
+                    "primary-fixed": "#ffd7f4",
+                    "surface-bright": "#35384b",
+                    "primary-container": "#8c2786",
+                    "surface-container-highest": "#303446",
+                    "on-primary": "#5c0059",
+                    "secondary-fixed-dim": "#9bcaff",
+                    "on-tertiary-fixed": "#341100",
+                    "inverse-primary": "#993392",
+                    "error-container": "#93000a",
+                    "on-tertiary-container": "#feb793",
+                    "on-secondary-fixed": "#001d35",
+                    "on-surface": "#dfe1f9",
+                    "on-surface-variant": "#d6c1ce",
+                    "on-secondary-fixed-variant": "#004a7a",
+                    "outline": "#9e8b98",
+                    "inverse-on-surface": "#2c2f41",
+                    "surface": "#0f1223",
+                    "tertiary-fixed-dim": "#fdb693",
+                    "on-secondary-container": "#002c4b",
+                    "on-primary-fixed": "#380037",
+                    "inverse-surface": "#dfe1f9",
+                    "surface-dim": "#0f1223",
+                    "on-secondary": "#003256",
+                    "surface-container-high": "#25293b",
+                    "secondary-fixed": "#d0e4ff",
+                    "on-background": "#dfe1f9",
+                    "error": "#ffb4ab",
+                    "on-tertiary": "#4f240b",
+                    "surface-container-lowest": "#090d1d",
+                    "secondary-container": "#0096f1",
+                    "secondary": "#9bcaff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Epilogue"],
+                    "body": ["Newsreader"],
+                    "label": ["Epilogue"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .text-glow-primary {
+            text-shadow: 0 0 15px rgba(255, 171, 241, 0.4);
+        }
+        .text-glow-secondary {
+            text-shadow: 0 0 15px rgba(155, 202, 255, 0.4);
+        }
+        .tonal-shift {
+            background: linear-gradient(to bottom, rgba(140, 39, 134, 0.05) 0%, transparent 100%);
+        }
+        .mask-image-radial {
+            mask-image: radial-gradient(circle at center, black 0%, transparent 80%);
+        }
+    </style>
+</head>
+<body class="bg-[#00010d] text-on-surface selection:bg-primary-container selection:text-white">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full h-20 bg-[#00010d]/80 backdrop-blur-xl z-50 flex justify-between items-center px-12 w-full tonal-shift">
+<div class="font-['Epilogue'] text-2xl font-light tracking-[0.5em] text-[#ffabf1]">
+            EL ALTAR
+        </div>
+<div class="hidden md:flex items-center space-x-12">
+<a class="font-['Epilogue'] tracking-[0.2em] uppercase text-sm text-[#9bcaff] hover:text-[#ffabf1] transition-colors duration-500 hover:tracking-[0.3em] transition-all duration-700 ease-in-out" href="#">GALLERY</a>
+<a class="font-['Epilogue'] tracking-[0.2em] uppercase text-sm text-[#9bcaff] hover:text-[#ffabf1] transition-colors duration-500 hover:tracking-[0.3em] transition-all duration-700 ease-in-out" href="#">ARCHIVE</a>
+<a class="font-['Epilogue'] tracking-[0.2em] uppercase text-sm text-[#ffabf1] border-b border-[#ffabf1] pb-1 hover:tracking-[0.3em] transition-all duration-700 ease-in-out" href="#">PROCESS</a>
+<a class="font-['Epilogue'] tracking-[0.2em] uppercase text-sm text-[#9bcaff] hover:text-[#ffabf1] transition-colors duration-500 hover:tracking-[0.3em] transition-all duration-700 ease-in-out" href="#">MANIFESTO</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="font-['Epilogue'] tracking-[0.2em] uppercase text-xs text-[#ffabf1] border border-outline-variant/30 px-6 py-2 hover:bg-primary/10 transition-all">
+                ENTER SANCTUM
+            </button>
+<span class="material-symbols-outlined text-[#ffabf1] cursor-pointer">menu</span>
+</div>
+</nav>
+<!-- Main Editorial Content -->
+<main class="min-h-screen flex flex-col md:flex-row pt-20">
+<!-- Left Side: Dramatic Visual Anchor -->
+<section class="w-full md:w-1/2 h-[614px] md:h-screen sticky top-0 bg-surface-container-lowest overflow-hidden">
+<div class="absolute inset-0 z-10 bg-gradient-to-r from-transparent via-transparent to-[#00010d]"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#00010d] via-transparent to-transparent"></div>
+<img class="w-full h-full object-cover grayscale opacity-60 hover:opacity-80 transition-opacity duration-1000" data-alt="Macro close-up of a detailed blackwork tattoo on skin, illuminated by a single sharp magenta neon light beam, dramatic shadows, photographic relic style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG5_tgx7WsqRakgEiYILzlifmkEZWf7YjshCI2tLd-5Kwi5Dnp-Kn1sOoFaVwxaDxoq9UhAGitf-rJ9p7gSF2lyD38Ei2UNWGWmVCrRpRl7LX-IFXaJwgs-TpS-zhVW5g4bStNWb0WQzoOKcwJMzkymiMT_PWyLUHoHR1gCkmuOmj2iZPt8UtCXu46F3CBoL6TDI0NM-KSl0tu8POlAAtFVqJRlGjAmuvihJalXTwMzeQW6gdd-6hzIZbLtKZA2W6xzdZcLnWdgZI"/>
+<!-- Decorative Glow Element -->
+<div class="absolute bottom-12 left-12 z-20">
+<span class="font-headline text-[10px] tracking-[0.6em] text-primary uppercase mb-2 block">Fragment No. 042</span>
+<h2 class="font-headline text-4xl font-light tracking-widest text-on-surface uppercase">LA RELIQUIA</h2>
+</div>
+</section>
+<!-- Right Side: The Manuscript Narrative -->
+<section class="w-full md:w-1/2 min-h-screen bg-[#00010d] flex flex-col justify-center px-8 md:px-24 py-24 relative">
+<!-- Subtle Background Light Bleed -->
+<div class="absolute top-1/4 right-0 w-64 h-64 bg-primary-container/5 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="absolute bottom-1/4 left-0 w-64 h-64 bg-secondary-container/5 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="relative z-10 space-y-16">
+<!-- Header Label -->
+<div class="flex items-center space-x-4">
+<div class="h-[1px] w-12 bg-outline-variant/30"></div>
+<span class="font-label text-[11px] tracking-[0.4em] text-secondary uppercase">EL MANUSCRITO DE LA PIEL</span>
+</div>
+<!-- Editorial Copy -->
+<div class="space-y-12 max-w-xl">
+<p class="font-body italic text-4xl md:text-5xl text-on-surface leading-tight font-extralight text-glow-primary">
+                        Every needle stroke is a prayer to the <span class="text-secondary italic">synthetic soul</span>, a baptism of ink and light within this dark chamber.
+                    </p>
+<div class="h-[1px] w-24 bg-primary-container/40"></div>
+<div class="space-y-8 font-body italic text-xl md:text-2xl text-on-surface-variant leading-relaxed opacity-90">
+<p>
+                            We do not merely mark the surface; we curate the internal altar. The tattoo is a relic of a time before the neon, a tangible anchor in an ethereal world of fleeting data.
+                        </p>
+<p>
+                            Behold the geometry of the sacred. Here, where the pulse of the machine meets the warmth of the blood, we find the absolute.
+                        </p>
+</div>
+</div>
+<!-- Signature Block -->
+<div class="pt-12 space-y-2">
+<div class="font-body italic text-5xl text-primary font-thin tracking-tighter">Paula Lopez</div>
+<div class="font-label text-[10px] tracking-[0.5em] text-outline uppercase ml-1">CUSTODIAN OF THE ICONOGRAPHY</div>
+</div>
+<!-- Call to Action -->
+<div class="pt-8">
+<button class="group flex items-center space-x-6 text-[#9bcaff] hover:text-[#ffabf1] transition-colors duration-500">
+<span class="font-headline text-sm tracking-[0.3em] uppercase">Enter the Archive</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform duration-500">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="w-full py-16 border-t border-[#51424d]/15 bg-[#00010d] flex flex-col items-center justify-center space-y-8 mt-32">
+<div class="font-['Epilogue'] font-bold text-[#8C2786] tracking-[0.4em]">EL ALTAR</div>
+<div class="flex space-x-12">
+<a class="font-['Newsreader'] italic text-xs tracking-widest text-[#7a462a] hover:text-[#9bcaff] transition-colors duration-1000 uppercase" href="#">PRIVACY</a>
+<a class="font-['Newsreader'] italic text-xs tracking-widest text-[#7a462a] hover:text-[#9bcaff] transition-colors duration-1000 uppercase" href="#">TERMS</a>
+<a class="font-['Newsreader'] italic text-xs tracking-widest text-[#7a462a] hover:text-[#9bcaff] transition-colors duration-1000 uppercase" href="#">CONTACT</a>
+</div>
+<div class="font-['Newsreader'] italic text-xs tracking-widest text-[#7a462a] opacity-60">
+            © MMXXIV EL ALTAR DE LA ICONOGRAFÍA. ALL RIGHTS RESERVED.
+        </div>
+</footer>
+</body></html>

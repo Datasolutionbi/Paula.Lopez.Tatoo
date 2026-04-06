@@ -1,0 +1,219 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
+
+// Lee los archivos de la galería
+const portfolioDir = path.join(process.cwd(), 'public', 'portafolio');
+let images: {src: string, name: string, category: string}[] = [];
+
+try {
+  const files = fs.readdirSync(portfolioDir);
+  // Filtramos imagenes y gifs, validando extension
+  images = files.filter(file => {
+    const ext = path.extname(file).toLowerCase();
+    return ['.png', '.jpg', '.jpeg', '.gif', '.webp'].includes(ext);
+  }).map((file, i) => {
+    // Clasificación heurística básica para iniciar el sistema
+    let category = "Blackwork"; // Predeterminado
+    
+    // Basado en el vistazo a tus imagenes
+    if(file.toLowerCase().includes('camara') || file.toLowerCase().includes('proceso') || file.toLowerCase().includes('copy 8') || file.toLowerCase().includes('copy 23')) {
+        category = "Ritual & Proceso";
+    } else if(file.toLowerCase().includes('copy 35') || file.toLowerCase().includes('vegeta')) {
+        category = "Anime & Color";
+    } else if(file.toLowerCase().includes('copy 10') || file.toLowerCase().includes('perro') || file.toLowerCase().includes('copy 9')) {
+        category = "Realismo";
+    } else if(file.toLowerCase().includes('indigena')) {
+        category = "Tradición";
+    } else {
+        // Asignación aleatoria para demostración del UX (Se puede borrar luego)
+        const cats = ["Blackwork", "Realismo", "Anime & Color"];
+        category = cats[i % cats.length];
+    }
+
+    return {
+      src: `${base}/portafolio/${file}`,
+      name: file,
+      category: category
+    };
+  });
+} catch(e) {
+  console.error("Error leyendo directorio de portafolio", e);
+}
+
+const categories = ["Todas las Obras", "Blackwork", "Realismo", "Anime & Color", "Ritual & Proceso", "Tradición"];
+---
+
+<BaseLayout title="LA OBRA | Catálogo">
+    <main class="pt-40 pb-20 px-8 md:px-16 min-h-screen relative">
+        <!-- Ambient lighting -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#8c2786]/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+        
+        <header class="max-w-[1400px] mx-auto text-center mb-24">
+            <h1 class="font-display font-light text-6xl md:text-8xl tracking-widest text-white uppercase mb-6 drop-shadow-[0_0_20px_rgba(255,171,241,0.2)]" data-i18n="portfolio.title">
+                La Obra
+            </h1>
+            <p class="font-body italic text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto opacity-70" data-i18n="portfolio.subtitle">
+                Piel, aguja y el testamento visual de quienes han pasado por La Catedral Sintética. Selecciona una obra para ver los detalles del rito.
+            </p>
+        </header>
+
+        <section class="max-w-[1600px] mx-auto">
+            <!-- Filter Bar -->
+            <div class="flex flex-wrap justify-center gap-4 mb-16 pb-8 border-b border-outline-variant/10">
+                {categories.map((cat, i) => (
+                    <button 
+                        data-filter={cat}
+                        class={`filter-btn font-headline text-[10px] tracking-[0.3em] uppercase py-2 px-6 transition-all duration-300 border ${i === 0 ? 'text-[#ffabf1] border-white bg-white/5 pointer-events-none rounded' : 'text-white/40 border-transparent hover:text-white hover:border-white/30 rounded'}`}
+                    >
+                        {cat}
+                    </button>
+                ))}
+            </div>
+
+            <!-- Masonry Grid -->
+            <div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6" id="portfolio-grid">
+                {images.map((img) => (
+                    <div class="portfolio-item group relative bg-[#090d1d] overflow-hidden altar-border transform transition-all duration-700 hover:-translate-y-2 break-inside-avoid cursor-pointer hover:shadow-[0_0_30px_rgba(255,171,241,0.15)]" data-category={img.category}>
+                        <!-- Decorative Corners -->
+                        <div class="absolute -top-px -left-px w-6 h-6 border-t border-l border-primary opacity-0 group-hover:opacity-100 z-10 transition-opacity duration-500"></div>
+                        <div class="absolute -bottom-px -right-px w-6 h-6 border-b border-r border-[#ffabf1] opacity-0 group-hover:opacity-100 z-10 transition-opacity duration-500"></div>
+                        
+                        <!-- Image Container with lazy loading and loading skeleton styles -->
+                        <div class="relative w-full overflow-hidden bg-[#00010d]/50 min-h-[200px]">
+                            <img loading="lazy" src={img.src} alt={img.name} class="portfolio-img w-full h-auto object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000 aspect-auto mix-blend-luminosity hover:mix-blend-normal" />
+                        </div>
+
+                        <!-- Hover Overlay Text -->
+                        <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#00010d] via-[#00010d]/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-20">
+                            <span class="font-headline text-[10px] tracking-[0.4em] uppercase text-[#ffabf1]">{img.category}</span>
+                            <div class="w-8 h-px bg-primary mt-2 group-hover:w-16 transition-all duration-700 delay-100"></div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Empty State Fallback -->
+            <div id="empty-state" class="hidden flex-col items-center justify-center py-32 opacity-50">
+                <span class="material-symbols-outlined text-outline-variant text-4xl mb-4">visibility_off</span>
+                <p class="font-headline tracking-widest uppercase text-xs">Aún no hay obras en este rito.</p>
+            </div>
+        </section>
+
+        <!-- Lightbox Dialog -->
+        <dialog id="lightbox" class="bg-transparent m-0 p-0 max-w-none w-full h-full backdrop:bg-[#00010d]/95 backdrop:backdrop-blur-md open:flex flex-col items-center justify-center hidden">
+            <!-- Close Button -->
+            <button id="close-lightbox" class="absolute top-8 right-8 lg:top-12 lg:right-12 text-white/50 hover:text-primary transition-colors z-50 focus:outline-none">
+                <span class="material-symbols-outlined text-4xl">close</span>
+            </button>
+            
+            <div class="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center justify-center p-4">
+                <div class="relative altar-border">
+                    <!-- Glow effect behind modal image -->
+                    <div class="absolute inset-0 bg-primary/20 blur-[50px] -z-10"></div>
+                    <img id="lightbox-img" src="" alt="Vista ampliada" class="max-w-full max-h-[85vh] object-contain" />
+                </div>
+                <div class="mt-8 text-center">
+                    <span id="lightbox-caption" class="font-headline text-xs tracking-[0.5em] uppercase text-[#ffabf1]"></span>
+                </div>
+            </div>
+        </dialog>
+    </main>
+</BaseLayout>
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const items = document.querySelectorAll('.portfolio-item');
+        const emptyState = document.getElementById('empty-state');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const target = e.currentTarget as HTMLElement;
+                const filterValue = target.dataset.filter;
+
+                // Actualizar estado activo de los botones
+                filterBtns.forEach(b => {
+                    b.classList.remove('text-[#ffabf1]', 'border-white', 'bg-white/5', 'pointer-events-none');
+                    b.classList.add('text-white/40', 'border-transparent');
+                });
+                target.classList.add('text-[#ffabf1]', 'border-white', 'bg-white/5', 'pointer-events-none');
+                target.classList.remove('text-white/40', 'border-transparent');
+
+                let visibleCount = 0;
+
+                // Filtrar las imágenes
+                items.forEach(item => {
+                    const itemCat = (item as HTMLElement).dataset.category;
+                    if (filterValue === 'Todas las Obras' || itemCat === filterValue) {
+                        item.classList.remove('hidden');
+                        // Mini animación de aparicion
+                        item.animate([
+                            { opacity: 0, transform: 'scale(0.95)' },
+                            { opacity: 1, transform: 'scale(1)' }
+                        ], { duration: 500, easing: 'cubic-bezier(0.4, 0, 0.2, 1)' });
+                        visibleCount++;
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+
+                // Mostrar fallback si no hay imágenes
+                if(emptyState) {
+                    if(visibleCount === 0) emptyState.classList.remove('hidden');
+                    else emptyState.classList.add('hidden');
+                }
+            });
+        });
+
+        // Lightbox Logic
+        const lightbox = document.getElementById('lightbox') as HTMLDialogElement;
+        const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const closeLightboxBtn = document.getElementById('close-lightbox');
+
+        // Abrir Lightbox al hacer click en un item
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('.portfolio-img') as HTMLImageElement;
+                const category = (item as HTMLElement).dataset.category;
+                
+                if(img && lightbox && lightboxImg) {
+                    lightboxImg.src = img.src;
+                    lightboxImg.alt = img.alt;
+                    if(lightboxCaption) lightboxCaption.textContent = category || '';
+                    
+                    lightbox.classList.remove('hidden');
+                    lightbox.showModal();
+                    
+                    // Bloquear scroll de la pagina
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // Cerrar Lightbox
+        const closeLightbox = () => {
+            if(lightbox) {
+                lightbox.close();
+                lightbox.classList.add('hidden');
+                // Restaurar scroll
+                document.body.style.overflow = '';
+            }
+        };
+
+        if(closeLightboxBtn) closeLightboxBtn.addEventListener('click', closeLightbox);
+        
+        // Cerrar al clickear el fondo oscuro (backdrop)
+        if(lightbox) {
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+        }
+    });
+</script>

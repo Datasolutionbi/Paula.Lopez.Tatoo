@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="MANIFESTO | Contact">
+<main class="pt-32 pb-20 px-8 md:px-24 max-w-[1600px] mx-auto min-h-screen flex flex-col justify-center">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+<!-- Left: Contact Form -->
+<div class="order-2 md:order-1 bg-[#090d1d] p-12 lg:p-16 altar-border relative group">
+<div class="absolute -top-px -left-px w-8 h-8 border-t border-l border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+<div class="absolute -bottom-px -right-px w-8 h-8 border-b border-r border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+<h2 class="font-headline text-3xl font-light tracking-[0.2em] uppercase text-on-surface mb-12" data-i18n="contact.title">Reserva tu Sesión</h2>
+<form action="https://formsubmit.co/paulangelstattoo@gmail.com" method="POST" enctype="multipart/form-data" class="space-y-6">
+    <!-- Configuración para evitar captcha y página de agradecimiento por defecto -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="relative">
+            <label class="sr-only" for="name">Nombre Completo *</label>
+            <input name="Nombre" required class="w-full bg-transparent border-0 border-b border-outline-variant/30 text-on-surface font-label text-sm tracking-widest uppercase py-3 focus:ring-0 focus:border-secondary focus:outline-none transition-colors placeholder:text-on-surface-variant/30" id="name" placeholder="Nombre Completo *" type="text" data-i18n-placeholder="contact.name"/>
+        </div>
+        <div class="relative">
+            <label class="sr-only" for="email">Correo Electrónico *</label>
+            <input name="email" required class="w-full bg-transparent border-0 border-b border-outline-variant/30 text-on-surface font-label text-sm tracking-widest uppercase py-3 focus:ring-0 focus:border-secondary focus:outline-none transition-colors placeholder:text-on-surface-variant/30" id="email" placeholder="Correo Electrónico *" type="email" data-i18n-placeholder="contact.email"/>
+        </div>
+        <div class="relative">
+            <label class="sr-only" for="instagram">Instagram</label>
+            <input name="Instagram" class="w-full bg-transparent border-0 border-b border-outline-variant/30 text-on-surface font-label text-sm tracking-widest uppercase py-3 focus:ring-0 focus:border-secondary focus:outline-none transition-colors placeholder:text-on-surface-variant/30" id="instagram" placeholder="Instagram (Ej: @tu_usuario)" type="text" data-i18n-placeholder="contact.instagram"/>
+        </div>
+        <div class="relative">
+            <label class="sr-only" for="phone">Teléfono / WhatsApp *</label>
+            <input name="Telefono" required class="w-full bg-transparent border-0 border-b border-outline-variant/30 text-on-surface font-label text-sm tracking-widest uppercase py-3 focus:ring-0 focus:border-secondary focus:outline-none transition-colors placeholder:text-on-surface-variant/30" id="phone" placeholder="Teléfono / WhatsApp *" type="tel" data-i18n-placeholder="contact.phone"/>
+        </div>
+        <div class="relative">
+            <label class="sr-only" for="city">Ciudad de Residencia</label>
+            <input name="Ciudad" class="w-full bg-transparent border-0 border-b border-outline-variant/30 text-on-surface font-label text-sm tracking-widest uppercase py-3 focus:ring-0 focus:border-secondary focus:outline-none transition-colors placeholder:text-on-surface-variant/30" id="city" placeholder="Ciudad de Residencia" type="text" data-i18n-placeholder="contact.city"/>
+        </div>
+        <div class="relative">
+            <label class="sr-only" for="age">Edad</label>
+            <input name="Edad" required class="w-full bg-transparent border-0 border-b border-outline-variant/30 text-on-surface font-label text-sm tracking-widest uppercase py-3 focus:ring-0 focus:border-secondary focus:outline-none transition-colors placeholder:text-on-surface-variant/30" id="age" placeholder="Edad (Mín. 18 años) *" type="number" min="18" data-i18n-placeholder="contact.age"/>
+        </div>
+    </div>
+
+    <!-- Selects -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+        <div class="relative">
+            <select name="Como_me_encontro" class="w-full bg-[#00010d] border border-outline-variant/30 text-on-surface-variant font-label text-sm tracking-widest uppercase py-4 px-4 focus:ring-0 focus:border-secondary focus:outline-none transition-colors appearance-none cursor-pointer" id="source" required>
+                <option value="" disabled selected>¿Dónde nos encontraste? *</option>
+                <option value="instagram">Instagram</option>
+                <option value="facebook">Facebook</option>
+                <option value="tiktok">TikTok</option>
+                <option value="google">Google</option>
+                <option value="referencia">Referencia / Amigo</option>
+                <option value="otro">Otro</option>
+            </select>
+            <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-secondary">expand_more</span>
+            </div>
+        </div>
+
+        <div class="relative">
+            <select name="Ubicacion_Cuerpo" class="w-full bg-[#00010d] border border-outline-variant/30 text-on-surface-variant font-label text-sm tracking-widest uppercase py-4 px-4 focus:ring-0 focus:border-secondary focus:outline-none transition-colors appearance-none cursor-pointer" id="placement" required>
+                <option value="" disabled selected>Ubicación del Tatuaje *</option>
+                <option value="brazo_exterior">Brazo Exterior</option>
+                <option value="brazo_interior">Brazo Interior</option>
+                <option value="antebrazo">Antebrazo</option>
+                <option value="espalda">Espalda</option>
+                <option value="pecho">Pecho</option>
+                <option value="pierna">Pierna / Muslo</option>
+                <option value="pantorrilla">Pantorrilla</option>
+                <option value="costillas">Costillas</option>
+                <option value="otro">Otro / A definir</option>
+            </select>
+            <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-secondary">expand_more</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="relative pt-4">
+        <label class="sr-only" for="concept">Descripción de la idea *</label>
+        <textarea name="Idea_Tatuaje" required class="w-full bg-transparent border-0 border-b border-outline-variant/30 text-on-surface font-body italic text-lg py-4 focus:ring-0 focus:border-primary focus:outline-none transition-colors placeholder:text-on-surface-variant/30 resize-none min-h-[100px]" id="concept" placeholder="Describe tu idea, elementos, blackwork/color... *" data-i18n-placeholder="contact.concept"></textarea>
+    </div>
+
+    <!-- File Uploads -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+         <div>
+            <label class="block font-label text-[10px] tracking-[0.2em] text-secondary uppercase mb-3" data-i18n="contact.refs">Fotos de Referencia (Máx 2) *</label>
+            <input name="Referencias_Adjuntas" required type="file" multiple accept="image/*" class="w-full text-sm text-on-surface-variant file:mr-4 file:cursor-pointer file:py-2 file:px-4 file:border-0 file:text-[10px] file:font-label file:tracking-[0.2em] file:uppercase file:bg-outline-variant/10 file:text-on-surface hover:file:bg-outline-variant/20 transition-all cursor-pointer"/>
+         </div>
+         <div>
+            <label class="block font-label text-[10px] tracking-[0.2em] text-secondary uppercase mb-3" data-i18n="contact.zone">Foto zona a tatuar (Máx 1) *</label>
+            <input name="Foto_Zona_Cuerpo" required type="file" accept="image/*" class="w-full text-sm text-on-surface-variant file:mr-4 file:cursor-pointer file:py-2 file:px-4 file:border-0 file:text-[10px] file:font-label file:tracking-[0.2em] file:uppercase file:bg-outline-variant/10 file:text-on-surface hover:file:bg-outline-variant/20 transition-all cursor-pointer"/>
+         </div>
+    </div>
+
+    <!-- Consent -->
+    <div class="flex items-start space-x-4 pt-6">
+        <div class="flex items-center h-5 mt-1">
+            <input id="portfolio_consent" type="checkbox" required class="w-5 h-5 accent-primary cursor-pointer bg-transparent border-outline-variant/30"/>
+        </div>
+        <label for="portfolio_consent" class="font-body italic text-sm md:text-base text-on-surface-variant cursor-pointer" data-i18n="contact.consent">
+            "Permito que el proceso del tatuaje y el tatuaje en sí sean fotografiados y mostrados en el portafolio del estudio." *
+        </label>
+    </div>
+
+    <button class="w-full py-6 font-headline tracking-[0.4em] text-xs uppercase text-[#00010d] bg-primary relative overflow-hidden group/btn hover:neon-glow transition-shadow duration-700 mt-12 cursor-pointer" type="submit">
+        <span class="relative z-10 font-bold" data-i18n="contact.submit">Enviar Solicitud de Reserva</span>
+        <div class="absolute inset-0 bg-[#ffabf1] opacity-0 group-hover/btn:opacity-10 transition-opacity duration-500"></div>
+    </button>
+</form>
+</div>
+<!-- Right: Atmosphere & Info -->
+<div class="order-1 md:order-2 space-y-12">
+<div>
+<p class="font-label text-sm tracking-[0.4em] text-secondary uppercase mb-4" data-i18n="contact.title">CONTACTO</p>
+<h1 class="font-headline text-6xl lg:text-7xl font-extralight tracking-tight uppercase text-glow-primary text-on-surface">
+    <span data-i18n="contact.headline1">Creemos Algo</span><br/><span class="text-primary italic font-body" data-i18n="contact.headline2">Juntos</span>
+</h1>
+</div>
+<div class="h-px w-16 bg-outline-variant/50"></div>
+<div class="space-y-8">
+<p class="font-body italic text-xl text-on-surface-variant leading-relaxed" data-i18n="contact.body">
+                        Cada tatuaje es una colaboración. Cuéntame sobre tu proyecto y creemos algo que llevarás con orgullo toda la vida.
+                    </p>
+<div class="space-y-4">
+<div class="flex items-center space-x-6 group">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors">location_on</span>
+<span class="font-label text-xs tracking-widest uppercase text-on-surface-variant group-hover:text-on-surface transition-colors" data-i18n="general.location">Madrid, España</span>
+</div>
+<a href="mailto:paulangelstattoo@gmail.com" class="flex items-center space-x-6 group">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors">mail</span>
+<span class="font-label text-xs tracking-widest uppercase text-on-surface-variant group-hover:text-on-surface transition-colors">paulangelstattoo@gmail.com</span>
+</a>
+<a href="https://www.instagram.com/paulaangels/" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-6 group">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors">public</span>
+<span class="font-label text-xs tracking-widest uppercase text-on-surface-variant group-hover:text-on-surface transition-colors">@paulaangels</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</main>
+</BaseLayout>

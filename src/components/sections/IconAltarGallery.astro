@@ -1,0 +1,723 @@
+---
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
+const currentPath = Astro.url.pathname;
+const isEn = currentPath.includes('/en/') || currentPath.endsWith('/en');
+
+const icons = [
+  {
+    id: 'craneo',
+    title: 'La Calavera del Marino',
+    titleEn: 'The Sailor\u2019s Skull',
+    image: '/tattoos/tattoo-1.png',
+    meaning: 'Memento Mori. Recordatorio de nuestra mortalidad y, por tanto, de la importancia de vivir con intensidad. En el tatuaje tradicional, un símbolo de rebelión y aceptación del destino. Los marineros lo llevaban como amuleto contra la muerte en alta mar.',
+    meaningEn: 'Memento Mori. A reminder of our mortality and, therefore, the importance of living intensely. In traditional tattooing, a symbol of rebellion and acceptance of fate. Sailors wore it as a talisman against death at sea.',
+    category: 'muerte'
+  },
+  {
+    id: 'rosa',
+    title: 'La Rosa Eterna',
+    titleEn: 'The Eternal Rose',
+    image: '/tattoos/tattoo-2.png',
+    meaning: 'Amor, belleza y sacrificio. La rosa con espinas habla de que no hay belleza sin dolor. En la tradición del tatuaje, representa el amor verdadero, la pasión y la promesa de un corazón que se entrega sin reservas.',
+    meaningEn: 'Love, beauty and sacrifice. The rose with thorns speaks that there is no beauty without pain. In tattoo tradition, it represents true love, passion and the promise of a heart that gives itself without reserve.',
+    category: 'amor'
+  },
+  {
+    id: 'daga',
+    title: 'La Daga: Traición y Lealtad',
+    titleEn: 'The Dagger: Betrayal and Loyalty',
+    image: '/tattoos/tattoo-3.png',
+    meaning: 'La daga clavada en la piel cuenta historias de traición superada y lealtad inquebrantable. En el tatuaje old school, simboliza el coraje ante la adversidad y la protección contra los enemigos ocultos.',
+    meaningEn: 'The dagger embedded in the skin tells stories of overcome betrayal and unbreakable loyalty. In old school tattooing, it symbolizes courage in the face of adversity and protection against hidden enemies.',
+    category: 'proteccion'
+  },
+  {
+    id: 'serpiente',
+    title: 'La Serpiente Enroscada',
+    titleEn: 'The Coiled Serpent',
+    image: '/tattoos/tattoo-4.png',
+    meaning: 'Renacimiento y tentación. La serpiente que muda de piel es el símbolo eterno de la transformación. En la tradición del tatuaje, representa la sabiduría adquirida a través del sufrimiento y el poder de renacer de las cenizas.',
+    meaningEn: 'Rebirth and temptation. The snake that sheds its skin is the eternal symbol of transformation. In tattoo tradition, it represents wisdom gained through suffering and the power to rise from the ashes.',
+    category: 'transformacion'
+  },
+  {
+    id: 'corazon',
+    title: 'El Corazón Sangrante',
+    titleEn: 'The Bleeding Heart',
+    image: '/tattoos/tattoo-5.png',
+    meaning: 'Amor perdido, amor eterno. El corazón con la cinta del nombre amado es la declaración más antigua del tatuaje tradicional. Habla de un amor que ni la distancia ni el tiempo pueden borrar.',
+    meaningEn: 'Lost love, eternal love. The heart with the beloved name ribbon is the oldest declaration in traditional tattooing. It speaks of a love that neither distance nor time can erase.',
+    category: 'amor'
+  },
+  {
+    id: 'aguila',
+    title: 'El Águila Soberana',
+    titleEn: 'The Sovereign Eagle',
+    image: '/tattoos/tattoo-6.png',
+    meaning: 'Libertad absoluta y poder sin límites. El águila que surca los cielos es el símbolo del espíritu indomable. En el tatuaje tradicional, representa la independencia, la visión y la capacidad de elevarse sobre las tormentas.',
+    meaningEn: 'Absolute freedom and limitless power. The eagle that soars through the skies is the symbol of the untamed spirit. In traditional tattooing, it represents independence, vision and the ability to rise above storms.',
+    category: 'libertad'
+  },
+  {
+    id: 'ancla',
+    title: 'El Ancla del Puerto',
+    titleEn: 'The Harbor Anchor',
+    image: '/tattoos/tattoo-7.png',
+    meaning: 'Estabilidad y esperanza. El ancla es el tatuaje más antiguo de la tradición marinera. Simboliza la firmeza en medio de la tormenta, la esperanza de regresar a casa y la seguridad de encontrar un puerto seguro.',
+    meaningEn: 'Stability and hope. The anchor is the oldest tattoo in the seafaring tradition. It symbolizes steadfastness in the midst of the storm, the hope of returning home and the security of finding a safe harbor.',
+    category: 'proteccion'
+  },
+  {
+    id: 'golondrina',
+    title: 'La Golondrina Viajera',
+    titleEn: 'The Traveling Swallow',
+    image: '/tattoos/tattoo-8.png',
+    meaning: 'Regreso y lealtad. Los marineros se tatuaban una golondrina por cada 5,000 millas navegadas. Simboliza el viaje completado, la promesa de volver a casa y la fidelidad al camino recorrido.',
+    meaningEn: 'Return and loyalty. Sailors tattooed a swallow for every 5,000 miles sailed. It symbolizes the completed journey, the promise to return home and fidelity to the path traveled.',
+    category: 'libertad'
+  }
+];
+
+const subtitle = isEn ? 'Pure Icons · Traditional Symbols' : 'Iconos Puros · Símbolos Tradicionales';
+const mainTitle = isEn ? 'The Altar of Iconography' : 'El Altar de la Iconografía';
+const description = isEn
+  ? 'Each icon carries centuries of meaning. Hover to discover the stories behind the symbols that defined traditional tattooing.'
+  : 'Cada ícono lleva siglos de significado. Pasa el cursor para descubrir las historias detrás de los símbolos que definieron el tatuaje tradicional.';
+const closeLabel = isEn ? 'Close' : 'Cerrar';
+const meaningLabel = isEn ? 'Meaning' : 'Significado';
+const signature = '— Paula López';
+---
+
+<section id="icon-altar" class="icon-altar-section">
+  <div class="damask-bg"></div>
+  <div class="cenital-spot"></div>
+
+  <div class="altar-content">
+    <header class="altar-header">
+      <p class="altar-subtitle">{isEn ? 'Pure Icons · Traditional Symbols' : 'Iconos Puros · Símbolos Tradicionales'}</p>
+      <h2 class="altar-title">{isEn ? 'The Altar of Iconography' : 'El Altar de la Iconografía'}</h2>
+      <div class="altar-divider">
+        <span class="divider-line"></span>
+        <span class="divider-dot"></span>
+        <span class="divider-dot"></span>
+        <span class="divider-dot"></span>
+        <span class="divider-line"></span>
+      </div>
+      <p class="altar-description">
+        {isEn
+          ? 'Every icon carries centuries of tradition. These are the pure symbols of tattoo art, each one a story etched in skin and memory.'
+          : 'Cada icono carga siglos de tradición. Estos son los símbolos puros del arte del tatuaje, cada uno una historia grabada en piel y memoria.'}
+      </p>
+    </header>
+
+    <div class="icon-grid">
+      {icons.map((icon, i) => (
+        <div
+          class="icon-panel"
+          data-index={i}
+          data-id={icon.id}
+          role="button"
+          tabindex="0"
+          aria-label={isEn ? icon.titleEn : icon.title}
+        >
+          <div class="icon-frame">
+            <div class="icon-image-wrap">
+              <img
+                src={`${base}${icon.image}`}
+                alt={isEn ? icon.titleEn : icon.title}
+                loading="lazy"
+                class="icon-img"
+              />
+              <div class="icon-spotlight"></div>
+              <div class="icon-damask-overlay"></div>
+            </div>
+            <div class="icon-title-overlay">
+              <span class="icon-panel-title">{isEn ? icon.titleEn : icon.title}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="icon-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="modal-close" id="modal-close-btn" aria-label={closeLabel}>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="6" y1="6" x2="18" y2="18" />
+        <line x1="18" y1="6" x2="6" y2="18" />
+      </svg>
+    </button>
+    <div class="modal-content">
+      <div class="modal-image-side">
+        <div class="modal-frame">
+          <img id="modal-img" src="" alt="" class="modal-img" />
+          <div class="modal-spotlight"></div>
+        </div>
+      </div>
+      <div class="modal-text-side">
+        <div class="manuscript-panel">
+          <h3 id="modal-title" class="manuscript-title"></h3>
+          <div class="manuscript-divider"></div>
+          <p class="manuscript-label">{meaningLabel}</p>
+          <p id="modal-meaning" class="manuscript-text"></p>
+          <div class="manuscript-signature">{signature}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ icons, isEn, base }}>
+  const iconData = icons;
+  const lang = isEn ? 'en' : 'es';
+
+  function openModal(id: string) {
+    const icon = iconData.find((i: { id: string }) => i.id === id);
+    if (!icon) return;
+
+    const modal = document.getElementById('icon-modal');
+    const img = document.getElementById('modal-img') as HTMLImageElement;
+    const title = document.getElementById('modal-title');
+    const meaning = document.getElementById('modal-meaning');
+
+    if (!modal || !img || !title || !meaning) return;
+
+    img.src = base + icon.image;
+    img.alt = lang === 'en' ? icon.titleEn : icon.title;
+    title.textContent = lang === 'en' ? icon.titleEn : icon.title;
+    meaning.textContent = lang === 'en' ? icon.meaningEn : icon.meaning;
+
+    modal.setAttribute('aria-hidden', 'false');
+    modal.classList.add('modal-open');
+    document.body.style.overflow = 'hidden';
+
+    const closeBtn = document.getElementById('modal-close-btn');
+    closeBtn?.focus();
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('icon-modal');
+    if (!modal) return;
+
+    modal.setAttribute('aria-hidden', 'true');
+    modal.classList.remove('modal-open');
+    document.body.style.overflow = '';
+  }
+
+  function initIconAltar() {
+    const panels = document.querySelectorAll('.icon-panel');
+    const modal = document.getElementById('icon-modal');
+    const closeBtn = document.getElementById('modal-close-btn');
+
+    panels.forEach(panel => {
+      panel.addEventListener('click', () => {
+        const id = panel.getAttribute('data-id');
+        if (id) openModal(id);
+      });
+
+      panel.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const id = panel.getAttribute('data-id');
+          if (id) openModal(id);
+        }
+      });
+    });
+
+    closeBtn?.addEventListener('click', closeModal);
+
+    modal?.addEventListener('click', (e: MouseEvent) => {
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.getAttribute('data-index') || '0');
+            (entry.target as HTMLElement).style.setProperty('--delay', `${index * 100}ms`);
+            entry.target.classList.add('panel-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    panels.forEach(panel => observer.observe(panel));
+  }
+
+  document.addEventListener('astro:page-load', initIconAltar);
+  initIconAltar();
+</script>
+
+<style>
+  .icon-altar-section {
+    position: relative;
+    background: #000000;
+    padding: 8rem 2rem;
+    overflow: hidden;
+    min-height: 100vh;
+  }
+
+  @media (max-width: 767px) {
+    .icon-altar-section {
+      padding: 5rem 1rem;
+    }
+  }
+
+  .damask-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.025;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23A87E2F' stroke-width='0.6'%3E%3Cpath d='M60 15c-2 4-6 8-6 14s4 10 6 14c2-4 6-8 6-14s-4-10-6-14z'/%3E%3Cpath d='M30 50c-1 3-4 6-4 10s3 7 4 10c1-3 4-6 4-10s-3-7-4-10z'/%3E%3Cpath d='M90 50c-1 3-4 6-4 10s3 7 4 10c1-3 4-6 4-10s-3-7-4-10z'/%3E%3Cpath d='M60 75c-3 5-8 10-8 18s5 13 8 18c3-5 8-10 8-18s-5-13-8-18z'/%3E%3Cpath d='M20 20l4-4m0 4l-4-4'/%3E%3Cpath d='M100 20l4-4m0 4l-4-4'/%3E%3Cpath d='M20 100l4-4m0 4l-4-4'/%3E%3Cpath d='M100 100l4-4m0 4l-4-4'/%3E%3Ccircle cx='60' cy='60' r='2'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 120px 120px;
+  }
+
+  .cenital-spot {
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140%;
+    height: 80%;
+    background: radial-gradient(ellipse at center, rgba(168, 126, 47, 0.04) 0%, rgba(10, 8, 8, 0.3) 50%, transparent 80%);
+    pointer-events: none;
+  }
+
+  .altar-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .altar-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .altar-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: #A87E2F;
+    margin-bottom: 1rem;
+  }
+
+  .altar-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  .altar-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+  }
+
+  .divider-line {
+    width: 4rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #A87E2F, transparent);
+  }
+
+  .divider-dot {
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 50%;
+    background: #A87E2F;
+  }
+
+  .altar-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .icon-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .icon-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
+    }
+  }
+
+  .icon-panel {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    cursor: pointer;
+  }
+
+  .icon-panel.panel-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: var(--delay, 0ms);
+  }
+
+  .icon-frame {
+    position: relative;
+    padding: 0.75rem;
+    border: 2px solid rgba(60, 50, 40, 0.6);
+    background: linear-gradient(145deg, rgba(30, 25, 20, 0.8), rgba(15, 12, 10, 0.9));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+      0 4px 12px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease;
+    overflow: hidden;
+  }
+
+  .icon-frame::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border: 1px solid rgba(80, 65, 50, 0.3);
+    pointer-events: none;
+    z-index: 2;
+    transition: border-color 0.4s ease;
+  }
+
+  .icon-panel:hover .icon-frame,
+  .icon-panel:focus-visible .icon-frame {
+    border-color: rgba(184, 115, 51, 0.7);
+    box-shadow:
+      inset 0 1px 0 rgba(184, 115, 51, 0.1),
+      0 0 20px rgba(184, 115, 51, 0.15),
+      0 8px 24px rgba(0, 0, 0, 0.6);
+  }
+
+  .icon-panel:hover .icon-frame::before,
+  .icon-panel:focus-visible .icon-frame::before {
+    border-color: rgba(184, 115, 51, 0.4);
+  }
+
+  .icon-image-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+  }
+
+  .icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.2) brightness(0.85);
+    transition: all 0.5s ease;
+    display: block;
+  }
+
+  .icon-panel:hover .icon-img,
+  .icon-panel:focus-visible .icon-img {
+    filter: grayscale(80%) contrast(1.3) brightness(0.9);
+    transform: scale(1.05);
+  }
+
+  .icon-spotlight {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .icon-damask-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23A87E2F' stroke-width='0.4'%3E%3Cpath d='M40 10c-1.5 3-4.5 6-4.5 10.5S38.5 28 40 31c1.5-3 4.5-6 4.5-10.5S41.5 13 40 10z'/%3E%3Cpath d='M20 35c-1 2-3 4.5-3 7.5s2 5.5 3 7.5c1-2 3-4.5 3-7.5s-2-5.5-3-7.5z'/%3E%3Cpath d='M60 35c-1 2-3 4.5-3 7.5s2 5.5 3 7.5c1-2 3-4.5 3-7.5s-2-5.5-3-7.5z'/%3E%3Ccircle cx='40' cy='40' r='1.5'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 80px 80px;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: opacity 0.5s ease;
+  }
+
+  .icon-panel:hover .icon-damask-overlay,
+  .icon-panel:focus-visible .icon-damask-overlay {
+    opacity: 0.15;
+  }
+
+  .icon-title-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 1rem 1rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.4s ease;
+    z-index: 3;
+  }
+
+  .icon-panel:hover .icon-title-overlay,
+  .icon-panel:focus-visible .icon-title-overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .icon-panel-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+    display: block;
+  }
+
+  /* Modal */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s ease;
+  }
+
+  .modal-backdrop.modal-open {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 10;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(184, 115, 51, 0.4);
+    color: #A87E2F;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .modal-close:hover {
+    background: rgba(184, 115, 51, 0.2);
+    border-color: #B87333;
+  }
+
+  .modal-content {
+    display: flex;
+    width: 90%;
+    max-width: 1100px;
+    max-height: 85vh;
+    gap: 0;
+    transform: scale(0.95) translateY(20px);
+    transition: transform 0.4s ease;
+  }
+
+  .modal-backdrop.modal-open .modal-content {
+    transform: scale(1) translateY(0);
+  }
+
+  @media (max-width: 767px) {
+    .modal-content {
+      flex-direction: column;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+  }
+
+  .modal-image-side {
+    flex: 1;
+    min-width: 0;
+    padding: 1rem;
+  }
+
+  @media (max-width: 767px) {
+    .modal-image-side {
+      padding: 0.5rem;
+    }
+  }
+
+  .modal-frame {
+    position: relative;
+    border: 2px solid rgba(60, 50, 40, 0.6);
+    background: linear-gradient(145deg, rgba(30, 25, 20, 0.8), rgba(15, 12, 10, 0.9));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+      0 4px 12px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+  }
+
+  .modal-frame::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid rgba(80, 65, 50, 0.3);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .modal-img {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.2) brightness(0.85);
+    display: block;
+  }
+
+  .modal-spotlight {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .modal-text-side {
+    flex: 1;
+    min-width: 0;
+    padding: 1rem;
+    display: flex;
+    align-items: stretch;
+  }
+
+  @media (max-width: 767px) {
+    .modal-text-side {
+      padding: 0.5rem;
+    }
+  }
+
+  .manuscript-panel {
+    width: 100%;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background:
+      linear-gradient(135deg, rgba(45, 38, 28, 0.95), rgba(35, 30, 22, 0.98));
+    border: 1px solid rgba(168, 126, 47, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .manuscript-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .manuscript-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 1rem;
+    line-height: 1.2;
+    position: relative;
+    z-index: 1;
+  }
+
+  .manuscript-divider {
+    width: 3rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #A87E2F, transparent);
+    margin: 0 auto 1rem;
+  }
+
+  .manuscript-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: #A87E2F;
+    margin: 0 0 1rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .manuscript-text {
+    font-family: 'Allura', cursive;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: #e8dcc8;
+    line-height: 1.8;
+    margin: 0 0 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .manuscript-signature {
+    font-family: 'Allura', cursive;
+    font-size: 1.5rem;
+    color: #A87E2F;
+    position: relative;
+    z-index: 1;
+    align-self: flex-end;
+    opacity: 0.8;
+  }
+
+  @media (min-width: 1024px) {
+    .modal-frame {
+      aspect-ratio: 3 / 4;
+      max-height: 75vh;
+    }
+    .modal-img {
+      min-height: 400px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .icon-panel,
+    .icon-frame,
+    .icon-img,
+    .icon-damask-overlay,
+    .icon-title-overlay,
+    .modal-backdrop,
+    .modal-content {
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>

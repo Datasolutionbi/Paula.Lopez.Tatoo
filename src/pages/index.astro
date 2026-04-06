@@ -7,10 +7,15 @@ const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
     <!-- Hero: The Altar -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0 bg-[#00010d]">
-            <!-- Hero atmospheric image - Process/Fireplace -->
-            <img class="w-full h-full object-cover opacity-[0.15] mix-blend-luminosity" alt="Paula Lopez tattooing in the studio" src={`${base}/portafolio/image copy 23.png`} onerror={`this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuAGSml2HFzCewoCIaDjxidM90iY7LXBq6uDFzvxPdiUG1PzNIv13f5v5KEWmWPLIlGxcAA8n53NaCshzhu4QhGfQh308MaCpUfr-zoxMb1nJ5FfrHzIQB7x9BL_tNHnj7sLFnsc398TZGukeWDqJoZOcZsJxjb4HxawaT_WmQTDWR-sy_ghaPKIkyo0Y7gIBIP830IlGpvAru3436cTPbQy8QzpUzWgh8aCyMVoGwW7g2W1vMPs4rGYrAgHS_paao-XGczmY8OsThE'`} />
-            <div class="absolute inset-0 bg-gradient-to-b from-[#00010d] via-transparent to-[#00010d]"></div>
-            <div class="absolute inset-0 bg-gradient-to-r from-[#00010d] via-transparent to-[#00010d]"></div>
+            <!-- Hero atmospheric image - Artisan -->
+            <img 
+                src={`${base}/paula-artisan.png`} 
+                alt="Paula Lopez - Artisan" 
+                class="w-full h-full object-cover opacity-40 blur-[2px]"
+                loading="eager"
+            />
+            <div class="absolute inset-0 bg-gradient-to-b from-[#00010d] via-transparent to-[#00010d] z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-[#00010d] via-transparent to-[#00010d] z-10"></div>
         </div>
         
         <div class="relative z-10 text-center max-w-5xl px-6 mt-16">
